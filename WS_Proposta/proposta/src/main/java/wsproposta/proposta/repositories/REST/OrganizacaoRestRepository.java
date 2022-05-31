@@ -4,18 +4,20 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import reactor.netty.http.client.HttpClient;
+import wsproposta.proposta.datamodel.REST.OrganizacaoRestDTO;
 import reactor.netty.resources.ConnectionProvider;
-import wsproposta.proposta.datamodel.REST.UtilizadorRestDTO;
+import reactor.netty.http.client.HttpClient;
 
 import java.util.Collections;
 import java.util.Optional;
 
-public class UtilizadorRestRepository {
+@Repository
+public class OrganizacaoRestRepository {
 
-    public Optional<UtilizadorRestDTO> findUtilizadorByCodUtilizador(int codUtilizador) {
+    public Optional<OrganizacaoRestDTO> findOrganizacaoByNifOrganizacao (int nifOrganizacao) {
 
         WebClient webClient = WebClient.builder()
                 .baseUrl("http://localhost:8080")
@@ -24,16 +26,16 @@ public class UtilizadorRestRepository {
                 .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
                 .build();
 
-        UtilizadorRestDTO utilizadorRestDTO;
+        OrganizacaoRestDTO organizacaoRestDTO;
         try {
-            utilizadorRestDTO = webClient
+            organizacaoRestDTO = webClient
                     .get()
-                    .uri("/utilizadores/" + codUtilizador)
+                    .uri("/organizacoes/" + nifOrganizacao)
                     .retrieve()
 
                     .onStatus(HttpStatus::is4xxClientError, error -> { return Mono.empty(); })
 
-                    .bodyToMono(UtilizadorRestDTO.class)
+                    .bodyToMono(OrganizacaoRestDTO.class)
 
                     .onErrorReturn( null )
 
@@ -42,13 +44,12 @@ public class UtilizadorRestRepository {
         }
         catch( Exception e) {
 
-            utilizadorRestDTO = null;
+            organizacaoRestDTO = null;
         }
 
-        if( utilizadorRestDTO != null )
-            return Optional.of(utilizadorRestDTO);
+        if( organizacaoRestDTO != null )
+            return Optional.of(organizacaoRestDTO);
         else
             return Optional.empty();
     }
-
 }

@@ -77,5 +77,13 @@ public class PropostaService {
 
     public PropostaDTO getPropostaById (int id) {
 
+        Optional<Proposta> opProposta = propostaRepository.findById(id);
+
+        if (opProposta.isPresent()){
+            Proposta proposta = opProposta.get();
+            PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
+                    proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo());
+            return propostaDTO;
+        }else return  null;
     }
 }
