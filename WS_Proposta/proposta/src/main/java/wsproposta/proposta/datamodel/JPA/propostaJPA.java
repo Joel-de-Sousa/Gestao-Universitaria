@@ -1,4 +1,4 @@
 package wsproposta.proposta.datamodel.JPA;
 
-public class propostaJPA {
+public class PropostaJPA {
 }
