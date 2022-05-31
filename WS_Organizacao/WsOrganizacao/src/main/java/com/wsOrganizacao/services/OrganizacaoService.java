@@ -35,15 +35,15 @@ public class OrganizacaoService {
 
     public OrganizacaoDTO createAndSaveOrganizacao(OrganizacaoDTO organizacaoDTO) {
 
-        Optional<NifRestDTO> nNif = nifWebRepository.findByNif(organizacaoDTO.getNNif());
+        Optional<NifRestDTO> nNif = nifWebRepository.findOrganizacaoByNif(organizacaoDTO.getNif());
 
         if (nNif.isPresent()) {
 
 
-            Organizacao organizacao = organizacaoFactory.createOrganizacao(organizacaoDTO.getNNif(),organizacaoDTO.getSDenominacao());
+            Organizacao organizacao = organizacaoFactory.createOrganizacao(organizacaoDTO.getNif(),organizacaoDTO.getDenominacao());
             Organizacao organizacaoSaved = organizacaoRepository.save(organizacao);
 
-            OrganizacaoDTO organizacaoDTO1 = organizacaoDomainDTOAssembler.toDTO(organizacaoSaved.getNNif(),organizacaoSaved.getSDenominacao());
+            OrganizacaoDTO organizacaoDTO1 = organizacaoDomainDTOAssembler.toDTO(organizacaoSaved.getNif(),organizacaoSaved.getDenominacao());
 
             return organizacaoDTO1;
 
@@ -57,21 +57,21 @@ public class OrganizacaoService {
     }
 
 
-    public OrganizacaoDTO getOrganizacaoByNif(int nNif){
+   /* public OrganizacaoDTO getOrganizacaoByNif(int nNif){
         Optional<Organizacao> optionalOrganizacao = organizacaoRepository.findByNif(nNif);
         if (optionalOrganizacao.isPresent()) {
             Organizacao organizacao = optionalOrganizacao.get();
-            OrganizacaoDTO oDTO = organizacaoDomainDTOAssembler.toDTO(organizacao.getNNif(),organizacao.getSDenominacao());
+            OrganizacaoDTO oDTO = organizacaoDomainDTOAssembler.toDTO(organizacao.getNif(),organizacao.getDenominacao());
 
             return oDTO;
         } else return null;
 
-    }
+    }*/
 
 
-    public Optional<NifRestDTO> findOrganizacaoByNif(int nNif) {
+    public Optional<NifRestDTO> findOrganizacaoByNif(int nif) {
 
-        Optional<NifRestDTO> opNif = nifWebRepository.findByNif(nNif);
+        Optional<NifRestDTO> opNif = nifWebRepository.findOrganizacaoByNif(nif);
 
         return opNif;
     }

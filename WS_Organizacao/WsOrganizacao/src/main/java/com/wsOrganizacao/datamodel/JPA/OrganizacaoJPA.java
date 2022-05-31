@@ -13,16 +13,16 @@ public class OrganizacaoJPA {
 
     @Id
     @Getter
-    private int Nif;
+    private int nif;
 
     @Getter
-    private String sDenominacao;
+    private String denominacao;
 
     public OrganizacaoJPA() {
     }
 
     public OrganizacaoJPA(int nNif, String sDenominacao) {
-        this.Nif = nNif;
-        this.sDenominacao = sDenominacao;
+        this.nif = nNif;
+        this.denominacao = sDenominacao;
     }
 }

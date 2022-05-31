@@ -12,9 +12,9 @@ public class OrganizacaoDTO {
 
 
     @Getter
-    private int nNif;
+    private int nif;
 
     @Getter
-    private String sDenominacao;
+    private String denominacao;
 
 }

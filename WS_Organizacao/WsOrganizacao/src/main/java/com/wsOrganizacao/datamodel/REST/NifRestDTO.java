@@ -1,16 +1,23 @@
 package com.wsOrganizacao.datamodel.REST;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class NifRestDTO {
 
     @Getter
-    private int nNif;
+    @Setter
+    long nr;
+    @Getter
+     @Setter
+    String name;
+
 
     protected NifRestDTO() {
     }
 
-    public NifRestDTO(int nNif) {
-        this.nNif = nNif;
+    public NifRestDTO(long nr, String name) {
+        this.nr = nr;
+        this.name = name;
     }
 }

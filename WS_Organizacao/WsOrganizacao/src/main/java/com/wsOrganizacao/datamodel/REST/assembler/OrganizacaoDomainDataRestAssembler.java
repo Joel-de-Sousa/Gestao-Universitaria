@@ -9,7 +9,7 @@ public class OrganizacaoDomainDataRestAssembler {
 
     public OrganizacaoRestDTO toData (Organizacao organizacao){
 
-        return new OrganizacaoRestDTO(organizacao.getNNif(),organizacao.getSDenominacao() );
+        return new OrganizacaoRestDTO(organizacao.getNif(),organizacao.getDenominacao());
     }
 
     public Organizacao toDomain(OrganizacaoRestDTO organizacaoRestDTO){

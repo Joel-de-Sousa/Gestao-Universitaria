@@ -20,7 +20,7 @@ import java.util.Optional;
 @Repository
 public class NifRestRepository {
 
-    public Optional<NifRestDTO> findOrganizacaoByNif(int nNif) {
+    public Optional<NifRestDTO> findOrganizacaoByNif(int nif) {
 
         WebClient webClient = WebClient.builder()
                 .baseUrl("http://193.136.62.227:8080")
@@ -33,7 +33,7 @@ public class NifRestRepository {
         try {
             nifRestDto = webClient
                     .get()
-                    .uri("/NIFS/" + nNif) // idem configuração
+                    .uri("/nifs/" + nif) // idem configuração
                     .retrieve()
 
                     // uma das formas de lidar com erros

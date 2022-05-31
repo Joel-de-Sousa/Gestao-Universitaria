@@ -12,8 +12,8 @@ public class NifWebRepository  {
     @Autowired
     NifRestRepository nifRestRepository;
 
-    public Optional<NifRestDTO> findByNif (int nNif) {
-        Optional<NifRestDTO> opNif = nifRestRepository.findOrganizacaoByNif(nNif);
+    public Optional<NifRestDTO> findOrganizacaoByNif (int nif) {
+        Optional<NifRestDTO> opNif = nifRestRepository.findOrganizacaoByNif(nif);
 
         if ( opNif.isPresent() ) {
             return opNif;

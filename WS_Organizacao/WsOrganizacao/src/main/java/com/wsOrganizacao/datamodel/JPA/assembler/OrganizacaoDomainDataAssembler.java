@@ -10,11 +10,11 @@ public class OrganizacaoDomainDataAssembler {
 
     public OrganizacaoJPA toData (Organizacao organizacao){
 
-        return new OrganizacaoJPA(organizacao.getNNif(),organizacao.getSDenominacao());
+        return new OrganizacaoJPA(organizacao.getNif(),organizacao.getDenominacao());
     }
 
     public Organizacao toDomain (OrganizacaoJPA organizacaoJPA){
 
-        return new Organizacao(organizacaoJPA.getNif(), organizacaoJPA.getSDenominacao());
+        return new Organizacao(organizacaoJPA.getNif(), organizacaoJPA.getDenominacao());
     }
 }

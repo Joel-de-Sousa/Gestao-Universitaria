@@ -17,15 +17,15 @@ public class Organizacao {
     @Getter
     @Setter
     @Id
-    private int nNif;
+    private int nif;
 
     @Getter
     @Setter
-    private String sDenominacao;
+    private String denominacao;
 
 
     public Organizacao(int nNif, String sDenominacao) {
-        this.nNif = nNif;
-        this.sDenominacao = sDenominacao;
+        this.nif = nNif;
+        this.denominacao = sDenominacao;
     }
 }
