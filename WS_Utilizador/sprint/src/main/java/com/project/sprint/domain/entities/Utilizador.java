@@ -1,5 +1,6 @@
 package com.project.sprint.domain.entities;
 
+import com.project.sprint.utils.Util;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,14 +8,15 @@ import lombok.ToString;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 
 @ToString
 @EqualsAndHashCode
 public class Utilizador {
     public enum TipoUtilizador {ESTUDANTE, DOCENTE}
 
-    ;
     @Id
     @GeneratedValue
     @Getter
@@ -26,7 +28,10 @@ public class Utilizador {
     @Getter
     @Setter
     String sobrenome;
-    @Email
+
+    //teste UNITARIO
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+            flags = Pattern.Flag.CASE_INSENSITIVE)
     @Getter
     @Setter
     String email;
@@ -34,51 +39,25 @@ public class Utilizador {
     @Setter
     TipoUtilizador tipoUtilizador;
 
-    public Utilizador(int codUtilizador, String sNome, String sSobrenome, String sEmail, TipoUtilizador oTipoUtilizador) {
-        this.codUtilizador = codUtilizador;
-        if (sNome != null && !sNome.isBlank() && !(sNome.length() < 3) && sNome.matches("[a-zA-Z]")) {
-
-            for (int i =0 ; i<4 ; i++) {
-
-
-
-            }
+    public Utilizador(String sNome, String sSobrenome, String sEmail, TipoUtilizador oTipoUtilizador) {
+        if (Util.validaStringComMinSemAlgSemSimbolo(3, 255, sNome)) {
             this.nome = sNome;
-        } else
-            throw new IllegalArgumentException("O nome introduzido tem de ser valido! sem algarismos ou carateres especiais.");
-
-        this.sobrenome = sSobrenome;
-        EmailValidator validator = EmailValidator.getInstance();
-        if (validator.isValid(email)) {
-            // is valid, do something
-            this.email = sEmail;
         } else {
-            // is invalid, do something
+            throw new IllegalArgumentException("O nome introduzido não pode conter algarismos ou carateres especiais e tem de de ser superior a 3 caracteres.");
         }
+
+        if (Util.validaStringComMinSemAlgSemSimbolo(2, 255, sSobrenome)) {
+            this.sobrenome = sSobrenome;
+        } else {
+            throw new IllegalArgumentException("O sobrenome introduzido não pode conter algarismos ou carateres especiais e tem de de ser superior a 2 caracteres.");
+        }
+
+        this.email = sEmail;
 
         this.tipoUtilizador = oTipoUtilizador;
 
 
-        if (sDenominacao != null && !sDenominacao.isBlank() && !sDenominacao.isEmpty())
-            this.denominacao = sDenominacao;
-
-
-        this.tipoAlojamentoId = oTipoAlojamento;
-
-        if (nQtdMinPax < 1 && nQtdMinPax > nQtdMaxPax)
-            throw new IllegalArgumentException("Valor de parâmetro 'quantidade mínima pax' deve ser maior que 0 e menor ou igual a 'quantidade máxima pax'.");
-
-        this.quantMinPax = nQtdMinPax;
-        this.quantMaxPax = nQtdMaxPax;
-
-        this.diaSemana = diaSemana;
-
-        if (fPreco > 0)
-            this.preco = fPreco;
-        else
-            throw new IllegalArgumentException("Valor de parâmetro 'preço' deve ser maior que 0.");
-
-        this.localId = oLocal;
     }
-}
+
+
 }
