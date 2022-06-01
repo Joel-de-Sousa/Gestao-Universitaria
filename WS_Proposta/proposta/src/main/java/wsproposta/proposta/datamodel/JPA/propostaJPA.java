@@ -2,10 +2,9 @@ package wsproposta.proposta.datamodel.JPA;
 
 
 import lombok.Getter;
+import wsproposta.proposta.domain.entities.Proposta.Estado;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table (name = "propostas")
@@ -13,7 +12,8 @@ public class PropostaJPA {
 
     @Id
     @Getter
-    int codProposta;
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private int codProposta;
     @Getter
     private int codUtilizador;
     @Getter
@@ -27,15 +27,19 @@ public class PropostaJPA {
     @Getter
     private String objetivo;
 
+    @Getter
+    private Estado estado;
+
     public PropostaJPA() {
     }
 
-    public PropostaJPA(int codUtilizador, int nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo) {
+    public PropostaJPA(int codUtilizador, int nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo, Estado estado) {
         this.codUtilizador = codUtilizador;
         this.nifOrganizacao = nifOrganizacao;
         this.codEdicao = codEdicao;
         this.titulo = titulo;
         this.problema = problema;
         this.objetivo = objetivo;
+        this.estado = estado;
     }
 }

@@ -7,14 +7,17 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @ToString
 @EqualsAndHashCode
 public class Proposta {
 
+    public enum Estado {PENDENTE, ACEITE, REJEITADA};
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     @Getter @Setter
     int codProposta;
 
@@ -36,8 +39,13 @@ public class Proposta {
     @Getter @Setter
     String objetivo;
 
+    @Getter @Setter
+    Estado estado;
 
-    public Proposta(int codUtilizador, int nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo) {
+    private static final Estado ESTADO_POR_OMISSAO = Estado.PENDENTE;
+
+
+    public Proposta(int codUtilizador, int nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo/*, Estado estado*/) {
 
         this.codUtilizador = codUtilizador;
         this.nifOrganizacao = nifOrganizacao;
@@ -45,6 +53,7 @@ public class Proposta {
         this.titulo = sTitulo;
         this.problema = sProblema;
         this.objetivo = sObjetivo;
+        this.estado = ESTADO_POR_OMISSAO;
 
     }
 }

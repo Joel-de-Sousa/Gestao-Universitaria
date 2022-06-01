@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
@@ -13,6 +14,7 @@ import wsproposta.proposta.datamodel.REST.UtilizadorRestDTO;
 import java.util.Collections;
 import java.util.Optional;
 
+@Repository
 public class UtilizadorRestRepository {
 
     public Optional<UtilizadorRestDTO> findUtilizadorByCodUtilizador(int codUtilizador) {

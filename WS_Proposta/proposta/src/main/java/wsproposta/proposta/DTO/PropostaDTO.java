@@ -22,4 +22,6 @@ public class PropostaDTO {
     String problema;
     @Getter
     String objetivo;
+    @Getter
+    String estado;
 }

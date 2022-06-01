@@ -1,7 +1,5 @@
 package wsproposta.proposta.controllers;
 
-
-import com.fasterxml.jackson.databind.deser.impl.ErrorThrowingDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,14 +31,14 @@ public class PropostaController {
         return new ResponseEntity<>(listPropostasDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{codProposta}")
     @ResponseBody
-    public ResponseEntity<Object> getById (@PathVariable int codProposta) {
+    public ResponseEntity<Object> getPropostaByCode (@PathVariable int codProposta) {
 
-        PropostaDTO alojamentoDTO = service.getPropostaById (codProposta);
+        PropostaDTO propostaDTO = service.getPropostaById (codProposta);
 
-        if(alojamentoDTO != null) {
-            return new ResponseEntity<>(alojamentoDTO, HttpStatus.OK);
+        if(propostaDTO != null) {
+            return new ResponseEntity<>(propostaDTO, HttpStatus.OK);
         } else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
