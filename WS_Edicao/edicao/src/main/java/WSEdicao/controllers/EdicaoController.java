@@ -23,7 +23,7 @@ public class EdicaoController {
 
     public EdicaoController(EdicaoService service){this.service=service;}
 
-    @GetMapping("/{codigo}")
+    @GetMapping("/{codEdicao}")
     @ResponseBody
     public ResponseEntity<Object> getByCode(@PathVariable int codEdicao){
 
@@ -37,20 +37,20 @@ public class EdicaoController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    /*@GetMapping("")
+    @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> findAll(){
         List<Edicao> listEdicao = service.getAllEdicao();
 
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
-    }*/
+    }
 
-    /*@PostMapping("")
+    @PostMapping("")
     public ResponseEntity<Object> createEdicao(@RequestBody EdicaoDTO info){
 
-        Edicao edicao = service.createAndSaveEdicao(info.getCodEdicao(), info.getCodUc(), info.getCodAnoLetivo());
+        Edicao edicao = service.createAndSaveEdicao( info.getCodUc(), info.getCodAnoLetivo());
 
         return new ResponseEntity<>(edicao, HttpStatus.CREATED);
 
-    }*/
+    }
 }

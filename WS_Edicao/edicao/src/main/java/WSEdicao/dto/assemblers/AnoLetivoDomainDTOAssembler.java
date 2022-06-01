@@ -11,7 +11,7 @@ public class AnoLetivoDomainDTOAssembler {
     private AnoLetivoDomainDTOAssembler() {
     }
 
-    public AnoLetivoDTO toDTO(int codAnoLetivo, int ano ) {
+    public AnoLetivoDTO toDTO(int codAnoLetivo, String ano ) {
         return new AnoLetivoDTO(codAnoLetivo,ano);
     }
 }

@@ -23,7 +23,7 @@ public class UcController {
 
     public UcController(UcService service){this.service=service;}
 
-    @GetMapping("/{codigo}")
+    @GetMapping("/{codUc}")
     @ResponseBody
     public ResponseEntity<Object> getByCode(@PathVariable int codUc){
 
@@ -37,7 +37,7 @@ public class UcController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    /*@GetMapping("")
+    @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> findAll(){
         List<Uc> listUc = service.getAllUc();
@@ -48,9 +48,9 @@ public class UcController {
     @PostMapping("")
     public ResponseEntity<Object> createUc(@RequestBody UcDTO info){
 
-        Uc uc = service.createAndSaveUc(info.getCodUc(), info.getSSigla(),info.getSDenominacao());
+        Uc uc = service.createAndSaveUc(info.getSSigla(),info.getSDenominacao());
 
         return new ResponseEntity<>(uc, HttpStatus.CREATED);
 
-    }*/
+    }
 }

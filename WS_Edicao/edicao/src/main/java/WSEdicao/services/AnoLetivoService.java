@@ -23,22 +23,22 @@ public class AnoLetivoService {
     public AnoLetivoService() {
     }
 
-    public AnoLetivo createAndSaveAnoLetivo(int codAnoLetivo, int ano) {
-        AnoLetivo anoLetivo = factory.createAnoLetivo(codAnoLetivo,ano);
+    public AnoLetivo createAndSaveAnoLetivo(String ano) {
+        AnoLetivo anoLetivo = factory.createAnoLetivo(ano);
         return anoLetivoRepository.save(anoLetivo);
     }
 
     public Optional<AnoLetivo> getAnoLetivoByCode(int codAnoLetivo ) {
 
-        Optional<AnoLetivo> opAnoLetivo = anoLetivoRepository.findByCode(codAnoLetivo);
+        Optional<AnoLetivo> opAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
 
         return opAnoLetivo;
     }
 
-    /*public List<AnoLetivo> getAllAnoLetivo() {
+    public List<AnoLetivo> getAllAnoLetivo() {
 
         List<AnoLetivo> listAnoLetivo = anoLetivoRepository.findAll();
 
         return listAnoLetivo;
-    }*/
+    }
 }

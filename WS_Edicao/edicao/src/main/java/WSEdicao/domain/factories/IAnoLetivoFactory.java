@@ -7,5 +7,5 @@ import java.util.Date;
 
 public interface IAnoLetivoFactory {
 
-    public AnoLetivo createAnoLetivo(int codAnoLetivo, int ano);
+    public AnoLetivo createAnoLetivo( String ano);
 }

@@ -3,6 +3,7 @@ package WSEdicao.datamodel;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.Uc;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -13,21 +14,21 @@ import javax.persistence.*;
 public class EdicaoJpa {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codEdicao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private UcJpa codUc;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "cod_ano_letivo",referencedColumnName = "cod")
     private AnoLetivoJpa codAnoLetivo;
 
 
 
     protected EdicaoJpa(){}
 
-    public EdicaoJpa(int codEdicao, UcJpa codUc, AnoLetivoJpa codAnoLetivo) {
-        this.codEdicao = codEdicao;
+    public EdicaoJpa(UcJpa codUc, AnoLetivoJpa codAnoLetivo) {
         this.codUc = codUc;
         this.codAnoLetivo = codAnoLetivo;
     }

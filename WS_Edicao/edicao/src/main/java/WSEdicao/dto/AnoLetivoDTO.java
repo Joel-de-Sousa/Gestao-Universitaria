@@ -14,7 +14,7 @@ import java.util.Date;
 public class AnoLetivoDTO {
 
     int codAnoLetivo;
-    int ano;
+    String ano;
 
     public AnoLetivoDTO() {
     }

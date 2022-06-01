@@ -9,7 +9,7 @@ import java.util.Date;
 @Service
 public class AnoLetivoFactory implements IAnoLetivoFactory{
 
-    public AnoLetivo createAnoLetivo(int codAnoLetivo, int ano) {
-        return (new AnoLetivo(codAnoLetivo,ano));
+    public AnoLetivo createAnoLetivo(String ano) {
+        return (new AnoLetivo(ano));
     }
 }

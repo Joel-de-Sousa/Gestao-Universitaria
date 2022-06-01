@@ -19,13 +19,13 @@ public class EdicaoDomainDataAssembler {
         UcJpa ucJpa= ucAssembler.toData(oEdicao.getCodUc());
         AnoLetivoJpa anoLetivoJpa = anoLetivoAssembler.toData(oEdicao.getAnoLetivo());
 
-        return new EdicaoJpa(oEdicao.getCodEdicao(), ucJpa, anoLetivoJpa);
+        return new EdicaoJpa(ucJpa, anoLetivoJpa);
     }
 
     public Edicao toDomain(EdicaoJpa oEdicaoJpa){
         Uc uc = ucAssembler.toDomain(oEdicaoJpa.getCodUc());
         AnoLetivo anoLetivo = anoLetivoAssembler.toDomain(oEdicaoJpa.getCodAnoLetivo());
 
-        return new Edicao(oEdicaoJpa.getCodEdicao(), uc, anoLetivo);
+        return new Edicao(uc, anoLetivo);
     }
 }

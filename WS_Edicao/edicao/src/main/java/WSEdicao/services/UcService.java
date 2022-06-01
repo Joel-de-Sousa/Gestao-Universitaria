@@ -21,8 +21,8 @@ public class UcService {
     public UcService() {
     }
 
-    public Uc createAndSaveUc(int codUc, String sSigla, String sDenominacao ) {
-        Uc uc = ucFactory.createUc(codUc, sSigla, sDenominacao);
+    public Uc createAndSaveUc(String sSigla, String sDenominacao ) {
+        Uc uc = ucFactory.createUc( sSigla, sDenominacao);
         return ucRepository.save(uc);
     }
 

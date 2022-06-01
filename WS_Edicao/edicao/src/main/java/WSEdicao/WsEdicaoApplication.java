@@ -10,4 +10,7 @@ public class WsEdicaoApplication {
 		SpringApplication.run(WsEdicaoApplication.class, args);
 	}
 
+	//verificar a classe UC, retorna tudo null. Gets nao estao a funcionar. Verificar os testes apos
+	//Adicionar excesoes, perguntar como chamar a 2º excecao
+
 }

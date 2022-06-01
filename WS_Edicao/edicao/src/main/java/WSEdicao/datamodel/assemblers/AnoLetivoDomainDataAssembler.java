@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 public class AnoLetivoDomainDataAssembler {
 
     public AnoLetivoJpa toData(AnoLetivo oAnoLetivo){
-        return new AnoLetivoJpa(oAnoLetivo.getCodAnoLetivo(), oAnoLetivo.getAno());
+        return new AnoLetivoJpa(oAnoLetivo.getAno());
     }
 
     public AnoLetivo toDomain(AnoLetivoJpa oAnoLetivoJpa){
-        return new AnoLetivo(oAnoLetivoJpa.getCodAnoLetivo(), oAnoLetivoJpa.getAno());
+        return new AnoLetivo(oAnoLetivoJpa.getAno());
     }
 }

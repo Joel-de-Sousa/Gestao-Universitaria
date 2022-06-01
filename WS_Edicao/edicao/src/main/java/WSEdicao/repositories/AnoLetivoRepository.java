@@ -28,7 +28,7 @@ public class AnoLetivoRepository {
         return assembler.toDomain(savedAnoLetivoJpa);
     }
 
-    public Optional<AnoLetivo> findByCode(int codAnoLetivo) {
+    public Optional<AnoLetivo> findBycodAnoLetivo(int codAnoLetivo) {
         Optional<AnoLetivoJpa> opAnoLetivo = anoLetivoJpaRepository.findBycodAnoLetivo(codAnoLetivo);
 
         if ( opAnoLetivo.isPresent() ) {
@@ -39,7 +39,7 @@ public class AnoLetivoRepository {
             return Optional.empty();
     }
 
-   /* public List<AnoLetivo> findAll() {
+    public List<AnoLetivo> findAll() {
         List<AnoLetivoJpa> setAnoLetivoJpa = anoLetivoJpaRepository.findAll();
 
         List<AnoLetivo> setAnoLetivo = new ArrayList<AnoLetivo>();
@@ -49,5 +49,5 @@ public class AnoLetivoRepository {
         }
 
         return setAnoLetivo;
-    }*/
+    }
 }

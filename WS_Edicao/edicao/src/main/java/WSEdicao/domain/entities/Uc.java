@@ -1,53 +1,30 @@
 package WSEdicao.domain.entities;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import WSEdicao.utils.Util;
+import lombok.*;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @EqualsAndHashCode
 @ToString
+@AllArgsConstructor
 @Setter
 @Getter
 public class Uc {
 
-    @Id
     private int codUc;
-
     private String sSigla;
     private String sDenominacao;
 
-    public Uc(int codUc, String sSigla, String sDenominacao) {
-        this.codUc = codUc;
-
-        if (sSigla != null && (sSigla.length() > 3 && sSigla.length() < 100)) {
-            char c;
-            for (int i = 0; i < sSigla.length(); i++) {
-                c = sSigla.charAt(i);
-                if (Character.isAlphabetic(c)) {
-                    this.sSigla = sSigla;
-                } else {
-                    throw new IllegalArgumentException("A sigla introduzida não pode conter algarismos ou carateres especiais.");
-                }
-            }
-        } else {
-            throw new IllegalArgumentException("A sigla introduzido tem de ter pelo menos 3 caracteres");
-        }
-
-        if (sDenominacao != null && (sDenominacao.length() > 10 && sDenominacao.length() < 100)) {
-            char c;
-            for (int i = 0; i < sSigla.length(); i++) {
-                c = sSigla.charAt(i);
-                if (Character.isAlphabetic(c)) {
-                    this.sDenominacao = sDenominacao;
-                } else {
-                    throw new IllegalArgumentException("A denominacao introduzida não pode conter algarismos ou carateres especiais.");
-                }
-            }
-        } else {
-            throw new IllegalArgumentException("A denominacao introduzido tem de ter pelo menos 3 caracteres");
-        }
+    public Uc(String sSigla, String sDenominacao) {
+        if(Util.validaStringComMinSemAlgSemSimbolo(3,10,sSigla)){
+            this.sSigla = sSigla;
+        } else
+            throw new IllegalArgumentException("A Sigla deve conter no mínimo 3 carateres, sem espaços, sem símbolos e sem algarismos");
+        this.sDenominacao = sDenominacao;
     }
+
+
 }

@@ -22,7 +22,7 @@ public class AnoLetivoController {
 
     public AnoLetivoController(AnoLetivoService service){this.service=service;}
 
-    @GetMapping("/{codigo}")
+    @GetMapping("/{codAnoLetivo}")
     @ResponseBody
     public ResponseEntity<Object> getByCode(@PathVariable int codAnoLetivo){
 
@@ -36,20 +36,20 @@ public class AnoLetivoController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    /*@GetMapping("")
+    @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> findAll(){
         List<AnoLetivo> listAnoLetivo = service.getAllAnoLetivo();
 
         return new ResponseEntity<>(listAnoLetivo, HttpStatus.OK);
-    }*/
+    }
 
-    /*@PostMapping("")
+    @PostMapping("")
     public ResponseEntity<Object> createAnoLetivo(@RequestBody AnoLetivoDTO info){
 
-        AnoLetivo anoLetivo = service.createAndSaveAnoLetivo(info.getCodAnoLetivo(), info.getData());
+        AnoLetivo anoLetivo = service.createAndSaveAnoLetivo(info.getAno());
 
         return new ResponseEntity<>(anoLetivo, HttpStatus.CREATED);
 
-    }*/
+    }
 }
