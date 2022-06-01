@@ -20,7 +20,7 @@ public class Util {
         return valida;
     }
 
-    public boolean validaStringMinCarateresNaoBrancos(int min,String sValidar){
+    public static boolean validaStringMinCarateresNaoBrancos(int min, String sValidar){
 
         boolean valido = false;
         if (sValidar != null  && (sValidar.replaceAll(" ","").length()>=min)){

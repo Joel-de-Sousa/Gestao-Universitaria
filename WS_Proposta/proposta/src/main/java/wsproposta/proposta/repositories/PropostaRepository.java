@@ -58,8 +58,8 @@ public class PropostaRepository implements IPropostaRepository {
     }
 
     //MÉTODO GET PROPOSTAS BY NIF ORGANIZACAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE NIF
-    public List<Proposta> findAllByNifOrganizacao (int nifOrganizacao){
-        List<PropostaJPA> listFiltradaPropostasJPA = propostaJPARepository.findAllByNifOrganizacao(nifOrganizacao);
+    public List<Proposta> findAllByNifOrganizacao (long nr){
+        List<PropostaJPA> listFiltradaPropostasJPA = propostaJPARepository.findAllByNifOrganizacao(nr);
         List<Proposta> listFiltradaPropostas =new ArrayList<>();
         for (PropostaJPA p:listFiltradaPropostasJPA) {
             listFiltradaPropostas.add(propostaAssembler.toDomain(p));

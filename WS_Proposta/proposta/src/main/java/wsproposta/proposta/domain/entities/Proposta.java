@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import wsproposta.proposta.utils.Util;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Proposta {
     int codUtilizador;
 
     @Getter @Setter
-    int nifOrganizacao;
+    long nifOrganizacao;
 
     @Getter @Setter
     int codEdicao;
@@ -45,14 +46,29 @@ public class Proposta {
     private static final Estado ESTADO_POR_OMISSAO = Estado.PENDENTE;
 
 
-    public Proposta(int codUtilizador, int nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo/*, Estado estado*/) {
+    public Proposta(int codUtilizador, long nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo/*, Estado estado*/) {
 
         this.codUtilizador = codUtilizador;
+
         this.nifOrganizacao = nifOrganizacao;
+
         this.codEdicao = codEdicao;
-        this.titulo = sTitulo;
-        this.problema = sProblema;
-        this.objetivo = sObjetivo;
+
+        if(Util.validaStringMinCarateresNaoBrancos(10, sTitulo))
+            this.titulo = sTitulo;
+        else
+            throw new IllegalArgumentException ("O valor do parâmetro 'Título' deve ter no mínimo 10 caracteres não brancos");
+
+        if(Util.validaStringMinCarateresNaoBrancos(10, sProblema))
+            this.problema = sProblema;
+        else
+            throw new IllegalArgumentException ("O valor do parâmetro 'Problema' deve ter no mínimo 10 caracteres não brancos");
+
+        if(Util.validaStringMinCarateresNaoBrancos(10, sObjetivo))
+            this.objetivo = sObjetivo;
+        else
+            throw new IllegalArgumentException ("O valor do parâmetro 'Objectivo' deve ter no mínimo 10 caracteres não brancos");
+
         this.estado = ESTADO_POR_OMISSAO;
 
     }

@@ -17,12 +17,12 @@ import java.util.Optional;
 @Repository
 public class OrganizacaoRestRepository {
 
-    public Optional<OrganizacaoRestDTO> findOrganizacaoByNifOrganizacao (int nifOrganizacao) {
+    public Optional<OrganizacaoRestDTO> findOrganizacaoByNifOrganizacao (long nr) {
 
         WebClient webClient = WebClient.builder()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://193.136.62.227:8080")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8080"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://193.136.62.227:8080"))
                 .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
                 .build();
 
@@ -30,7 +30,7 @@ public class OrganizacaoRestRepository {
         try {
             organizacaoRestDTO = webClient
                     .get()
-                    .uri("/organizacoes/" + nifOrganizacao)
+                    .uri("/nifs/" + nr)
                     .retrieve()
 
                     .onStatus(HttpStatus::is4xxClientError, error -> { return Mono.empty(); })

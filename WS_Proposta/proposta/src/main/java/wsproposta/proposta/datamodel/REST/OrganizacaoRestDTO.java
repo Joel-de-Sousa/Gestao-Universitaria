@@ -5,15 +5,15 @@ import lombok.Getter;
 public class OrganizacaoRestDTO {
 
     @Getter
-    int nifOrganizacao;
+    long nr;
     @Getter
-    String denominacao;
+    String name;
 
     public OrganizacaoRestDTO() {
     }
 
-    public OrganizacaoRestDTO(int nifOrganizacao, String denominacao) {
-        this.nifOrganizacao = nifOrganizacao;
-        this.denominacao = denominacao;
+    public OrganizacaoRestDTO(long nifOrganizacao, String denominacao) {
+        this.nr = nifOrganizacao;
+        this.name = denominacao;
     }
 }

@@ -1,4 +1,5 @@
 package wsproposta.proposta.datamodel.REST.assembler;
+/*
 
 import org.springframework.stereotype.Service;
 import wsproposta.proposta.datamodel.REST.PropostaRestDTO;
@@ -14,6 +15,9 @@ public class PropostaDomainDataRestAssembler {
 
     public Proposta toDomain (PropostaRestDTO propostaRestDTO){
         return new Proposta(propostaRestDTO.getCodUtilizador(), propostaRestDTO.getNifOrganizacao(), propostaRestDTO.getCodEdicao(),
-                propostaRestDTO.getTitulo(), propostaRestDTO.getProblema(), propostaRestDTO.getObjetivo()/*, propostaRestDTO.getEstado()*/);
+                propostaRestDTO.getTitulo(), propostaRestDTO.getProblema(), propostaRestDTO.getObjetivo()*/
+/*, propostaRestDTO.getEstado()*//*
+);
     }
 }
+*/
