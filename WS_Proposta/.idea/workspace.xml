@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6db646fd-4151-4db5-8e7c-65cb38319c9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../WS_Organizacao/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Organizacao/WsOrganizacao/src/main/java/com/wsOrganizacao/repositories/IRepository/IOrganizacaoJPaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Organizacao/WsOrganizacao/src/main/java/com/wsOrganizacao/repositories/JPA/IOrganizacaoJPaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Organizacao/WsOrganizacao/src/main/java/com/wsOrganizacao/repositories/OrganizacaoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Organizacao/WsOrganizacao/src/main/java/com/wsOrganizacao/repositories/OrganizacaoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/DTO/ProjetoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/DTO/ProjetoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/DTO/assembler/ProjetoDomainDTOAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/DTO/assembler/ProjetoDomainDTOAssembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/repositories/PropostaWebRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/repositories/PropostaWebRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/service/ProjetoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/service/ProjetoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +25,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/35191/Desktop/SprintUp2/WS_Proposta"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/35191/Desktop/SprintUp2/WS_Proposta&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

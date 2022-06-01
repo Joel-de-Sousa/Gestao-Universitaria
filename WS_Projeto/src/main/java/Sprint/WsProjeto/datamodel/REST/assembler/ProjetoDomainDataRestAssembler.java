@@ -4,7 +4,7 @@ import Sprint.WsProjeto.datamodel.REST.ProjetoRestDTO;
 import Sprint.WsProjeto.domain.entities.Projeto;
 import org.springframework.stereotype.Service;
 
-@Service
+/*@Service*/
 public class ProjetoDomainDataRestAssembler {
 
     // pode ser usado no futuro ?

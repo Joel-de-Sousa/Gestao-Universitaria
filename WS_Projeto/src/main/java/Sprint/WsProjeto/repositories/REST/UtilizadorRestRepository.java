@@ -20,7 +20,7 @@ import reactor.netty.http.client.HttpClient;
 public class UtilizadorRestRepository {
 
 
-    public Optional<UtilizadorRestDTO> findUtilizadorByCode(int code) {
+    public Optional<UtilizadorRestDTO> findUtilizadorByCode(int codUtilizador) {
 
         WebClient webClient = WebClient.builder()
                 .baseUrl("")
@@ -33,7 +33,7 @@ public class UtilizadorRestRepository {
         try {
             utilizadorRestDTO = webClient
                     .get()
-                    .uri("//" + code)
+                    .uri("//" + codUtilizador)
                     .retrieve()
 
 

@@ -18,12 +18,12 @@ import java.util.Optional;
 public class PropostaRestRepository {
 
 
-    public Optional<PropostaRestDTO> findPropostaByCode(int code) {
+    public Optional<PropostaRestDTO> findPropostaByCode(int codProposta) {
 
         WebClient webClient = WebClient.builder()
-                .baseUrl("")
+                .baseUrl("http://localhost:8090")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", ""))
+                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8090"))
                 .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
                 .build();
 
@@ -31,7 +31,7 @@ public class PropostaRestRepository {
         try {
             propostaRestDTO = webClient
                     .get()
-                    .uri("//" + code)
+                    .uri("/propostas/" + codProposta)
                     .retrieve()
 
 

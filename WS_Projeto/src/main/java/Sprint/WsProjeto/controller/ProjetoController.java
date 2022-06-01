@@ -21,11 +21,11 @@ public class ProjetoController {
         this.projetoService = projetoService;
     }
 
-   @GetMapping("/{code}")
+   @GetMapping("/{codProjeto}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetoByCode(@PathVariable int nCode){
+    public ResponseEntity<Object> findProjetoByCode(@PathVariable int codProjeto){
 
-       ProjetoDTO oProjeto = projetoService.findProjetoByCode(nCode);
+       ProjetoDTO oProjeto = projetoService.findProjetoByCode(codProjeto);
 
 
        if (oProjeto != null) {

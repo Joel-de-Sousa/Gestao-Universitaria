@@ -34,17 +34,22 @@ public class ProjetoService {
 
     public ProjetoService() {
     }
-// duvida
-   /* public ProjetoDTO createAndSaveProjeto(ProjetoDTO projetoDTO){
-        Optional<UtilizadorRestDTO> oUtilizador = utilizadorWebRepository.findUtilizadorByCode(projetoDTO.getCodEstudante());
-        Optional<PropostaRestDTO> oProposta = propostaWebRepository.findPropostaByCode(projetoDTO.getCodProposta());
 
+    public ProjetoDTO createAndSaveProjeto(ProjetoDTO projetoDTO){
 
-    }*/
+        Projeto projeto = projetoFactory.createProjeto(projetoDTO.getCodProposta(),projetoDTO.getCodEstudante(),projetoDTO.getCodOrientador());
 
-    public ProjetoDTO findProjetoByCode(int code) {
+        Projeto oProjetoSaved = projetoRepository.save(projeto);
 
-        Optional<Projeto> opProjeto = projetoRepository.findByCode(code);
+        ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(oProjetoSaved);
+
+      return oProjetoDTO;
+
+    }
+
+    public ProjetoDTO findProjetoByCode(int codProjeto) {
+
+        Optional<Projeto> opProjeto = projetoRepository.findById(codProjeto);
 
         if (opProjeto.isPresent()) {
             Projeto oProjeto = opProjeto.get();
@@ -54,13 +59,11 @@ public class ProjetoService {
         } else return null;
     }
 
-    public Projeto save(Projeto newProjeto) {
-        return projetoRepository.save(newProjeto);
-    }
 
-    public Optional<UtilizadorRestDTO> findUtilizadorByCode(int code) {
 
-        Optional<UtilizadorRestDTO> oUtilizadorCode = utilizadorWebRepository.findUtilizadorByCode(code);
+    public Optional<UtilizadorRestDTO> findUtilizadorByCode(int nCode) {
+
+        Optional<UtilizadorRestDTO> oUtilizadorCode = utilizadorWebRepository.findUtilizadorByCode(nCode);
 
         return oUtilizadorCode;
     }

@@ -4,9 +4,9 @@ package Sprint.WsProjeto.repositories;
 import Sprint.WsProjeto.datamodel.JPA.ProjetoJPA;
 import Sprint.WsProjeto.datamodel.JPA.assembler.ProjetoDomainDataAssembler;
 import Sprint.WsProjeto.domain.entities.Projeto;
-import Sprint.WsProjeto.repositories.IRepository.IProjetoRepository;
-import Sprint.WsProjeto.repositories.JPA.IProjetoJPARepository;
+import Sprint.WsProjeto.repositories.JPA.ProjetoJPARepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -15,23 +15,23 @@ import java.util.Optional;
 public class ProjetoRepository implements IProjetoRepository {
 
     @Autowired
-    IProjetoJPARepository projetoJpaRepository;
+    ProjetoJPARepository projetoJPARepository;
 
     @Autowired
     ProjetoDomainDataAssembler projetoDomainDataAssembler;
 
 
-    @Override
+
     public Projeto save(Projeto projeto) {
         ProjetoJPA projetoJPA = projetoDomainDataAssembler.toData(projeto);
 
-        ProjetoJPA savedProjetoJPA = projetoJpaRepository.save(projetoJPA);
+        ProjetoJPA savedProjetoJPA = projetoJPARepository.save(projetoJPA);
 
         return projetoDomainDataAssembler.toDomain(savedProjetoJPA);
     }
 
-    public Optional<Projeto> findByCode(int nCode) {
-        Optional<ProjetoJPA> opProjeto = projetoJpaRepository.findByCode(nCode);
+    public Optional<Projeto> findById(int codProjeto) {
+        Optional<ProjetoJPA> opProjeto = projetoJPARepository.findById(codProjeto);
 
         if ( opProjeto.isPresent() ) {
             Projeto projeto = projetoDomainDataAssembler.toDomain(opProjeto.get());

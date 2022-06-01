@@ -11,9 +11,11 @@ import lombok.ToString;
 public class ProjetoDTO {
 
     @Getter
+
     private int codProjeto;
 
     @Getter
+
     private int codProposta;
 
     @Getter
