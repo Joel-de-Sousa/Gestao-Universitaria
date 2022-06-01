@@ -24,6 +24,7 @@ public class PropostaController {
         this.service = service;
     }
 
+    //MÉTODO FIND ALL PROPOSTAS
     @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> getAll(){
@@ -31,6 +32,7 @@ public class PropostaController {
         return new ResponseEntity<>(listPropostasDTO, HttpStatus.OK);
     }
 
+    //MÉTODO GET PROPOSTA BY COD PROPOSTA
     @GetMapping("/{codProposta}")
     @ResponseBody
     public ResponseEntity<Object> getPropostaByCode (@PathVariable int codProposta) {
@@ -43,6 +45,7 @@ public class PropostaController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    //MÉTODO CREATE PROPOSTA
     @PostMapping("")
     public ResponseEntity<Object> createProposta (@RequestBody NewPropostaInfoDTO propostaInfoDTO) {
         try{
@@ -53,6 +56,33 @@ public class PropostaController {
             return new ResponseEntity<>(new ErrorDTO(e.getMessage()), HttpStatus.CONFLICT);
 
         }
+    }
+
+    //MÉTODO GET PROPOSTAS BY CODE UTILIZADOR - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE UTILIZADOR
+    @GetMapping("/utilizador/{codUtilizador}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllPropostasByCodUtilizador (@PathVariable int codUtilizador) {
+
+        List<PropostaDTO> listFiltradaPropostasDTO = service.findAllByCodUtilizador(codUtilizador);
+        return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
+    }
+
+    //MÉTODO GET PROPOSTAS BY NIF ORGANIZACAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE NIF
+    @GetMapping("/nif/{nifOrganizacao}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllPropostasByNifOrganizacao (@PathVariable int nifOrganizacao) {
+
+        List<PropostaDTO> listFiltradaPropostasDTO = service.findAllPropostasByNifOrganizacao(nifOrganizacao);
+        return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
+    }
+
+    //MÉTODO GET PROPOSTAS BY TITULO - RECEBE LISTA DE TODAS AS PROPOSTAS COM ESTE TITULO
+    @GetMapping("/titulo/{titulo}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllPropostasByTitulo (@PathVariable String titulo) {
+
+        List<PropostaDTO> listFiltradaPropostasDTO = service.findAllPropostasByTitulo(titulo);
+        return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
     }
 
 }

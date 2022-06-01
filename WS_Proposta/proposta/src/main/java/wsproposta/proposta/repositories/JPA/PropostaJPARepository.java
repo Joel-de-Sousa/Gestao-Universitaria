@@ -13,4 +13,10 @@ public interface PropostaJPARepository extends CrudRepository<PropostaJPA, Integ
     void deleteById (int codProposta);
 
     List<PropostaJPA> findAll();
+
+    List<PropostaJPA> findAllByCodUtilizador (int codUtilizador);
+
+    List<PropostaJPA> findAllByNifOrganizacao (int nifOrganizacao);
+
+
 }
