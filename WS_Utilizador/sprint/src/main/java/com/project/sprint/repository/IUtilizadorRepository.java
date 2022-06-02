@@ -1,4 +1,4 @@
-package com.project.sprint.service;
+package com.project.sprint.repository;
 
 import com.project.sprint.domain.entities.Utilizador;
 

@@ -28,4 +28,8 @@ public class Util {
         }
         return valido;
     }
+
+    public boolean validaEmail(String email){
+        return true;
+    }
 }
