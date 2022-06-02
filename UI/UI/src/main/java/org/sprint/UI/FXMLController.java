@@ -1,4 +1,4 @@
-package org.sprint;
+package org.sprint.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
