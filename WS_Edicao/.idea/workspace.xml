@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2668755e-9396-4eea-817b-70d758106660" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../UIsprint2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UIsprint2/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/AnoLetivoRestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/AnoLetivoRestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/EdicaoRestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/EdicaoRestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/demo.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/AnoLetivoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/AnoLetivoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/EdicaoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/EdicaoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/UcRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/UcRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/AnoLetivoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/AnoLetivoJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EdicaoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EdicaoJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/UcJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/UcJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/AnoLetivoJpaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/AnoLetivoJpaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/entities/EdicaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/entities/EdicaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/EdicaoFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/AnoLetivoFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/UcRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/UcRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/data/demo.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/data/demo.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/AnoLetivoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/AnoLetivoServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/UcServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/UcServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,71 +56,93 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager" selected="JUnit.UcRepositoryTest">
-    <configuration name="WsEdicaoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="WSEdicao.WsEdicaoApplication" />
+  <component name="RunManager" selected="JUnit.UcServiceTest.shouldFindSpecificUcSearchingById">
+    <configuration name="AnoLetivoServiceTest.shouldCreateAAnoLetivoWithCorrectAttributes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="WSEdicao.*" />
+          <option name="PATTERN" value="WSEdicao.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UcRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="WSEdicao.repositories.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="WSEdicao.repositories" />
-      <option name="MAIN_CLASS_NAME" value="WSEdicao.repositories.UcRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UcRepositoryTest.shouldSaveUc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="WSEdicao.repositories.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="WSEdicao.repositories" />
-      <option name="MAIN_CLASS_NAME" value="WSEdicao.repositories.UcRepositoryTest" />
-      <option name="METHOD_NAME" value="shouldSaveUc" />
+      <option name="PACKAGE_NAME" value="WSEdicao.services" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.services.AnoLetivoServiceTest" />
+      <option name="METHOD_NAME" value="shouldCreateAAnoLetivoWithCorrectAttributes" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WSEdicao.controllers in demo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnoLetivoServiceTest.shouldFindSpecificAnoLetivoSearchingById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="WSEdicao.controllers.*" />
+          <option name="PATTERN" value="WSEdicao.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="WSEdicao.controllers" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="WSEdicao.services" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.services.AnoLetivoServiceTest" />
+      <option name="METHOD_NAME" value="shouldFindSpecificAnoLetivoSearchingById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UcServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao.services" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.services.UcServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UcServiceTest.shouldCreateAUcWithCorrectAttributes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao.services" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.services.UcServiceTest" />
+      <option name="METHOD_NAME" value="shouldCreateAUcWithCorrectAttributes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UcServiceTest.shouldFindSpecificUcSearchingById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao.services" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.services.UcServiceTest" />
+      <option name="METHOD_NAME" value="shouldFindSpecificUcSearchingById" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UcRepositoryTest" />
-        <item itemvalue="JUnit.WSEdicao.controllers in demo" />
-        <item itemvalue="JUnit.UcRepositoryTest.shouldSaveUc" />
-        <item itemvalue="Application.WsEdicaoApplication" />
+        <item itemvalue="JUnit.UcServiceTest.shouldFindSpecificUcSearchingById" />
+        <item itemvalue="JUnit.AnoLetivoServiceTest.shouldFindSpecificAnoLetivoSearchingById" />
+        <item itemvalue="JUnit.UcServiceTest.shouldCreateAUcWithCorrectAttributes" />
+        <item itemvalue="JUnit.UcServiceTest" />
+        <item itemvalue="JUnit.AnoLetivoServiceTest.shouldCreateAAnoLetivoWithCorrectAttributes" />
       </list>
     </recent_temporary>
   </component>
@@ -153,6 +164,16 @@
           <url>file://$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/UcRepository.java</url>
           <line>46</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/UcServiceTest.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/AnoLetivoServiceTest.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
