@@ -12,5 +12,7 @@ public interface AnoLetivoJpaRepository extends CrudRepository<AnoLetivoJpa, Int
 
     List<AnoLetivoJpa> findAll();
 
+    boolean existsByAno(String ano);
+
     //Optional<AnoLetivoJpa> save();
 }

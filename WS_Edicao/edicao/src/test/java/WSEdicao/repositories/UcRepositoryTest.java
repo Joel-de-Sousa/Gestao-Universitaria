@@ -1,9 +1,9 @@
-/*
 package WSEdicao.repositories;
-
 import WSEdicao.datamodel.UcJpa;
 import WSEdicao.datamodel.assemblers.UcDomainDataAssembler;
 import WSEdicao.domain.entities.Uc;
+import WSEdicao.dto.UcDTO;
+import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
 import WSEdicao.repositories.jpa.UcJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,13 @@ class UcRepositoryTest {
     UcDomainDataAssembler ucDomainDataAssembler;
 
     @MockBean
+    UcDomainDTOAssembler ucDTOAssembler;
+
+    @MockBean
     UcJpaRepository ucJpaRepository;
+
+    @MockBean
+    UcDTO ucDTO;
 
     @MockBean
     Uc uc;
@@ -58,10 +64,11 @@ class UcRepositoryTest {
         //Assert
         assertEquals(savedUc,uc);
     }
-
+    /*
     @Test
     void shouldFindSpecificUcSearchingById() {
         //Arrange
+        when(ucJpa.getCodUc()).thenReturn(1);
         when(ucJpa.getSigla()).thenReturn("POOJ");
         when(ucJpa.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
 
@@ -69,13 +76,16 @@ class UcRepositoryTest {
         when(ucJpaRepository.findBycodUc(1)).thenReturn(opUcJpa);
 
         when(ucDomainDataAssembler.toDomain(opUcJpa.get())).thenReturn(uc);
+        //UcDTO ucDTO = ucDTOAssembler.toDTO(uc);
+
+
 
         //Act
-        Optional<Uc> opUcAct = ucRepository.findBycodUc(1);
+        Optional<UcDTO> opUcAct = ucRepository.findBycodUc(1);
 
         //Assert
-        assertEquals(opUcAct,Optional.of(uc));
-    }
+        assertEquals(opUcAct,Optional.of(ucDTO));
+    }*/
 
     @Test
     void findAll() {
@@ -108,4 +118,4 @@ class UcRepositoryTest {
         assertTrue(listUcAct.size()==2);
     }
 
-}*/
+}
