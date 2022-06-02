@@ -1,8 +1,11 @@
-/*
+
 package WSEdicao.services;
 
+import WSEdicao.datamodel.assemblers.AnoLetivoDomainDataAssembler;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.factories.AnoLetivoFactory;
+import WSEdicao.dto.AnoLetivoDTO;
+import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
 import WSEdicao.repositories.AnoLetivoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,12 +25,17 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class AnoLetivoServiceTest {
 
+    @MockBean
+    AnoLetivoDomainDTOAssembler anoLetivoDTOAssembler;
 
     @MockBean
     AnoLetivoRepository anoLetivoRepository;
 
     @MockBean
     AnoLetivoFactory anoLetivoFactory;
+
+    @MockBean
+    AnoLetivoDTO anoLetivoDTO;
 
     @MockBean
     AnoLetivo anoLetivo;
@@ -45,38 +53,35 @@ class AnoLetivoServiceTest {
         // Arrange
         when(anoLetivo.getAno()).thenReturn("2015-2016");
 
-        when( anoLetivoFactory.createAnoLetivo("2015-2016")).thenReturn(anoLetivo);
+        when(anoLetivoFactory.createAnoLetivo("2015-2016")).thenReturn(anoLetivo);
 
-        when(anoLetivoRepository.save( anoLetivo )).thenReturn(anoLetivo);
+        when(anoLetivoRepository.save(anoLetivo)).thenReturn(anoLetivo);
+
+        AnoLetivoDTO anoLetivoDTO = anoLetivoDTOAssembler.toDTO(anoLetivo);
 
         // Act
-        AnoLetivo anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015-2016");
-
-        String sAno = anoLetivo1.getAno();
+        AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015-2016");
 
         // Assert
-        assertEquals(anoLetivo,anoLetivo1);
-
-        assertEquals(sAno, "2015-2016");
+        assertEquals(anoLetivoDTO, anoLetivo1);
     }
 
     @Test
     void shouldFindSpecificAnoLetivoSearchingById() {
-        // Arrange
-        when(anoLetivo.getAno()).thenReturn("2015-2016");
+        //Arrange
+        when(anoLetivoDTO.getCodAnoLetivo()).thenReturn(1);
+        when(anoLetivoDTO.getAno()).thenReturn("2015-2016");
 
-        Optional<AnoLetivo> opAnoLetivo = Optional.of(anoLetivo);
+        Optional<AnoLetivoDTO> opAnoLetivo = Optional.of(anoLetivoDTO);
 
         when(anoLetivoRepository.findBycodAnoLetivo(1)).thenReturn(opAnoLetivo);
 
         // Act
-        Optional<AnoLetivo> anoLetivo1 = anoLetivoService.getAnoLetivoByCode(1);
-
+        Optional<AnoLetivoDTO> anoLetivo1 = anoLetivoService.getAnoLetivoByCode(1);
         String sANo = anoLetivo1.get().getAno();
 
         // Assert
-        assertEquals(anoLetivo1,opAnoLetivo);
-
+        assertEquals(anoLetivo1, opAnoLetivo);
         assertEquals(sANo, "2015-2016");
     }
 
@@ -96,12 +101,20 @@ class AnoLetivoServiceTest {
 
         when(anoLetivoRepository.findAll()).thenReturn(listAnoLetivoAux);
 
+        List<AnoLetivoDTO> listaDto=new ArrayList<>();
+        for (AnoLetivo anoLetivo:listAnoLetivoAux) {
+            AnoLetivoDTO anoLetivoDTO = anoLetivoDTOAssembler.toDTO(anoLetivo);
+            listaDto.add(anoLetivoDTO);
+        }
+
+
         // Act
-        List<AnoLetivo> listAnoLetivoAct = anoLetivoService.getAllAnoLetivo();
+        List<AnoLetivoDTO> listAnoLetivoAct = anoLetivoService.getAllAnoLetivo();
 
         // Assert
-        assertEquals(listAnoLetivoAux, listAnoLetivoAct);
-        assertTrue(listAnoLetivoAct.size()==2);
+        assertEquals(listaDto , listAnoLetivoAct);
+        assertEquals(2, listAnoLetivoAct.size());
     }
-*/
+}
+
 
