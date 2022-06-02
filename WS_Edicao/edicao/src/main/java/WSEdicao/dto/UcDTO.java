@@ -5,16 +5,22 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@AllArgsConstructor
+
 @EqualsAndHashCode
 @ToString
 @Getter
 public class UcDTO{
 
     int codUc;
-    String sSigla;
-    String sDenominacao;
+    String sigla;
+    String denominacao;
 
     public UcDTO() {
+    }
+
+    public UcDTO(int codUc,String sSigla, String sDenominacao) {
+        this.codUc=codUc;
+        this.sigla = sSigla;
+        this.denominacao = sDenominacao;
     }
 }

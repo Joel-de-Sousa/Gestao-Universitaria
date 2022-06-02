@@ -2,6 +2,7 @@ package WSEdicao.controllers;
 
 import WSEdicao.domain.entities.Edicao;
 import WSEdicao.dto.EdicaoDTO;
+import WSEdicao.dto.NewEdicaoInfoDTO;
 import WSEdicao.services.EdicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,9 +47,10 @@ public class EdicaoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Object> createEdicao(@RequestBody EdicaoDTO info){
+    @ResponseBody
+    public ResponseEntity<Object> createEdicao(@RequestBody NewEdicaoInfoDTO info){
 
-        Edicao edicao = service.createAndSaveEdicao( info.getCodUc(), info.getCodAnoLetivo());
+        EdicaoDTO edicao = service.createAndSaveEdicao(info.getCodUc(),info.getCodAnoLetivo());
 
         return new ResponseEntity<>(edicao, HttpStatus.CREATED);
 

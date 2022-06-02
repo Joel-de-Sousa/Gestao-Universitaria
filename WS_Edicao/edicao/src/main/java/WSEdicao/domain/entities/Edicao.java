@@ -13,15 +13,12 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class Edicao {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codEdicao;
-
-    private Uc codUc;
+    private Uc uc;
     private AnoLetivo anoLetivo;
 
     public Edicao(Uc codUc, AnoLetivo anoLetivo) {
-        this.codUc = codUc;
+        this.uc = codUc;
         this.anoLetivo = anoLetivo;
     }
 }

@@ -5,7 +5,12 @@ import WSEdicao.domain.entities.Edicao;
 import WSEdicao.domain.entities.Uc;
 import WSEdicao.domain.factories.IEdicaoFactory;
 import WSEdicao.dto.AnoLetivoDTO;
+import WSEdicao.dto.EdicaoDTO;
+import WSEdicao.dto.NewEdicaoInfoDTO;
 import WSEdicao.dto.UcDTO;
+import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
+import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
+import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
 import WSEdicao.repositories.AnoLetivoRepository;
 import WSEdicao.repositories.EdicaoRepository;
 import WSEdicao.repositories.UcRepository;
@@ -30,27 +35,48 @@ public class EdicaoService {
     @Autowired
     AnoLetivoRepository anoLetivoRepository;
 
+    @Autowired
+    UcDomainDTOAssembler ucDTOAssember;
+
+    @Autowired
+    AnoLetivoDomainDTOAssembler anoLetivoDTOAssembler;
+
+    @Autowired
+    EdicaoDomainDTOAssembler edicaoDTOAssembler;
+
     public EdicaoService() {
     }
 
-    public Edicao createAndSaveEdicao(Uc codUc, AnoLetivo codAnoLetivo ) {
+    /*public Edicao createAndSaveEdicao(Uc codUc, AnoLetivo codAnoLetivo ) {
         Edicao edicao = edicaoFactory.createEdicao(codUc,codAnoLetivo);
         return edicaoRepository.save(edicao);
-    }
+    }*/
 
-    /*public Optional<Edicao> createAndSaveEdicao1(Uc codUC,AnoLetivo codAnoLetivo) {
+    public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo) {
 
-        Optional<UcDTO> optionalUc = ucRepository.findBycodUc(codUC);
+        /*Uc uc =new Uc(info.getCodUc());
+        AnoLetivo anoLetivo = new AnoLetivo(info.getCodAnoLetivo());
+
+        Edicao edicao = edicaoFactory.createEdicao(uc,anoLetivo);
+        Edicao edicaoSaved = edicaoRepository.save(edicao);
+        EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicaoSaved.getUc().getCodUc(),edicaoSaved.getAnoLetivo().getCodAnoLetivo());
+
+        return edicaoDTO;*/
+
+        Optional<UcDTO> optionalUc = ucRepository.findBycodUc(codUc);
         Optional<AnoLetivoDTO> optionalAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
 
         if (optionalUc.isPresent() && optionalAnoLetivo.isPresent()) {
-            Edicao edicao = edicaoFactory.createEdicao(codUC,codAnoLetivo);
+            Uc uc = ucDTOAssember.toDomain(optionalUc.get());
+            AnoLetivo anoLetivo = anoLetivoDTOAssembler.toDomain(optionalAnoLetivo.get());
+            Edicao edicao = edicaoFactory.createEdicao(uc,anoLetivo);
             Edicao savedEdicao = edicaoRepository.save(edicao);
+            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(savedEdicao);
 
-            return Optional.of(savedEdicao);
+            return edicaoDTO;
         } else
-            return Optional.empty();
-    }*/
+            return null;
+    }
 
     public Optional<Edicao> getEdicaoByCode(int codEdicao) {
 

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class UcDomainDataAssembler {
 
     public UcJpa toData(Uc oUc){
-        return new UcJpa(oUc.getSSigla(), oUc.getSDenominacao());
+        return new UcJpa(oUc.getSigla(), oUc.getDenominacao());
     }
 
     public Uc toDomain(UcJpa oUcJpa){
-        return new Uc( oUcJpa.getSSigla(),oUcJpa.getSDenominacao());
+        return new Uc( oUcJpa.getCodUc(),oUcJpa.getSigla(),oUcJpa.getDenominacao());
     }
 }

@@ -10,4 +10,5 @@ public interface UcJpaRepository extends CrudRepository<UcJpa, Integer> {
     Optional<UcJpa> findBycodUc(int codUc);
 
     List<UcJpa> findAll();
+
 }

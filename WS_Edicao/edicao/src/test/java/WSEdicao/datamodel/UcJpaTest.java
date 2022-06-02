@@ -1,3 +1,4 @@
+
 package WSEdicao.datamodel;
 
 import WSEdicao.domain.entities.Uc;
@@ -17,7 +18,7 @@ class UcJpaTest {
     @Test
     void shouldNotCreateANewUcJpaWithTheWrongFormat() {
         Exception exception = assertThrows(Exception.class, () -> {
-            new UcJpa("POG","PogChampion");
+            new UcJpa("PG","Pog");
         });
         String expectedMessage = "A Sigla deve conter no mínimo 3 carateres, sem espaços, sem símbolos e sem algarismos";
         String actualMessage = exception.getMessage();
@@ -27,19 +28,19 @@ class UcJpaTest {
     void shouldCreateAUcJpaWithCorrectAttributes() {
         UcJpa uc = new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
 
-        assertEquals(uc.getSSigla(), "POOJ");
-        assertEquals(uc.getSDenominacao(), "ProgramacaoOrientadaAObjetos");
+        assertEquals(uc.getSigla(), "POOJ");
+        assertEquals(uc.getDenominacao(), "ProgramacaoOrientadaAObjetos");
     }
 
 
     @Test
     void shouldReturnEqualSameUcJpa() {
-        UcJpa uc1 = new UcJpa("POG","PogChampion");
+        UcJpa uc1 = new UcJpa("POGU","PogChampion");
         assertEquals(uc1,uc1);
     }
     @Test
     void shouldReturnNotEqualsDifferentLocais(){
-        UcJpa uc1 = new UcJpa ("POG","PogChampion");
+        UcJpa uc1 = new UcJpa ("POGU","PogChampion");
         UcJpa uc2 = new UcJpa ("POOJ","ProgramacaoOrientadaAObjetos");
 
         assertNotEquals(uc1,uc2);

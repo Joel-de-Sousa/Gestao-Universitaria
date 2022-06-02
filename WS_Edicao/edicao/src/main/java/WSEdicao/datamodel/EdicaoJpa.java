@@ -14,20 +14,21 @@ import javax.persistence.*;
 public class EdicaoJpa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "codEdicao_seq")
     private int codEdicao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="ucs_coduc")
     private UcJpa codUc;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_ano_letivo",referencedColumnName = "cod")
+
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="anosletivos_codanoletivo")
     private AnoLetivoJpa codAnoLetivo;
 
 
 
     protected EdicaoJpa(){}
-
     public EdicaoJpa(UcJpa codUc, AnoLetivoJpa codAnoLetivo) {
         this.codUc = codUc;
         this.codAnoLetivo = codAnoLetivo;

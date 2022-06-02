@@ -3,6 +3,8 @@ package WSEdicao.repositories;
 import WSEdicao.datamodel.AnoLetivoJpa;
 import WSEdicao.datamodel.assemblers.AnoLetivoDomainDataAssembler;
 import WSEdicao.domain.entities.AnoLetivo;
+import WSEdicao.dto.AnoLetivoDTO;
+import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
 import WSEdicao.repositories.jpa.AnoLetivoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,8 @@ public class AnoLetivoRepository {
     AnoLetivoJpaRepository anoLetivoJpaRepository;
     @Autowired
     AnoLetivoDomainDataAssembler assembler;
+    @Autowired
+    AnoLetivoDomainDTOAssembler anoLetivoDTOAssembler;
 
     public AnoLetivo save(AnoLetivo anoLetivo ) {
         AnoLetivoJpa anoLetivoJpa = assembler.toData(anoLetivo);
@@ -28,12 +32,13 @@ public class AnoLetivoRepository {
         return assembler.toDomain(savedAnoLetivoJpa);
     }
 
-    public Optional<AnoLetivo> findBycodAnoLetivo(int codAnoLetivo) {
+    public Optional<AnoLetivoDTO> findBycodAnoLetivo(int codAnoLetivo) {
         Optional<AnoLetivoJpa> opAnoLetivo = anoLetivoJpaRepository.findBycodAnoLetivo(codAnoLetivo);
 
         if ( opAnoLetivo.isPresent() ) {
             AnoLetivo anoLetivo = assembler.toDomain(opAnoLetivo.get());
-            return Optional.of( anoLetivo );
+            AnoLetivoDTO anoLetivoDTO = anoLetivoDTOAssembler.toDTO(anoLetivo);
+            return Optional.of( anoLetivoDTO );
         }
         else
             return Optional.empty();

@@ -3,6 +3,8 @@ package WSEdicao.repositories;
 import WSEdicao.datamodel.UcJpa;
 import WSEdicao.datamodel.assemblers.UcDomainDataAssembler;
 import WSEdicao.domain.entities.Uc;
+import WSEdicao.dto.UcDTO;
+import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
 import WSEdicao.repositories.jpa.UcJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,8 @@ public class UcRepository {
     UcJpaRepository ucJpaRepository;
     @Autowired
     UcDomainDataAssembler ucAssembler;
+    @Autowired
+    UcDomainDTOAssembler ucDTOAssembler;
 
     public Uc save(Uc uc ) {
         UcJpa ucJpa = ucAssembler.toData(uc);
@@ -28,12 +32,15 @@ public class UcRepository {
         return ucAssembler.toDomain(savedUcJpa);
     }
 
-    public Optional<Uc> findBycodUc(int codUc) {
+    //mudei Uc para UCDTO, acrescentei UcDTO assembler
+
+    public Optional<UcDTO> findBycodUc(int codUc) {
         Optional<UcJpa> opUc = ucJpaRepository.findBycodUc(codUc);
 
         if ( opUc.isPresent() ) {
             Uc uc = ucAssembler.toDomain(opUc.get());
-            return Optional.of( uc );
+            UcDTO ucDTO = ucDTOAssembler.toDTO(uc);
+            return Optional.of( ucDTO );
         }
         else
             return Optional.empty();

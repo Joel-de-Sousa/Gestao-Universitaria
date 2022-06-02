@@ -26,10 +26,10 @@ public class AnoLetivoController {
     @ResponseBody
     public ResponseEntity<Object> getByCode(@PathVariable int codAnoLetivo){
 
-        Optional<AnoLetivo> opAnoLetivo = service.getAnoLetivoByCode(codAnoLetivo);
+        Optional<AnoLetivoDTO> opAnoLetivo = service.getAnoLetivoByCode(codAnoLetivo);
 
         if(opAnoLetivo.isPresent()){
-            AnoLetivo anoLetivo = opAnoLetivo.get();
+            AnoLetivoDTO anoLetivo = opAnoLetivo.get();
             return new ResponseEntity<>(anoLetivo, HttpStatus.OK);
         }
         else
@@ -39,15 +39,17 @@ public class AnoLetivoController {
     @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> findAll(){
-        List<AnoLetivo> listAnoLetivo = service.getAllAnoLetivo();
+        //mudei para DTO
+        List<AnoLetivoDTO> listAnoLetivo = service.getAllAnoLetivo();
 
         return new ResponseEntity<>(listAnoLetivo, HttpStatus.OK);
     }
 
     @PostMapping("")
+    @ResponseBody
     public ResponseEntity<Object> createAnoLetivo(@RequestBody AnoLetivoDTO info){
 
-        AnoLetivo anoLetivo = service.createAndSaveAnoLetivo(info.getAno());
+        AnoLetivoDTO anoLetivo = service.createAndSaveAnoLetivo(info.getAno());
 
         return new ResponseEntity<>(anoLetivo, HttpStatus.CREATED);
 

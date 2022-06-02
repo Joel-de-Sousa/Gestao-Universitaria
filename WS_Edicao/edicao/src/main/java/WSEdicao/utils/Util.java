@@ -1,9 +1,11 @@
 package WSEdicao.utils;
 
 public class Util {
+
+
     public static boolean validaStringComMinSemAlgSemSimbolo(int min,int max, String sValidar){
         boolean valida = false;
-        if (sValidar != null  && (sValidar.length() > min && sValidar.length()<max)) { //Verifica null, tamanho min e max
+        if (sValidar != null  && (sValidar.length() >= min && sValidar.length()<=max)) { //Verifica null, tamanho min e max
             char c;
             for (int i = 0; i < sValidar.length(); i++) {
                 c = sValidar.charAt(i);
@@ -20,7 +22,7 @@ public class Util {
         return valida;
     }
 
-    public boolean validaStringMinCarateresNaoBrancos(int min,String sValidar){
+    public static boolean validaStringMinCarateresNaoBrancos(int min,String sValidar){
 
         boolean valido = false;
         if (sValidar != null  && (sValidar.replaceAll(" ","").length()>=min)){

@@ -1,6 +1,7 @@
 package WSEdicao.datamodel;
 
 import lombok.Getter;
+import org.springframework.web.bind.annotation.Mapping;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
 public class AnoLetivoJpa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "codAnoLetivo_seq")
     private int codAnoLetivo;
     private String ano;
 

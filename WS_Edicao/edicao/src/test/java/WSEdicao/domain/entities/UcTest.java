@@ -16,7 +16,7 @@ class UcTest {
     @Test
     void shouldNotCreateANewUcWithTheWrongFormat() {
         Exception exception = assertThrows(Exception.class, () -> {
-            new Uc("POG","PogChampion");
+            new Uc("PG","Pog");
         });
         String expectedMessage = "A Sigla deve conter no mínimo 3 carateres, sem espaços, sem símbolos e sem algarismos";
         String actualMessage = exception.getMessage();
@@ -26,8 +26,8 @@ class UcTest {
     void shouldCreateAUcWithCorrectAttributes() {
         Uc uc = new Uc("POOJ","ProgramacaoOrientadaAObjetos");
 
-        assertEquals(uc.getSSigla(), "POOJ");
-        assertEquals(uc.getSDenominacao(), "ProgramacaoOrientadaAObjetos");
+        assertEquals(uc.getSigla(), "POOJ");
+        assertEquals(uc.getDenominacao(), "ProgramacaoOrientadaAObjetos");
     }
 
 

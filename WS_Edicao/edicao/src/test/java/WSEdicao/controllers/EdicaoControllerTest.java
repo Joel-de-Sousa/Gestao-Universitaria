@@ -1,6 +1,8 @@
 package WSEdicao.controllers;
 
+import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.Edicao;
+import WSEdicao.domain.entities.Uc;
 import WSEdicao.domain.factories.EdicaoFactory;
 import WSEdicao.dto.EdicaoDTO;
 import WSEdicao.services.EdicaoService;
@@ -42,15 +44,25 @@ class EdicaoControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
     }
-    /*@Test
+    /*
+    @Test
     void shouldFindSpecificEdicaoSearchingById() {
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
+        Uc ucDouble = mock(Uc.class);
+        when(ucDouble.getCodUc()).thenReturn(1);
+        when(ucDouble.getSigla()).thenReturn("POOJ");
+        when(ucDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+
+        AnoLetivo anoLetivoDouble = mock(AnoLetivo.class);
+        when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
+        when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
+
         Edicao edicaoDouble = mock(Edicao.class);
-        when( edicaoDouble.getCodUc()).thenReturn(1);
-        when( edicaoDouble.getAno() ).thenReturn("2015-2016");
+        when( edicaoDouble.getUc().getCodUc()).thenReturn(1);
+        when( edicaoDouble.getAnoLetivo().getCodAnoLetivo()).thenReturn(1);
 
         Optional<Edicao> opEdicao = Optional.of(edicaoDouble);
         when( edicaoService.getEdicaoByCode(1)).thenReturn(opEdicao);
@@ -63,7 +75,8 @@ class EdicaoControllerTest {
 
         Edicao edicaoRes = (Edicao) responseEntity.getBody();
         assertEquals(edicaoRes.getCodEdicao(), 1);
-        assertEquals(edicaoRes.getAno(), "2015-2016");
+        assertEquals(edicaoRes.getUc().getSigla(),"POOJ");
+        assertEquals(edicaoRes.getAnoLetivo().getAno(), "2015-2016");
     }*/
 
     /*@Test

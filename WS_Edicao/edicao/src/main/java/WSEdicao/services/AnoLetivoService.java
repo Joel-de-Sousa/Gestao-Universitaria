@@ -2,11 +2,15 @@ package WSEdicao.services;
 
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.factories.IAnoLetivoFactory;
+import WSEdicao.dto.AnoLetivoDTO;
+import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
+import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
 import WSEdicao.repositories.AnoLetivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,25 +24,42 @@ public class AnoLetivoService {
     @Autowired
     AnoLetivoRepository anoLetivoRepository;
 
+    @Autowired
+    AnoLetivoDomainDTOAssembler anoLetivoAssembler;
+
     public AnoLetivoService() {
     }
 
-    public AnoLetivo createAndSaveAnoLetivo(String ano) {
+    public AnoLetivoDTO createAndSaveAnoLetivo(String ano) {
         AnoLetivo anoLetivo = factory.createAnoLetivo(ano);
-        return anoLetivoRepository.save(anoLetivo);
+        AnoLetivo anoLetivoSave = anoLetivoRepository.save(anoLetivo);
+        AnoLetivoDTO anoLetivoDTO = anoLetivoAssembler.toDTO(anoLetivoSave);
+
+        return anoLetivoDTO;
     }
 
-    public Optional<AnoLetivo> getAnoLetivoByCode(int codAnoLetivo ) {
+    public Optional<AnoLetivoDTO> getAnoLetivoByCode(int codAnoLetivo ) {
 
-        Optional<AnoLetivo> opAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
+        Optional<AnoLetivoDTO> opAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
 
         return opAnoLetivo;
     }
 
-    public List<AnoLetivo> getAllAnoLetivo() {
+    /*public List<AnoLetivo> getAllAnoLetivo() {
 
         List<AnoLetivo> listAnoLetivo = anoLetivoRepository.findAll();
 
         return listAnoLetivo;
+    }*/
+
+    public List<AnoLetivoDTO> getAllAnoLetivo(){
+        List<AnoLetivo> lista= anoLetivoRepository.findAll();
+
+        List<AnoLetivoDTO> listaDto=new ArrayList<>();
+        for (AnoLetivo anoLetivo:lista) {
+            AnoLetivoDTO anoLetivoDTO = anoLetivoAssembler.toDTO(anoLetivo);
+            listaDto.add(anoLetivoDTO);
+        }
+        return listaDto;
     }
 }

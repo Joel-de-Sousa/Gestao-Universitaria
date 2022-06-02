@@ -27,10 +27,10 @@ public class UcController {
     @ResponseBody
     public ResponseEntity<Object> getByCode(@PathVariable int codUc){
 
-        Optional<Uc> opUc = service.getUcByCode(codUc);
+        Optional<UcDTO> opUc = service.getUcByCode(codUc);
 
         if(opUc.isPresent()){
-            Uc uc = opUc.get();
+            UcDTO uc = opUc.get();
             return new ResponseEntity<>(uc, HttpStatus.OK);
         }
         else
@@ -40,15 +40,17 @@ public class UcController {
     @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> findAll(){
-        List<Uc> listUc = service.getAllUc();
+        //added DTO
+        List<UcDTO> listUc = service.getAllUc();
 
         return new ResponseEntity<>(listUc, HttpStatus.OK);
     }
 
     @PostMapping("")
+    @ResponseBody
     public ResponseEntity<Object> createUc(@RequestBody UcDTO info){
-
-        Uc uc = service.createAndSaveUc(info.getSSigla(),info.getSDenominacao());
+//add try catch
+        UcDTO uc = service.createAndSaveUc(info.getSigla(),info.getDenominacao());
 
         return new ResponseEntity<>(uc, HttpStatus.CREATED);
 

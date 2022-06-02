@@ -11,4 +11,6 @@ public interface EdicaoJpaRepository extends CrudRepository<EdicaoJpa, Integer> 
     Optional<EdicaoJpa> findBycodEdicao(int codEdicao);
 
     List<EdicaoJpa> findAll();
+
+
 }

@@ -2,10 +2,6 @@ package WSEdicao.domain.entities;
 
 import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,8 +12,6 @@ import java.util.regex.Pattern;
 @AllArgsConstructor
 public class AnoLetivo {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codAnoLetivo;
     private String ano;
 
@@ -50,6 +44,10 @@ public class AnoLetivo {
 
     private static String addHyphenToAno(String ano) {
         return ano.substring(0, 4) + "-" + ano.substring(4, ano.length());
+    }
+
+    public AnoLetivo(int codAnoLetivo) {
+        this.codAnoLetivo = codAnoLetivo;
     }
 }
 

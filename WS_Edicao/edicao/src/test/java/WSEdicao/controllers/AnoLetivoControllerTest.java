@@ -1,3 +1,4 @@
+
 package WSEdicao.controllers;
 
 import WSEdicao.domain.entities.AnoLetivo;
@@ -33,7 +34,7 @@ class AnoLetivoControllerTest {
     AnoLetivoFactory anoLetivoFactory;
 
     @MockBean
-    AnoLetivo anoLetivo;
+    AnoLetivoDTO anoLetivo;
 
     @InjectMocks
     AnoLetivoController anoLetivoController;
@@ -42,18 +43,19 @@ class AnoLetivoControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
     }
+
     @Test
     void shouldFindSpecificAnoLetivoSearchingById() {
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        AnoLetivo anoLetivoDouble = mock(AnoLetivo.class);
-        when( anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
-        when( anoLetivoDouble.getAno() ).thenReturn("2015-2016");
+        AnoLetivoDTO anoLetivoDouble = mock(AnoLetivoDTO.class);
+        when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
+        when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
 
-        Optional<AnoLetivo> opAnoLetivo = Optional.of(anoLetivoDouble);
-        when( anoLetivoService.getAnoLetivoByCode(1)).thenReturn(opAnoLetivo);
+        Optional<AnoLetivoDTO> opAnoLetivo = Optional.of(anoLetivoDouble);
+        when(anoLetivoService.getAnoLetivoByCode(1)).thenReturn(opAnoLetivo);
 
         // Act
         ResponseEntity<Object> responseEntity = anoLetivoController.getByCode(1);
@@ -61,26 +63,26 @@ class AnoLetivoControllerTest {
         // Assert
         assertEquals(responseEntity.getStatusCodeValue(), 200);
 
-        AnoLetivo anoLetivoRes = (AnoLetivo) responseEntity.getBody();
+        AnoLetivoDTO anoLetivoRes = (AnoLetivoDTO) responseEntity.getBody();
         assertEquals(anoLetivoRes.getCodAnoLetivo(), 1);
         assertEquals(anoLetivoRes.getAno(), "2015-2016");
     }
 
     @Test
-    void shouldFindEveryAnoLetivoCreatedCorrectly() {
+    void shouldFindEveryAnoLetivoDTOCreatedCorrectly() {
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        AnoLetivo anoLetivoDouble = mock(AnoLetivo.class);
-        when( anoLetivoDouble.getCodAnoLetivo() ).thenReturn(1);
-        when( anoLetivoDouble.getAno() ).thenReturn("2015-2016");
+        AnoLetivoDTO anoLetivoDouble = mock(AnoLetivoDTO.class);
+        when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
+        when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
 
-        AnoLetivo anoLetivoDouble2 = mock(AnoLetivo.class);
-        when (anoLetivoDouble2.getCodAnoLetivo()).thenReturn(2);
+        AnoLetivoDTO anoLetivoDouble2 = mock(AnoLetivoDTO.class);
+        when(anoLetivoDouble2.getCodAnoLetivo()).thenReturn(2);
         when(anoLetivoDouble2.getAno()).thenReturn("2016-2017");
 
-        List<AnoLetivo> listaAnoLetivo = new ArrayList<>();
+        List<AnoLetivoDTO> listaAnoLetivo = new ArrayList<>();
         listaAnoLetivo.add(anoLetivoDouble);
         listaAnoLetivo.add(anoLetivoDouble2);
 
@@ -93,7 +95,7 @@ class AnoLetivoControllerTest {
         assertEquals(responseEntity.getStatusCodeValue(), 200);
 
         Object res = responseEntity.getBody();
-        assertEquals(res,listaAnoLetivo);
+        assertEquals(res, listaAnoLetivo);
     }
 
     @Test
@@ -102,7 +104,7 @@ class AnoLetivoControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        AnoLetivo anoLetivoDouble = mock(AnoLetivo.class);
+        AnoLetivoDTO anoLetivoDouble = mock(AnoLetivoDTO.class);
         when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
         when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
 
@@ -119,7 +121,7 @@ class AnoLetivoControllerTest {
         assertEquals(responseEntity.getStatusCodeValue(), 201);
 
         Object res = responseEntity.getBody();
-        assertEquals(res,anoLetivoDouble);
+        assertEquals(res, anoLetivoDouble);
     }
-
 }
+

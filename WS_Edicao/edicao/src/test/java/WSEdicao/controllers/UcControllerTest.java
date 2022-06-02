@@ -1,10 +1,11 @@
+
 package WSEdicao.controllers;
 
-import WSEdicao.domain.entities.Uc;
 import WSEdicao.domain.factories.UcFactory;
 import WSEdicao.dto.UcDTO;
 import WSEdicao.services.UcService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
@@ -33,7 +34,7 @@ class UcControllerTest {
     UcFactory ucFactory;
 
     @MockBean
-    Uc uc;
+    UcDTO ucDTO;
 
     @InjectMocks
     UcController ucController;
@@ -49,11 +50,11 @@ class UcControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Uc ucDouble = mock(Uc.class);
-        when(ucDouble.getSSigla()).thenReturn("POOJ");
-        when(ucDouble.getSDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+        UcDTO ucDouble = mock(UcDTO.class);
+        when(ucDouble.getSigla()).thenReturn("POOJ");
+        when(ucDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
 
-        Optional<Uc> opUc = Optional.of(ucDouble);
+        Optional<UcDTO> opUc = Optional.of(ucDouble);
         when(ucService.getUcByCode(1)).thenReturn(opUc);
 
         // Act
@@ -62,9 +63,9 @@ class UcControllerTest {
         // Assert
         assertEquals(responseEntity.getStatusCodeValue(), 200);
 
-        Uc ucRes = (Uc) responseEntity.getBody();
-        assertEquals(ucRes.getSSigla(), "POOJ");
-        assertEquals(ucRes.getSDenominacao(), "ProgramacaoOrientadaAObjetos");
+        UcDTO ucRes = (UcDTO) responseEntity.getBody();
+        assertEquals(ucRes.getSigla(), "POOJ");
+        assertEquals(ucRes.getDenominacao(), "ProgramacaoOrientadaAObjetos");
     }
 
     @Test
@@ -73,15 +74,15 @@ class UcControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Uc ucDouble = mock(Uc.class);
-        when(ucDouble.getSSigla()).thenReturn("POOJ");
-        when(ucDouble.getSDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+        UcDTO ucDouble = mock(UcDTO.class);
+        when(ucDouble.getSigla()).thenReturn("POOJ");
+        when(ucDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
 
-        Uc ucDouble2 = mock(Uc.class);
-        when(ucDouble2.getSSigla()).thenReturn("LP");
-        when(ucDouble2.getSDenominacao()).thenReturn("LaboratorioProgramacao");
+        UcDTO ucDouble2 = mock(UcDTO.class);
+        when(ucDouble2.getSigla()).thenReturn("LP");
+        when(ucDouble2.getDenominacao()).thenReturn("LaboratorioProgramacao");
 
-        List<Uc> listaUc = new ArrayList<>();
+        List<UcDTO> listaUc = new ArrayList<>();
         listaUc.add(ucDouble);
         listaUc.add(ucDouble2);
 
@@ -103,13 +104,13 @@ class UcControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Uc ucDouble = mock(Uc.class);
-        when(ucDouble.getSSigla()).thenReturn("POOJ");
-        when(ucDouble.getSDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+        UcDTO ucDouble = mock(UcDTO.class);
+        when(ucDouble.getSigla()).thenReturn("POOJ");
+        when(ucDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
 
         UcDTO ucDtoDouble = mock(UcDTO.class);
-        when(ucDtoDouble.getSSigla()).thenReturn("POOJ");
-        when(ucDtoDouble.getSDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+        when(ucDtoDouble.getSigla()).thenReturn("POOJ");
+        when(ucDtoDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
 
         when(ucService.createAndSaveUc("POOJ","ProgramacaoOrientadaAObjetos")).thenReturn(ucDouble);
 

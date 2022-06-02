@@ -1,5 +1,6 @@
 package WSEdicao.dto.assemblers;
 
+import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.dto.AnoLetivoDTO;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,11 @@ public class AnoLetivoDomainDTOAssembler {
     private AnoLetivoDomainDTOAssembler() {
     }
 
-    public AnoLetivoDTO toDTO(int codAnoLetivo, String ano ) {
-        return new AnoLetivoDTO(codAnoLetivo,ano);
+    public AnoLetivoDTO toDTO(AnoLetivo anoLetivo) {
+        return new AnoLetivoDTO(anoLetivo.getCodAnoLetivo(), anoLetivo.getAno());
+    }
+
+    public AnoLetivo toDomain(AnoLetivoDTO anoLetivoDTO){
+        return new AnoLetivo(anoLetivoDTO.getCodAnoLetivo(), anoLetivoDTO.getAno());
     }
 }

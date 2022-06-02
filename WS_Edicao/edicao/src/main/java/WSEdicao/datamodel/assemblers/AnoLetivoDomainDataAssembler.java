@@ -12,6 +12,6 @@ public class AnoLetivoDomainDataAssembler {
     }
 
     public AnoLetivo toDomain(AnoLetivoJpa oAnoLetivoJpa){
-        return new AnoLetivo(oAnoLetivoJpa.getAno());
+        return new AnoLetivo(oAnoLetivoJpa.getCodAnoLetivo(),oAnoLetivoJpa.getAno());
     }
 }
