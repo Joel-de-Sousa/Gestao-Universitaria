@@ -3,7 +3,7 @@ package com.wsOrganizacao.repositories;
 import com.wsOrganizacao.datamodel.JPA.OrganizacaoJPA;
 import com.wsOrganizacao.datamodel.JPA.assembler.OrganizacaoDomainDataAssembler;
 import com.wsOrganizacao.domain.entities.Organizacao;
-import com.wsOrganizacao.repositories.IRepository.IOrganizacaoJPaRepository;
+import com.wsOrganizacao.repositories.JPA.IOrganizacaoJPaRepository;
 import com.wsOrganizacao.repositories.IRepository.IOrganizacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

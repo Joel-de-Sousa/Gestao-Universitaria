@@ -1,4 +1,4 @@
-package com.wsOrganizacao.repositories.IRepository;
+package com.wsOrganizacao.repositories.JPA;
 
 import com.wsOrganizacao.datamodel.JPA.OrganizacaoJPA;
 import com.wsOrganizacao.domain.entities.Organizacao;

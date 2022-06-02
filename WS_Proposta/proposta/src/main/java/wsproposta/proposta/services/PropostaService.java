@@ -2,9 +2,11 @@ package wsproposta.proposta.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wsproposta.proposta.DTO.ErrorDTO;
 import wsproposta.proposta.DTO.NewPropostaInfoDTO;
 import wsproposta.proposta.DTO.PropostaDTO;
 import wsproposta.proposta.DTO.assemblers.PropostaDomainDTOAssembler;
+import wsproposta.proposta.datamodel.REST.OrganizacaoRestDTO;
 import wsproposta.proposta.domain.entities.Proposta;
 import wsproposta.proposta.domain.factories.IPropostaFactory;
 import wsproposta.proposta.repositories.PropostaRepository;
@@ -34,13 +36,16 @@ public class PropostaService {
 
     public PropostaService(){}
 
-    public PropostaDTO createAndSaveProposta(NewPropostaInfoDTO propostaInfoDTO) {
+    public PropostaDTO createAndSaveProposta(NewPropostaInfoDTO propostaInfoDTO) throws Exception {
 
        /* Optional<UtilizadorRestDTO> utilizador = utilizadorWebRepository.findUtilizadorByCodUtilizador(propostaInfoDTO.getCodUtilizador());
         Optional<OrganizacaoRestDTO> organizacao = organizacaoWebRepository.findOrganizacaoByNifOrganizacao(propostaInfoDTO.getNifOrganizacao());
 
         if (utilizador.isPresent() && organizacao.isPresent()) {
 */
+        Optional<OrganizacaoRestDTO> organizacao = organizacaoWebRepository.findOrganizacaoByNifOrganizacao(propostaInfoDTO.getNifOrganizacao());
+
+        if ( organizacao.isPresent()) {
             Proposta proposta = propostaFactory.createProposta(propostaInfoDTO.getCodUtilizador(), propostaInfoDTO.getNifOrganizacao(),
                     propostaInfoDTO.getCodEdicao(), propostaInfoDTO.getTitulo(), propostaInfoDTO.getProblema(), propostaInfoDTO.getObjetivo()/*, Proposta.Estado.valueOf(propostaInfoDTO.getEstado())*/);
 
@@ -50,8 +55,7 @@ public class PropostaService {
                     propostaSaved.getCodEdicao(), propostaSaved.getTitulo(), propostaSaved.getProblema(), propostaSaved.getObjetivo(), valueOf(propostaSaved.getEstado()));
 
             return propostaDTO;
-       /* }
-        return null;*/
+        }else throw new Exception ("O valor dos parâmetros");
     }
 
     public List<PropostaDTO> findAll() {
@@ -95,9 +99,9 @@ public class PropostaService {
 
     //MÉTODO GET PROPOSTAS BY NIF ORGANIZACAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE NIF
 
-    public List<PropostaDTO> findAllPropostasByNifOrganizacao(int nifOrganizacao) {
+    public List<PropostaDTO> findAllPropostasByNifOrganizacao(long nr) {
 
-        List<Proposta> listFiltradaPropostas = propostaRepository.findAllByNifOrganizacao(nifOrganizacao);
+        List<Proposta> listFiltradaPropostas = propostaRepository.findAllByNifOrganizacao(nr);
 
         List<PropostaDTO> listFiltradaPropostaDTO = new ArrayList<>();
         for(Proposta proposta : listFiltradaPropostas) {

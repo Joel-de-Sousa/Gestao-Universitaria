@@ -17,7 +17,7 @@ public class PropostaJPA {
     @Getter
     private int codUtilizador;
     @Getter
-    private int nifOrganizacao;
+    private long nifOrganizacao;
     @Getter
     private int codEdicao;
     @Getter
@@ -33,7 +33,7 @@ public class PropostaJPA {
     public PropostaJPA() {
     }
 
-    public PropostaJPA(int codUtilizador, int nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo, Estado estado) {
+    public PropostaJPA(int codUtilizador, long nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo, Estado estado) {
         this.codUtilizador = codUtilizador;
         this.nifOrganizacao = nifOrganizacao;
         this.codEdicao = codEdicao;

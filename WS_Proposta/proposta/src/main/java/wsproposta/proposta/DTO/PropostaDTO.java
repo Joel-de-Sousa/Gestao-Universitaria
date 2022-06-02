@@ -13,7 +13,7 @@ public class PropostaDTO {
     @Getter
     int codUtilizador;
     @Getter
-    int nifOrganizacao;
+    long nifOrganizacao;
     @Getter
     int codEdicao;
     @Getter

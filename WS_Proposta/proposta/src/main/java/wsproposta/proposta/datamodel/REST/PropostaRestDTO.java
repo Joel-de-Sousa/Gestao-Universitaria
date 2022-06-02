@@ -1,3 +1,4 @@
+/*
 package wsproposta.proposta.datamodel.REST;
 
 import lombok.Getter;
@@ -34,3 +35,4 @@ public class PropostaRestDTO {
         this.estado = estado;
     }
 }
+*/

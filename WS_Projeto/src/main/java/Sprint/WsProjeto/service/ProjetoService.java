@@ -1,0 +1,79 @@
+package Sprint.WsProjeto.service;
+
+import Sprint.WsProjeto.DTO.ProjetoDTO;
+import Sprint.WsProjeto.DTO.assembler.ProjetoDomainDTOAssembler;
+import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
+import Sprint.WsProjeto.datamodel.REST.UtilizadorRestDTO;
+import Sprint.WsProjeto.domain.entities.Projeto;
+import Sprint.WsProjeto.domain.factories.IProjetoFactory;
+import Sprint.WsProjeto.repositories.ProjetoRepository;
+import Sprint.WsProjeto.repositories.PropostaWebRepository;
+import Sprint.WsProjeto.repositories.UtilizadorWebRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class ProjetoService {
+
+    @Autowired
+    ProjetoDomainDTOAssembler projetoDomainDTOAssembler;
+
+    @Autowired
+    IProjetoFactory projetoFactory;
+
+    @Autowired
+    ProjetoRepository projetoRepository;
+
+    @Autowired
+    UtilizadorWebRepository utilizadorWebRepository;
+
+    @Autowired
+    PropostaWebRepository propostaWebRepository;
+
+    public ProjetoService() {
+    }
+
+    public ProjetoDTO createAndSaveProjeto(ProjetoDTO projetoDTO){
+
+        Projeto projeto = projetoFactory.createProjeto(projetoDTO.getCodProposta(),projetoDTO.getCodEstudante(),projetoDTO.getCodOrientador());
+
+        Projeto oProjetoSaved = projetoRepository.save(projeto);
+
+        ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(oProjetoSaved);
+
+      return oProjetoDTO;
+
+    }
+
+    public ProjetoDTO findProjetoByCode(int codProjeto) {
+
+        Optional<Projeto> opProjeto = projetoRepository.findById(codProjeto);
+
+        if (opProjeto.isPresent()) {
+            Projeto oProjeto = opProjeto.get();
+            ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(oProjeto);
+
+            return oProjetoDTO;
+        } else return null;
+    }
+
+
+
+    public Optional<UtilizadorRestDTO> findUtilizadorByCode(int nCode) {
+
+        Optional<UtilizadorRestDTO> oUtilizadorCode = utilizadorWebRepository.findUtilizadorByCode(nCode);
+
+        return oUtilizadorCode;
+    }
+
+    public Optional<PropostaRestDTO> findPropostaByCode(int code) {
+
+        Optional<PropostaRestDTO> oPropostaCode = propostaWebRepository.findPropostaByCode(code);
+
+        return oPropostaCode;
+    }
+
+
+}

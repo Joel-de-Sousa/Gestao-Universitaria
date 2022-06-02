@@ -16,7 +16,7 @@ public interface PropostaJPARepository extends CrudRepository<PropostaJPA, Integ
 
     List<PropostaJPA> findAllByCodUtilizador (int codUtilizador);
 
-    List<PropostaJPA> findAllByNifOrganizacao (int nifOrganizacao);
+    List<PropostaJPA> findAllByNifOrganizacao (long nr);
 
 
 }

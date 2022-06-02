@@ -14,7 +14,7 @@ public class OrganizacaoWebRepository implements IOrganizacaoWebRepository {
     @Autowired
     OrganizacaoRestRepository organizacaoRestRepository;
 
-    public Optional<OrganizacaoRestDTO> findOrganizacaoByNifOrganizacao (int nifOrganizacao) {
+    public Optional<OrganizacaoRestDTO> findOrganizacaoByNifOrganizacao (long nifOrganizacao) {
         Optional<OrganizacaoRestDTO> opOrganizacao = organizacaoRestRepository.findOrganizacaoByNifOrganizacao(nifOrganizacao);
 
         if ( opOrganizacao.isPresent() ) {
