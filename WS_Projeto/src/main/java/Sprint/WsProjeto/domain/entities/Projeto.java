@@ -29,7 +29,7 @@ private int codProjeto;
 
     public Projeto(int nCodProposta, int nCodEstudante, int nCodOrientador) {
         this.codProposta = nCodProposta;
-        this.codEstudante = nCodOrientador;
-        this.codOrientador = nCodEstudante;
+        this.codEstudante = nCodEstudante;
+        this.codOrientador = nCodOrientador;
     }
 }

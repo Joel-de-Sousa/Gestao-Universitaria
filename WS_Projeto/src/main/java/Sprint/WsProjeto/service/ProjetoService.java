@@ -61,16 +61,16 @@ public class ProjetoService {
 
 
 
-    public Optional<UtilizadorRestDTO> findUtilizadorByCode(int nCode) {
+    public Optional<UtilizadorRestDTO> findUtilizadorByCode(int codUtilizador) {
 
-        Optional<UtilizadorRestDTO> oUtilizadorCode = utilizadorWebRepository.findUtilizadorByCode(nCode);
+        Optional<UtilizadorRestDTO> oUtilizadorCode = utilizadorWebRepository.findUtilizadorByCode(codUtilizador);
 
         return oUtilizadorCode;
     }
 
-    public Optional<PropostaRestDTO> findPropostaByCode(int code) {
+    public Optional<PropostaRestDTO> findPropostaByCode(int codProposta) {
 
-        Optional<PropostaRestDTO> oPropostaCode = propostaWebRepository.findPropostaByCode(code);
+        Optional<PropostaRestDTO> oPropostaCode = propostaWebRepository.findPropostaByCode(codProposta);
 
         return oPropostaCode;
     }

@@ -4,6 +4,7 @@ package Sprint.WsProjeto.repositories;
 import Sprint.WsProjeto.datamodel.JPA.ProjetoJPA;
 import Sprint.WsProjeto.datamodel.JPA.assembler.ProjetoDomainDataAssembler;
 import Sprint.WsProjeto.domain.entities.Projeto;
+import Sprint.WsProjeto.repositories.IRepository.IProjetoRepository;
 import Sprint.WsProjeto.repositories.JPA.ProjetoJPARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 

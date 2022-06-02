@@ -14,9 +14,9 @@ public class UtilizadorWebRepository {
     @Autowired
     UtilizadorRestRepository utilizadorRestRepository;
 
-    public Optional<UtilizadorRestDTO> findUtilizadorByCode (int code){
+    public Optional<UtilizadorRestDTO> findUtilizadorByCode (int codUtilizador){
 
-        Optional<UtilizadorRestDTO> opCode = utilizadorRestRepository.findUtilizadorByCode(code);
+        Optional<UtilizadorRestDTO> opCode = utilizadorRestRepository.findUtilizadorByCode(codUtilizador);
 
         if(opCode.isPresent()){
             return opCode;
