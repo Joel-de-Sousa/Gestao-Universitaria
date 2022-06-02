@@ -1,6 +1,7 @@
 package WSEdicao.domain.factories;
 
-
+import WSEdicao.domain.entities.AnoLetivo;
+import WSEdicao.domain.entities.Uc;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -10,30 +11,36 @@ import static org.junit.jupiter.api.Assertions.*;
 class EdicaoFactoryTest {
 
     @Test
-    void factoryShouldCreateAnoLetivo() {
-        AnoLetivoFactory anoLetivoFactory = new AnoLetivoFactory();
-        anoLetivoFactory.createAnoLetivo("2015-2016");
+    void factoryShouldCreateEdicao() {
+        Uc uc= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
+        AnoLetivo anoLetivo = new AnoLetivo("2015-2016");
+
+        EdicaoFactory edicaoFactory = new EdicaoFactory();
+        edicaoFactory.createEdicao(uc,anoLetivo);
     }
-    @Test
-    void factoryShouldNotCreateAnoLetivoEmptyYear() {
-        AnoLetivoFactory anoLetivoFactory = new AnoLetivoFactory();
+
+    /*@Test
+    void factoryShouldNotCreateEdicaoEmptyYear() {
+        EdicaoFactory edicaoFactory = new EdicaoFactory();
         assertThrows(Exception.class, () -> {
-            anoLetivoFactory.createAnoLetivo("");
+            edicaoFactory.createEdicao("");
         });
-    }
+    }*/
+    /*
     @Test
-    void factoryShouldNotCreateAnoLetivoWithWrongFormat() {
-        AnoLetivoFactory anoLetivoFactory = new AnoLetivoFactory();
+    void factoryShouldNotCreateEdicaoWithWrongFormat() {
+        EdicaoFactory edicaoFactory = new EdicaoFactory();
         assertThrows(Exception.class, () -> {
-            anoLetivoFactory.createAnoLetivo("1900-9013123");
+            edicaoFactory.createEdicao("1900-9013123");
         });
-    }
+    }*/
+    /*
     @Test
-    void factoryShouldNotCreateAnoLetivoNullName() {
-        AnoLetivoFactory anoLetivoFactory = new AnoLetivoFactory();
+    void factoryShouldNotCreateEdicaoNullName() {
+        EdicaoFactory edicaoFactory = new EdicaoFactory();
         assertThrows(Exception.class, () -> {
-            anoLetivoFactory.createAnoLetivo(null);
+            edicaoFactory.createEdicao(null);
         });
-    }
+    }*/
 
 }

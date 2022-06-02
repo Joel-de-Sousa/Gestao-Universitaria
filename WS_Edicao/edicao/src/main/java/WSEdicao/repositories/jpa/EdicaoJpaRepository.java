@@ -1,6 +1,10 @@
 package WSEdicao.repositories.jpa;
 
+import WSEdicao.datamodel.AnoLetivoJpa;
 import WSEdicao.datamodel.EdicaoJpa;
+import WSEdicao.datamodel.UcJpa;
+import WSEdicao.domain.entities.AnoLetivo;
+import WSEdicao.domain.entities.Uc;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -11,6 +15,9 @@ public interface EdicaoJpaRepository extends CrudRepository<EdicaoJpa, Integer> 
     Optional<EdicaoJpa> findBycodEdicao(int codEdicao);
 
     List<EdicaoJpa> findAll();
+
+   // boolean existsByUc(UcJpa ucJpa);
+    //boolean existsByAnoLetivo(AnoLetivoJpa anoLetivoJpa);
 
 
 }

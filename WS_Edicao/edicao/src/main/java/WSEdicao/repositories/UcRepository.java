@@ -25,11 +25,15 @@ public class UcRepository {
     UcDomainDTOAssembler ucDTOAssembler;
 
     public Uc save(Uc uc ) {
-        UcJpa ucJpa = ucAssembler.toData(uc);
+        UcJpa ucJpa1 = ucAssembler.toData(uc);
+        if(!ucJpaRepository.existsBySigla(ucJpa1.getSigla())) {
+            UcJpa ucJpa = ucAssembler.toData(uc);
 
-        UcJpa savedUcJpa = ucJpaRepository.save( ucJpa );
+            UcJpa savedUcJpa = ucJpaRepository.save(ucJpa);
 
-        return ucAssembler.toDomain(savedUcJpa);
+            return ucAssembler.toDomain(savedUcJpa);
+        } else
+            throw new IllegalArgumentException("Já se encontra uma UC com esta sigla na base de dados, por favor insira uma nova");
     }
 
     //mudei Uc para UCDTO, acrescentei UcDTO assembler

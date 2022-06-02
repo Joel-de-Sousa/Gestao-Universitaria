@@ -1,6 +1,7 @@
 package WSEdicao.repositories;
 
 import WSEdicao.datamodel.EdicaoJpa;
+import WSEdicao.datamodel.UcJpa;
 import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
 import WSEdicao.domain.entities.Edicao;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
@@ -21,11 +22,15 @@ public class EdicaoRepository {
     EdicaoDomainDataAssembler edicaoAssembler;
 
     public Edicao save(Edicao edicao ) {
-        EdicaoJpa edicaoJpa = edicaoAssembler.toData(edicao);
+        //EdicaoJpa edicaoJpa1 = edicaoAssembler.toData(edicao);
+        //if(!edicaoJpaRepository.existsByUc(edicaoJpa1.getCodUc()) && !edicaoJpaRepository.existsByAnoLetivo(edicaoJpa1.getCodAnoLetivo())) {
+            EdicaoJpa edicaoJpa = edicaoAssembler.toData(edicao);
 
-        EdicaoJpa savedEdicaoJpa = edicaoJpaRepository.save( edicaoJpa );
+            EdicaoJpa savedEdicaoJpa = edicaoJpaRepository.save(edicaoJpa);
 
-        return edicaoAssembler.toDomain(savedEdicaoJpa);
+            return edicaoAssembler.toDomain(savedEdicaoJpa);
+        //} else
+          //  throw new IllegalArgumentException("Já existe uma edição com a UC e o Ano Letivo, verifique na base de dados");
     }
 
     public Optional<Edicao> findBycodEdicao(int codEdicao) {

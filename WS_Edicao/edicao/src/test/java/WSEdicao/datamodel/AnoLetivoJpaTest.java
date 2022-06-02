@@ -11,7 +11,7 @@ class AnoLetivoJpaTest {
 
     @Test
     void shouldCreateANewAnoLetivo() {
-        new AnoLetivo("2015-2016");
+        new AnoLetivoJpa("2015-2016");
     }
 
     @Test

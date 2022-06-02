@@ -1,6 +1,7 @@
 package WSEdicao.repositories;
 
 import WSEdicao.datamodel.AnoLetivoJpa;
+import WSEdicao.datamodel.UcJpa;
 import WSEdicao.datamodel.assemblers.AnoLetivoDomainDataAssembler;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.dto.AnoLetivoDTO;
@@ -25,11 +26,15 @@ public class AnoLetivoRepository {
     AnoLetivoDomainDTOAssembler anoLetivoDTOAssembler;
 
     public AnoLetivo save(AnoLetivo anoLetivo ) {
-        AnoLetivoJpa anoLetivoJpa = assembler.toData(anoLetivo);
+        AnoLetivoJpa AnoLetivoJpa1 = assembler.toData(anoLetivo);
+        if(!anoLetivoJpaRepository.existsByAno(AnoLetivoJpa1.getAno())) {
+            AnoLetivoJpa anoLetivoJpa = assembler.toData(anoLetivo);
 
-        AnoLetivoJpa savedAnoLetivoJpa = anoLetivoJpaRepository.save( anoLetivoJpa );
+            AnoLetivoJpa savedAnoLetivoJpa = anoLetivoJpaRepository.save(anoLetivoJpa);
 
-        return assembler.toDomain(savedAnoLetivoJpa);
+            return assembler.toDomain(savedAnoLetivoJpa);
+        } else
+            throw new IllegalArgumentException("O Ano Letivo já se encontra inserido na base de dados");
     }
 
     public Optional<AnoLetivoDTO> findBycodAnoLetivo(int codAnoLetivo) {

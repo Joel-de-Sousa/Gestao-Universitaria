@@ -11,4 +11,6 @@ public interface UcJpaRepository extends CrudRepository<UcJpa, Integer> {
 
     List<UcJpa> findAll();
 
+    boolean existsBySigla(String sigla);
+
 }
