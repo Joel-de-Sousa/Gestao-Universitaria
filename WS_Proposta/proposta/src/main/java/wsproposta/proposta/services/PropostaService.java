@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import wsproposta.proposta.DTO.ErrorDTO;
 import wsproposta.proposta.DTO.NewPropostaInfoDTO;
 import wsproposta.proposta.DTO.PropostaDTO;
+import wsproposta.proposta.DTO.PropostaDTOParcial;
 import wsproposta.proposta.DTO.assemblers.PropostaDomainDTOAssembler;
 import wsproposta.proposta.datamodel.REST.OrganizacaoRestDTO;
 import wsproposta.proposta.domain.entities.Proposta;
@@ -33,6 +34,9 @@ public class PropostaService {
     @Autowired
     IOrganizacaoWebRepository organizacaoWebRepository;
 
+    @Autowired
+    PropostaDomainDTOAssembler propostaDTOAssembler;
+
 
     public PropostaService(){}
 
@@ -55,7 +59,7 @@ public class PropostaService {
                     propostaSaved.getCodEdicao(), propostaSaved.getTitulo(), propostaSaved.getProblema(), propostaSaved.getObjetivo(), valueOf(propostaSaved.getEstado()));
 
             return propostaDTO;
-        }else throw new Exception ("O valor dos parâmetros");
+        }else throw new Exception ("Proposta não foi criada porque o valor dos parâmetros Código Utilizador ou NIF organizacao não constam na base de dados");
     }
 
     public List<PropostaDTO> findAll() {
@@ -126,4 +130,40 @@ public class PropostaService {
         }
         return listFiltradaPropostaDTO;
     }
+
+
+    //MÉTODOs SAVE PARA USAR PUT
+
+/*    public Optional<Proposta> getPropostaToReplaceEstadoById (int codProposta) {
+        Optional<Proposta> opProposta = propostaRepository.findById(codProposta);
+        return opProposta;
+    }
+
+    public Proposta save(Proposta novo) {
+        return propostaRepository.save(novo);
+    }*/
+
+    public Proposta updateEstadoProposta (PropostaDTOParcial propostaUpdate, int codProposta) {
+
+        Optional<Proposta> opProposta = propostaRepository.findById(codProposta);
+
+        return opProposta
+                .map(proposta -> {
+                    proposta.setCodProposta(propostaUpdate.getCodProposta());
+                    proposta.setEstado(Proposta.Estado.valueOf(propostaUpdate.getEstado()));
+
+                    return propostaRepository.save(proposta);
+                })
+                .orElseGet(() -> {
+                    propostaUpdate.setCodProposta(codProposta);
+                    return propostaRepository.save(propostaDTOAssembler.toDomain(propostaUpdate));
+                });
+    }
+
+    /*//METODOS PARA USAR PATCH
+
+    public Proposta save(PropostaDTOParcial propPartial, int codProposta) {
+        return propostaRepository.save(propPartial, codProposta);
+    }*/
+
 }

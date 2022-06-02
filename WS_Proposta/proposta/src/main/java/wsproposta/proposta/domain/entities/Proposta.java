@@ -1,10 +1,7 @@
 package wsproposta.proposta.domain.entities;
 
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import wsproposta.proposta.utils.Util;
 
 import javax.persistence.GeneratedValue;
@@ -13,6 +10,7 @@ import javax.persistence.Id;
 
 @ToString
 @EqualsAndHashCode
+
 public class Proposta {
 
     public enum Estado {PENDENTE, ACEITE, REJEITADA};
@@ -46,6 +44,23 @@ public class Proposta {
     private static final Estado ESTADO_POR_OMISSAO = Estado.PENDENTE;
 
 
+    public Proposta(int codProposta, int codUtilizador, long nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo, Estado estado) {
+        this.codProposta = codProposta;
+        this.codUtilizador = codUtilizador;
+        this.nifOrganizacao = nifOrganizacao;
+        this.codEdicao = codEdicao;
+        this.titulo = titulo;
+        this.problema = problema;
+        this.objetivo = objetivo;
+        this.estado = estado;
+    }
+
+
+    public Proposta(int codProposta, Estado estado) {
+        this.codProposta = codProposta;
+        this.estado = estado;
+    }
+
     public Proposta(int codUtilizador, long nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo/*, Estado estado*/) {
 
         this.codUtilizador = codUtilizador;
@@ -71,5 +86,37 @@ public class Proposta {
 
         this.estado = ESTADO_POR_OMISSAO;
 
+    }
+
+    public void setCodProposta(int codProposta) {
+        this.codProposta = codProposta;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public void setCodUtilizador(int codUtilizador) {
+        this.codUtilizador = codUtilizador;
+    }
+
+    public void setNifOrganizacao(long nifOrganizacao) {
+        this.nifOrganizacao = nifOrganizacao;
+    }
+
+    public void setCodEdicao(int codEdicao) {
+        this.codEdicao = codEdicao;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setProblema(String problema) {
+        this.problema = problema;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
     }
 }

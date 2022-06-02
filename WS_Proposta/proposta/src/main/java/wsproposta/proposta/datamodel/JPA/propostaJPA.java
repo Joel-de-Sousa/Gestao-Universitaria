@@ -1,18 +1,21 @@
 package wsproposta.proposta.datamodel.JPA;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import wsproposta.proposta.domain.entities.Proposta.Estado;
 
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
 @Table (name = "propostas")
 public class PropostaJPA {
 
     @Id
     @Getter
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
+
     private int codProposta;
     @Getter
     private int codUtilizador;
