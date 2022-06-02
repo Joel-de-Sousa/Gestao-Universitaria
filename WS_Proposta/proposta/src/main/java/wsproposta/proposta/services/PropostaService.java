@@ -38,7 +38,8 @@ public class PropostaService {
     PropostaDomainDTOAssembler propostaDTOAssembler;
 
 
-    public PropostaService(){}
+    public PropostaService() {
+    }
 
     public PropostaDTO createAndSaveProposta(NewPropostaInfoDTO propostaInfoDTO) throws Exception {
 
@@ -49,7 +50,7 @@ public class PropostaService {
 */
         Optional<OrganizacaoRestDTO> organizacao = organizacaoWebRepository.findOrganizacaoByNifOrganizacao(propostaInfoDTO.getNifOrganizacao());
 
-        if ( organizacao.isPresent()) {
+        if (organizacao.isPresent()) {
             Proposta proposta = propostaFactory.createProposta(propostaInfoDTO.getCodUtilizador(), propostaInfoDTO.getNifOrganizacao(),
                     propostaInfoDTO.getCodEdicao(), propostaInfoDTO.getTitulo(), propostaInfoDTO.getProblema(), propostaInfoDTO.getObjetivo()/*, Proposta.Estado.valueOf(propostaInfoDTO.getEstado())*/);
 
@@ -59,14 +60,15 @@ public class PropostaService {
                     propostaSaved.getCodEdicao(), propostaSaved.getTitulo(), propostaSaved.getProblema(), propostaSaved.getObjetivo(), valueOf(propostaSaved.getEstado()));
 
             return propostaDTO;
-        }else throw new Exception ("Proposta não foi criada porque o valor dos parâmetros Código Utilizador ou NIF organizacao não constam na base de dados");
+        } else
+            throw new Exception("Proposta não foi criada porque o valor dos parâmetros Código Utilizador ou NIF organizacao não constam na base de dados");
     }
 
     public List<PropostaDTO> findAll() {
         List<Proposta> listPropostas = propostaRepository.findAll();
 
         List<PropostaDTO> listPropostaDTO = new ArrayList<>();
-        for(Proposta proposta : listPropostas) {
+        for (Proposta proposta : listPropostas) {
             PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
                     proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo(), proposta.getEstado().toString());
             listPropostaDTO.add(propostaDTO);
@@ -74,16 +76,16 @@ public class PropostaService {
         return listPropostaDTO;
     }
 
-    public PropostaDTO getPropostaById (int codProposta) {
+    public PropostaDTO getPropostaById(int codProposta) {
 
         Optional<Proposta> opProposta = propostaRepository.findById(codProposta);
 
-        if (opProposta.isPresent()){
+        if (opProposta.isPresent()) {
             Proposta proposta = opProposta.get();
             PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
                     proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo(), proposta.getEstado().toString());
             return propostaDTO;
-        }else return  null;
+        } else return null;
     }
 
     //MÉTODO GET PROPOSTAS BY CODE UTILIZADOR - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE UTILIZADOR
@@ -93,7 +95,7 @@ public class PropostaService {
         List<Proposta> listFiltradaPropostas = propostaRepository.findAllByCodUtilizador(codUtilizador);
 
         List<PropostaDTO> listFiltradaPropostaDTO = new ArrayList<>();
-        for(Proposta proposta : listFiltradaPropostas) {
+        for (Proposta proposta : listFiltradaPropostas) {
             PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
                     proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo(), proposta.getEstado().toString());
             listFiltradaPropostaDTO.add(propostaDTO);
@@ -108,7 +110,7 @@ public class PropostaService {
         List<Proposta> listFiltradaPropostas = propostaRepository.findAllByNifOrganizacao(nr);
 
         List<PropostaDTO> listFiltradaPropostaDTO = new ArrayList<>();
-        for(Proposta proposta : listFiltradaPropostas) {
+        for (Proposta proposta : listFiltradaPropostas) {
             PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
                     proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo(), proposta.getEstado().toString());
             listFiltradaPropostaDTO.add(propostaDTO);
@@ -123,7 +125,7 @@ public class PropostaService {
         List<Proposta> listFiltradaPropostas = propostaRepository.findAllByTitulo(titulo);
 
         List<PropostaDTO> listFiltradaPropostaDTO = new ArrayList<>();
-        for(Proposta proposta : listFiltradaPropostas) {
+        for (Proposta proposta : listFiltradaPropostas) {
             PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
                     proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo(), proposta.getEstado().toString());
             listFiltradaPropostaDTO.add(propostaDTO);
@@ -143,9 +145,18 @@ public class PropostaService {
         return propostaRepository.save(novo);
     }*/
 
-    public Proposta updateEstadoProposta (PropostaDTOParcial propostaUpdate, int codProposta) {
+    public Proposta updateEstadoProposta(PropostaDTOParcial propostaUpdate, int codProposta) {
 
         Optional<Proposta> opProposta = propostaRepository.findById(codProposta);
+
+        opProposta.get().setCodProposta(propostaUpdate.getCodProposta());
+        opProposta.get().setEstado(Proposta.Estado.valueOf(propostaUpdate.getEstado()));
+
+        return propostaRepository.save(opProposta.get());
+
+
+
+       /* Optional<Proposta> opProposta = propostaRepository.findById(codProposta);
 
         return opProposta
                 .map(proposta -> {
@@ -157,8 +168,8 @@ public class PropostaService {
                 .orElseGet(() -> {
                     propostaUpdate.setCodProposta(codProposta);
                     return propostaRepository.save(propostaDTOAssembler.toDomain(propostaUpdate));
-                });
-    }
+                });*/
+}
 
     /*//METODOS PARA USAR PATCH
 
