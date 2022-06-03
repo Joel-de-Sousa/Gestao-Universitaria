@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import wsproposta.proposta.DTO.*;
-import wsproposta.proposta.DTO.assemblers.PropostaDomainDTOAssembler;
 import wsproposta.proposta.domain.entities.Proposta;
 import wsproposta.proposta.services.PropostaService;
 
@@ -44,7 +43,7 @@ public class PropostaController {
         if (propostaDTO != null) {
             return new ResponseEntity<>(propostaDTO, HttpStatus.OK);
         } else
-            return new ResponseEntity<>("O código da proposta não consta na Base de Dados", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("O codigo da proposta nao consta na Base de Dados", HttpStatus.NOT_FOUND);
     }
 
     //MÉTODO CREATE PROPOSTA
@@ -66,10 +65,8 @@ public class PropostaController {
     public ResponseEntity<Object> getAllPropostasByCodUtilizador(@PathVariable int codUtilizador) {
 
         List<PropostaDTO> listFiltradaPropostasDTO = service.findAllByCodUtilizador(codUtilizador);
-        if (!listFiltradaPropostasDTO.isEmpty()) {
             return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
-        } else
-            return new ResponseEntity<>("O Código de Utilizador introduzido não consta na Base de Dados", HttpStatus.NOT_FOUND);
+
     }
 
     //MÉTODO GET PROPOSTAS BY NIF ORGANIZACAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE NIF
@@ -78,12 +75,8 @@ public class PropostaController {
     public ResponseEntity<Object> getAllPropostasByNifOrganizacao(@PathVariable long nr) {
 
         List<PropostaDTO> listFiltradaPropostasDTO = service.findAllPropostasByNifOrganizacao(nr);
-
-        if (!listFiltradaPropostasDTO.isEmpty()) {
             return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
-        } else
-            return new ResponseEntity<>("O NIF introduzido não consta na Base de Dados", HttpStatus.NOT_FOUND);
-    }
+       }
 
     //MÉTODO GET PROPOSTAS BY TITULO - RECEBE LISTA DE TODAS AS PROPOSTAS COM ESTE TITULO
     @GetMapping("/titulo/{titulo}")
@@ -92,11 +85,8 @@ public class PropostaController {
 
         List<PropostaDTO> listFiltradaPropostasDTO = service.findAllPropostasByTitulo(titulo);
 
-        if (!listFiltradaPropostasDTO.isEmpty()) {
             return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
-        } else
-            return new ResponseEntity<>("A String introduzida não consta nos Títulos da Base de Dados", HttpStatus.NOT_FOUND);
-    }
+        }
 
     //MÉTODO PUT ALTERA ESTADO PROPOSTA
 

@@ -70,11 +70,12 @@ public class PropostaRepository implements IPropostaRepository {
 
     //MÉTODO GET PROPOSTAS BY TITULO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE TITULO
     public List<Proposta> findAllByTitulo (String titulo){
-        List<PropostaJPA> listFiltradaPropostasJPA = propostaJPARepository.findAll();
+        List<PropostaJPA> listFiltradaPropostasJPA = propostaJPARepository.findByTituloContains(titulo);
+
         List<Proposta> listFiltradaPropostas =new ArrayList<>();
         for (PropostaJPA p:listFiltradaPropostasJPA) {
             Proposta proposta = propostaAssembler.toDomain(p);
-            if(proposta.getTitulo().toUpperCase().contains(titulo.toUpperCase()))
+            //if(proposta.getTitulo().toUpperCase().contains(titulo.toUpperCase()))
             listFiltradaPropostas.add(proposta);
         }
         return listFiltradaPropostas;

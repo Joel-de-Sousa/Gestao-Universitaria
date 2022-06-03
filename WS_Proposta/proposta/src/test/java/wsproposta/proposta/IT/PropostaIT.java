@@ -2,6 +2,7 @@ package wsproposta.proposta.IT;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -23,8 +24,6 @@ import wsproposta.proposta.repositories.REST.UtilizadorRestRepository;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
-import static org.apache.commons.lang3.RandomStringUtils.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -50,19 +49,13 @@ public class PropostaIT {
         MockitoAnnotations.openMocks(this);
     }
 
-
-    // Este teste verifica que proposta/{generatedCode} não existe inicialmente.
-    // Depois, cria proposta {"code": ?generatedCode?, "name": ?generatedName?}.
-    // Finalmente, verifica que proposta/{generatedCode} passa a existir.
-    // NB: Depois de executados todos os testes, é feito o rollback à base de dados, removendo os dados criados durante os testes.
-
     @Test
-    void shouldReturnNewPropostaAndOk() throws Exception {
+    void shouldPostNewPropostaIT() throws Exception {
 
-        int generatedCodProposta = 1; //Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        int generatedCodProposta = 1;
 
         UtilizadorRestDTO utilizadorDouble = mock(UtilizadorRestDTO.class);
-        when(utilizadorDouble.getCodUtilizador()).thenReturn(1);//Integer.parseInt(RandomStringUtils.randomNumeric(8));
+        when(utilizadorDouble.getCodUtilizador()).thenReturn(1);
 
         OrganizacaoRestDTO organizacaoDouble = mock(OrganizacaoRestDTO.class);
         when(organizacaoDouble.getNr()).thenReturn(257837248L);
@@ -73,7 +66,8 @@ public class PropostaIT {
         String generatedObjectivo = RandomStringUtils.randomAlphanumeric(20);
         String generatedEstado = String.valueOf(Proposta.Estado.PENDENTE);
 
-        NewPropostaInfoDTO newPropostaInfoDTO = new NewPropostaInfoDTO(utilizadorDouble.getCodUtilizador(), (int) organizacaoDouble.getNr(), generatedCodEdicao,
+        NewPropostaInfoDTO newPropostaInfoDTO = new NewPropostaInfoDTO(utilizadorDouble.getCodUtilizador(),
+                (int) organizacaoDouble.getNr(), generatedCodEdicao,
                 generatedTitulo, generatedProblema, generatedObjectivo);
 
 
@@ -85,9 +79,9 @@ public class PropostaIT {
 
 
         Map<String, Object> newPropostaInfoMap = new HashMap<String, Object>();
-        newPropostaInfoMap.put("codProposta", 1);
-        newPropostaInfoMap.put("codUtilizador", utilizadorDouble);
-        newPropostaInfoMap.put("nifOrganizacao", organizacaoDouble);
+        //newPropostaInfoMap.put("codProposta", 1);
+        newPropostaInfoMap.put("codUtilizador", utilizadorDouble.getCodUtilizador());
+        newPropostaInfoMap.put("nifOrganizacao", (int) organizacaoDouble.getNr());
         newPropostaInfoMap.put("codEdicao", generatedCodEdicao);
         newPropostaInfoMap.put("titulo", generatedTitulo);
         newPropostaInfoMap.put("problema", generatedProblema);
@@ -96,21 +90,146 @@ public class PropostaIT {
 
 
         //.................................................................
-        // First call: GET country/{generatedCode}
+        // First call: GET proposta/{generatedCodProposta}
 
-        MvcResult result1 = mockMvc
+        /*MvcResult result1 = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/propostas/" + generatedCodProposta)
-                        .accept(MediaType.APPLICATION_JSON))
+                .get("/propostas/" + generatedCodProposta)
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andReturn();
 
-        String resultContent1 = result1.getResponse().getContentAsString();
-        assertNotNull(resultContent1);
-        assertEquals("", resultContent1);
+        String resultContentStr1 = result1.getResponse().getContentAsString();
+        //assertNotNull(resultContentStr1);
+        assertEquals("O codigo da proposta nao consta na Base de Dados", resultContentStr1);*/
 
 
-        // Second call: POST country [{"code":?generatedCode?, "name":?generatedName?}]
+        // Second call: POST p [{"code":?generatedCode?, "name":?generatedName?}]
+
+        MvcResult result2 = mockMvc
+                .perform(MockMvcRequestBuilders
+                .post("/propostas")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(newPropostaInfoDTO)) // or newCountryInfoMap
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        //String newObjectAsString = objectMapper.writeValueAsString(newPropostaInfoMap);
+
+        String resultContentStr = result2.getResponse().getContentAsString();
+        JSONObject resultJsonObject = new JSONObject( resultContentStr );
+
+
+        Integer codUtilizador = (Integer) newPropostaInfoMap.get("codUtilizador");
+        Integer nif = (Integer) newPropostaInfoMap.get("nifOrganizacao");
+        Integer codEdicao = (Integer) newPropostaInfoMap.get("codEdicao");
+        String titulo = (String) newPropostaInfoMap.get("titulo");
+        String problema = (String) newPropostaInfoMap.get("problema");
+        String objetivo = (String) newPropostaInfoMap.get("objetivo");
+        String estado = (String) newPropostaInfoMap.get("estado");
+
+        assertEquals(codUtilizador.intValue(), resultJsonObject.getInt("codUtilizador"));
+        assertEquals(nif.intValue(), resultJsonObject.getInt("nifOrganizacao"));
+        assertEquals(codEdicao.intValue(), resultJsonObject.getInt("codEdicao"));
+        assertEquals(titulo , resultJsonObject.get("titulo"));
+        assertEquals(problema , resultJsonObject.get("problema"));
+        assertEquals(objetivo , resultJsonObject.get("objetivo"));
+        assertEquals(estado , resultJsonObject.get("estado"));
+
+
+        // Third call: GET country/{generatedCode}
+        //Integer codPropostaJson = resultJsonObject.getInt("codProposta");
+        MvcResult result3 = mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get("/propostas/" + generatedCodProposta)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String resultContentStr3 = result3.getResponse().getContentAsString();
+        JSONObject resultJsonObject3 = new JSONObject( resultContentStr3 );
+
+        Integer codUtilizador3 = (Integer) newPropostaInfoMap.get("codUtilizador");
+        Integer nif3 = (Integer) newPropostaInfoMap.get("nifOrganizacao");
+        Integer codEdicao3 = (Integer) newPropostaInfoMap.get("codEdicao");
+        String titulo3 = (String) newPropostaInfoMap.get("titulo");
+        String problema3 = (String) newPropostaInfoMap.get("problema");
+        String objetivo3 = (String) newPropostaInfoMap.get("objetivo");
+        String estado3 = (String) newPropostaInfoMap.get("estado");
+
+        assertEquals(codUtilizador3.intValue(), resultJsonObject3.getInt("codUtilizador"));
+        assertEquals(nif3.intValue(), resultJsonObject3.getInt("nifOrganizacao"));
+        assertEquals(codEdicao3.intValue(), resultJsonObject3.getInt("codEdicao"));
+        assertEquals(titulo3 , resultJsonObject3.get("titulo"));
+        assertEquals(problema3 , resultJsonObject3.get("problema"));
+        assertEquals(objetivo3 , resultJsonObject3.get("objetivo"));
+        assertEquals(estado3 , resultJsonObject3.get("estado"));
+
+        assertNotNull(resultContentStr3);
+       // assertEquals(objectMapper.writeValueAsString(newPropostaInfoMap), resultContent3); // or newCountryInfoMap
+    }
+
+
+    @Test
+    void shouldGetPropostaByIdUtilizadorIT() throws Exception {
+
+        int generatedCodProposta = 1;
+        int generatedCodUtilizador = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+
+        UtilizadorRestDTO utilizadorDouble = mock(UtilizadorRestDTO.class);
+        when(utilizadorDouble.getCodUtilizador()).thenReturn(generatedCodUtilizador);
+
+        int generatedNifOrganizacao = Integer.parseInt(RandomStringUtils.randomNumeric(9));
+
+        OrganizacaoRestDTO organizacaoDouble = mock(OrganizacaoRestDTO.class);
+        when(organizacaoDouble.getNr()).thenReturn((long) generatedNifOrganizacao);
+
+        int generatedCodEdicao = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        String generatedTitulo = RandomStringUtils.randomAlphanumeric(20);
+        String generatedProblema = RandomStringUtils.randomAlphanumeric(20);
+        String generatedObjectivo = RandomStringUtils.randomAlphanumeric(20);
+        String generatedEstado = String.valueOf(Proposta.Estado.PENDENTE);
+
+        NewPropostaInfoDTO newPropostaInfoDTO = new NewPropostaInfoDTO(utilizadorDouble.getCodUtilizador(),
+                (int) organizacaoDouble.getNr(), generatedCodEdicao,
+                generatedTitulo, generatedProblema, generatedObjectivo);
+
+
+        Optional<UtilizadorRestDTO> opUtilizador = Optional.of(utilizadorDouble);
+        when(utilizadorRestRepository.findUtilizadorByCodUtilizador(generatedCodUtilizador)).thenReturn(opUtilizador);
+
+        Optional<OrganizacaoRestDTO> opOrganizacao = Optional.of(organizacaoDouble);
+        when(organizacaoRestRepository.findOrganizacaoByNifOrganizacao(generatedNifOrganizacao)).thenReturn(opOrganizacao);
+
+
+        /*Map<String, Object> newPropostaInfoMap = new HashMap<String, Object>();
+        //newPropostaInfoMap.put("codProposta", 1);
+        newPropostaInfoMap.put("codUtilizador", utilizadorDouble.getCodUtilizador());
+        newPropostaInfoMap.put("nifOrganizacao", (int) organizacaoDouble.getNr());
+        newPropostaInfoMap.put("codEdicao", generatedCodEdicao);
+        newPropostaInfoMap.put("titulo", generatedTitulo);
+        newPropostaInfoMap.put("problema", generatedProblema);
+        newPropostaInfoMap.put("objetivo", generatedObjectivo);
+        newPropostaInfoMap.put("estado", generatedEstado);*/
+
+
+        //.................................................................
+        // First call: GET proposta/{generatedCodProposta}
+
+        /*MvcResult result1 = mockMvc
+                .perform(MockMvcRequestBuilders
+                .get("/propostas/" + generatedCodProposta)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andReturn();
+
+        String resultContentStr1 = result1.getResponse().getContentAsString();
+        //assertNotNull(resultContentStr1);
+        assertEquals("O codigo da proposta nao consta na Base de Dados", resultContentStr1);*/
+
+
+        // Second call: POST p [{"code":?generatedCode?, "name":?generatedName?}]
 
         MvcResult result2 = mockMvc
                 .perform(MockMvcRequestBuilders
@@ -121,47 +240,64 @@ public class PropostaIT {
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        String resultContent = result2.getResponse().getContentAsString();
-        assertNotNull(resultContent);
-        assertEquals(objectMapper.writeValueAsString(newPropostaInfoMap), resultContent); // or newCountryInfoMap
+        //String newObjectAsString = objectMapper.writeValueAsString(newPropostaInfoMap);
+
+        String resultContentStr = result2.getResponse().getContentAsString();
+        JSONObject resultJsonObject = new JSONObject( resultContentStr );
+
+
+        Integer codUtilizador = (Integer) newPropostaInfoDTO.getCodUtilizador();
+        /*Integer nif = (Integer) newPropostaInfoMap.get("nifOrganizacao");
+        Integer codEdicao = (Integer) newPropostaInfoMap.get("codEdicao");
+        String titulo = (String) newPropostaInfoMap.get("titulo");
+        String problema = (String) newPropostaInfoMap.get("problema");
+        String objetivo = (String) newPropostaInfoMap.get("objetivo");
+        String estado = (String) newPropostaInfoMap.get("estado");*/
+
+        Integer codUtilizadorJson = resultJsonObject.getInt("codUtilizador");
+
+        assertEquals(codUtilizador.intValue(), codUtilizadorJson);
+        /*assertEquals(nif.intValue(), resultJsonObject.getInt("nifOrganizacao"));
+        assertEquals(codEdicao.intValue(), resultJsonObject.getInt("codEdicao"));
+        assertEquals(titulo , resultJsonObject.get("titulo"));
+        assertEquals(problema , resultJsonObject.get("problema"));
+        assertEquals(objetivo , resultJsonObject.get("objetivo"));
+        assertEquals(estado , resultJsonObject.get("estado"));*/
 
 
         // Third call: GET country/{generatedCode}
-
+        //Integer codPropostaJson = resultJsonObject.getInt("codProposta");
         MvcResult result3 = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/propostas/" + generatedCodProposta)
+                        .get("/propostas/titulo/" + codUtilizadorJson)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        String resultContent3 = result3.getResponse().getContentAsString();
-        assertNotNull(resultContent3);
-        assertEquals(objectMapper.writeValueAsString(newPropostaInfoMap), resultContent3); // or newCountryInfoMap
+        String resultContentStr3 = result3.getResponse().getContentAsString();
+        JSONObject resultJsonObject3 = new JSONObject( resultContentStr3 );
+
+
+        //assertEquals(resultJsonObject, resultJsonObject3);
+        //Integer codUtilizador3 = (Integer) newPropostaInfoDTO.getCodUtilizador();
+        /*Integer nif3 = (Integer) newPropostaInfoMap.get("nifOrganizacao");
+        Integer codEdicao3 = (Integer) newPropostaInfoMap.get("codEdicao");
+        String titulo3 = (String) newPropostaInfoMap.get("titulo");
+        String problema3 = (String) newPropostaInfoMap.get("problema");
+        String objetivo3 = (String) newPropostaInfoMap.get("objetivo");
+        String estado3 = (String) newPropostaInfoMap.get("estado");*/
+
+        //assertEquals(codUtilizador3.intValue(), resultJsonObject3.getInt("codUtilizador"));
+        /*assertEquals(nif3.intValue(), resultJsonObject3.getInt("nifOrganizacao"));
+        assertEquals(codEdicao3.intValue(), resultJsonObject3.getInt("codEdicao"));
+        assertEquals(titulo3 , resultJsonObject3.get("titulo"));
+        assertEquals(problema3 , resultJsonObject3.get("problema"));
+        assertEquals(objetivo3 , resultJsonObject3.get("objetivo"));
+        assertEquals(estado3 , resultJsonObject3.get("estado"));*/
+
+        assertNotNull(resultContentStr3);
+        // assertEquals(objectMapper.writeValueAsString(newPropostaInfoMap), resultContent3); // or newCountryInfoMap
     }
-
-        // Este teste não funciona pois (previsivelmente) não existe country/{generatedCode} na BD.
-        // NB: generatedCode é gerado neste método e (previsivelmente) diferente do gerado no método anterior.
-/*@Test
-    void shouldReturnCountryAndOk() throws Exception {
-
-        String generatedCode = RandomStringUtils.randomAlphanumeric(10);
-        String generatedName = RandomStringUtils.randomAlphanumeric(20);
-
-        NewCountryInfoDTO newCountryInfoDTO = new NewCountryInfoDTO(generatedCode, generatedName);
-
-        MvcResult result = mockMvc
-                                .perform(MockMvcRequestBuilders.get("/country/" + generatedCode)
-                                .accept(MediaType.APPLICATION_JSON))
-                                .andExpect(status().isOk())
-                                .andReturn();
-
-        String resultContent = result.getResponse().getContentAsString();
-        assertNotNull(resultContent);
-        assertEquals(objectMapper.writeValueAsString(newCountryInfoDTO), resultContent);
-    }*/
-
-
 }
 
 
