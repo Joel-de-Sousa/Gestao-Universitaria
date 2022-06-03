@@ -1,8 +1,6 @@
 package Sprint.WsProjeto.controller;
 
 import Sprint.WsProjeto.DTO.ProjetoDTO;
-import Sprint.WsProjeto.domain.entities.Projeto;
-import Sprint.WsProjeto.domain.factories.IProjetoFactory;
 import Sprint.WsProjeto.service.ProjetoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,4 +63,5 @@ class ProjetoControllerTest {
 
 
     }
+
 }

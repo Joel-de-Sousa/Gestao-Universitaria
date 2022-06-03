@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2668755e-9396-4eea-817b-70d758106660" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../UIsprint2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UIsprint2/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/AnoLetivoRestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/AnoLetivoRestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/EdicaoRestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/EdicaoRestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/AnoLetivoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/AnoLetivoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/EdicaoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/EdicaoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/UcRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/UcRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/AnoLetivoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/AnoLetivoJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EdicaoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EdicaoJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/UcJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/UcJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/AnoLetivoJpaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/AnoLetivoJpaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/entities/EdicaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/entities/EdicaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/EdicaoFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/AnoLetivoFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/UcRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/UcRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/controller/ProjetoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/controller/ProjetoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/domain/entities/ProjetoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/domain/entities/ProjetoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/service/ProjetoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/service/ProjetoServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +51,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RunManager" selected="JUnit.UcRepositoryTest">
     <configuration name="WsEdicaoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WSEdicao.WsEdicaoApplication" />
@@ -151,7 +141,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/UcRepository.java</url>
-          <line>46</line>
+          <line>57</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
