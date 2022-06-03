@@ -8,6 +8,7 @@ import wsproposta.proposta.DTO.PropostaDTO;
 import wsproposta.proposta.DTO.PropostaDTOParcial;
 import wsproposta.proposta.DTO.assemblers.PropostaDomainDTOAssembler;
 import wsproposta.proposta.datamodel.REST.OrganizacaoRestDTO;
+import wsproposta.proposta.datamodel.REST.UtilizadorRestDTO;
 import wsproposta.proposta.domain.entities.Proposta;
 import wsproposta.proposta.domain.factories.IPropostaFactory;
 import wsproposta.proposta.repositories.PropostaRepository;
@@ -43,14 +44,13 @@ public class PropostaService {
 
     public PropostaDTO createAndSaveProposta(NewPropostaInfoDTO propostaInfoDTO) throws Exception {
 
-       /* Optional<UtilizadorRestDTO> utilizador = utilizadorWebRepository.findUtilizadorByCodUtilizador(propostaInfoDTO.getCodUtilizador());
+        Optional<UtilizadorRestDTO> utilizador = utilizadorWebRepository.findUtilizadorByCodUtilizador(propostaInfoDTO.getCodUtilizador());
         Optional<OrganizacaoRestDTO> organizacao = organizacaoWebRepository.findOrganizacaoByNifOrganizacao(propostaInfoDTO.getNifOrganizacao());
 
         if (utilizador.isPresent() && organizacao.isPresent()) {
-*/
-        Optional<OrganizacaoRestDTO> organizacao = organizacaoWebRepository.findOrganizacaoByNifOrganizacao(propostaInfoDTO.getNifOrganizacao());
+        /*Optional<OrganizacaoRestDTO> organizacao = organizacaoWebRepository.findOrganizacaoByNifOrganizacao(propostaInfoDTO.getNifOrganizacao());
 
-        if (organizacao.isPresent()) {
+        if (organizacao.isPresent()) {*/
             Proposta proposta = propostaFactory.createProposta(propostaInfoDTO.getCodUtilizador(), propostaInfoDTO.getNifOrganizacao(),
                     propostaInfoDTO.getCodEdicao(), propostaInfoDTO.getTitulo(), propostaInfoDTO.getProblema(), propostaInfoDTO.getObjetivo()/*, Proposta.Estado.valueOf(propostaInfoDTO.getEstado())*/);
 
