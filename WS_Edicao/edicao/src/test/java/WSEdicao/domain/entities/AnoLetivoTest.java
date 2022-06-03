@@ -10,21 +10,22 @@ class AnoLetivoTest {
 
     @Test
     void shouldCreateANewAnoLetivo() {
-        new AnoLetivo("2015-2016");
+        new AnoLetivo("2015");
     }
 
     @Test
     void shouldNotCreateANewAnoLetivoWithTheWrongFormat() {
         Exception exception = assertThrows(Exception.class, () -> {
-            new AnoLetivo("1999");
+            new AnoLetivo("POG");
+
         });
-        String expectedMessage = "Ano Inválido, preencha com o seguinte formato: AAAAinicial-AAAAseguinte";
+        String expectedMessage = "Ano Inválido, preencha o Ano com o seguinte formato: AAAA";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
     @Test
     void shouldCreateAAnoLetivoWithCorrectAttributes() {
-        AnoLetivo anoLetivo = new AnoLetivo("2015-2016");
+        AnoLetivo anoLetivo = new AnoLetivo("2015");
 
         assertEquals(anoLetivo.getAno(), "2015-2016");
     }
@@ -32,23 +33,15 @@ class AnoLetivoTest {
 
     @Test
     void shouldReturnEqualSameAnoLetivo() {
-        AnoLetivo anoLetivo1 = new AnoLetivo("2015-2016");
+        AnoLetivo anoLetivo1 = new AnoLetivo("2015");
         assertEquals(anoLetivo1,anoLetivo1);
     }
     @Test
     void shouldReturnNotEqualsDifferentLocais(){
-        AnoLetivo anoLetivo1 = new AnoLetivo ("2015-2016");
-        AnoLetivo anoLetivo2 = new AnoLetivo ("2016-2017");
+        AnoLetivo anoLetivo1 = new AnoLetivo ("2015");
+        AnoLetivo anoLetivo2 = new AnoLetivo ("2016");
 
         assertNotEquals(anoLetivo1,anoLetivo2);
     }
-
-    @Test
-    void shouldReturnTheCorrectFormatWithAnHyphen(){
-        AnoLetivo anoLetivo1 = new AnoLetivo("20152016");
-
-        assertEquals(anoLetivo1.getAno(),"2015-2016");
-    }
-
 
 }

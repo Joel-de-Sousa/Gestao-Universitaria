@@ -120,5 +120,24 @@ class UcServiceTest {
         assertEquals(listaDto, listUcAct);
         assertEquals(2, listUcAct.size());
     }
+
+    /*@Test //Futuro teste para verificar se existe já um objeto igual no repository
+    void shouldNotCreateAUcWithSameAttributes() {
+        // Arrange
+        when(uc.getSigla()).thenReturn("POOJ");
+        when(uc.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+
+        when(ucFactory.createUc("POOJ", "ProgramacaoOrientadaAObjetos")).thenReturn(uc);
+
+        when(ucRepository.save(uc)).thenReturn(uc);
+
+        UcDTO ucDTO = ucDTOAssembler.toDTO(uc);
+
+        // Act
+        UcDTO uc1 = ucService.createAndSaveUc("POOJ", "ProgramacaoOrientadaAObjetos");
+
+        // Assert
+        assertEquals(ucDTO, uc1);
+    }*/
 }
 

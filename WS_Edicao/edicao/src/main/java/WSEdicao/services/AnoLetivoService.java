@@ -45,13 +45,6 @@ public class AnoLetivoService {
         return opAnoLetivo;
     }
 
-    /*public List<AnoLetivo> getAllAnoLetivo() {
-
-        List<AnoLetivo> listAnoLetivo = anoLetivoRepository.findAll();
-
-        return listAnoLetivo;
-    }*/
-
     public List<AnoLetivoDTO> getAllAnoLetivo(){
         List<AnoLetivo> lista= anoLetivoRepository.findAll();
 

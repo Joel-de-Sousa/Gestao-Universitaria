@@ -26,6 +26,8 @@ public class UcRepository {
 
     public Uc save(Uc uc ) {
         UcJpa ucJpa1 = ucAssembler.toData(uc);
+        //String ignoreCase = ucJpa1.getSigla();
+
         if(!ucJpaRepository.existsBySigla(ucJpa1.getSigla())) {
             UcJpa ucJpa = ucAssembler.toData(uc);
 
@@ -35,8 +37,6 @@ public class UcRepository {
         } else
             throw new IllegalArgumentException("Já se encontra uma UC com esta sigla na base de dados, por favor insira uma nova");
     }
-
-    //mudei Uc para UCDTO, acrescentei UcDTO assembler
 
     public Optional<UcDTO> findBycodUc(int codUc) {
         Optional<UcJpa> opUc = ucJpaRepository.findBycodUc(codUc);

@@ -33,8 +33,8 @@ public class WsEdicaoApplication {
 
 
 				//Create a few Uc, AnoLetivos and Edicões
-				UcDTO uc1 = ucService.createAndSaveUc("PTRW", "Portugadfsdsfl");
-				/*AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015-2016");
+				/*UcDTO uc1 = ucService.createAndSaveUc("PTRW", "Portugadfsdsfl");
+				AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015-2016");
 				EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo1.getCodAnoLetivo());*/
 			};
 

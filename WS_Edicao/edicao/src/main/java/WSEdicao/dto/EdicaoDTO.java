@@ -18,8 +18,4 @@ public class EdicaoDTO {
     public EdicaoDTO() {
     }
 
-    public EdicaoDTO(int codUc, int codAnoLetivo) {
-        this.codUc = codUc;
-        this.codAnoLetivo = codAnoLetivo;
-    }
 }

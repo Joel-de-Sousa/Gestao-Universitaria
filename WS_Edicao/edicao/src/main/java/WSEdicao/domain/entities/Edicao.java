@@ -21,4 +21,8 @@ public class Edicao {
         this.uc = codUc;
         this.anoLetivo = anoLetivo;
     }
+
+    public Edicao(int codEdicao) {
+        this.codEdicao = codEdicao;
+    }
 }
