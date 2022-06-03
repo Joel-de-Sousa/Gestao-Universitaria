@@ -48,21 +48,7 @@ public class EdicaoService {
     public EdicaoService() {
     }
 
-    /*public Edicao createAndSaveEdicao(Uc codUc, AnoLetivo codAnoLetivo ) {
-        Edicao edicao = edicaoFactory.createEdicao(codUc,codAnoLetivo);
-        return edicaoRepository.save(edicao);
-    }*/
-
     public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo) {
-
-        /*Uc uc =new Uc(info.getCodUc());
-        AnoLetivo anoLetivo = new AnoLetivo(info.getCodAnoLetivo());
-
-        Edicao edicao = edicaoFactory.createEdicao(uc,anoLetivo);
-        Edicao edicaoSaved = edicaoRepository.save(edicao);
-        EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicaoSaved.getUc().getCodUc(),edicaoSaved.getAnoLetivo().getCodAnoLetivo());
-
-        return edicaoDTO;*/
 
         Optional<UcDTO> optionalUc = ucRepository.findBycodUc(codUc);
         Optional<AnoLetivoDTO> optionalAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
@@ -76,7 +62,7 @@ public class EdicaoService {
 
             return edicaoDTO;
         } else
-            return null;
+            throw new IllegalArgumentException();
     }
 
     public Optional<EdicaoDTO> getEdicaoByCode(int codEdicao) {

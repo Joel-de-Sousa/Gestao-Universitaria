@@ -28,14 +28,14 @@ public class EdicaoRepository {
 
     public Edicao save(Edicao edicao ) {
         //EdicaoJpa edicaoJpa1 = edicaoAssembler.toData(edicao);
-        //if(!edicaoJpaRepository.existsByUc(edicaoJpa1.getCodUc()) && !edicaoJpaRepository.existsByAnoLetivo(edicaoJpa1.getCodAnoLetivo())) {
+        //if(!edicaoJpaRepository.existByEdicao(edicaoJpa1)) {
             EdicaoJpa edicaoJpa = edicaoAssembler.toData(edicao);
 
             EdicaoJpa savedEdicaoJpa = edicaoJpaRepository.save(edicaoJpa);
 
             return edicaoAssembler.toDomain(savedEdicaoJpa);
-        //} else
-          //  throw new IllegalArgumentException("Já existe uma edição com a UC e o Ano Letivo, verifique na base de dados");
+       // } else
+         //   throw new IllegalArgumentException("Já existe uma edição com a UC e o Ano Letivo, verifique na base de dados");
     }
 
     public Optional<EdicaoDTO> findBycodEdicao(int codEdicao) {

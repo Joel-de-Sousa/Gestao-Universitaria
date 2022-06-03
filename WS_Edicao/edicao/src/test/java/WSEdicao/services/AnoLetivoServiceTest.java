@@ -51,16 +51,16 @@ class AnoLetivoServiceTest {
     @Test
     void shouldCreateAAnoLetivoWithCorrectAttributes() {
         // Arrange
-        when(anoLetivo.getAno()).thenReturn("2015-2016");
+        when(anoLetivo.getAno()).thenReturn("2015");
 
-        when(anoLetivoFactory.createAnoLetivo("2015-2016")).thenReturn(anoLetivo);
+        when(anoLetivoFactory.createAnoLetivo("2015")).thenReturn(anoLetivo);
 
         when(anoLetivoRepository.save(anoLetivo)).thenReturn(anoLetivo);
 
         AnoLetivoDTO anoLetivoDTO = anoLetivoDTOAssembler.toDTO(anoLetivo);
 
         // Act
-        AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015-2016");
+        AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015");
 
         // Assert
         assertEquals(anoLetivoDTO, anoLetivo1);
@@ -89,10 +89,10 @@ class AnoLetivoServiceTest {
     void shouldFindEveryAnoLetivoCreatedCorrectly() {
 
         AnoLetivo anoLetivoDouble = mock(AnoLetivo.class);
-        when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
+        when(anoLetivoDouble.getAno()).thenReturn("2015");
 
         AnoLetivo anoLetivoDouble2 = mock(AnoLetivo.class);
-        when(anoLetivoDouble2.getAno()).thenReturn("2017-2018");
+        when(anoLetivoDouble2.getAno()).thenReturn("2017");
 
 
         List<AnoLetivo> listAnoLetivoAux = new ArrayList<>();
