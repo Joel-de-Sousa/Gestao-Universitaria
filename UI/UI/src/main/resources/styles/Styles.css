@@ -1,3 +1,11 @@
 .button {
     -fx-font-weight: bold;
 }
+
+#stack-pane{
+    -fx-background-image: url("./Screenshot_113.png");
+    -fx-background-color: white;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size:1000 600;
+    -fx-background-position: center center;
+}
