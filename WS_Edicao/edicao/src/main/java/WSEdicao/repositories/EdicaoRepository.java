@@ -4,6 +4,8 @@ import WSEdicao.datamodel.EdicaoJpa;
 import WSEdicao.datamodel.UcJpa;
 import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
 import WSEdicao.domain.entities.Edicao;
+import WSEdicao.dto.EdicaoDTO;
+import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,9 @@ public class EdicaoRepository {
     @Autowired
     EdicaoDomainDataAssembler edicaoAssembler;
 
+    @Autowired
+    EdicaoDomainDTOAssembler edicaoDTOAssembler;
+
     public Edicao save(Edicao edicao ) {
         //EdicaoJpa edicaoJpa1 = edicaoAssembler.toData(edicao);
         //if(!edicaoJpaRepository.existsByUc(edicaoJpa1.getCodUc()) && !edicaoJpaRepository.existsByAnoLetivo(edicaoJpa1.getCodAnoLetivo())) {
@@ -33,12 +38,13 @@ public class EdicaoRepository {
           //  throw new IllegalArgumentException("Já existe uma edição com a UC e o Ano Letivo, verifique na base de dados");
     }
 
-    public Optional<Edicao> findBycodEdicao(int codEdicao) {
+    public Optional<EdicaoDTO> findBycodEdicao(int codEdicao) {
         Optional<EdicaoJpa> opEdicao = edicaoJpaRepository.findBycodEdicao(codEdicao);
 
         if ( opEdicao.isPresent() ) {
             Edicao edicao = edicaoAssembler.toDomain(opEdicao.get());
-            return Optional.of( edicao );
+            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
+            return Optional.of( edicaoDTO );
         }
         else
             return Optional.empty();

@@ -95,8 +95,8 @@ class UcRepositoryTest {
         when(ucJpa1.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
 
         UcJpa ucJpa2 = mock(UcJpa.class);
-        when(ucJpa2.getSigla()).thenReturn("LDP");     //não há necessidade de atribuir valores, o objetivo do teste
-        when(ucJpa2.getDenominacao()).thenReturn("LaboratorioDeProgramacao"); //é encontrar os locais existentes, por isso não é preciso!
+        when(ucJpa2.getSigla()).thenReturn("LDP");
+        when(ucJpa2.getDenominacao()).thenReturn("LaboratorioDeProgramacao");
 
         List<UcJpa> listUcJpa = new ArrayList<>();
         listUcJpa.add(ucJpa1);
@@ -117,5 +117,40 @@ class UcRepositoryTest {
         assertEquals(listUcAct,listUc);
         assertTrue(listUcAct.size()==2);
     }
+
+    /*@Test //Futuro teste para verificar se existe já um objeto igual no repository
+    void shouldCheckIfSiglaIsUnique() {
+        //Arrange
+        UcJpa ucJpa1 = mock(UcJpa.class);
+        when(ucJpa1.getSigla()).thenReturn("POOJ");
+        when(ucJpa1.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+
+        ucJpaRepository.save(ucJpa1);
+
+        UcJpa ucJpa2 = mock(UcJpa.class);
+        when(ucJpa2.getSigla()).thenReturn("POOJ");
+        when(ucJpa2.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+
+        ucJpaRepository.save(ucJpa2);
+
+        List<UcJpa> listUcJpa = new ArrayList<>();
+        listUcJpa.add(ucJpa1);
+        listUcJpa.add(ucJpa2);
+
+        when(ucJpaRepository.findAll()).thenReturn(listUcJpa);
+
+        List<Uc> listUc = new ArrayList<>();
+        for (UcJpa ucJpa : listUcJpa) {
+            when(ucDomainDataAssembler.toDomain(ucJpa)).thenReturn(uc);
+            listUc.add(uc);
+        }
+
+        //Act
+        List<Uc> listUcAct = ucRepository.findAll();
+
+        //Assert
+        assertEquals(listUcAct, listUc);
+        assertTrue(listUcAct.size() == 2);
+    }*/
 
 }

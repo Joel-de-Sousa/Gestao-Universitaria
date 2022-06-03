@@ -1,9 +1,10 @@
-/*
+
 package WSEdicao.services;
 
 import WSEdicao.domain.entities.Uc;
 import WSEdicao.domain.factories.UcFactory;
 import WSEdicao.dto.UcDTO;
+import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
 import WSEdicao.repositories.UcRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,16 @@ import static org.mockito.Mockito.when;
 class UcServiceTest {
 
     @MockBean
+    UcDomainDTOAssembler ucDTOAssembler;
+
+    @MockBean
     UcRepository ucRepository;
 
     @MockBean
     UcFactory ucFactory;
+
+    @MockBean
+    UcDTO ucDTO;
 
     @MockBean
     Uc uc;
@@ -50,40 +57,36 @@ class UcServiceTest {
 
         when(ucRepository.save(uc)).thenReturn(uc);
 
+        UcDTO ucDTO = ucDTOAssembler.toDTO(uc);
+
         // Act
         UcDTO uc1 = ucService.createAndSaveUc("POOJ", "ProgramacaoOrientadaAObjetos");
 
-        String sSigla = uc1.getSigla();
-        String sDenominacao = uc1.getDenominacao();
-
         // Assert
-        assertEquals(uc, uc1);
-
-        assertEquals(sSigla, "POOJ");
-        assertEquals(sDenominacao, "ProgramacaoOrientadaAObjetos");
+        assertEquals(ucDTO, uc1);
     }
 
 
    @Test
     void shouldFindSpecificUcSearchingById() {
         // Arrange
-        when(uc.getSigla()).thenReturn("POOJ");
-        when(uc.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+        when(ucDTO.getCodUc()).thenReturn(1);
+        when(ucDTO.getSigla()).thenReturn("POOJ");
+        when(ucDTO.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
 
-        Optional<Uc> opUc = Optional.of(uc);
+        Optional<UcDTO> opUc = Optional.of(ucDTO);
 
         when(ucRepository.findBycodUc(1)).thenReturn(opUc);
 
         // Act
         Optional<UcDTO> uc1 = ucService.getUcByCode(1);
-
-        String sSigla = uc1.get().getSigla();
+        String sigla = uc1.get().getSigla();
         String sDenominacao = uc1.get().getDenominacao();
 
         // Assert
         assertEquals(uc1, opUc);
 
-        assertEquals(sSigla, "POOJ");
+        assertEquals(sigla, "POOJ");
         assertEquals(sDenominacao, "ProgramacaoOrientadaAObjetos");
     }
 
@@ -97,19 +100,44 @@ class UcServiceTest {
         Uc ucDouble2 = mock(Uc.class);
         when(ucDouble2.getSigla()).thenReturn("LDP");
         when(ucDouble2.getDenominacao()).thenReturn("LaboratorioDeProgramacao");
+
         List<Uc> listUcAux = new ArrayList<>();
         listUcAux.add(ucDouble);
         listUcAux.add(ucDouble2);
 
         when(ucRepository.findAll()).thenReturn(listUcAux);
 
+        List<UcDTO> listaDto=new ArrayList<>();
+        for (Uc uc:listUcAux) {
+            UcDTO ucDTO = ucDTOAssembler.toDTO(uc);
+            listaDto.add(ucDTO);
+        }
+
         // Act
         List<UcDTO> listUcAct = ucService.getAllUc();
 
         // Assert
-        assertEquals(listUcAux, listUcAct);
-        assertTrue(listUcAct.size() == 2);
+        assertEquals(listaDto, listUcAct);
+        assertEquals(2, listUcAct.size());
     }
+
+    /*@Test //Futuro teste para verificar se existe já um objeto igual no repository
+    void shouldNotCreateAUcWithSameAttributes() {
+        // Arrange
+        when(uc.getSigla()).thenReturn("POOJ");
+        when(uc.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+
+        when(ucFactory.createUc("POOJ", "ProgramacaoOrientadaAObjetos")).thenReturn(uc);
+
+        when(ucRepository.save(uc)).thenReturn(uc);
+
+        UcDTO ucDTO = ucDTOAssembler.toDTO(uc);
+
+        // Act
+        UcDTO uc1 = ucService.createAndSaveUc("POOJ", "ProgramacaoOrientadaAObjetos");
+
+        // Assert
+        assertEquals(ucDTO, uc1);
+    }*/
 }
 
-*/

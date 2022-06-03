@@ -1,7 +1,6 @@
 package com.project.sprint.repository.JPA;
 
 import com.project.sprint.datamodel.UtilizadorJPA;
-import com.project.sprint.domain.entities.Utilizador;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

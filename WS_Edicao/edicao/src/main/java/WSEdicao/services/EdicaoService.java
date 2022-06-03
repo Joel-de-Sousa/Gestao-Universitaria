@@ -17,6 +17,7 @@ import WSEdicao.repositories.UcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,17 +79,22 @@ public class EdicaoService {
             return null;
     }
 
-    public Optional<Edicao> getEdicaoByCode(int codEdicao) {
+    public Optional<EdicaoDTO> getEdicaoByCode(int codEdicao) {
 
-        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(codEdicao);
+        Optional<EdicaoDTO> opEdicao = edicaoRepository.findBycodEdicao(codEdicao);
 
         return opEdicao;
     }
 
-    public List<Edicao> getAllEdicao() {
-
+    public List<EdicaoDTO> getAllEdicao() {
         List<Edicao> listEdicao = edicaoRepository.findAll();
 
-        return listEdicao;
+        List<EdicaoDTO> listaDto=new ArrayList<>();
+        for (Edicao edicao:listEdicao) {
+            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
+            listaDto.add(edicaoDTO);
+        }
+        return listaDto;
+
     }
 }

@@ -28,10 +28,10 @@ public class EdicaoController {
     @ResponseBody
     public ResponseEntity<Object> getByCode(@PathVariable int codEdicao){
 
-        Optional<Edicao> opEdicao = service.getEdicaoByCode(codEdicao);
+        Optional<EdicaoDTO> opEdicao = service.getEdicaoByCode(codEdicao);
 
         if(opEdicao.isPresent()){
-            Edicao edicao = opEdicao.get();
+            EdicaoDTO edicao = opEdicao.get();
             return new ResponseEntity<>(edicao, HttpStatus.OK);
         }
         else
@@ -41,7 +41,7 @@ public class EdicaoController {
     @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> findAll(){
-        List<Edicao> listEdicao = service.getAllEdicao();
+        List<EdicaoDTO> listEdicao = service.getAllEdicao();
 
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }

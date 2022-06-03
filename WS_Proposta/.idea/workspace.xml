@@ -2,10 +2,189 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69efeeec-c6e9-4c26-a23f-fb196f373141" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../UI/UI/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/UI/JanelaNovaEdicao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/UI/JanelaNovaProposta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/UI/JanelaNovaUC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/UI/JanelaNovoAnoLetivo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/controllers/AnoLetivoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/controllers/EdicaoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/controllers/PropostaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/controllers/UcController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/DTO/PropostaRestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/DTO/UcRestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/AnoLetivoWebRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/EdicaoWebRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/PropostaWebRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/REST/AnoLetivoRestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/REST/EdicaoRestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/REST/PropostaRestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/REST/UcRestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/repository/UcWebRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/resources/fxml/JanelaNovaEdicao.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/resources/fxml/JanelaNovaProposta.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/resources/fxml/JanelaNovaUC.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/resources/fxml/JanelaNovoAnoLetivo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/resources/fxml/Scene.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/resources/styles/Screenshot_113.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/src/main/resources/styles/Styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/target/classes/fxml/JanelaNovaEdicao.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/target/classes/fxml/JanelaNovaProposta.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/target/classes/fxml/JanelaNovaUC.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/target/classes/fxml/JanelaNovoAnoLetivo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/target/classes/fxml/Scene.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/target/classes/styles/Screenshot_113.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/UI/target/classes/styles/Styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proposta/data/demo.trace.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proposta/src/test/java/wsproposta/proposta/IT/PropostaIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proposta/src/test/java/wsproposta/proposta/controllers/PropostaControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proposta/src/test/java/wsproposta/proposta/domain/entities/PropostaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/nb-configuration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/nb-configuration.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/nbactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/nbactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/FXMLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/UI/JanelaInicial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/UI/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/controller/AplicacaoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/AnoLetivoRestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/DTO/AnoLetivoRestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/EdicaoRestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/UI/src/main/java/org/sprint/model/DTO/EdicaoRestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/PropostaRestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/UnidadeCurricularRestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/model/UtilizadorRestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/ui/CriarAnoLetivoUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/ui/CriarEdicaoUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/ui/CriarPropostaUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/java/org/example/ui/CriarUnidadeCurricularUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/resources/fxml/Scene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UIsprint2/src/main/resources/styles/Styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/WS_Edicao.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_h2database_h2_2_1_212.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__com_zaxxer_HikariCP_4_0_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_2_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_1_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_12_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_12_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__net_minidev_accessors_smart_2_4_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__net_minidev_json_smart_2_4_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_17_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_17_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_63.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_63.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_63.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_assertj_assertj_core_3_22_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_2_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_hibernate_hibernate_core_5_6_9_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_jboss_jandex_2_4_2_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_3_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_mockito_mockito_core_4_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_4_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_objenesis_objenesis_3_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_ow2_asm_asm_9_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_36.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_36.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_aop_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_aspects_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_beans_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_context_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_core_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_expression_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_orm_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_test_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_tx_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_web_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/libraries/Maven__org_yaml_snakeyaml_1_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/datamodel/assemblers/EdicaoDomainDataAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/datamodel/assemblers/EdicaoDomainDataAssembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/domain/entities/AnoLetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/domain/entities/AnoLetivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/domain/entities/Edicao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/domain/entities/Edicao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/dto/EdicaoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/dto/EdicaoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/repositories/EdicaoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/repositories/EdicaoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/repositories/UcRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/repositories/UcRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/services/AnoLetivoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/services/AnoLetivoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/services/EdicaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/services/EdicaoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/domain/entities/AnoLetivoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/domain/entities/AnoLetivoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/UcRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/UcRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/AnoLetivoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/AnoLetivoServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/UcServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/UcServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WS_Projeto/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/domain/entities/ProjetoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/domain/entities/ProjetoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/service/ProjetoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Projeto/src/test/java/Sprint/WsProjeto/service/ProjetoServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proposta/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/proposta/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proposta/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/proposta/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/repositories/REST/UtilizadorRestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/repositories/REST/UtilizadorRestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/services/PropostaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/services/PropostaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/controller/UtilizadorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/controller/UtilizadorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/repository/JPA/UtilizadorJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/repository/JPA/UtilizadorJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/repository/UtilizadorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/repository/UtilizadorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/service/UtilizadorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/service/UtilizadorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/test/java/com/project/sprint/domain/entities/UtilizadorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/test/java/com/project/sprint/domain/entities/UtilizadorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +206,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/35191/Desktop/SprintUp2/WS_Proposta"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

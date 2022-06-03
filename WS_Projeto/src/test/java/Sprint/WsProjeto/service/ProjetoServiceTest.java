@@ -63,16 +63,11 @@ class ProjetoServiceTest {
 
         ProjetoDTO projetoDTO1 = mock(ProjetoDTO.class);
         when(projetoDomainDTOAssembler.toDto(opProjecto.get())).thenReturn(projetoDTO1);
-        /*when(projetoDTO.getCodProjeto()).thenReturn(1);
-
-        Optional<ProjetoDTO> optionalProjeto = Optional.of(projetoDTO);
-
-        when(projetoRepository.findById(1)).thenReturn(optionalProjeto);*/
 
         //ACT
         ProjetoDTO projeto1 = projetoService.findProjetoByCode(1);
 
-        int codProjeto = projeto1.getCodProjeto();
+
 
         //ASSERT
         assertEquals(projetoDTO1,projeto1);

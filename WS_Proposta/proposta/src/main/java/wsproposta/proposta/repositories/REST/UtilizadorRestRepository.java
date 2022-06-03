@@ -20,9 +20,9 @@ public class UtilizadorRestRepository {
     public Optional<UtilizadorRestDTO> findUtilizadorByCodUtilizador(int codUtilizador) {
 
         WebClient webClient = WebClient.builder()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://localhost:8081")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8080"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081"))
                 .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
                 .build();
 

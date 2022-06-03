@@ -32,6 +32,6 @@ public class EdicaoDomainDataAssembler {
         Uc uc = ucAssembler.toDomain(edicaoJpa.getCodUc());
         AnoLetivo anoLetivo = anoLetivoAssembler.toDomain(edicaoJpa.getCodAnoLetivo());
 
-        return new Edicao(uc, anoLetivo);
+        return new Edicao(edicaoJpa.getCodEdicao(),uc, anoLetivo);
     }
 }
