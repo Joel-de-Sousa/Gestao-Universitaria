@@ -8,6 +8,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @AllArgsConstructor
 @ToString
+
 public class UtilizadorDTO {
 
     @Getter

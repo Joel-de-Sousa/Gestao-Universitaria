@@ -1,12 +1,12 @@
 package wsproposta.proposta.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -36,8 +36,8 @@ class PropostaControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-
     @Test
+    @DisplayName("Teste Get Proposta by Code")
     void shouldGetPropostaByCodeWithCorrectAttributes() {
 
         // Arrange
@@ -70,10 +70,12 @@ class PropostaControllerTest {
         assertEquals(propostaResult.getTitulo(), "Titulo da Proposta");
         assertEquals(propostaResult.getProblema(), "Problema da Proposta");
         assertEquals(propostaResult.getObjetivo(), "Objectivo da proposta");
+        assertEquals(propostaResult.getEstado(), "PENDENTE");
 
     }
 
     @Test
+    @DisplayName("Teste Get Proposta By Code Return Null")
     void shouldREturnNotFoundIfGetPropostaByCodeReturnNull() {
 
         // Arrange
@@ -87,10 +89,12 @@ class PropostaControllerTest {
 
         // Assert
         assertEquals(responseEntity.getStatusCodeValue(), 404);
+        assertEquals(responseEntity.getBody(), "O codigo da proposta nao consta na Base de Dados");
     }
 
 
     @Test
+    @DisplayName("Teste Get All Propostas")
     void shouldGetAllPropostasWithCorrectAttributes() {
 
         // Arrange
@@ -135,12 +139,12 @@ class PropostaControllerTest {
     }
 
     @Test
+    @DisplayName("Teste Post Proposta")
     void shouldCreatePropostaWithCorrectAttributes() throws Exception {
 
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
 
         NewPropostaInfoDTO propostaInfoDouble = mock(NewPropostaInfoDTO.class);
 
@@ -181,7 +185,8 @@ class PropostaControllerTest {
 
     }
 
-   /* @Test
+    @Test
+    @DisplayName("Teste Get Proposta por CodUtilizador")
     void shouldGetAllPropostasByCodeUtilizadorWithCorrectAttributes() {
 
         // Arrange
@@ -212,22 +217,18 @@ class PropostaControllerTest {
         listDTO.add(propostaDouble);
         listDTO.add(propostaDouble2);
 
-        when( propostaService.findAll()).thenReturn(listDTO);
+        when( propostaService.findAllByCodUtilizador(1)).thenReturn(listDTO);
 
         // Act
-        ResponseEntity<Object> responseEntity = propostaController.getAll();
+        ResponseEntity<Object> responseEntity = propostaController.getAllPropostasByCodUtilizador(1);
 
         // Assert
         assertEquals(responseEntity.getStatusCodeValue(), 200);
 
-        List<PropostaDTO> listResult = (List<PropostaDTO>) responseEntity.getBody();
+        //List<PropostaDTO> listResult = (List<PropostaDTO>) responseEntity.getBody();
 
-        assertEquals(listResult, listDTO);
-    }*/
-    /*List<PropostaDTO> listFiltradaPropostasDTO = service.findAllByCodUtilizador(codUtilizador);
-        if (!listFiltradaPropostasDTO.isEmpty()) {
-        return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
-    } else
-            return new ResponseEntity<>("O Código de Utilizador introduzido não consta na Base de Dados", HttpStatus.NOT_FOUND);
-}*/
+        /*assertEquals(listResult.size(), listDTO.contains);
+        assertTrue(listResult.contains(propostaDouble));*/
+
+    }
 }

@@ -5,6 +5,7 @@ import com.project.sprint.domain.entities.Utilizador;
 import org.springframework.stereotype.Service;
 
 @Service
+
 public class UtilizadorDomainDataAssembler {
 
     public UtilizadorJPA toData(Utilizador utilizador){
