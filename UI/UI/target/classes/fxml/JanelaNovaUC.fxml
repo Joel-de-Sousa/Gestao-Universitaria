@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sprint.UI.JanelaNovaUC">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sprint.UI.JanelaNovaUC">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -80,7 +80,7 @@
                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnConfirmUc" defaultButton="true" mnemonicParsing="false" prefWidth="140.0" text="Confimar" GridPane.halignment="RIGHT">
+                        <Button fx:id="btnConfirmUc" defaultButton="true" mnemonicParsing="false" onAction="#btnConfirmar" prefWidth="140.0" text="Confimar" GridPane.halignment="RIGHT">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
@@ -88,7 +88,7 @@
                               <Font size="19.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnCancelUc" cancelButton="true" mnemonicParsing="false" prefWidth="140.0" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                        <Button fx:id="btnCancelUc" cancelButton="true" mnemonicParsing="false" onAction="#btnCancelar" prefWidth="140.0" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
@@ -103,4 +103,4 @@
          </bottom>
       </BorderPane>
    </children>
-</fx:root>
+</AnchorPane>

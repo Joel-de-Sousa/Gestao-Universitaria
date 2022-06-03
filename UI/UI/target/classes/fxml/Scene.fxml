@@ -14,20 +14,20 @@
          <menus>
             <Menu mnemonicParsing="false" text="Criar">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Criar Ano Letivo" />
-                  <MenuItem mnemonicParsing="false" text="Criar Edição" />
-                  <MenuItem mnemonicParsing="false" text="Criar Proposta" />
-                  <MenuItem mnemonicParsing="false" text="Criar Unidade Curricular" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuCriarAnoLetivo" text="Criar Ano Letivo" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuCriarEdicao" text="Criar Edição" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuCriarProposta" text="Criar Proposta" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuCriarUC" text="Criar Unidade Curricular" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Consultar">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Unidade Curricular" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuConsultarUC" text="Unidade Curricular" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Ajuda">
                <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuAbout" text="About" />
                </items>
             </Menu>
          </menus>

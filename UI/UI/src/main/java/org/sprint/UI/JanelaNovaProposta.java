@@ -1,24 +1,41 @@
 package org.sprint.UI;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class JanelaNovaProposta {
-    @javafx.fxml.FXML
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class JanelaNovaProposta implements Initializable {
+
+    private JanelaInicial janelaInicial;
+    @FXML
     private Button btnConfirmProposta;
-    @javafx.fxml.FXML
+    @FXML
     private TextField txtProblema;
-    @javafx.fxml.FXML
+    @FXML
     private TextField txtNif;
-    @javafx.fxml.FXML
+    @FXML
     private Button btnCancelProposta;
-    @javafx.fxml.FXML
+    @FXML
     private TextField txtObjetivo;
-    @javafx.fxml.FXML
+    @FXML
     private TextField txtcodUtilizador;
-    @javafx.fxml.FXML
+    @FXML
     private ComboBox cmbxEdicao;
-    @javafx.fxml.FXML
+    @FXML
     private TextField txtTitulo;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
+    public void associarParentUI(JanelaInicial janelaInicial) {
+        this.janelaInicial = janelaInicial;
+    }
+
+
 }

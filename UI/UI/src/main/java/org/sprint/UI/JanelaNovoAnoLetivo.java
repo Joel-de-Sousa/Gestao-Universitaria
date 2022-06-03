@@ -2,18 +2,17 @@ package org.sprint.UI;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class JanelaNovoAnoLetivo {
     @FXML
-    private Label labelAnoLetivoString;
+    private Button btnConfirmEdicao;
     @FXML
-    private Button btnConfirmAnoLetivo;
+    private Button btnCancelEdicao;
     @FXML
-    private TextField textFieldAnoLetivo;
+    private ComboBox comboBoxAnoLetivo;
     @FXML
-    private Button btnCancelAnoLetivo;
-    @FXML
-    private Label labelAnoLetivo;
+    private ComboBox comboBoxUC;
 }
