@@ -25,7 +25,7 @@ public class JanelaConsultarUc implements Initializable {
 
     JanelaInicial janelaPrincipalUI;
 
-    UcRestRepository ucRestRepository=new UcRestRepository();
+    UcRestRepository ucRestRepository;
     @FXML
     private Button btnOk;
     @FXML
@@ -37,6 +37,7 @@ public class JanelaConsultarUc implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ucRestRepository=new UcRestRepository();
         ucController= new UcController();
         LblDenominacao.setVisible(false);
         lblResDenominacao.setVisible(false);
@@ -56,7 +57,7 @@ public class JanelaConsultarUc implements Initializable {
     @FXML
     public void cmbAction(ActionEvent actionEvent) {
         LblDenominacao.setVisible(true);
-        LblDenominacao.setText("Denominação");
+        LblDenominacao.setText("Denominação:");
         String valor =cmbSigla.getValue();
         lblResDenominacao.setVisible(true);
         lblResDenominacao.setText(ucController.getDenominacao(valor));

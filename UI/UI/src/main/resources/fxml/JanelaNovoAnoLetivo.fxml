@@ -88,7 +88,7 @@
                               <Font size="19.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnCancelAnoLetivo" cancelButton="true" mnemonicParsing="false" onAction="#btnCancelar" prefWidth="140.0" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#btnCancelar" prefWidth="140.0" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>

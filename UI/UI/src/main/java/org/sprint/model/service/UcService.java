@@ -25,7 +25,16 @@ public class UcService {
         }
         return siglas;
     }
-
+    public List<String> getListaUnidadeCurricular(){
+        List<String> unidadeCurricular=new ArrayList<>();
+        String siglaDenon="";
+        List<UcRestDTO> lista =ucWebRepository.getListaUc();
+        for (UcRestDTO a: lista) {
+            siglaDenon=String.format(a.getSigla()+"-"+a.getDenominacao());
+            unidadeCurricular.add(siglaDenon);
+        }
+        return unidadeCurricular;
+    }
 
     public String getDenominacao(String sigla){
         List<UcRestDTO> lista =ucWebRepository.getListaUc();
