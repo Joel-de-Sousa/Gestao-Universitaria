@@ -4,10 +4,7 @@ import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.Edicao;
 import WSEdicao.domain.entities.Uc;
 import WSEdicao.domain.factories.IEdicaoFactory;
-import WSEdicao.dto.AnoLetivoDTO;
-import WSEdicao.dto.EdicaoDTO;
-import WSEdicao.dto.NewEdicaoInfoDTO;
-import WSEdicao.dto.UcDTO;
+import WSEdicao.dto.*;
 import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
 import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
 import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
@@ -20,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 @Service
 public class EdicaoService {
@@ -54,9 +52,8 @@ public class EdicaoService {
         Optional<AnoLetivoDTO> optionalAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
 
         if (optionalUc.isPresent() && optionalAnoLetivo.isPresent()) {
-            Uc uc = ucDTOAssember.toDomain(optionalUc.get());
-            AnoLetivo anoLetivo = anoLetivoDTOAssembler.toDomain(optionalAnoLetivo.get());
-            Edicao edicao = edicaoFactory.createEdicao(uc,anoLetivo);
+
+            Edicao edicao = edicaoFactory.createEdicao(codUc,codAnoLetivo);
             Edicao savedEdicao = edicaoRepository.save(edicao);
             EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(savedEdicao);
 
@@ -81,6 +78,21 @@ public class EdicaoService {
             listaDto.add(edicaoDTO);
         }
         return listaDto;
-
     }
+
+    /*public List<EdicaoAllArgsDTO> getEdicaoAllArgs(){
+        List<Edicao> listEdicao = edicaoRepository.findAll();
+
+        List<EdicaoAllArgsDTO> listaDto=new ArrayList<>();
+        for (Edicao edicao:listEdicao) {
+            Optional<UcDTO> ucDTO= ucRepository.findBycodUc(edicao.getUc());
+            Optional<AnoLetivoDTO> anoLetivoDTO= anoLetivoRepository.findBycodAnoLetivo(edicao.getAnoLetivo());
+
+            EdicaoAllArgsDTO edicaoAllArgsDTO = edicaoDTOAssembler.toDTOAllArgs(edicao);
+            listaDto.add(edicaoAllArgsDTO);
+        }
+        return listaDto;
+    }*/
+
+
 }

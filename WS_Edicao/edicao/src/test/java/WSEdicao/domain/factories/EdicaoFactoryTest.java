@@ -1,3 +1,4 @@
+/*
 package WSEdicao.domain.factories;
 
 import WSEdicao.domain.entities.AnoLetivo;
@@ -19,28 +20,34 @@ class EdicaoFactoryTest {
         edicaoFactory.createEdicao(uc,anoLetivo);
     }
 
-    /*@Test
+    */
+/*@Test
     void factoryShouldNotCreateEdicaoEmptyYear() {
         EdicaoFactory edicaoFactory = new EdicaoFactory();
         assertThrows(Exception.class, () -> {
             edicaoFactory.createEdicao("");
         });
-    }*/
-    /*
+    }*//*
+
+    */
+/*
     @Test
     void factoryShouldNotCreateEdicaoWithWrongFormat() {
         EdicaoFactory edicaoFactory = new EdicaoFactory();
         assertThrows(Exception.class, () -> {
             edicaoFactory.createEdicao("1900-9013123");
         });
-    }*/
-    /*
+    }*//*
+
+    */
+/*
     @Test
     void factoryShouldNotCreateEdicaoNullName() {
         EdicaoFactory edicaoFactory = new EdicaoFactory();
         assertThrows(Exception.class, () -> {
             edicaoFactory.createEdicao(null);
         });
-    }*/
+    }*//*
 
-}
+
+}*/

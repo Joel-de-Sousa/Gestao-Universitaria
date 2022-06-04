@@ -42,13 +42,6 @@ public class UcService {
         return opUc;
     }
 
-    /*public List<Uc> getAllUc() {
-
-        List<Uc> listUc = ucRepository.findAll();
-
-        return listUc;
-    }*/
-
     public List<UcDTO> getAllUc(){
         List<Uc> lista= ucRepository.findAll();
 

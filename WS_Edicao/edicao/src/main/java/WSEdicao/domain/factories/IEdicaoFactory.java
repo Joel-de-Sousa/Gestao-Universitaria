@@ -5,5 +5,5 @@ import WSEdicao.domain.entities.Uc;
 
 public interface IEdicaoFactory {
 
-    public Edicao createEdicao(Uc codUc, AnoLetivo codAnoLetivo);
+    public Edicao createEdicao(int codUc, int codAnoLetivo);
 }

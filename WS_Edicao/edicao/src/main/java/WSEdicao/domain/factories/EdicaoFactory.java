@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EdicaoFactory implements IEdicaoFactory{
 
-    public Edicao createEdicao(Uc codUc, AnoLetivo codAnoLetivo){
+    public Edicao createEdicao(int codUc, int codAnoLetivo){
         return (new Edicao(codUc,codAnoLetivo));
     }
 }

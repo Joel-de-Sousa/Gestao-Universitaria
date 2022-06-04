@@ -27,15 +27,15 @@ public class EdicaoRepository {
     EdicaoDomainDTOAssembler edicaoDTOAssembler;
 
     public Edicao save(Edicao edicao ) {
-        //EdicaoJpa edicaoJpa1 = edicaoAssembler.toData(edicao);
-        //if(!edicaoJpaRepository.existByEdicao(edicaoJpa1)) {
+        EdicaoJpa edicaoJpa1 = edicaoAssembler.toData(edicao);
+        if(!(edicaoJpaRepository.existsByCodUc(edicaoJpa1.getCodUc()) && edicaoJpaRepository.existsByCodAnoLetivo(edicaoJpa1.getCodAnoLetivo()))) {
             EdicaoJpa edicaoJpa = edicaoAssembler.toData(edicao);
 
             EdicaoJpa savedEdicaoJpa = edicaoJpaRepository.save(edicaoJpa);
 
             return edicaoAssembler.toDomain(savedEdicaoJpa);
-       // } else
-         //   throw new IllegalArgumentException("Já existe uma edição com a UC e o Ano Letivo, verifique na base de dados");
+        } else
+            throw new IllegalArgumentException("Já consta na base de dados a Edicão com a UC edição com a UC e o Ano Letivo, verifique na base de dados");
     }
 
     public Optional<EdicaoDTO> findBycodEdicao(int codEdicao) {
@@ -58,7 +58,6 @@ public class EdicaoRepository {
             Edicao edicao = edicaoAssembler.toDomain(edicaoJpa);
             setEdicao.add(edicao);
         }
-
         return setEdicao;
     }
 }

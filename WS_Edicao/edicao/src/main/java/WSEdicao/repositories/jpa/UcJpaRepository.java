@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface UcJpaRepository extends CrudRepository<UcJpa, Integer> {
 
     Optional<UcJpa> findBycodUc(int codUc);
+    //UcJpa findBycodUcNopOp(int codUc);
 
     List<UcJpa> findAll();
 

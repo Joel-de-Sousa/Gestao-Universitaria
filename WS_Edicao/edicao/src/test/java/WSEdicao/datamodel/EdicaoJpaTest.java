@@ -7,31 +7,23 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class EdicaoJpaTest {
 
     @Test
-    void shouldCreateANewEdicao() {
+    void shouldCreateANewEdicaoJpa() {
         UcJpa uc= new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
         AnoLetivoJpa anoLetivo = new AnoLetivoJpa("2015-2016");
         new EdicaoJpa(uc,anoLetivo);
     }
 
-    /*@Test
-    void shouldNotCreateANewEdicaoWithTheWrongFormat() {
-        Exception exception = assertThrows(Exception.class, () -> {
-            new Edicao("1999");
-        });
-        String expectedMessage = "Ano Inválido, preencha com o seguinte formato: AAAAinicial-AAAAseguinte";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
-    }*/
-
     @Test
-    void shouldCreateAEdicaoWithCorrectAttributes() {
+    void shouldCreateAEdicaoJpaWithCorrectAttributes() {
         UcJpa uc= new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivoJpa anoLetivo = new AnoLetivoJpa("2015-2016");
+        AnoLetivoJpa anoLetivo = new AnoLetivoJpa("2015");
         EdicaoJpa edicao = new EdicaoJpa(uc,anoLetivo);
 
         assertEquals(edicao.getCodUc(), uc);

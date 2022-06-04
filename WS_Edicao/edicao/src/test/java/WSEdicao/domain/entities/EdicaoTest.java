@@ -11,7 +11,7 @@ class EdicaoTest {
     @Test
     void shouldCreateANewEdicao() {
         Uc uc= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo = new AnoLetivo("2015-2016");
+        AnoLetivo anoLetivo = new AnoLetivo("2015");
         new Edicao(uc,anoLetivo);
     }
 
@@ -28,7 +28,7 @@ class EdicaoTest {
     @Test
     void shouldCreateAEdicaoWithCorrectAttributes() {
         Uc uc= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo = new AnoLetivo("2015-2016");
+        AnoLetivo anoLetivo = new AnoLetivo("2015");
         Edicao edicao = new Edicao(uc,anoLetivo);
 
         assertEquals(edicao.getUc(), uc);
@@ -39,17 +39,17 @@ class EdicaoTest {
     @Test
     void shouldReturnEqualSameEdicao() {
         Uc uc= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo = new AnoLetivo("2015-2016");
+        AnoLetivo anoLetivo = new AnoLetivo("2015");
         Edicao edicao = new Edicao(uc,anoLetivo);
         assertEquals(edicao,edicao);
     }
     @Test
     void shouldReturnNotEqualsDifferentLocais(){
         Uc uc1= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo1 = new AnoLetivo("2015-2016");
+        AnoLetivo anoLetivo1 = new AnoLetivo("2015");
         Edicao edicao1 = new Edicao(uc1,anoLetivo1);
         Uc uc2= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo2 = new AnoLetivo("2016-2017");
+        AnoLetivo anoLetivo2 = new AnoLetivo("2016");
         Edicao edicao2 = new Edicao(uc2,anoLetivo2);
 
         assertNotEquals(edicao1,edicao2);

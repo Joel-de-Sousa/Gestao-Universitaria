@@ -33,16 +33,9 @@ public class WsEdicaoApplication {
 
 
 				//Create a few Uc, AnoLetivos and Edicões
-				UcDTO uc1 = ucService.createAndSaveUc("PTE", "Portugal telecomunicações eletrica");
-				UcDTO uc2 = ucService.createAndSaveUc("ASDE", "Associao de Ramalde");
-				UcDTO uc3 = ucService.createAndSaveUc("OLA", "olha la arroz");
-				UcDTO uc4 = ucService.createAndSaveUc("FOGO", "Fontes operarias gordas obesas");
-				UcDTO uc5 = ucService.createAndSaveUc("TOP", "Tudo olha preto");
-				UcDTO uc6 = ucService.createAndSaveUc("XUXA", "mamamadeira");
-				UcDTO uc7 = ucService.createAndSaveUc("RITA", "INacio multipla verde");
-
-				/*AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015-2016");
-				EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo1.getCodAnoLetivo());*/
+				UcDTO uc1 = ucService.createAndSaveUc("PTRW", "Portugadfsdsfl");
+				AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015");
+				//EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo1.getCodAnoLetivo());
 			};
 
 

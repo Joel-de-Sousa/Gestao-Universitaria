@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface AnoLetivoJpaRepository extends CrudRepository<AnoLetivoJpa, Integer>{
 
     Optional<AnoLetivoJpa> findBycodAnoLetivo(int codAnoLetivo);
+    //AnoLetivoJpa findBycodAnoLetivoNopOp(int codAnoLetivo);
 
     List<AnoLetivoJpa> findAll();
 

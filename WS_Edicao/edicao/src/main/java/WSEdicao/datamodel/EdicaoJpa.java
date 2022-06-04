@@ -14,22 +14,23 @@ import javax.persistence.*;
 public class EdicaoJpa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "codEdicao_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "codEdicao_seq")
     private int codEdicao;
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="ucs_coduc")
-    private UcJpa codUc;
+    //@ManyToOne(cascade=CascadeType.ALL)
+    //@JoinColumn(name="ucs_coduc")
+    private int codUc;
 
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="anosletivos_codanoletivo")
-    private AnoLetivoJpa codAnoLetivo;
+    //@ManyToOne(cascade=CascadeType.ALL)
+    //@JoinColumn(name="anosletivos_codanoletivo")
+    //@JoinColumn(name="codAnoLetivo")
+    private int codAnoLetivo;
 
 
 
     protected EdicaoJpa(){}
-    public EdicaoJpa(UcJpa codUc, AnoLetivoJpa codAnoLetivo) {
+    public EdicaoJpa(int codUc, int codAnoLetivo) {
         this.codUc = codUc;
         this.codAnoLetivo = codAnoLetivo;
     }

@@ -26,7 +26,6 @@ public class UcRepository {
 
     public Uc save(Uc uc ) {
         UcJpa ucJpa1 = ucAssembler.toData(uc);
-        //String ignoreCase = ucJpa1.getSigla();
 
         if(!ucJpaRepository.existsBySigla(ucJpa1.getSigla())) {
             UcJpa ucJpa = ucAssembler.toData(uc);
@@ -49,6 +48,12 @@ public class UcRepository {
         else
             return Optional.empty();
     }
+
+    /*public UcJpa findJPAbyCodUC(int codUc){
+        UcJpa ucJpa = ucJpaRepository.findBycodUcNopOp(codUc);
+
+        return ucJpa;
+    }*/
 
     public List<Uc> findAll() {
         List<UcJpa> setUcJpa = ucJpaRepository.findAll();

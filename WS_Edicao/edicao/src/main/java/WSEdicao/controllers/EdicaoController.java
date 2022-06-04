@@ -1,6 +1,7 @@
 package WSEdicao.controllers;
 
 import WSEdicao.domain.entities.Edicao;
+import WSEdicao.dto.EdicaoAllArgsDTO;
 import WSEdicao.dto.EdicaoDTO;
 import WSEdicao.dto.NewEdicaoInfoDTO;
 import WSEdicao.services.EdicaoService;
@@ -46,8 +47,16 @@ public class EdicaoController {
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }
 
-    @PostMapping("")
+    /*@GetMapping("/allargs")
     @ResponseBody
+    public ResponseEntity<Object> findAllArgs(){
+        List<EdicaoAllArgsDTO> listEdicao = service.getEdicaoAllArgs();
+
+        return new ResponseEntity<>(listEdicao, HttpStatus.OK);
+    }*/
+
+    @PostMapping("")
+    //@ResponseBody
     public ResponseEntity<Object> createEdicao(@RequestBody NewEdicaoInfoDTO info){
 
         EdicaoDTO edicao = service.createAndSaveEdicao(info.getCodUc(),info.getCodAnoLetivo());

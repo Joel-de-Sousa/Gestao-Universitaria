@@ -16,9 +16,9 @@ public interface EdicaoJpaRepository extends CrudRepository<EdicaoJpa, Integer> 
 
     List<EdicaoJpa> findAll();
 
-    /*boolean existsByUc(UcJpa ucJpa);
-    boolean existsByAnoLetivo(AnoLetivoJpa anoLetivoJpa);
-    boolean existByEdicao(EdicaoJpa edicaoJpa);*/
+    boolean existsByCodUc(int codUc);
+    boolean existsByCodAnoLetivo(int codAnoLetivo);
+    //boolean existByEdicao(int edicaoJpa);
 
 
 }

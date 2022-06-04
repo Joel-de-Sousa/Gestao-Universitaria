@@ -6,6 +6,7 @@ import WSEdicao.domain.entities.Uc;
 import WSEdicao.domain.factories.EdicaoFactory;
 import WSEdicao.dto.AnoLetivoDTO;
 import WSEdicao.dto.EdicaoDTO;
+import WSEdicao.dto.NewEdicaoInfoDTO;
 import WSEdicao.dto.UcDTO;
 import WSEdicao.services.EdicaoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +48,7 @@ class EdicaoControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    /*@Test
+    @Test
     void shouldFindSpecificEdicaoSearchingById() {
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -60,7 +61,7 @@ class EdicaoControllerTest {
 
         AnoLetivoDTO anoLetivoDouble = mock(AnoLetivoDTO.class);
         when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
-        when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
+        when(anoLetivoDouble.getAno()).thenReturn("2015");
 
         EdicaoDTO edicaoDouble = mock(EdicaoDTO.class);
         when( edicaoDouble.getCodEdicao()).thenReturn(1);
@@ -78,8 +79,8 @@ class EdicaoControllerTest {
 
         EdicaoDTO edicaoRes = (EdicaoDTO) responseEntity.getBody();
         assertEquals(edicaoRes.getCodEdicao(), 1);
-        assertEquals(edicaoRes.getUc().getSigla(),"POOJ");
-        assertEquals(edicaoRes.getAnoLetivo().getAno(), "2015-2016");
+        assertEquals(edicaoRes.getCodUc(),1);
+        assertEquals(edicaoRes.getCodEdicao(),1);
     }
 
     @Test
@@ -89,12 +90,14 @@ class EdicaoControllerTest {
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
         EdicaoDTO edicaoDouble = mock(EdicaoDTO.class);
-        when( edicaoDouble.getCodEdicao() ).thenReturn(1);
-        when( edicaoDouble.getthenReturn("2015-2016");
+        when( edicaoDouble.getCodEdicao()).thenReturn(1);
+        when( edicaoDouble.getCodUc()).thenReturn(1);
+        when( edicaoDouble.getCodAnoLetivo()).thenReturn(1);
 
         EdicaoDTO edicaoDouble2 = mock(EdicaoDTO.class);
-        when (edicaoDouble2.getCodEdicao()).thenReturn(2);
-        when(edicaoDouble2.getAno()).thenReturn("2016-2017");
+        when( edicaoDouble2.getCodEdicao()).thenReturn(2);
+        when( edicaoDouble2.getCodUc()).thenReturn(2);
+        when( edicaoDouble2.getCodAnoLetivo()).thenReturn(2);
 
         List<EdicaoDTO> listaEdicao = new ArrayList<>();
         listaEdicao.add(edicaoDouble);
@@ -118,24 +121,27 @@ class EdicaoControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        Edicao edicaoDouble = mock(Edicao.class);
-        when(edicaoDouble.getCodEdicao()).thenReturn(1);
-        when(edicaoDouble.getAno()).thenReturn("2015-2016");
+        EdicaoDTO edicaoDouble = mock(EdicaoDTO.class);
+        when( edicaoDouble.getCodEdicao()).thenReturn(1);
+        when( edicaoDouble.getCodUc()).thenReturn(1);
+        when( edicaoDouble.getCodAnoLetivo()).thenReturn(1);
 
-        EdicaoDTO edicaoDtoDouble = mock(EdicaoDTO.class);
-        when(edicaoDtoDouble.getCodEdicao()).thenReturn(1);
-        when(edicaoDtoDouble.getAno()).thenReturn("2015-2016");
+        NewEdicaoInfoDTO edicaoDouble2 = mock(NewEdicaoInfoDTO.class);
+        when( edicaoDouble2.getCodEdicao()).thenReturn(2);
+        when( edicaoDouble2.getCodUc()).thenReturn(2);
+        when( edicaoDouble2.getCodAnoLetivo()).thenReturn(2);
 
-        when(edicaoService.createAndSaveEdicao("2015-2016")).thenReturn(edicaoDouble);
+
+        when(edicaoService.createAndSaveEdicao(2,2)).thenReturn(edicaoDouble);
 
         // Act
-        ResponseEntity<Object> responseEntity = edicaoController.createEdicao(edicaoDtoDouble);
+        ResponseEntity<Object> responseEntity = edicaoController.createEdicao(edicaoDouble2);
 
         // Assert
         assertEquals(responseEntity.getStatusCodeValue(), 201);
 
         Object res = responseEntity.getBody();
         assertEquals(res,edicaoDouble);
-    }*/
+    }
 
 }

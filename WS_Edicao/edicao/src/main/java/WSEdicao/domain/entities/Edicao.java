@@ -14,10 +14,10 @@ import javax.persistence.Id;
 public class Edicao {
 
     private int codEdicao;
-    private Uc uc;
-    private AnoLetivo anoLetivo;
+    private int uc;
+    private int anoLetivo;
 
-    public Edicao(Uc codUc, AnoLetivo anoLetivo) {
+    public Edicao(int codUc, int anoLetivo) {
         this.uc = codUc;
         this.anoLetivo = anoLetivo;
     }

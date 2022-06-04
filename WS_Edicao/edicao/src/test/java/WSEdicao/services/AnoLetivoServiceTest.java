@@ -50,6 +50,8 @@ class AnoLetivoServiceTest {
 
     @Test
     void shouldCreateAAnoLetivoWithCorrectAttributes() {
+
+
         // Arrange
         when(anoLetivo.getAno()).thenReturn("2015");
 

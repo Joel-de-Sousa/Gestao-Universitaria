@@ -39,7 +39,7 @@ public class AnoLetivoController {
     @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> findAll(){
-        //mudei para DTO
+
         List<AnoLetivoDTO> listAnoLetivo = service.getAllAnoLetivo();
 
         return new ResponseEntity<>(listAnoLetivo, HttpStatus.OK);
@@ -52,6 +52,5 @@ public class AnoLetivoController {
         AnoLetivoDTO anoLetivo = service.createAndSaveAnoLetivo(info.getAno());
 
         return new ResponseEntity<>(anoLetivo, HttpStatus.CREATED);
-
     }
 }

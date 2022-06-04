@@ -12,6 +12,8 @@ public class UcDomainDataAssembler {
         return new UcJpa(oUc.getSigla(), oUc.getDenominacao());
     }
 
+
+
     public Uc toDomain(UcJpa oUcJpa){
         return new Uc( oUcJpa.getCodUc(),oUcJpa.getSigla(),oUcJpa.getDenominacao());
     }

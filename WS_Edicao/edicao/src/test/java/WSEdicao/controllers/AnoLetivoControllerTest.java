@@ -30,12 +30,6 @@ class AnoLetivoControllerTest {
     @MockBean
     AnoLetivoService anoLetivoService;
 
-    @MockBean
-    AnoLetivoFactory anoLetivoFactory;
-
-    @MockBean
-    AnoLetivoDTO anoLetivo;
-
     @InjectMocks
     AnoLetivoController anoLetivoController;
 

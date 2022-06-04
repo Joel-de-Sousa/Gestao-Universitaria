@@ -49,6 +49,12 @@ public class AnoLetivoRepository {
             return Optional.empty();
     }
 
+    /*public AnoLetivoJpa findJPAbyCodAnoLetivo(int codAnoLetivo){
+        AnoLetivoJpa anoLetivoJpa = anoLetivoJpaRepository.findBycodAnoLetivoNopOp(codAnoLetivo);
+
+        return anoLetivoJpa;
+    }*/
+
     public List<AnoLetivo> findAll() {
         List<AnoLetivoJpa> setAnoLetivoJpa = anoLetivoJpaRepository.findAll();
 

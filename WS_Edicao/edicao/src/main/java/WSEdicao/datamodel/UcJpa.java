@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@Table(name = "ucs", uniqueConstraints = {@UniqueConstraint(columnNames = {"sigla"})})
+@Table(name = "ucs")
+//@Table(name = "ucs", uniqueConstraints = {@UniqueConstraint(columnNames = {"sigla"})})
 public class UcJpa {
 
     @Id
