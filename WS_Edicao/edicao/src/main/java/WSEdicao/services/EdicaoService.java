@@ -64,9 +64,10 @@ public class EdicaoService {
 
     public Optional<EdicaoDTO> getEdicaoByCode(int codEdicao) {
 
-        Optional<EdicaoDTO> opEdicao = edicaoRepository.findBycodEdicao(codEdicao);
+        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(codEdicao);
+        EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(opEdicao.get());
 
-        return opEdicao;
+        return Optional.of(edicaoDTO);
     }
 
     public List<EdicaoDTO> getAllEdicao() {
@@ -80,19 +81,25 @@ public class EdicaoService {
         return listaDto;
     }
 
-    /*public List<EdicaoAllArgsDTO> getEdicaoAllArgs(){
+    public List<EdicaoAllArgsDTO> getEdicaoAllArgs(){
         List<Edicao> listEdicao = edicaoRepository.findAll();
 
         List<EdicaoAllArgsDTO> listaDto=new ArrayList<>();
         for (Edicao edicao:listEdicao) {
-            Optional<UcDTO> ucDTO= ucRepository.findBycodUc(edicao.getUc());
-            Optional<AnoLetivoDTO> anoLetivoDTO= anoLetivoRepository.findBycodAnoLetivo(edicao.getAnoLetivo());
 
             EdicaoAllArgsDTO edicaoAllArgsDTO = edicaoDTOAssembler.toDTOAllArgs(edicao);
             listaDto.add(edicaoAllArgsDTO);
         }
         return listaDto;
-    }*/
+    }
+
+    public Optional<EdicaoAllArgsDTO> getEdicaoAllArgsByCode(int codEdicao) {
+
+        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(codEdicao);
+        EdicaoAllArgsDTO edicaoAllArgsDTO = edicaoDTOAssembler.toDTOAllArgs(opEdicao.get());
+
+        return Optional.of(edicaoAllArgsDTO);
+    }
 
 
 }

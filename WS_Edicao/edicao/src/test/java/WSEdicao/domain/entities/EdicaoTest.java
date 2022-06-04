@@ -10,47 +10,25 @@ class EdicaoTest {
 
     @Test
     void shouldCreateANewEdicao() {
-        Uc uc= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo = new AnoLetivo("2015");
-        new Edicao(uc,anoLetivo);
+        new Edicao(1,1);
     }
-
-    /*@Test
-    void shouldNotCreateANewEdicaoWithTheWrongFormat() {
-        Exception exception = assertThrows(Exception.class, () -> {
-            new Edicao("PG","Pog");
-        });
-        String expectedMessage = "A Sigla deve conter no mínimo 3 carateres, sem espaços, sem símbolos e sem algarismos";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
-    }*/
-
     @Test
     void shouldCreateAEdicaoWithCorrectAttributes() {
-        Uc uc= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo = new AnoLetivo("2015");
-        Edicao edicao = new Edicao(uc,anoLetivo);
+        Edicao edicao = new Edicao(1,1);
 
-        assertEquals(edicao.getUc(), uc);
-        assertEquals(edicao.getAnoLetivo(), anoLetivo);
+        assertEquals(edicao.getUc(), 1);
+        assertEquals(edicao.getAnoLetivo(), 1);
     }
 
-
     @Test
-    void shouldReturnEqualSameEdicao() {
-        Uc uc= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo = new AnoLetivo("2015");
-        Edicao edicao = new Edicao(uc,anoLetivo);
+    void shouldReturnTheSameEdicao() {
+        Edicao edicao = new Edicao(1,1);
         assertEquals(edicao,edicao);
     }
     @Test
-    void shouldReturnNotEqualsDifferentLocais(){
-        Uc uc1= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo1 = new AnoLetivo("2015");
-        Edicao edicao1 = new Edicao(uc1,anoLetivo1);
-        Uc uc2= new Uc("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivo anoLetivo2 = new AnoLetivo("2016");
-        Edicao edicao2 = new Edicao(uc2,anoLetivo2);
+    void shouldNotReturnTheSameEdicao(){
+        Edicao edicao1 = new Edicao(1,1);
+        Edicao edicao2 = new Edicao(2,2);
 
         assertNotEquals(edicao1,edicao2);
     }

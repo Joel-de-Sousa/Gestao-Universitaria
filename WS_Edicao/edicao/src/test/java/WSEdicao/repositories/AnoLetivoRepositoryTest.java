@@ -1,10 +1,11 @@
-/*package WSEdicao.repositories;
-
+package WSEdicao.repositories;
+/*
 import WSEdicao.datamodel.AnoLetivoJpa;
 import WSEdicao.datamodel.AnoLetivoJpa;
 import WSEdicao.datamodel.assemblers.AnoLetivoDomainDataAssembler;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.AnoLetivo;
+import WSEdicao.dto.AnoLetivoDTO;
 import WSEdicao.repositories.jpa.AnoLetivoJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,7 +58,7 @@ class AnoLetivoRepositoryTest {
         AnoLetivo savedAnoLetivo = anoLetivoRepository.save(anoLetivo);
 
         //Assert
-        assertEquals(savedAnoLetivo,anoLetivo);
+        assertEquals(savedAnoLetivo, anoLetivo);
     }
 
     @Test
@@ -71,10 +72,10 @@ class AnoLetivoRepositoryTest {
         when(anoLetivoDomainDataAssembler.toDomain(opAnoLetivoJpa.get())).thenReturn(anoLetivo);
 
         //Act
-        Optional<AnoLetivo> opAnoLetivoAct = anoLetivoRepository.findBycodAnoLetivo(1);
+        Optional<AnoLetivoDTO> opAnoLetivoAct = anoLetivoRepository.findBycodAnoLetivo(1);
 
         //Assert
-        assertEquals(opAnoLetivoAct,Optional.of(anoLetivo));
+        assertEquals(opAnoLetivoAct, Optional.of(anoLetivo));
     }
 
     @Test
@@ -95,7 +96,7 @@ class AnoLetivoRepositoryTest {
         when(anoLetivoJpaRepository.findAll()).thenReturn(listAnoLetivoJpa);
 
         List<AnoLetivo> listAnoLetivo = new ArrayList<>();
-        for(AnoLetivoJpa anoLetivoJpa : listAnoLetivoJpa){
+        for (AnoLetivoJpa anoLetivoJpa : listAnoLetivoJpa) {
             when(anoLetivoDomainDataAssembler.toDomain(anoLetivoJpa)).thenReturn(anoLetivo);
             listAnoLetivo.add(anoLetivo);
         }
@@ -104,7 +105,8 @@ class AnoLetivoRepositoryTest {
         List<AnoLetivo> listAnoLetivoAct = anoLetivoRepository.findAll();
 
         //Assert
-        assertEquals(listAnoLetivoAct,listAnoLetivo);
-        assertTrue(listAnoLetivoAct.size()==2);
-    }*/
+        assertEquals(listAnoLetivoAct, listAnoLetivo);
+        assertTrue(listAnoLetivoAct.size() == 2);
+    }
+}*/
 

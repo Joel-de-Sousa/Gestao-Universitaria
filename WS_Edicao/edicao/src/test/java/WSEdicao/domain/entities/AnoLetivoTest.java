@@ -37,7 +37,7 @@ class AnoLetivoTest {
         assertEquals(anoLetivo1,anoLetivo1);
     }
     @Test
-    void shouldReturnNotEqualsDifferentLocais(){
+    void shouldReturnNotEqualsDifferentAnoLetivo(){
         AnoLetivo anoLetivo1 = new AnoLetivo ("2015");
         AnoLetivo anoLetivo2 = new AnoLetivo ("2016");
 

@@ -12,7 +12,7 @@ class AnoLetivoFactoryTest {
     @Test
     void factoryShouldCreateAnoLetivo() {
         AnoLetivoFactory anoLetivoFactory = new AnoLetivoFactory();
-        anoLetivoFactory.createAnoLetivo("2015-2016");
+        anoLetivoFactory.createAnoLetivo("2015");
     }
     @Test
     void factoryShouldNotCreateAnoLetivoEmptyYear() {
