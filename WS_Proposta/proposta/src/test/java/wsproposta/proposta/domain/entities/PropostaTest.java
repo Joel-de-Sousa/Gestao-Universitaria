@@ -1,9 +1,7 @@
 package wsproposta.proposta.domain.entities;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 class PropostaTest {
 
@@ -11,15 +9,6 @@ class PropostaTest {
     void shouldCreatePropostaWithCorrectAttributes() {
         Proposta propostaTeste = new Proposta(1, 257837248, 1,
                 "Cria Proposta com atributos correctos", "A proposta está a ser criada correctamente?", "Testar criação de proposta");
-
-       /* assertEquals(1, propostaTeste.getCodUtilizador());
-        assertEquals(257837248, propostaTeste.getNifOrganizacao());
-        assertEquals(1, propostaTeste.getCodEdicao());
-        assertEquals("Cria Proposta com atributos correctos", propostaTeste.getTitulo());
-        assertEquals("A proposta está a ser criada correctamente?", propostaTeste.getProblema());
-        assertEquals("Testar criação de proposta", propostaTeste.getObjetivo());
-        assertEquals(Proposta.Estado.PENDENTE, propostaTeste.getEstado());*/
-
     }
 
     @Test
@@ -38,9 +27,8 @@ class PropostaTest {
     }
 
     //TESTES EXCEPÇOES TITULO
-
     @Test
-    public void shouldThrowExceptionWithEmptyTitulo() /*throws Exception*/ {
+    public void shouldThrowExceptionWithEmptyTitulo() {
 
         Exception exception = assertThrows(Exception.class, () -> {
             new Proposta(1, 257837248, 1,
@@ -52,7 +40,7 @@ class PropostaTest {
     }
 
     @Test
-    public void shouldThrowExceptionWithNullTitulo() /*throws Exception*/ {
+    public void shouldThrowExceptionWithNullTitulo() {
 
         Exception exception = assertThrows(Exception.class, () -> {
             new Proposta(1, 257837248, 1,
@@ -76,7 +64,6 @@ class PropostaTest {
     }
 
     //TESTES EXCEPÇOES PROBLEMA
-
     @Test
     public void shouldThrowExceptionWithEmptyProblema()  {
 

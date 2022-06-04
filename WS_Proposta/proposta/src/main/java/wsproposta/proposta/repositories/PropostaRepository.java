@@ -2,7 +2,6 @@ package wsproposta.proposta.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import wsproposta.proposta.DTO.PropostaDTOParcial;
 import wsproposta.proposta.datamodel.JPA.PropostaJPA;
 import wsproposta.proposta.datamodel.JPA.assembler.PropostaDomainDataAssembler;
 import wsproposta.proposta.domain.entities.Proposta;
@@ -25,7 +24,8 @@ public class PropostaRepository implements IPropostaRepository {
 
         PropostaJPA savedPropostaJPA = propostaJPARepository.save(propostaJPA);
 
-        return propostaAssembler.toDomain(savedPropostaJPA);
+        Proposta savedProposta = propostaAssembler.toDomain(savedPropostaJPA);
+        return savedProposta;
     }
 
     public Optional<Proposta> findById(int codProposta) {
