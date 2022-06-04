@@ -72,10 +72,13 @@ public class EdicaoController {
     @PostMapping("")
     //@ResponseBody
     public ResponseEntity<Object> createEdicao(@RequestBody NewEdicaoInfoDTO info){
-
+        try{
         EdicaoDTO edicao = service.createAndSaveEdicao(info.getCodUc(),info.getCodAnoLetivo());
 
         return new ResponseEntity<>(edicao, HttpStatus.CREATED);
 
+        }catch (Exception ex){
+            return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 }

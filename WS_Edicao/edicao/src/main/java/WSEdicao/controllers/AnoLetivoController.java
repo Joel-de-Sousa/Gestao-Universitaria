@@ -48,9 +48,13 @@ public class AnoLetivoController {
     @PostMapping("")
     @ResponseBody
     public ResponseEntity<Object> createAnoLetivo(@RequestBody AnoLetivoDTO info){
+        try {
+            AnoLetivoDTO anoLetivo = service.createAndSaveAnoLetivo(info.getAno());
 
-        AnoLetivoDTO anoLetivo = service.createAndSaveAnoLetivo(info.getAno());
+            return new ResponseEntity<>(anoLetivo, HttpStatus.CREATED);
 
-        return new ResponseEntity<>(anoLetivo, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 }

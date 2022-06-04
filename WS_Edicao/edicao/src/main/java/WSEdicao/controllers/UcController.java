@@ -49,10 +49,12 @@ public class UcController {
     @PostMapping("")
     @ResponseBody
     public ResponseEntity<Object> createUc(@RequestBody UcDTO info){
-//add try catch
+        try{
         UcDTO uc = service.createAndSaveUc(info.getSigla(),info.getDenominacao());
 
         return new ResponseEntity<>(uc, HttpStatus.CREATED);
-
+        }catch (Exception ex){
+            return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 }
