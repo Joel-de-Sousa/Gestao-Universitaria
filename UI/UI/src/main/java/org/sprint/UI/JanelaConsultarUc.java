@@ -51,10 +51,7 @@ public class JanelaConsultarUc implements Initializable {
         this.janelaPrincipalUI = janelaPrincipalUI;
     }
 
-    @Deprecated
-    public void cmbClick(Event event) {
-        LblDenominacao.setText("Denominação");
-    }
+
 
     @FXML
     public void cmbAction(ActionEvent actionEvent) {

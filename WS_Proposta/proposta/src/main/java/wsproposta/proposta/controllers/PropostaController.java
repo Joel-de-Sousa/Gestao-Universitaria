@@ -38,10 +38,10 @@ public class PropostaController {
     @ResponseBody
     public ResponseEntity<Object> getPropostaByCode(@PathVariable int codProposta) {
 
-        PropostaDTO propostaDTO = service.getPropostaById(codProposta);
+        Optional<PropostaDTO> opPropostaDTO = service.getPropostaById(codProposta);
 
-        if (propostaDTO != null) {
-            return new ResponseEntity<>(propostaDTO, HttpStatus.OK);
+        if (opPropostaDTO.isPresent()) {
+            return new ResponseEntity<>(opPropostaDTO, HttpStatus.OK);
         } else
             return new ResponseEntity<>("O codigo da proposta nao consta na Base de Dados", HttpStatus.NOT_FOUND);
     }
@@ -88,27 +88,14 @@ public class PropostaController {
             return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
         }
 
-    //MÉTODO PUT ALTERA ESTADO PROPOSTA
+    //MÉTODO PATCH ALTERA ESTADO PROPOSTA
 
     @PatchMapping("/{codProposta}")
-    public /*ResponseEntity<?>*/Proposta partialUpdateProposta(
-            @RequestBody PropostaDTOParcial propostaUpdate, @PathVariable int codProposta) {
+    public ResponseEntity<Object> partialUpdateEstadoProposta( @RequestBody PropostaDTOParcial propostaUpdate, @PathVariable int codProposta) {
 
-        return service.updateEstadoProposta (propostaUpdate, codProposta);
+        PropostaDTO updatedProposta = service.updateEstadoProposta (propostaUpdate, codProposta);
+        return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
 
-
-        /*return service.getPropostaToReplaceEstadoById(codProposta)
-                .map(proposta -> {
-                    proposta.setCodProposta(propostaUpadate.getCodProposta());
-                    proposta.setEstado(Proposta.Estado.valueOf(propostaUpadate.getEstado()));
-
-                    return service.save(proposta);
-                })
-                .orElseGet(() -> {
-                    propostaUpadate.setCodProposta(codProposta);
-                    return service.save(propostaDomainDTOAssembler.toDomain(propostaUpadate));
-                });*/
-       //return ResponseEntity.ok("resource address updated");
     }
 
   /*  @PutMapping("/{codProposta}")
@@ -131,22 +118,6 @@ public class PropostaController {
                     newProposta.setCodProposta(codProposta);
                     return service.save(propostaDomainDTOAssembler.toDomain(newProposta));
                 });
-    }*/
-
-
-
-
-
-    /*@PutMapping("/aceite/{codProposta}")
-    public ResponseEntity<Object> updateEstadoProposta (@PathVariable(value = "codProposta") int codProposta,
-                                                   @Validated @RequestBody Proposta propostaAlteracao) throws IllegalArgumentException {
-        Proposta proposta = service.getPropostaById(codProposta)
-               *//* .orElseThrow(() -> new IllegalArgumentException("Proposta not found for this id :: " + employeeId));*//*
-
-        proposta.setEstado(propostaAlteracao.getEstado());
-
-        Proposta updatedProposta = service.save(proposta);
-        return ResponseEntity.ok(updatedProposta);
     }*/
 
 }

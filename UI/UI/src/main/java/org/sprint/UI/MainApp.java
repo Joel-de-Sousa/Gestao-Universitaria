@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 
 public class MainApp extends Application {
-
+    public static final String TITULO_APLICACAO = "Aplicação Gestão escolar";
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
@@ -18,7 +18,7 @@ public class MainApp extends Application {
         scene.getStylesheets().add("/styles/Styles.css");
         root.setId("stack-pane");
 
-        stage.setTitle("JavaFX and Maven");
+        stage.setTitle("Aplicação Gestão Escolar");
         stage.setScene(scene);
         stage.show();
     }

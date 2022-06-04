@@ -15,6 +15,11 @@ public class PropostaDomainDTOAssembler {
         return new PropostaDTO(codUtilizador, nifOrganizacao, codEdicao, sTitulo, sProblema, sObjetivo, estado);
     }
 
+    public PropostaDTO toDTO (Proposta proposta){
+        return new PropostaDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
+                proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo(), proposta.getEstado().toString());
+    }
+
     public Proposta toDomain (NewPropostaDTO propostaDTO){
         return new Proposta(propostaDTO.getCodProposta(), propostaDTO.getCodUtilizador(), propostaDTO.getNifOrganizacao(),
                 propostaDTO.getCodEdicao(), propostaDTO.getTitulo(), propostaDTO.getProblema(), propostaDTO.getObjetivo(),  Proposta.Estado.valueOf(propostaDTO.getEstado()));
