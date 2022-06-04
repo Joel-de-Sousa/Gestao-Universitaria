@@ -20,14 +20,13 @@ import java.util.Optional;
 
 @Repository
 public class EdicaoRestRepository {
-
     WebClient webClient = WebClient.builder()
             .baseUrl("http://localhost:8081")
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081"))
             .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
             .build();
-    public Optional<EdicaoRestDTO> createUc (EdicaoRestDTO novaEdicao) {
+    public Optional<EdicaoRestDTO> createEdicao (EdicaoRestDTO novaEdicao) {
 
         EdicaoRestDTO edicaoRestDTO;
         try {
@@ -56,7 +55,8 @@ public class EdicaoRestRepository {
         else
             return Optional.empty();
     }
-    public Optional<List<EdicaoRestDTO>> getAllUc () {
+
+    public Optional<List<EdicaoRestDTO>> getAllEdicoes () {
 
         try {
             Mono<List<EdicaoRestDTO>> response = webClient.get()
@@ -72,31 +72,32 @@ public class EdicaoRestRepository {
                         System.out.println(throwable.getMessage());
                     });
 
-            List<EdicaoRestDTO> tutorials = response.block();
-            return Optional.of(tutorials);
+            List<EdicaoRestDTO> lista = response.block();
+            return Optional.of(lista);
         }catch( Exception e) {
             return Optional.empty();
         }
 
     }
-    public Optional<UcRestDTO> findById(int id)
+    public Optional<EdicaoRestDTO> findEdicaoById(int id)
     {
         try {
-            Mono<UcRestDTO> response = webClient
+            Mono<EdicaoRestDTO> response = webClient
                     .get()
-                    .uri("/uc/" + id) // idem configuração
+                    .uri("/edicao/" + id) // idem configuração
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> { return Mono.empty(); })
-                    .bodyToMono(UcRestDTO.class)
+                    .bodyToMono(EdicaoRestDTO.class)
                     .onErrorReturn( null )
                     .doOnError(throwable -> { System.out.println( throwable.getMessage() );} );
 
-            UcRestDTO tutorial = response.block();
+            EdicaoRestDTO edicaoRestDTO = response.block();
 
-            return Optional.of(tutorial);
+            return Optional.of(edicaoRestDTO);
         }catch( Exception e) {
             return Optional.empty();
         }
     }
+
 
 }

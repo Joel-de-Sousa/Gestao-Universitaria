@@ -14,4 +14,8 @@ public class AnoLetivoRestDTO {
     int codAnoLetivo;
     @Getter
     String ano;
+
+    public AnoLetivoRestDTO(String ano) {
+        this.ano = ano;
+    }
 }

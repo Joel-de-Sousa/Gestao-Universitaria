@@ -2,42 +2,34 @@ package org.sprint.controllers;
 
 import org.sprint.model.DTO.UcRestDTO;
 import org.sprint.model.repository.REST.UcRestRepository;
+import org.sprint.model.service.UcService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UcController {
 
-    UcRestRepository ucRestRepository= new UcRestRepository();
+    UcService ucService;
+
     public UcController() {
+        ucService = new UcService();
     }
 
-    public List<String> getListaSiglas(){
+    public List<String> getListaSiglas() {
 
-        List<UcRestDTO> lista =ucRestRepository.getAllUc().get();
-        List<String> siglas=new ArrayList<>();
-        for (UcRestDTO a: lista) {
-            siglas.add(a.getSigla());
-
-        }
-
-
+        List<String> siglas = ucService.getListaSiglas();
         return siglas;
     }
 
-    public String getDenominacao(String value){
-        List<UcRestDTO> lista =ucRestRepository.getAllUc().get();
-        String denominacao="" ;
-        for (UcRestDTO a: lista) {
-            if (a.getSigla().equals(value)){
-            denominacao=a.getDenominacao();}
-        }
-       return denominacao;
+    public String getDenominacao(String sigla) {
+
+        String denominacao = ucService.getDenominacao(sigla);
+        return denominacao;
     }
 
 
     public boolean criarNovaUC(String sigla, String denominacao){
-        UcRestDTO novo= new UcRestDTO(sigla,denominacao);
-        return ucRestRepository.createUc(novo).isPresent();
+        boolean create=ucService.criarNovaUC(sigla,denominacao);
+        return create;
     }
 }

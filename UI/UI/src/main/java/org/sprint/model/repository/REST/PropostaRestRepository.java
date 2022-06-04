@@ -5,10 +5,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.sprint.model.DTO.EdicaoRestDTO;
 import org.sprint.model.DTO.PropostaRestDTO;
-import org.sprint.model.DTO.UcRestDTO;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
@@ -17,26 +16,27 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class PropostaRestRepository {
     WebClient webClient = WebClient.builder()
-            .baseUrl("http://localhost:8081")
+            .baseUrl("http://localhost:8082")
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-            .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081"))
+            .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8082"))
             .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
             .build();
-    public Optional<UcRestDTO> createUc (UcRestDTO novaUc) {
+    public Optional<PropostaRestDTO> createProposta (PropostaRestDTO novaProposta) {
 
-        UcRestDTO uCRestDTO;
+        PropostaRestDTO propostaRestDTO;
         try {
-            uCRestDTO = webClient
+            propostaRestDTO = webClient
                     .post()
-                    .uri("/uc")
-                    .body(Mono.just(novaUc), UcRestDTO.class)
+                    .uri("/propostas")
+                    .body(Mono.just(novaProposta), PropostaRestDTO.class)
                     .retrieve()
 
                     .onStatus(HttpStatus::is4xxClientError, error -> { return Mono.empty(); })
 
-                    .bodyToMono(UcRestDTO.class)
+                    .bodyToMono(PropostaRestDTO.class)
 
                     .onErrorReturn( null )
 
@@ -45,54 +45,55 @@ public class PropostaRestRepository {
         }
         catch( Exception e) {
 
-            uCRestDTO = null;
+            propostaRestDTO = null;
         }
 
-        if( uCRestDTO != null )
-            return Optional.of(uCRestDTO);
+        if( propostaRestDTO != null )
+            return Optional.of(propostaRestDTO);
         else
             return Optional.empty();
     }
-    public Optional<List<UcRestDTO>> getAllUc () {
+    public Optional<List<PropostaRestDTO>> getAllPropostas () {
 
         try {
-            Mono<List<UcRestDTO>> response = webClient.get()
-                    .uri("/uc")
+            Mono<List<PropostaRestDTO>> response = webClient.get()
+                    .uri("/propostas")
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
                     })
-                    .bodyToMono(new ParameterizedTypeReference<List<UcRestDTO>>() {
+                    .bodyToMono(new ParameterizedTypeReference<List<PropostaRestDTO>>() {
                     })
                     .onErrorReturn(null)
                     .doOnError(throwable -> {
                         System.out.println(throwable.getMessage());
                     });
 
-            List<UcRestDTO> tutorials = response.block();
-            return Optional.of(tutorials);
+            List<PropostaRestDTO> lista = response.block();
+            return Optional.of(lista);
         }catch( Exception e) {
             return Optional.empty();
         }
 
     }
-    public Optional<UcRestDTO> findById(int id)
+    public Optional<PropostaRestDTO> findPropostaById(int id)
     {
         try {
-            Mono<UcRestDTO> response = webClient
+            Mono<PropostaRestDTO> response = webClient
                     .get()
-                    .uri("/uc/" + id) // idem configuração
+                    .uri("/propostas/" + id) // idem configuração
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> { return Mono.empty(); })
-                    .bodyToMono(UcRestDTO.class)
+                    .bodyToMono(PropostaRestDTO.class)
                     .onErrorReturn( null )
                     .doOnError(throwable -> { System.out.println( throwable.getMessage() );} );
 
-            UcRestDTO tutorial = response.block();
+            PropostaRestDTO propostaRestDTO = response.block();
 
-            return Optional.of(tutorial);
+            return Optional.of(propostaRestDTO);
         }catch( Exception e) {
             return Optional.empty();
         }
     }
+
 }

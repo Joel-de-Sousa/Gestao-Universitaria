@@ -5,7 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import org.sprint.model.DTO.UcRestDTO;
@@ -13,11 +13,12 @@ import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Service
 public class UcRestRepository {
     WebClient webClient = WebClient.builder()
             .baseUrl("http://localhost:8081")
@@ -99,7 +100,7 @@ public class UcRestRepository {
 
 
 
-
+}
 
 
 
@@ -132,4 +133,4 @@ public class UcRestRepository {
         }*/
 
 
-}
+

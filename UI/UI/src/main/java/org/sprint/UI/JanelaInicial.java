@@ -66,37 +66,6 @@ public class JanelaInicial implements Initializable {
     public void mnuCriarUC(ActionEvent actionEvent) throws IOException {
         iniciar(janelaNovaUc,"Nova Unidade Curricular","/fxml/JanelaNovaUC.fxml");
 
-
-
-        UcRestDTO ucRestDTO=new UcRestDTO("LOASDCS","TESTE FEITO E CONCLUIDO");
-        UcRestDTO novo= ucRestRepository.createUc(ucRestDTO).get();
-
-            System.out.println("----------------------------------------");
-
-            System.out.println("----------------------------------------");
-            System.out.println(novo.getSigla());
-        System.out.println("----------------------------------------");
-        System.out.println(novo.getDenominacao());
-        System.out.println("----------------------------------------");
-
-            System.out.println("----------------------------------------");
-            System.out.println("----------------------------------------");
-
-
-
-
-
-
-
-
-        System.out.println("-------------------------------------------------------------------");
-        if(ucRestRepository.findById(1).isPresent()){
-            System.out.println("Entrou");
-        System.out.println(ucRestRepository.findById(1).get().getDenominacao());}
-        else {
-            System.out.println("Falhou");
-        }
-
     }
 
     @FXML

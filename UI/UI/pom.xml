@@ -33,7 +33,7 @@
 
     <packaging>jar</packaging>
 
-    <name>HierbaBuenaJavaFX</name>
+    <name>App-Gestor-Escolar</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
