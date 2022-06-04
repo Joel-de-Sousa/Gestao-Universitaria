@@ -14,4 +14,8 @@ public class EdicaoRestDTO {
     @Getter
     int codAnoLetivo;
 
+    public EdicaoRestDTO(int codUc, int codAnoLetivo) {
+        this.codUc = codUc;
+        this.codAnoLetivo = codAnoLetivo;
+    }
 }

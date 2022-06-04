@@ -29,6 +29,11 @@ public class AnoLetivoController {
         return anoLetivo;
     }
 
+    public List<String> getListaAnos() {
+
+        List<String> anos = anoLetivoService.getListaAnos();
+        return anos;
+    }
 
     public boolean criarNovoAnoLetivo(String ano){
         boolean create=anoLetivoService.criarNovoAnoLetivo(ano);

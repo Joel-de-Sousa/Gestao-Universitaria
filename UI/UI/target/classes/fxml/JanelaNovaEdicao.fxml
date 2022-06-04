@@ -37,7 +37,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                      <font>
-                        <Font size="21.0" />
+                        <Font size="19.0" />
                      </font>
                   </Label>
                   <Label text="Unidade curricular :" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
@@ -45,15 +45,15 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                      <font>
-                        <Font size="21.0" />
+                        <Font size="19.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="comboBoxAnoLetivo" prefWidth="230.0" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+                  <ComboBox fx:id="comboBoxAnoLetivo" onAction="#actAno" prefWidth="230.0" promptText="selecione..." GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets bottom="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox fx:id="comboBoxUC" prefWidth="230.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                  <ComboBox fx:id="comboBoxUC" onAction="#actUc" prefWidth="230.0" promptText="Selecione..." GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
@@ -84,7 +84,7 @@
                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnConfirmEdicao" defaultButton="true" mnemonicParsing="false" prefWidth="140.0" text="Confimar" GridPane.halignment="RIGHT">
+                        <Button fx:id="btnConfirmEdicao" defaultButton="true" mnemonicParsing="false" onAction="#actConfirmar" prefWidth="140.0" text="Confimar" GridPane.halignment="RIGHT">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
@@ -92,7 +92,7 @@
                               <Font size="19.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnCancelEdicao" cancelButton="true" mnemonicParsing="false" prefWidth="140.0" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                        <Button fx:id="btnCancelEdicao" cancelButton="true" mnemonicParsing="false" onAction="#actCancelar" prefWidth="140.0" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>

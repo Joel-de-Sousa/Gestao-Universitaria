@@ -20,6 +20,11 @@ public class UcController {
         List<String> siglas = ucService.getListaSiglas();
         return siglas;
     }
+    public List<String> getListaUnidadeCurricular() {
+
+        List<String> uc = ucService.getListaUnidadeCurricular();
+        return uc;
+    }
 
     public String getDenominacao(String sigla) {
 

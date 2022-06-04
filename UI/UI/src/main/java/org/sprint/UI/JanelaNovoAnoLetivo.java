@@ -1,13 +1,12 @@
 package org.sprint.UI;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import org.sprint.controllers.AnoLetivoController;
-import org.sprint.controllers.UcController;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,8 +18,7 @@ public class JanelaNovoAnoLetivo implements Initializable {
     private Label labelAnoLetivoResultado;
     @FXML
     private Button btnConfirmAnoLetivo;
-    @FXML
-    private Button btnCancelAnoLetivo;
+
     @FXML
     private Label lblAno;
     @FXML
@@ -47,6 +45,7 @@ public class JanelaNovoAnoLetivo implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar um novo Ano Letivo.",
                     criou ? "Ano letivo "+ano+" criado com sucesso."
                             : "Não foi possível criar o ano letivo.").show();
+            ((Node) actionEvent.getSource()).getScene().getWindow().hide();
         }
     }
 
