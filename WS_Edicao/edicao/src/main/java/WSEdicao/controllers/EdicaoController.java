@@ -47,13 +47,27 @@ public class EdicaoController {
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }
 
-    /*@GetMapping("/allargs")
+    @GetMapping("/allargs")
     @ResponseBody
     public ResponseEntity<Object> findAllArgs(){
         List<EdicaoAllArgsDTO> listEdicao = service.getEdicaoAllArgs();
 
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
-    }*/
+    }
+
+    @GetMapping("/allArgs/{codEdicao}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllArgsByCode(@PathVariable int codEdicao){
+
+        Optional<EdicaoAllArgsDTO> opEdicao = service.getEdicaoAllArgsByCode(codEdicao);
+
+        if(opEdicao.isPresent()){
+            EdicaoAllArgsDTO edicao = opEdicao.get();
+            return new ResponseEntity<>(edicao, HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
 
     @PostMapping("")
     //@ResponseBody

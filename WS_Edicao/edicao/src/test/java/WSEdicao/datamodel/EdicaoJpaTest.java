@@ -15,40 +15,30 @@ class EdicaoJpaTest {
 
     @Test
     void shouldCreateANewEdicaoJpa() {
-        UcJpa uc= new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivoJpa anoLetivo = new AnoLetivoJpa("2015-2016");
-        new EdicaoJpa(uc,anoLetivo);
+        new EdicaoJpa(1, 1);
     }
 
     @Test
     void shouldCreateAEdicaoJpaWithCorrectAttributes() {
-        UcJpa uc= new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivoJpa anoLetivo = new AnoLetivoJpa("2015");
-        EdicaoJpa edicao = new EdicaoJpa(uc,anoLetivo);
+        EdicaoJpa edicao = new EdicaoJpa(1, 1);
 
-        assertEquals(edicao.getCodUc(), uc);
-        assertEquals(edicao.getCodAnoLetivo(),anoLetivo);
+        assertEquals(edicao.getCodUc(), 1);
+        assertEquals(edicao.getCodAnoLetivo(),1);
     }
 
 
     @Test
     void shouldReturnEqualSameEdicao() {
-        UcJpa uc= new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivoJpa anoLetivo = new AnoLetivoJpa("2015-2016");
-        EdicaoJpa edicao = new EdicaoJpa(uc,anoLetivo);
+        EdicaoJpa edicao = new EdicaoJpa(1, 1);
 
-        assertEquals(edicao,edicao);
+        assertEquals(edicao, edicao);
     }
 
     @Test
-    void shouldReturnNotEqualsDifferentLocais(){
-        UcJpa uc1= new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivoJpa anoLetivo1 = new AnoLetivoJpa("2015-2016");
-        EdicaoJpa edicao1 = new EdicaoJpa(uc1,anoLetivo1);
-        UcJpa uc2= new UcJpa("POOJ","ProgramacaoOrientadaAObjetos");
-        AnoLetivoJpa anoLetivo2 = new AnoLetivoJpa("2016-2017");
-        EdicaoJpa edicao2 = new EdicaoJpa(uc2,anoLetivo2);
+    void shouldReturnNotEqualsDifferentEdicaoJpa() {
+        EdicaoJpa edicao1 = new EdicaoJpa(1, 1);
+        EdicaoJpa edicao2 = new EdicaoJpa(2, 2);
 
-        assertNotEquals(edicao1,edicao2);
+        assertNotEquals(edicao1, edicao2);
     }
 }

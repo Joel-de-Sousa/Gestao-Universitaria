@@ -32,12 +32,12 @@ class AnoLetivoJpaTest {
 
 
     @Test
-    void shouldReturnEqualSameAnoLetivoJpa() {
+    void shouldReturnTheSameAnoLetivoJpa() {
         AnoLetivoJpa anoLetivo1 = new AnoLetivoJpa("2015-2016");
         assertEquals(anoLetivo1,anoLetivo1);
     }
     @Test
-    void shouldReturnNotEqualsDifferentLocais(){
+    void shouldReturnNotEqualsDifferentAnoLetivoJpa(){
         AnoLetivoJpa anoLetivo1 = new AnoLetivoJpa ("2015-2016");
         AnoLetivoJpa anoLetivo2 = new AnoLetivoJpa ("2016-2017");
 

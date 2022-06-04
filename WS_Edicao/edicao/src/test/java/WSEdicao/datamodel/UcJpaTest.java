@@ -39,7 +39,7 @@ class UcJpaTest {
         assertEquals(uc1,uc1);
     }
     @Test
-    void shouldReturnNotEqualsDifferentLocais(){
+    void shouldReturnNotEqualsDifferentUC(){
         UcJpa uc1 = new UcJpa ("POGU","PogChampion");
         UcJpa uc2 = new UcJpa ("POOJ","ProgramacaoOrientadaAObjetos");
 

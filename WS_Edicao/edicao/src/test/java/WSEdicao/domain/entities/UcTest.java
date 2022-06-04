@@ -37,7 +37,7 @@ class UcTest {
         assertEquals(uc1,uc1);
     }
     @Test
-    void shouldReturnNotEqualsDifferentLocais(){
+    void shouldReturnNotEqualsDifferentUc(){
         Uc uc1 = new Uc ("POG","PogChampion");
         Uc uc2 = new Uc ("POOJ","ProgramacaoOrientadaAObjetos");
 

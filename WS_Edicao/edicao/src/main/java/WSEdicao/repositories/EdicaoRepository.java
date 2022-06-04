@@ -38,13 +38,13 @@ public class EdicaoRepository {
             throw new IllegalArgumentException("Já consta na base de dados a Edicão com a UC edição com a UC e o Ano Letivo, verifique na base de dados");
     }
 
-    public Optional<EdicaoDTO> findBycodEdicao(int codEdicao) {
+    public Optional<Edicao> findBycodEdicao(int codEdicao) {
         Optional<EdicaoJpa> opEdicao = edicaoJpaRepository.findBycodEdicao(codEdicao);
 
         if ( opEdicao.isPresent() ) {
             Edicao edicao = edicaoAssembler.toDomain(opEdicao.get());
-            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
-            return Optional.of( edicaoDTO );
+            //EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
+            return Optional.of( edicao );
         }
         else
             return Optional.empty();
