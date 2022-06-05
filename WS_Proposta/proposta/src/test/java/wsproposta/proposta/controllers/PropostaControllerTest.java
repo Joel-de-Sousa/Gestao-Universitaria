@@ -164,7 +164,7 @@ class PropostaControllerTest {
         when( propostaService.createAndSaveProposta(propostaInfoDouble)).thenReturn(propostaDoubleDTO);
 
         // Act
-        ResponseEntity<Object> responseEntity = propostaController.createProposta(propostaInfoDouble);
+        ResponseEntity<Object> responseEntity = propostaController.createAndSaveProposta(propostaInfoDouble);
 
         // Assert
         assertEquals(responseEntity.getStatusCodeValue(), HttpStatus.CREATED.value());

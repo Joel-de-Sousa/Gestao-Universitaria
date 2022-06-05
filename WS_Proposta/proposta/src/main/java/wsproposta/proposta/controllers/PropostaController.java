@@ -25,6 +25,12 @@ public class PropostaController {
         this.service = service;
     }
 
+    /**
+     * Método que retorna uma lista com todas as propostas presentes na BD
+     * @return retorna uma lista de propostasDTO, ou uma lista vazia caso não existam
+     * propostas na BD, status OK
+     */
+
     //MÉTODO FIND ALL PROPOSTAS
     @GetMapping("")
     @ResponseBody
@@ -32,6 +38,12 @@ public class PropostaController {
         List<PropostaDTO> listPropostasDTO = service.findAll();
         return new ResponseEntity<>(listPropostasDTO, HttpStatus.OK);
     }
+
+    /**
+     * Método que retorna uma propostaDTO, através da introdução do codProposta como parametro
+     * @param codProposta é o identificador da proposta na BD, definido como o código da proposta
+     * @return uma propostaDTO
+     */
 
     //MÉTODO GET PROPOSTA BY COD PROPOSTA
     @GetMapping("/{codProposta}")
@@ -46,6 +58,13 @@ public class PropostaController {
             return new ResponseEntity<>("O codigo da proposta nao consta na Base de Dados", HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Método cria e grava uma proposta com os dados recebidos por parametro, NewPropostaInfoDTO
+     * @param propostaInfoDTO contem os dados para criacao da proposta excepto, codigo e estado da proposta.
+     * @return propostaDTO com os dados do objecto criado, incluindo estado, e status created,
+     * ou badRequest caso os dados introduzidos nao sejam validos
+     */
+
     //MÉTODO CREATE PROPOSTA
     @PostMapping("")
     @ResponseBody
@@ -59,6 +78,13 @@ public class PropostaController {
         }
     }
 
+    /**
+     * Método que retorna uma lista com todas as propostas que têm o mesmo codigo de utilizador
+     * @param codUtilizador é o identificador ddo utilizador na BD, definido como o código de utilizador
+     * @return retorna uma lista de propostasDTO, ou uma lista vazia caso não existam
+     * propostas na BD, e status OK
+     */
+
     //MÉTODO GET PROPOSTAS BY CODE UTILIZADOR - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE UTILIZADOR
     @GetMapping("/utilizador/{codUtilizador}")
     @ResponseBody
@@ -68,6 +94,13 @@ public class PropostaController {
             return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
 
     }
+
+    /**
+     * Método que retorna uma lista com todas as propostas que têm o mesmo nif da Organizacao
+     * @param nr é o identificador do NIF Organizacao na BD, definido como o NIF da organizacao
+     * @return retorna uma lista de propostasDTO, ou uma lista vazia caso não existam
+     * propostas na BD, e status OK
+     */
 
     //MÉTODO GET PROPOSTAS BY NIF ORGANIZACAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTE NIF
     @GetMapping("/nif/{nr}")
@@ -79,10 +112,13 @@ public class PropostaController {
        }
 
     /**
-     *
-     * @param titulo
-     * @return
+     * Método que retorna uma lista com todas as propostas que contenham a String introduzida
+     * no titulo da proposta
+     * @param titulo é uma string com caracteres que devem estar contidos no titulo da proposta na BD
+     * @return retorna uma lista de propostasDTO, ou uma lista vazia caso não existam
+     *      * propostas na BD, e status OK
      */
+
     //MÉTODO GET PROPOSTAS BY TITULO - RECEBE LISTA DE TODAS AS PROPOSTAS COM ESTE TITULO
     @GetMapping("/titulo/{titulo}")
     @ResponseBody
@@ -93,6 +129,16 @@ public class PropostaController {
             return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
         }
 
+
+    /**
+     * Método que permite fazer o update do estado da proposta
+     * @param propostaUpdate é um DTO que recebe apenas o codigo da proposta que se pretende alterar,
+     * e String com o valor do estado a ser introduzido
+     * @param codProposta é o identificador da proposta na BD, definido como o código da proposta
+     * @return uma propostaDTO com todos os parametros, incluindo estado, e exceptuando codProposta
+     * e status ok
+     */
+    
     //MÉTODO PATCH ALTERA ESTADO PROPOSTA
 
     @PatchMapping("/{codProposta}")
