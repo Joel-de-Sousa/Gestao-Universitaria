@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0f92333-324b-4446-970e-9cebaf4e72b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/AnoLetivoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/AnoLetivoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/UcController.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/UcController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Proposta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Proposta/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/WsUtilizadorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/main/java/com/project/sprint/WsUtilizadorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/test/java/com/project/sprint/repository/UtilizadorRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/test/java/com/project/sprint/repository/UtilizadorRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/test/java/com/project/sprint/service/UtilizadorServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/sprint/src/test/java/com/project/sprint/service/UtilizadorServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,18 +66,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;fe01ce2a7fbac8fafaed7c982a04e229&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/35191/Desktop/SprintUp2/WS_Edicao/edicao",
+    "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -162,7 +163,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UcRepositoryTest.shouldSaveUc" />
-        <item itemvalue="Spring Boot.WsEdicaoApplication" />
         <item itemvalue="JUnit.WSEdicao.repositories in demo" />
         <item itemvalue="JUnit.WSEdicao.services in demo" />
         <item itemvalue="JUnit.AnoLetivoRepositoryTest" />

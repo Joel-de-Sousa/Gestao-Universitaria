@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UtilizadorFactory implements IUtilizadorFactory{
     /**
-     * Método de criação de um Utilizador
+     * Método de criação de um Objeto do Tipo Utilizador
      *
      * @param sNome o nome do utilizador.
      * @param sSobrenome o sobrenome do utilizador.
