@@ -74,7 +74,7 @@ public class PropostaRepository implements IPropostaRepository {
      * Método que retorna uma lista com todas as propostas que têm o mesmo codigo de utilizador, para tal comunica com o
      * RepositorioJPA, e de seguida transforma os objectos recebidos em proposta, atraves do DataAssembler
      * @param codUtilizador codUtilizador é o identificador ddo utilizador na BD, definido como o código de utilizador
-     * @return etorna uma lista de propostas, ou uma lista vazia caso não existam
+     * @return retorna uma lista de propostas, ou uma lista vazia caso não existam
      * propostas na BD
      */
 

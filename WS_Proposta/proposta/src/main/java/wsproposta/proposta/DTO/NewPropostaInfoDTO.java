@@ -2,10 +2,14 @@ package wsproposta.proposta.DTO;
 
 import lombok.Getter;
 
+/**
+ * Classe NewPropostaInfoDTO criada para receber as informacoes para criacao de uma nova porposta
+ *
+ */
+
 public class NewPropostaInfoDTO {
 
-    /*@Getter
-    int codProposta;*/
+
     @Getter
     int codUtilizador;
     @Getter
@@ -18,20 +22,17 @@ public class NewPropostaInfoDTO {
     String problema;
     @Getter
     String objetivo;
-    /*@Getter
-    String estado;
-*/
+
+
     public NewPropostaInfoDTO() {
     }
 
-    public NewPropostaInfoDTO(int codUtilizador, int nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo/*, String estado*/) {
-        //this.codProposta = codProposta;
+    public NewPropostaInfoDTO(int codUtilizador, int nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo) {
         this.codUtilizador = codUtilizador;
         this.nifOrganizacao = nifOrganizacao;
         this.codEdicao = codEdicao;
         this.titulo = titulo;
         this.problema = problema;
         this.objetivo = objetivo;
-        //this.estado = estado;
     }
 }

@@ -14,6 +14,13 @@ public class OrganizacaoWebRepository implements IOrganizacaoWebRepository {
     @Autowired
     OrganizacaoRestRepository organizacaoRestRepository;
 
+    /**
+     * Metodo permite encontrar uma organizacao atraves do nifOrganizacao, comunica com
+     * o RestRepositorio
+     * @param nifOrganizacao é o identificador do NIF Organizacao na BD, definido como o NIF da organizacao
+     * @return retorna um otpional de OrganizacaoRestDto
+     */
+
     public Optional<OrganizacaoRestDTO> findOrganizacaoByNifOrganizacao (long nifOrganizacao) {
         Optional<OrganizacaoRestDTO> opOrganizacao = organizacaoRestRepository.findOrganizacaoByNifOrganizacao(nifOrganizacao);
 
