@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import wsproposta.proposta.DTO.*;
-import wsproposta.proposta.domain.entities.Proposta;
 import wsproposta.proposta.services.PropostaService;
 
 import java.util.List;
@@ -59,7 +58,8 @@ public class PropostaController {
     }
 
     /**
-     * Método cria e grava uma proposta com os dados recebidos por parametro, NewPropostaInfoDTO
+     * Método cria e grava uma proposta com os dados recebidos por parametro, NewPropostaInfoDTO,
+     * para tal comunica com o service
      * @param propostaInfoDTO contem os dados para criacao da proposta excepto, codigo e estado da proposta.
      * @return propostaDTO com os dados do objecto criado, incluindo estado, e status created,
      * ou badRequest caso os dados introduzidos nao sejam validos
@@ -79,7 +79,8 @@ public class PropostaController {
     }
 
     /**
-     * Método que retorna uma lista com todas as propostas que têm o mesmo codigo de utilizador
+     * Método que retorna uma lista com todas as propostas que têm o mesmo codigo de utilizador, para tal
+     * comunica com o service
      * @param codUtilizador é o identificador ddo utilizador na BD, definido como o código de utilizador
      * @return retorna uma lista de propostasDTO, ou uma lista vazia caso não existam
      * propostas na BD, e status OK
@@ -97,6 +98,7 @@ public class PropostaController {
 
     /**
      * Método que retorna uma lista com todas as propostas que têm o mesmo nif da Organizacao
+     * para tal comunica com o service
      * @param nr é o identificador do NIF Organizacao na BD, definido como o NIF da organizacao
      * @return retorna uma lista de propostasDTO, ou uma lista vazia caso não existam
      * propostas na BD, e status OK
@@ -113,10 +115,10 @@ public class PropostaController {
 
     /**
      * Método que retorna uma lista com todas as propostas que contenham a String introduzida
-     * no titulo da proposta
+     * no titulo da proposta para tal comunica com o service
      * @param titulo é uma string com caracteres que devem estar contidos no titulo da proposta na BD
      * @return retorna uma lista de propostasDTO, ou uma lista vazia caso não existam
-     *      * propostas na BD, e status OK
+     * propostas na BD, e status OK
      */
 
     //MÉTODO GET PROPOSTAS BY TITULO - RECEBE LISTA DE TODAS AS PROPOSTAS COM ESTE TITULO
@@ -138,7 +140,7 @@ public class PropostaController {
      * @return uma propostaDTO com todos os parametros, incluindo estado, e exceptuando codProposta
      * e status ok
      */
-    
+
     //MÉTODO PATCH ALTERA ESTADO PROPOSTA
 
     @PatchMapping("/{codProposta}")

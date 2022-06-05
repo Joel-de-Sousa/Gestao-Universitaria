@@ -2,7 +2,6 @@ package wsproposta.proposta.DTO.assemblers;
 
 import org.springframework.stereotype.Service;
 import wsproposta.proposta.DTO.PropostaDTO;
-import wsproposta.proposta.DTO.PropostaDTOParcial;
 import wsproposta.proposta.domain.entities.Proposta;
 
 @Service
@@ -24,7 +23,7 @@ public class PropostaDomainDTOAssembler {
                 propostaDTO.getCodEdicao(), propostaDTO.getTitulo(), propostaDTO.getProblema(), propostaDTO.getObjetivo(),  Proposta.Estado.valueOf(propostaDTO.getEstado()));
     }*/
 
-    public Proposta toDomain (PropostaDTOParcial propostaDTO){
+    /*public Proposta toDomain (PropostaDTOParcial propostaDTO){
         return new Proposta(propostaDTO.getCodProposta(),  Proposta.Estado.valueOf(propostaDTO.getEstado()));
-    }
+    }*/
 }
