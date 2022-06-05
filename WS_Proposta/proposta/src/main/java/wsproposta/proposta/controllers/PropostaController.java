@@ -49,13 +49,13 @@ public class PropostaController {
     //MÉTODO CREATE PROPOSTA
     @PostMapping("")
     @ResponseBody
-    public ResponseEntity<Object> createProposta(@RequestBody NewPropostaInfoDTO propostaInfoDTO) {
+    public ResponseEntity<Object> createAndSaveProposta(@RequestBody NewPropostaInfoDTO propostaInfoDTO) {
 
         try {
             PropostaDTO propostaDTO = service.createAndSaveProposta(propostaInfoDTO);
             return new ResponseEntity<>(propostaDTO, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(new ErrorDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -78,6 +78,11 @@ public class PropostaController {
             return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
        }
 
+    /**
+     *
+     * @param titulo
+     * @return
+     */
     //MÉTODO GET PROPOSTAS BY TITULO - RECEBE LISTA DE TODAS AS PROPOSTAS COM ESTE TITULO
     @GetMapping("/titulo/{titulo}")
     @ResponseBody
@@ -97,27 +102,4 @@ public class PropostaController {
         return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
 
     }
-
-  /*  @PutMapping("/{codProposta}")
-    Proposta replaceEstadoProposta(@RequestBody NewPropostaDTO newProposta, @PathVariable int codProposta) {
-
-        return service.getPropostaToReplaceEstadoById(codProposta)
-                .map(proposta -> {
-                    proposta.setCodProposta(newProposta.getCodProposta());
-                    proposta.setCodUtilizador(newProposta.getCodUtilizador());
-                    proposta.setNifOrganizacao(newProposta.getNifOrganizacao());
-                    proposta.setCodEdicao(newProposta.getCodEdicao());
-                    proposta.setTitulo(newProposta.getTitulo());
-                    proposta.setProblema(newProposta.getProblema());
-                    proposta.setObjetivo(newProposta.getObjetivo());
-                    proposta.setEstado(Proposta.Estado.valueOf(newProposta.getEstado()));
-
-                    return service.save(proposta);
-                })
-                .orElseGet(() -> {
-                    newProposta.setCodProposta(codProposta);
-                    return service.save(propostaDomainDTOAssembler.toDomain(newProposta));
-                });
-    }*/
-
 }

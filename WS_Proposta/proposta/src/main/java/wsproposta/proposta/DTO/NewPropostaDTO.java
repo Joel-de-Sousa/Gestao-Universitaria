@@ -2,7 +2,7 @@ package wsproposta.proposta.DTO;
 
 import lombok.Getter;
 
-public class NewPropostaDTO {
+/*public class NewPropostaDTO {
 
     @Getter
     int codProposta;
@@ -66,4 +66,4 @@ public class NewPropostaDTO {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-}
+}*/

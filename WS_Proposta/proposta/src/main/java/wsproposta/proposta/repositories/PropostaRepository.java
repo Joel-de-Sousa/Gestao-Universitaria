@@ -80,15 +80,4 @@ public class PropostaRepository implements IPropostaRepository {
         }
         return listFiltradaPropostas;
     }
-
-   /* //NÉTODO SAVE PARA PATCH
-
-    public Proposta save (PropostaDTOParcial propPartial, int codProposta){
-        PropostaJPA propostaJPA = propostaAssembler.toData(proposta);
-
-        PropostaJPA savedPropostaJPA = propostaJPARepository.save(propostaJPA);
-
-        return propostaAssembler.toDomain(savedPropostaJPA);
-    }
-*/
 }
