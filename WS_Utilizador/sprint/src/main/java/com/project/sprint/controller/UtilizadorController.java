@@ -40,7 +40,7 @@ public class UtilizadorController {
             return new ResponseEntity<>(oUtilizadorDto, HttpStatus.CREATED);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(new ErrorDTO(e.getMessage()), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }
 }
