@@ -64,8 +64,11 @@ public class Proposta {
     public Proposta(int codUtilizador, long nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo/*, Estado estado*/) {
 
         this.codUtilizador = codUtilizador;
-
-        this.nifOrganizacao = nifOrganizacao;
+        if(nifOrganizacao>=100000000 && nifOrganizacao<=999999999){
+        this.nifOrganizacao = nifOrganizacao;}
+        else {
+            throw new IllegalArgumentException ("O valor do parâmetro 'NIF' deve ter 9 algarismos");
+        }
 
         this.codEdicao = codEdicao;
 

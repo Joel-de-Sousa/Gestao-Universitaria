@@ -21,9 +21,9 @@ import java.util.Optional;
 @Repository
 public class PropostaRestRepository {
     WebClient webClient = WebClient.builder()
-            .baseUrl("http://localhost:8082")
+            .baseUrl("http://localhost:8090")
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-            .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8082"))
+            .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8090"))
             .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
             .build();
 
