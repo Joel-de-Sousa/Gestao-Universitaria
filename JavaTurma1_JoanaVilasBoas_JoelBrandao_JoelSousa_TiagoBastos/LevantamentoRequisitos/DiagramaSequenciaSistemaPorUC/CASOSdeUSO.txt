@@ -1,0 +1,69 @@
+----- SPRINT 2 ------
+
+CASOS DE USO (formato breve -- o cenário de sucesso principal) 
+
+UC1 - Criar Ano Lectivo
+O utilizador inicia a criação de um ano lectivo. O sistema pede a introdução de uma data (no formato
+AAAA-AAAA). O utilizador introduz a data. O sistema valida e pede confirmação. O utilizador confirma. 
+O sistema regista a informção e informa do sucesso da operação.
+
+UC2 - Criar Unidade Curricular
+O utilizador inicia a criação de uma unidade curricular. O sistema pede a introdução de uma unidade
+curricular (denominação da uc). O utilizador introduz uma unidade curricular. O sistema valida e pede
+confirmação. O utilizador confirma. O sistema regista a informação e informa do sucesso da opração.
+
+UC3 - Criar Edição de Unidade Curricular
+O utilizador inicia a criação de uma Edição de Unidade Curricular. O sistema pede os dados 
+necessários (Ano lectivo, Unidade curricular). O utilizador introduz/selecciona os dados solicitados.
+O sistema valida e pede confirmação. O utilizador confirma. O sistema regista a informação e informa
+do sucesso da operação.
+
+UC4 - Listar Anos Lectivos
+O utilizador inicia listar Anos  Lectivos. O sistema apresenta uma lista de Anos Lectivos.
+
+UC5 - Listar Todas as Unidades Curriculares 
+O utilizador inicia listar Unidades Curriculares. O sistema apresenta uma lista de Unidades Curriculares.
+
+UC6 - Consultar uma Unidade Curricular 
+O utilizador inicia consultar Unidade Curricular. O sistema pede os dados 
+necessários (denominação). O utilizador introduz dados. O sistema apresenta a Unidade Curricular pedida.
+
+UC7 - Listar de Edições de UC específica ???????
+O utilizador inicia listar Edições de Unidade Curricular específica. O sistema apresenta lista de Unidades Curriculares.
+O administrador selecciona a Unidade Curricular. O sistema apresenta uma lista de Edições da Unidade Curricular seleccionada.
+
+UC8 - Alterar denominação de um Unidade Curricular
+O utilizador inicia alteração de denominação/dados de uma unidade curricular. O sistema pede a introdução 
+da unidade curricular a modificar. O utilizador introduz a unidade curricular. O sistema valida e pede
+introdução da nova denominação. O sistema valida e pede confirmação. O utilizador confirma. 
+O sistema regista a informação e informa do sucesso da operação.
+
+_____
+_____
+
+UC9 - Criar proposta 
+O utilizador inicia a criação de uma proposta. O sistema pede os dados necessários (utilizador, organização,
+ titulo, problema, objectivo, edição). O utilizador introduz/selecciona os dados solicitados.
+O sistema valida e pede confirmação. O utilizador confirma. O sistema regista a informação e informa
+do sucesso da operação.
+
+UC10 - Listar minhas propostas
+O utilizador inicia listar propostas. O sistema pede os dados necessários (identificação utilizador). O utilizador introduz 
+os dados solicitados. O sistema valida e pede confirmação. O utilizador confirma. O sistema apresenta uma lista de propostas.
+
+
+UC11 - Listar propostas com tema que contenha string
+O utilizador inicia listar propostas. O sistema pede os dados necessários (string tema). O utilizador introduz 
+os dados solicitados. O sistema valida e pede confirmação. O utilizador confirma. O sistema apresenta uma lista de propostas.
+
+
+UC12 - Listar propostas com título que contenha string
+O utilizador inicia listar propostas. O sistema pede os dados necessários (string titulo). O utilizador introduz 
+os dados solicitados. O sistema valida e pede confirmação. O utilizador confirma. O sistema apresenta uma lista de propostas.
+
+UC13 - Listar propostas de organização (por NIF)
+O utilizador inicia listar propostas. O sistema pede os dados necessários (NIF). O utilizador introduz 
+os dados solicitados. O sistema valida e pede confirmação. O utilizador confirma. O sistema apresenta uma lista de propostas.
+
+UC14 - Aceitar/Rejeitar candidatura a proposta
+
