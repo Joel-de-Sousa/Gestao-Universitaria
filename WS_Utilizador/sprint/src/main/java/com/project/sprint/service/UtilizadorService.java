@@ -23,6 +23,13 @@ public class UtilizadorService {
     public UtilizadorService() {
     }
 
+    /**
+     * Método para criação e gravação de um novo Utilizador.
+     * O método comunica com a Factory para criar Utilizador e depois com o Repository para gravação na BD.
+     *
+     * @param info DTO de entrada para a criaçao de um Utilizador
+     * @return um UtilizadorDTO
+     */
     public UtilizadorDTO createAndSaveUtilizador(NewUtilizadorInfoDTO info) {
         Utilizador utilizador = utilizadorFactory.createUtilizador(info.getNome(), info.getSobrenome(), info.getEmail(), Utilizador.TipoUtilizador.valueOf(info.getTipoUtilizador()));
         Utilizador utilizadorSaved = utilizadorRepository.save(utilizador);
@@ -30,6 +37,13 @@ public class UtilizadorService {
         return utilizadorDTO;
     }
 
+    /**
+     *  Método para retornar um Utilizador quando pesquisado pelo seu ID. O método comunica com o Repository para encontrar o ID introduzido.
+     *
+     * @param id o ID do Utilizador
+     *
+     * @return Um UtilizadorDTO no caso de a pesquisa ser bem sucedida e null se nao encontar resultados.
+     */
     public UtilizadorDTO getUtilizadorByID(int id) {
 
         Optional<Utilizador> opUtilizador = utilizadorRepository.findById(id);

@@ -17,6 +17,13 @@ public class UtilizadorRepository implements IUtilizadorRepository {
     @Autowired
     UtilizadorDomainDataAssembler utilizadorDomainDataAssembler;
 
+    /**
+     * Método para gravar um Utilizador na Bd.
+     * Faz se uma verificação por o email e caso ele nao exista,
+     * o Utilizador é convertido em Jpa no assembler, gravado como UtilizadorJPA e convertido de volta para o domain.
+     * @param utilizador objeto do tipo Utilizador
+     * @return um Objeto do tipo UtilizadorJPA em caso de sucesso ou uma exceção com a mensagem "O Email já existe na base de dados" no caso de email já existir na BD.
+     */
     public Utilizador save(Utilizador utilizador) {
 
         UtilizadorJPA utilizadorJPA = utilizadorDomainDataAssembler.toData(utilizador);
@@ -30,6 +37,12 @@ public class UtilizadorRepository implements IUtilizadorRepository {
         }
     }
 
+    /**
+     *  Método que comunica com Crud para encontrar um Utilizador na Bd através do método findById do Crud.
+     *
+     * @param id a identificação do Utilizador
+     * @return um Optional de Utilizador em caso de sucesso ou um Optional.empty no caso de não serem encontrados resultados.
+     */
     public Optional<Utilizador> findById(int id) {
         Optional<UtilizadorJPA> opUtilizadorJPA = utilizadorJpaRepository.findById(id);
 

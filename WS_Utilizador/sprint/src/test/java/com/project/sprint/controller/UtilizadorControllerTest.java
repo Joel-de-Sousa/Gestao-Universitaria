@@ -5,17 +5,22 @@ import com.project.sprint.DTO.UtilizadorDTO;
 import com.project.sprint.domain.entities.Utilizador;
 import com.project.sprint.service.UtilizadorService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -62,10 +67,9 @@ class UtilizadorControllerTest {
         assertEquals(utilizadorResult.getCodUtilizador(), 1);
         assertEquals(utilizadorResult.getNome(), "Joel");
         assertEquals(utilizadorResult.getSobrenome(), "Brandão");
-        assertEquals(utilizadorResult.getEmail(),"JoelDocente@upskill.pt");
-
-
+        assertEquals(utilizadorResult.getEmail(), "JoelDocente@upskill.pt");
     }
+
     @Test
     void shouldCreateUtilizadorWithCorrectAttributes() {
         // Arrange
@@ -97,8 +101,5 @@ class UtilizadorControllerTest {
         Object res = responseEntity.getBody();
         assertEquals(res, utilizadorDouble);
     }
-    
-
-
 
 }

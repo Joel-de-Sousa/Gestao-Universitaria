@@ -15,14 +15,24 @@ import javax.validation.constraints.Pattern;
 @EqualsAndHashCode
 @AllArgsConstructor
 public class Utilizador {
+
     public enum TipoUtilizador {ESTUDANTE, DOCENTE}
 
+    /**
+     * o código do utilizador
+     */
     @Getter
     @Setter
     int codUtilizador;
+    /**
+     * o nome do utilizador
+     */
     @Getter
     @Setter
     String nome;
+    /**
+     * o sobrenome do utilizador
+     */
     @Getter
     @Setter
     String sobrenome;
@@ -30,12 +40,28 @@ public class Utilizador {
     //teste UNITARIO
    /* @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
             flags = Pattern.Flag.CASE_INSENSITIVE)*/
+
+    /**
+     * o email do utilizador
+     */
     @Getter
     @Setter
     String email;
+
+    /**
+     * o tipo de utilizador (Estudante , Docente)
+     */
     @Getter
     @Setter
     TipoUtilizador tipoUtilizador;
+
+    /**
+     * Construtor do Objeto Utilizador e suas respetivas exceções.
+     * @param sNome o nome
+     * @param sSobrenome o sobrenome
+     * @param sEmail o email
+     * @param oTipoUtilizador o tipo de utilizador ( Estudante , Docente)
+     */
 
     public Utilizador(String sNome, String sSobrenome, String sEmail, TipoUtilizador oTipoUtilizador) {
         if (Util.validaStringComMinSemAlgSemSimbolo(3, 100, sNome)) {
