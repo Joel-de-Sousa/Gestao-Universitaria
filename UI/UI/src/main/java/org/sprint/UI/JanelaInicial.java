@@ -44,18 +44,7 @@ public class JanelaInicial implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-    /*    try {
 
-           iniciar(janelaNovaProposta,"NovaProposta","/fxml/JanelaNovaProposta.fxml");
-
-        } catch (IOException ex) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-
-            alerta.setTitle("ListaTarefas");
-            alerta.setHeaderText("Erro");
-            alerta.setContentText(ex.getMessage());}
-
-    }*/
     }
 
 

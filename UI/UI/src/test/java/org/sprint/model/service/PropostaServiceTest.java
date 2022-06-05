@@ -18,6 +18,8 @@ class PropostaServiceTest {
     @Mock
     PropostaWebRepository propostaWebRepository;
 
+    @Mock
+    PropostaRestDTO propostaRestDTO;
 
     @InjectMocks
     PropostaService propostaService;
@@ -28,28 +30,27 @@ class PropostaServiceTest {
     }
 
     @Test
+    @DisplayName("Teste criar Proposta Service true")
     void shouldCreateNewPropostaWitCorrectAttributes() throws Exception {
-        when(propostaWebRepository.criarNovaProposta())
+        //Arrange
+        when(propostaWebRepository.criarNovaProposta(propostaRestDTO)).thenReturn(true);
+        //Act
+        boolean proposta =propostaWebRepository.criarNovaProposta(propostaRestDTO);
+        //Assert
+        assertTrue(proposta);
 
     }
 
     @Test
-    @DisplayName("Teste criar Proposta")
-    void shouldCreatePropostaWithCorrectAttributes() throws Exception {
-        // Arrange
-        when(propostaService.criarNovaProposta(1, 257837248, 1, "Titulo Teste", "Problema Teste", "Objectivo teste")).thenReturn(true);
-        // Act
-        boolean edicaoCriada = propostaController.criarNovaProposta(1, 257837248, 1, "Titulo Teste", "Problema Teste", "Objectivo teste");
-        // Assert
-        assertTrue(edicaoCriada);
+    @DisplayName("Teste criar Proposta Service false")
+    void shouldNotCreateNewProposta() throws Exception {
+        //Arrange
+        when(propostaWebRepository.criarNovaProposta(propostaRestDTO)).thenReturn(false);
+        //Act
+        boolean proposta =propostaWebRepository.criarNovaProposta(propostaRestDTO);
+        //Assert
+        assertFalse(proposta);
 
     }
-
-    public boolean criarNovaProposta(int codUtilizador, int nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo) throws Exception {
-        PropostaRestDTO novo= new PropostaRestDTO(codUtilizador,nifOrganizacao,codEdicao,titulo,problema,objetivo);
-        boolean valid=propostaWebRepository.criarNovaProposta(novo);
-        return valid;
-    }
-
 
 }

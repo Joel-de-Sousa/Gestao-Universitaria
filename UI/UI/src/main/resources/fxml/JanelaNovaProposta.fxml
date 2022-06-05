@@ -106,7 +106,7 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtNif" onKeyReleased="#actNif" promptText="Introduza o NIF da empresa !" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="txtNif" onKeyReleased="#actNif" promptText="Introduza o NIF da empresa ! (min 9)" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
@@ -139,7 +139,7 @@
                         </ComboBox>
                      </children>
                   </GridPane>
-                  <TextField fx:id="txtTitulo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#actTitulo" promptText="Titulo" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtTitulo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#actTitulo" promptText="Titulo (min 10 caracteres)" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </GridPane.margin>
@@ -147,7 +147,7 @@
                         <Font size="19.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtObjetivo" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#actObjetivo" promptText="Objetivo" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtObjetivo" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#actObjetivo" promptText="Objetivo (min 10 caracteres)" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </GridPane.margin>
@@ -155,7 +155,7 @@
                         <Font size="19.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtProblema" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#actProblema" promptText="Problema" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtProblema" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#actProblema" promptText="Problema (min 10 caracteres)" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
