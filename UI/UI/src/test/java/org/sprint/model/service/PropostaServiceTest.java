@@ -1,32 +1,26 @@
-package org.sprint.controllers;
+package org.sprint.model.service;
 
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-
-
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.sprint.model.service.EdicaoService;
-import org.sprint.model.service.PropostaService;
-
-
-import java.util.ArrayList;
-import java.util.List;
+import org.sprint.controllers.PropostaController;
+import org.sprint.model.DTO.PropostaRestDTO;
+import org.sprint.model.repository.PropostaWebRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-class PropostaControllerTest {
+class PropostaServiceTest {
 
     @Mock
-    PropostaService propostaService;
-    @Mock
-    EdicaoService edicaoService;
+    PropostaWebRepository propostaWebRepository;
+
+
     @InjectMocks
-    PropostaController propostaController;
+    PropostaService propostaService;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -34,22 +28,8 @@ class PropostaControllerTest {
     }
 
     @Test
-    @DisplayName("Teste Get List Edicoes para criar proposta")
-    void shouldGetListEdicoesWithCorrectAttributes() {
-        // Arrange
-
-        String edicao1 = "PDSI 2022/2023";
-        String edicao2 = "POOI 2023/2024";
-        List<String> listDouble = new ArrayList<>();
-        listDouble.add(edicao1);
-        listDouble.add(edicao2);
-
-        when(edicaoService.getListaEdicoes()).thenReturn(listDouble);
-
-        // Act
-        List<String> listEdicoes = propostaController.getListaEdicoes();
-        // Assert
-        assertEquals(2, listEdicoes.size());
+    void shouldCreateNewPropostaWitCorrectAttributes() throws Exception {
+        when(propostaWebRepository.criarNovaProposta())
 
     }
 
@@ -64,4 +44,12 @@ class PropostaControllerTest {
         assertTrue(edicaoCriada);
 
     }
+
+    public boolean criarNovaProposta(int codUtilizador, int nifOrganizacao, int codEdicao, String titulo, String problema, String objetivo) throws Exception {
+        PropostaRestDTO novo= new PropostaRestDTO(codUtilizador,nifOrganizacao,codEdicao,titulo,problema,objetivo);
+        boolean valid=propostaWebRepository.criarNovaProposta(novo);
+        return valid;
+    }
+
+
 }
