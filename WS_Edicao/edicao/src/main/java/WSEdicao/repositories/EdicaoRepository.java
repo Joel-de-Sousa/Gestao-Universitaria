@@ -26,7 +26,7 @@ public class EdicaoRepository {
     @Autowired
     EdicaoDomainDTOAssembler edicaoDTOAssembler;
 
-    public Edicao save(Edicao edicao ) {
+    public Edicao save(Edicao edicao ) throws Exception {
         EdicaoJpa edicaoJpa1 = edicaoAssembler.toData(edicao);
         if(!(edicaoJpaRepository.existsByCodUc(edicaoJpa1.getCodUc()) && edicaoJpaRepository.existsByCodAnoLetivo(edicaoJpa1.getCodAnoLetivo()))) {
             EdicaoJpa edicaoJpa = edicaoAssembler.toData(edicao);
@@ -35,7 +35,7 @@ public class EdicaoRepository {
 
             return edicaoAssembler.toDomain(savedEdicaoJpa);
         } else
-            throw new IllegalArgumentException("Já consta na base de dados a Edicão com a UC edição com a UC e o Ano Letivo, verifique na base de dados");
+            throw new Exception("Ja existe uma edição com a unidade curricular e ano letivo selecionados!");
     }
 
     public Optional<Edicao> findBycodEdicao(int codEdicao) {

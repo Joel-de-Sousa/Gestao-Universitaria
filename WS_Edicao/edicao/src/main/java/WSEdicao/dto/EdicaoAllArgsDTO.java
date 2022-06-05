@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 public class EdicaoAllArgsDTO {
 
-    int edicao;
+    int codEdicao;
     int codUc;
     String sigla;
     String denominacao;

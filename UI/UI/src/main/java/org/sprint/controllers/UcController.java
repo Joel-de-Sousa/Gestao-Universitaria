@@ -33,7 +33,7 @@ public class UcController {
     }
 
 
-    public boolean criarNovaUC(String sigla, String denominacao){
+    public boolean criarNovaUC(String sigla, String denominacao) throws Exception {
         boolean create=ucService.criarNovaUC(sigla,denominacao);
         return create;
     }

@@ -24,7 +24,7 @@ public class UcRepository {
     @Autowired
     UcDomainDTOAssembler ucDTOAssembler;
 
-    public Uc save(Uc uc ) {
+    public Uc save(Uc uc ) throws Exception {
         UcJpa ucJpa1 = ucAssembler.toData(uc);
 
         if(!ucJpaRepository.existsBySigla(ucJpa1.getSigla())) {
@@ -34,7 +34,7 @@ public class UcRepository {
 
             return ucAssembler.toDomain(savedUcJpa);
         } else
-            throw new IllegalArgumentException("Já se encontra uma UC com esta sigla na base de dados, por favor insira uma nova");
+            throw new Exception("Já se encontra 22222222222 uma UC com esta sigla na base de dados, por favor insira uma nova");
     }
 
     public Optional<UcDTO> findBycodUc(int codUc) {

@@ -4,10 +4,12 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.sprint.model.DTO.PropostaRestDTO;
+import org.sprint.model.DTO.UcRestDTO;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
@@ -24,6 +26,37 @@ public class PropostaRestRepository {
             .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8082"))
             .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
             .build();
+
+
+
+
+    public boolean createProposta (PropostaRestDTO novaProposta) throws Exception {
+
+        ResponseEntity<String> result = null;
+        try {
+            result= webClient
+                    .post()
+                    .uri("/propostas")
+                    .body(Mono.just(novaProposta), PropostaRestDTO.class).exchange().flatMap(response -> response.toEntity(String.class))
+                    .onErrorReturn(ResponseEntity.of(Optional.of(novaProposta.toString())))
+                    .doOnError(throwable -> {
+                        System.out.println(throwable.getMessage());
+                    })
+                    .block();
+        }
+        catch( Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+
+        if (result.getStatusCode().is2xxSuccessful())
+            return true;
+        else
+            throw new Exception( result.getBody());
+    }
+
+    /*
+
     public Optional<PropostaRestDTO> createProposta (PropostaRestDTO novaProposta) {
 
         PropostaRestDTO propostaRestDTO;
@@ -52,7 +85,7 @@ public class PropostaRestRepository {
             return Optional.of(propostaRestDTO);
         else
             return Optional.empty();
-    }
+    }*/
     public Optional<List<PropostaRestDTO>> getAllPropostas () {
 
         try {

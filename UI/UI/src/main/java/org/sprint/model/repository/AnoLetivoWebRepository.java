@@ -15,11 +15,9 @@ public class AnoLetivoWebRepository {
         anoLetivoRestRepository= new AnoLetivoRestRepository();
     }
 
-    public boolean criarNovoAnoLetivo(AnoLetivoRestDTO novo){
-        if (anoLetivoRestRepository.createAnoLetivo(novo).isPresent()){
-            return true;
-        }
-        return false;
+    public boolean criarNovoAnoLetivo(AnoLetivoRestDTO novo) throws Exception {
+       return anoLetivoRestRepository.createAnoLetivo(novo);
+
     }
 
 

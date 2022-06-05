@@ -30,7 +30,7 @@ public class AnoLetivoService {
     public AnoLetivoService() {
     }
 
-    public AnoLetivoDTO createAndSaveAnoLetivo(String ano) {
+    public AnoLetivoDTO createAndSaveAnoLetivo(String ano) throws Exception {
         AnoLetivo anoLetivo = factory.createAnoLetivo(ano);
         AnoLetivo anoLetivoSave = anoLetivoRepository.save(anoLetivo);
         AnoLetivoDTO anoLetivoDTO = anoLetivoAssembler.toDTO(anoLetivoSave);

@@ -37,8 +37,11 @@ public class JanelaNovoAnoLetivo implements Initializable {
 
 
     @FXML
-    public void btnConfirmar(ActionEvent actionEvent) {
-        boolean criou= anoLetivoController.criarNovoAnoLetivo(cmbIdAno.getValue());
+    public void btnConfirmar(ActionEvent actionEvent) throws Exception {
+
+        try{
+            boolean criou= anoLetivoController.criarNovoAnoLetivo(cmbIdAno.getValue());
+
         if(criou){
             String ano = anoLetivoController.formatarAno(cmbIdAno.getValue());
 
@@ -46,8 +49,14 @@ public class JanelaNovoAnoLetivo implements Initializable {
                     criou ? "Ano letivo "+ano+" criado com sucesso."
                             : "Não foi possível criar o ano letivo.").show();
             ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        } }catch (Exception e){
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    e.getMessage()).show();
+
         }
+
     }
+
 
     @FXML
     public void btnCancelar(ActionEvent actionEvent) {

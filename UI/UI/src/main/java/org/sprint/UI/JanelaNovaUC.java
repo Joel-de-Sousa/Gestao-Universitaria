@@ -43,19 +43,29 @@ public class JanelaNovaUC implements Initializable {
 
     @FXML
     public void btnConfirmarAction(ActionEvent actionEvent) {
-       boolean criou= ucController.criarNovaUC(textFielSigla.getText(), textFieldDenominacao.getText());
-       if(criou){
-           AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar uma nova Unidade Curricular.",
-                   criou ? "Unidade Curricular criada com sucesso."
-                           : "Não foi possível criar a Unidade Curricular.").show();
-       }
+        try {
+            boolean criou = ucController.criarNovaUC(textFielSigla.getText(), textFieldDenominacao.getText());
+
+            if (criou) {
+                AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar uma nova Unidade Curricular.",
+                        criou ? "Unidade Curricular criada com sucesso."
+                                : "Não foi possível criar a Unidade Curricular.").show();
+            }
+        }
+        catch (Exception e){
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    e.getMessage()).show();
+            textFieldDenominacao.clear();
+            textFielSigla.clear();
+
+        }
     }
 
 
     @FXML
     public void actDenominacao(Event event) {
 
-        if (textFieldDenominacao.getText().length() > 10 && textFielSigla.getText().length() > 3) {
+        if (textFieldDenominacao.getText().trim().length() > 10 && textFielSigla.getText().trim().length() > 3) {
             idBtconfirm.setDisable(false);
         }
     }

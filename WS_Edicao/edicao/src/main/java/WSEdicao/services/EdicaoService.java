@@ -46,7 +46,7 @@ public class EdicaoService {
     public EdicaoService() {
     }
 
-    public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo) {
+    public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo) throws Exception {
 
         Optional<UcDTO> optionalUc = ucRepository.findBycodUc(codUc);
         Optional<AnoLetivoDTO> optionalAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);

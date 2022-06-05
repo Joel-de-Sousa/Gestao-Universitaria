@@ -4,6 +4,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -29,6 +30,38 @@ public class AnoLetivoRestRepository {
             .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081"))
             .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
             .build();
+
+
+    public boolean createAnoLetivo (AnoLetivoRestDTO novaAno) throws Exception {
+
+        ResponseEntity<String> result = null;
+        try {
+            result= webClient
+                    .post()
+                    .uri("/anoletivo")
+                    .body(Mono.just(novaAno), UcRestDTO.class).exchange().flatMap(response -> response.toEntity(String.class))
+                    .onErrorReturn(ResponseEntity.of(Optional.of(novaAno.toString())))
+                    .doOnError(throwable -> {
+                        System.out.println(throwable.getMessage());
+                    })
+                    .block();
+        }
+        catch( Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+
+        if (result.getStatusCode().is2xxSuccessful())
+            return true;
+        else
+            throw new Exception( result.getBody());
+    }
+
+
+
+
+/*
+
     public Optional<AnoLetivoRestDTO> createAnoLetivo (AnoLetivoRestDTO novoAno) {
 
         AnoLetivoRestDTO anoLetivoRestDTO;
@@ -57,7 +90,7 @@ public class AnoLetivoRestRepository {
             return Optional.of(anoLetivoRestDTO);
         else
             return Optional.empty();
-    }
+    }*/
     public Optional<List<AnoLetivoRestDTO>> getAllAno () {
 
         try {

@@ -10,7 +10,7 @@ public class EdicaoController {
         edicaoService=new EdicaoService();
     }
 
-    public boolean criarNovaEdicao(int ano, int uc){
+    public boolean criarNovaEdicao(int ano, int uc) throws Exception {
         boolean create=edicaoService.criarNovaEdicao(ano,uc);
         return create;
     }

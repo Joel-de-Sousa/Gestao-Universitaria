@@ -35,7 +35,7 @@ public class AnoLetivoController {
         return anos;
     }
 
-    public boolean criarNovoAnoLetivo(String ano){
+    public boolean criarNovoAnoLetivo(String ano) throws Exception {
         boolean create=anoLetivoService.criarNovoAnoLetivo(ano);
         return create;
     }

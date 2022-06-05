@@ -49,7 +49,7 @@ class AnoLetivoServiceTest {
     }
 
     @Test
-    void shouldCreateAAnoLetivoWithCorrectAttributes() {
+    void shouldCreateAAnoLetivoWithCorrectAttributes() throws Exception {
 
 
         // Arrange

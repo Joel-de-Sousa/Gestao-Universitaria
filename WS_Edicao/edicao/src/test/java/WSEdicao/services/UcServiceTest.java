@@ -48,7 +48,7 @@ class UcServiceTest {
     }
 
     @Test
-    void shouldCreateAUcWithCorrectAttributes() {
+    void shouldCreateAUcWithCorrectAttributes() throws Exception {
         // Arrange
         when(uc.getSigla()).thenReturn("POOJ");
         when(uc.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");

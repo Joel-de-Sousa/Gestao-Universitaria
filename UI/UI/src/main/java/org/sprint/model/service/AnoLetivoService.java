@@ -27,7 +27,7 @@ public class AnoLetivoService {
     }
 
 
-    public boolean criarNovoAnoLetivo(String ano){
+    public boolean criarNovoAnoLetivo(String ano) throws Exception {
         AnoLetivoRestDTO novo= new AnoLetivoRestDTO(ano);
         boolean valid=anoLetivoWebRepository.criarNovoAnoLetivo(novo);
         return valid;

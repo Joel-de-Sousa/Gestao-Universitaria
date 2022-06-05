@@ -55,7 +55,7 @@ public class EdicaoController {
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }
 
-    @GetMapping("/allArgs/{codEdicao}")
+    @GetMapping("/allargs/{codEdicao}")
     @ResponseBody
     public ResponseEntity<Object> getAllArgsByCode(@PathVariable int codEdicao){
 

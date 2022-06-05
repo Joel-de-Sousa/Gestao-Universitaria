@@ -25,7 +25,7 @@ public class AnoLetivoRepository {
     @Autowired
     AnoLetivoDomainDTOAssembler anoLetivoDTOAssembler;
 
-    public AnoLetivo save(AnoLetivo anoLetivo ) {
+    public AnoLetivo save(AnoLetivo anoLetivo ) throws Exception {
         AnoLetivoJpa AnoLetivoJpa1 = assembler.toData(anoLetivo);
         if(!anoLetivoJpaRepository.existsByAno(AnoLetivoJpa1.getAno())) {
             AnoLetivoJpa anoLetivoJpa = assembler.toData(anoLetivo);
@@ -34,7 +34,7 @@ public class AnoLetivoRepository {
 
             return assembler.toDomain(savedAnoLetivoJpa);
         } else
-            throw new IllegalArgumentException("O Ano Letivo já se encontra inserido na base de dados");
+            throw new Exception("O Ano Letivo já se encontra inserido na base de dados");
     }
 
     public Optional<AnoLetivoDTO> findBycodAnoLetivo(int codAnoLetivo) {

@@ -25,10 +25,11 @@ public class UcWebRepository {
 
 
 
-    public boolean criarNovaUC(UcRestDTO novo){
-        if (ucRestRepository.createUc(novo).isPresent()){
-            return true;
-        }
-        return false;
+    public boolean criarNovaUC(UcRestDTO novo) throws Exception {
+
+            return ucRestRepository.createUc(novo);
+
+
+
     }
 }

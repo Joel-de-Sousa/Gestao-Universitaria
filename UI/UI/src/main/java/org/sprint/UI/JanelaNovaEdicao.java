@@ -41,7 +41,10 @@ public class JanelaNovaEdicao implements Initializable {
 
 
     @FXML
-    public void actConfirmar(ActionEvent actionEvent) {
+    public void actConfirmar(ActionEvent actionEvent) throws Exception {
+
+        try {
+
 
             int ano = comboBoxAnoLetivo.getSelectionModel().getSelectedIndex() + 1;
             int uc = comboBoxUC.getSelectionModel().getSelectedIndex() + 1;
@@ -52,6 +55,11 @@ public class JanelaNovaEdicao implements Initializable {
                     criou ? "Edição criada com sucesso."
                             : "Não foi possível criar a edição.").show();
             ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+    }catch (Exception e){
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    e.getMessage()).show();
+
+        }
 
     }
 

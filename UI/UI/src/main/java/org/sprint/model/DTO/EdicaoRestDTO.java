@@ -12,7 +12,13 @@ public class EdicaoRestDTO {
     @Getter
     int codUc;
     @Getter
+    String sigla;
+    @Getter
+    String denominacao;
+    @Getter
     int codAnoLetivo;
+    @Getter
+    String ano;
 
     public EdicaoRestDTO(int codUc, int codAnoLetivo) {
         this.codUc = codUc;

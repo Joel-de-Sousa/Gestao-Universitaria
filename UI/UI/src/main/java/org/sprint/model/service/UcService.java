@@ -47,7 +47,7 @@ public class UcService {
     }
 
 
-    public boolean criarNovaUC(String sigla , String denominacao){
+    public boolean criarNovaUC(String sigla , String denominacao) throws Exception {
         UcRestDTO novo= new UcRestDTO(sigla,denominacao);
         boolean valid=ucWebRepository.criarNovaUC(novo);
         return valid;

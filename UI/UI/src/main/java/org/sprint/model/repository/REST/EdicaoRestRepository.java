@@ -4,6 +4,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -26,6 +27,34 @@ public class EdicaoRestRepository {
             .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8081"))
             .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
             .build();
+
+    public boolean createEdicao (EdicaoRestDTO novaEdicao) throws Exception {
+
+        ResponseEntity<String> result = null;
+        try {
+            result= webClient
+                    .post()
+                    .uri("/edicao")
+                    .body(Mono.just(novaEdicao), UcRestDTO.class).exchange().flatMap(response -> response.toEntity(String.class))
+                    .onErrorReturn(ResponseEntity.of(Optional.of(novaEdicao.toString())))
+                    .doOnError(throwable -> {
+                        System.out.println(throwable.getMessage());
+                    })
+                    .block();
+        }
+        catch( Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+
+        if (result.getStatusCode().is2xxSuccessful())
+            return true;
+        else
+            throw new Exception( result.getBody());
+    }
+
+/*
+
     public Optional<EdicaoRestDTO> createEdicao (EdicaoRestDTO novaEdicao) {
 
         EdicaoRestDTO edicaoRestDTO;
@@ -54,13 +83,13 @@ public class EdicaoRestRepository {
             return Optional.of(edicaoRestDTO);
         else
             return Optional.empty();
-    }
+    }*/
 
     public Optional<List<EdicaoRestDTO>> getAllEdicoes () {
 
         try {
             Mono<List<EdicaoRestDTO>> response = webClient.get()
-                    .uri("/edicao")
+                    .uri("/edicao/allargs")
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
