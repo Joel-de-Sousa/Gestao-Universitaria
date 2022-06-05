@@ -21,12 +21,12 @@ public class WsUtilizadorApplication {
 	public CommandLineRunner demo(UtilizadorService utilizadorService ) {
 		return (args) -> {
 			// create and save a few Utilizadores
-			NewUtilizadorInfoDTO novoUtilizador1=new NewUtilizadorInfoDTO("joel","Brandao","joelsantosbranda@gmail.com","ESTUDANTE");
+			NewUtilizadorInfoDTO novoUtilizador1=new NewUtilizadorInfoDTO("joel","Brandao","joelsantosbrandao@gmail.com","ESTUDANTE");
 			 utilizadorService.createAndSaveUtilizador(novoUtilizador1);
-			NewUtilizadorInfoDTO novoUtilizador2=new NewUtilizadorInfoDTO("joel","Brandao","Miguel@gmail.com","ESTUDANTE");
+			NewUtilizadorInfoDTO novoUtilizador2=new NewUtilizadorInfoDTO("Ana","Maria","mariaSantos@gmail.com","DOCENTE");
 			// create and save a few countries
 			utilizadorService.createAndSaveUtilizador(novoUtilizador2);
-			NewUtilizadorInfoDTO novoUtilizador3=new NewUtilizadorInfoDTO("joel","Brandao","joelsantosbrandao@gmail.com","ESTUDANTE");
+			NewUtilizadorInfoDTO novoUtilizador3=new NewUtilizadorInfoDTO("Francisco","Reis","indianaJones@hotmail.com","ESTUDANTE");
 			// create and save a few countries
 			 utilizadorService.createAndSaveUtilizador(novoUtilizador3);
 		};
