@@ -1,5 +1,6 @@
 package com.project.sprint.service;
 
+import com.project.sprint.DTO.NewUtilizadorInfoDTO;
 import com.project.sprint.DTO.UtilizadorDTO;
 import com.project.sprint.DTO.assembler.UtilizadorDomainDTOAssembler;
 import com.project.sprint.domain.entities.Utilizador;
@@ -54,11 +55,9 @@ class UtilizadorServiceTest {
         //ARRANGE
 
 
-
         Optional<Utilizador> optionalUtilizador = Optional.of(utilizador);
 
         when(utilizadorRepository.findById(1)).thenReturn(optionalUtilizador);
-
 
 
         UtilizadorDTO utilizadorDTO1 = mock(UtilizadorDTO.class);
@@ -74,8 +73,5 @@ class UtilizadorServiceTest {
 
 
     }
-
-
-
 }
 

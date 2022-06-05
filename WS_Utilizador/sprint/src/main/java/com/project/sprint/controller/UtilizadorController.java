@@ -22,9 +22,9 @@ public class UtilizadorController {
     }
 
     /**
-     * Método para retornar um Utilizador quando pesquisado pelo seu ID (codUtilizador)
+     * Método para retornar um UtilizadorDTO quando pesquisado pelo seu ID (codUtilizador)
      *
-     * @param codUtilizador
+     * @param codUtilizador é o identificador do Utilizador na BD
      *
      * @return retorna um 200 e um DTO com os seus dados caso seja encontrado com sucesso
      * e um 404 NOT FOUND caso esse codUtilizador nao se encontre na BD.
