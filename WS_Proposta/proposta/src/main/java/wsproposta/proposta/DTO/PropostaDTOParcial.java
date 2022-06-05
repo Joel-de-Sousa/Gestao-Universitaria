@@ -2,6 +2,11 @@ package wsproposta.proposta.DTO;
 
 import lombok.Getter;
 
+/**
+ * Classe PropostaDTOParcial foi criada para permitir a realizacao do update do estado da
+ * proposta, tem apenas os parametros codigo da proposta e estado da proposta
+ */
+
 public class PropostaDTOParcial {
 
     @Getter

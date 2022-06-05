@@ -13,11 +13,12 @@ public class PropostaFactory implements IPropostaFactory{
      * @param codUtilizador codigo do utilizador
      * @param nifOrganizacao NIF da organizacao
      * @param codEdicao codigo da edicao de unidade curricular
-     * @param sTitulo
-     * @param sProblema
-     * @param sObjetivo
-     * @return
+     * @param sTitulo titulo da proposta
+     * @param sProblema problema da proposta
+     * @param sObjetivo objectivo da proposta
+     * @return umobjecto do tipo Proposta
      */
+
     public Proposta createProposta (int codUtilizador, int nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo){
         return new Proposta(codUtilizador, nifOrganizacao, codEdicao, sTitulo, sProblema, sObjetivo);
     }
