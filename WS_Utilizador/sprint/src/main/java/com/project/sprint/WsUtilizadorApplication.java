@@ -23,7 +23,7 @@ public class WsUtilizadorApplication {
 			// create and save a few Utilizadores
 			NewUtilizadorInfoDTO novoUtilizador1=new NewUtilizadorInfoDTO("joel","Brandao","joelsantosbrandao@gmail.com","ESTUDANTE");
 			 utilizadorService.createAndSaveUtilizador(novoUtilizador1);
-			NewUtilizadorInfoDTO novoUtilizador2=new NewUtilizadorInfoDTO("Ana","Maria","mariaSantos@gmail.com","DOCENTE");
+			NewUtilizadorInfoDTO novoUtilizador2=new NewUtilizadorInfoDTO("AnaA","Maria","mariaSantos@gmail.com","DOCENTE");
 			// create and save a few countries
 			utilizadorService.createAndSaveUtilizador(novoUtilizador2);
 			NewUtilizadorInfoDTO novoUtilizador3=new NewUtilizadorInfoDTO("Francisco","Reis","indianaJones@hotmail.com","ESTUDANTE");

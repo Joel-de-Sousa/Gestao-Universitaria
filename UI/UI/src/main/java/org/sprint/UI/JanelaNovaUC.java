@@ -50,6 +50,8 @@ public class JanelaNovaUC implements Initializable {
                 AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar uma nova Unidade Curricular.",
                         criou ? "Unidade Curricular criada com sucesso."
                                 : "Não foi possível criar a Unidade Curricular.").show();
+
+                ((Node) actionEvent.getSource()).getScene().getWindow().hide();
             }
         }
         catch (Exception e){
