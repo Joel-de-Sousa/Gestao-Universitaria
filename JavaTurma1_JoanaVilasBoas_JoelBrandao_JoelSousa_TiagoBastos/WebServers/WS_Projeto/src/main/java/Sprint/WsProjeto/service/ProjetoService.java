@@ -1,5 +1,6 @@
 package Sprint.WsProjeto.service;
 
+import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.DTO.assembler.ProjetoDomainDTOAssembler;
 import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
@@ -35,9 +36,9 @@ public class ProjetoService {
     public ProjetoService() {
     }
 
-    public ProjetoDTO createAndSaveProjeto(ProjetoDTO projetoDTO){
+    public ProjetoDTO createAndSaveProjeto(NewProjetoInfoDto projetoInfoDto){
 
-        Projeto projeto = projetoFactory.createProjeto(projetoDTO.getCodProposta(),projetoDTO.getCodEstudante(),projetoDTO.getCodOrientador());
+        Projeto projeto = projetoFactory.createProjeto(projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante(),projetoInfoDto.getCodOrientador());
 
         Projeto oProjetoSaved = projetoRepository.save(projeto);
 

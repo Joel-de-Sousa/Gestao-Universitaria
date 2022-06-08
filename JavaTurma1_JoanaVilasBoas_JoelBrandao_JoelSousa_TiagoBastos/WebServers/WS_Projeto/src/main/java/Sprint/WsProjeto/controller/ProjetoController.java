@@ -1,6 +1,7 @@
 package Sprint.WsProjeto.controller;
 
 
+import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.service.ProjetoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,18 @@ public class ProjetoController {
            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
 
+    }
+
+
+    @PostMapping("")
+    @ResponseBody
+    public ResponseEntity<Object> createAndSaveProjeto(@RequestBody NewProjetoInfoDto projetoInfoDto) {
+
+        try {
+            ProjetoDTO projetoDTO = projetoService.createAndSaveProjeto(projetoInfoDto);
+            return new ResponseEntity<>(projetoDTO, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

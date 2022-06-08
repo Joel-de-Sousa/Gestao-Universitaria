@@ -5,6 +5,11 @@ import lombok.Setter;
 
 public class PropostaRestDTO {
 
+
+    @Setter
+    @Getter
+    int codProposta;
+
     @Getter
     @Setter
     int codUtilizador;

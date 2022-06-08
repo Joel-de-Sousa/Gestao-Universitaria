@@ -1,5 +1,6 @@
 package Sprint.WsProjeto.service;
 
+import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.DTO.assembler.ProjetoDomainDTOAssembler;
 import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
@@ -24,6 +25,10 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class ProjetoServiceTest {
+
+
+    @MockBean
+    NewProjetoInfoDto newProjetoInfoDto;
 
    @MockBean
     ProjetoDomainDTOAssembler projetoDomainDTOAssembler;
@@ -133,39 +138,29 @@ class ProjetoServiceTest {
     @Test
     void souldCreateAndSaveProjeto(){
 
+
+        //ARRANGE
+
+        NewProjetoInfoDto projetoInfoDto = mock(NewProjetoInfoDto.class);
         Projeto projeto1 = mock(Projeto.class);
-        ProjetoDTO projetoDTO2 = mock(ProjetoDTO.class);
 
-        /*when(projetoDTO2.getCodProjeto()).thenReturn(1);
-        when(projetoDTO2.getCodProposta()).thenReturn(1);
-        when(projetoDTO2.getCodEstudante()).thenReturn(1);*/
+        when(projetoInfoDto.getCodOrientador()).thenReturn(1);
+        when(projetoInfoDto.getCodProposta()).thenReturn(2);
+        when(projetoInfoDto.getCodEstudante()).thenReturn(3);
 
-        when(projetoFactory.createProjeto(projetoDTO2.getCodProposta(),projetoDTO2.getCodProjeto(),projetoDTO2.getCodOrientador())).thenReturn(projeto);
+        when(projetoFactory.createProjeto(projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante(),projetoInfoDto.getCodOrientador())).thenReturn(projeto);
+
         when(projetoRepository.save(projeto)).thenReturn(projeto1);
-
 
         when(projetoDomainDTOAssembler.toDto(projeto1)).thenReturn(projetoDTO);
 
 
-       //act
-       ProjetoDTO projetoDTO1 = projetoService.createAndSaveProjeto(projetoDTO2);
-
-       //arrange
-        assertEquals(projetoDTO1,projetoDTO);
-    }
+        //ACT
+        ProjetoDTO actProjetoDTO = projetoService.createAndSaveProjeto(projetoInfoDto);
 
 
-
-
-    public ProjetoDTO createAndSaveProjeto(ProjetoDTO projetoDTO){
-
-        Projeto projeto = projetoFactory.createProjeto(projetoDTO.getCodProposta(),projetoDTO.getCodEstudante(),projetoDTO.getCodOrientador());
-
-        Projeto oProjetoSaved = projetoRepository.save(projeto);
-
-        ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(oProjetoSaved);
-
-        return oProjetoDTO;
+        //ASSERT
+        assertEquals(projetoDTO, actProjetoDTO);
 
     }
 
