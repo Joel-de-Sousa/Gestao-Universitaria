@@ -64,4 +64,25 @@ class ProjetoControllerTest {
 
     }
 
+    @Test
+    void shouldGiveNotFounCodeIfCodeNotFound (){
+
+        // Arrange
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+
+        when(projetoService.findProjetoByCode(2)).thenReturn(projetoDTO);
+        //act
+        ResponseEntity<Object> objectResponseEntity = projetoController.findProjetoByCode(1);
+
+        assertEquals(objectResponseEntity.getStatusCodeValue(),404);
+
+        ProjetoDTO result = (ProjetoDTO) objectResponseEntity.getBody();
+
+        assertNotEquals(result,projetoDTO);
+    }
+
 }

@@ -150,4 +150,14 @@ public class PropostaController {
         return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
 
     }
+
+    //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
+    @GetMapping("/utilizador/{codEdicao}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllPropostasByCodEdicao(@PathVariable int codEdicao) {
+
+        List<PropostaDTO> listFiltradaPropostasDTO = service.findAllByCodEdicao(codEdicao);
+        return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
+
+    }
 }
