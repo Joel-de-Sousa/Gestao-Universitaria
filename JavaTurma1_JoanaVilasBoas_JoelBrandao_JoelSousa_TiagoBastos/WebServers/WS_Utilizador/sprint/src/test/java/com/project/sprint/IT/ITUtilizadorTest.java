@@ -63,29 +63,28 @@ public class ITUtilizadorTest {
                 email, tipoUtilizador);
 
 
-        // GET Proposta/{codProposta = 1}
+        // GET Utilizador/{codUtilizador = 4}
 
         MvcResult resultGet11 = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/utilizadores/" + 4)
-                        .accept(MediaType.APPLICATION_JSON))
+                .get("/utilizadores/" + 4)
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andReturn();
 
         String resultContentStr11 = resultGet11.getResponse().getContentAsString();
 
         String msgErro = "";
-        //assertNotNull(resultContent1);
         assertEquals( msgErro ,resultContentStr11);
 
         // POST
 
         MvcResult resultPost = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/utilizadores")
-                        .contentType("application/json")
-                        .content(objectMapper.writeValueAsString(newUtilizadorInfoDTO))
-                        .accept(MediaType.APPLICATION_JSON))
+                .post("/utilizadores")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(newUtilizadorInfoDTO))
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andReturn();
 
@@ -97,12 +96,12 @@ public class ITUtilizadorTest {
         assertEquals(nome, resultJsonObject.get("nome"));
 
 
-        // GET Proposta/{codProposta = 1}
+        // GET Utilizador/{codUtilizador = 4}
 
         MvcResult resultGet = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/utilizadores/" + resultJsonObject.get("codUtilizador"))
-                        .accept(MediaType.APPLICATION_JSON))
+                .get("/utilizadores/" + resultJsonObject.get("codUtilizador"))
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 

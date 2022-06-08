@@ -20,4 +20,6 @@ public interface PropostaJPARepository extends CrudRepository<PropostaJPA, Integ
 
     List<PropostaJPA> findByTituloContains (String titulo);
 
+    List<PropostaJPA> findAllByCodEdicao (int codEdicao);
+
 }

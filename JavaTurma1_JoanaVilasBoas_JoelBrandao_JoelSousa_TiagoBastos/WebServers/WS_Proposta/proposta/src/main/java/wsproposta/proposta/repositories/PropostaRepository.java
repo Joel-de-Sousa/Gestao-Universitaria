@@ -125,4 +125,15 @@ public class PropostaRepository implements IPropostaRepository {
         }
         return listFiltradaPropostas;
     }
+
+
+    //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
+    public List<Proposta> findAllByCodEdicao (int codEdicao){
+        List<PropostaJPA> listFiltradaPropostasJPA = propostaJPARepository.findAllByCodEdicao(codEdicao);
+        List<Proposta> listFiltradaPropostas =new ArrayList<>();
+        for (PropostaJPA p:listFiltradaPropostasJPA) {
+            listFiltradaPropostas.add(propostaAssembler.toDomain(p));
+        }
+        return listFiltradaPropostas;
+    }
 }

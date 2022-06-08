@@ -194,7 +194,19 @@ public class PropostaService {
         PropostaDTO propostaSavedDTO = propostaAssembler.toDTO(propostaSaved);
 
         return propostaSavedDTO;
+    }
 
+    //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
 
+    public List<PropostaDTO> findAllByCodEdicao(int codEdicao) {
+
+        List<Proposta> listFiltradaPropostas = propostaRepository.findAllByCodEdicao(codEdicao);
+
+        List<PropostaDTO> listFiltradaPropostaDTO = new ArrayList<>();
+        for (Proposta proposta : listFiltradaPropostas) {
+            PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta);
+            listFiltradaPropostaDTO.add(propostaDTO);
+        }
+        return listFiltradaPropostaDTO;
     }
 }
