@@ -41,6 +41,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webflux</artifactId>
+			<version>5.3.7</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.projectreactor/reactor-core -->
+		<dependency>
+			<groupId>io.projectreactor.netty</groupId>
+			<artifactId>reactor-netty-http</artifactId>
+			<version>1.0.7</version>
+		</dependency>
 	</dependencies>
 
 	<build>

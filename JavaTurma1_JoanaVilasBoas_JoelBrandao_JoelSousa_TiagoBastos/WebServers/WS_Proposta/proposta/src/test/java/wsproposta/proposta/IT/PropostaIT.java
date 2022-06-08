@@ -43,9 +43,9 @@ public class PropostaIT {
     @Autowired
     PropostaService propostaService;
     @MockBean
-     UtilizadorRestRepository utilizadorRestRepository;
+    private UtilizadorRestRepository utilizadorRestRepository;
     @MockBean
-     OrganizacaoRestRepository organizacaoRestRepository;
+    private OrganizacaoRestRepository organizacaoRestRepository;
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -82,20 +82,6 @@ public class PropostaIT {
         Optional<OrganizacaoRestDTO> opOrganizacao = Optional.of(organizacaoDouble);
         when(organizacaoRestRepository.findOrganizacaoByNifOrganizacao(257837248L)).thenReturn(opOrganizacao);
 
-        // GET Proposta/{codProposta = 1}
-
-        MvcResult resultGet11 = mockMvc
-                .perform(MockMvcRequestBuilders
-                        .get("/propostas/" + 1)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound())
-                .andReturn();
-
-        String resultContentStr11 = resultGet11.getResponse().getContentAsString();
-
-        String msgErro = "O codigo da proposta nao consta na Base de Dados";
-        //assertNotNull(resultContent1);
-        assertEquals( msgErro ,resultContentStr11);
 
         // POST
 
@@ -130,6 +116,7 @@ public class PropostaIT {
 
 
         // GET Proposta/{codProposta = 1}
+
         MvcResult resultGet = mockMvc
                 .perform(MockMvcRequestBuilders
                 .get("/propostas/" + 1)

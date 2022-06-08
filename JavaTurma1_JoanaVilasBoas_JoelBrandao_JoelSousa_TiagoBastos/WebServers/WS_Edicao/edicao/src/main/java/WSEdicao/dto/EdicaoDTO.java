@@ -14,6 +14,8 @@ public class EdicaoDTO {
     int codEdicao;
     int codUc;
     int codAnoLetivo;
+    int codRUC;
+    String estado;
 
     public EdicaoDTO() {
     }

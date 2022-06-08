@@ -1,3 +1,4 @@
+/*
 package com.project.sprint.repository;
 
 import com.project.sprint.datamodel.UtilizadorJPA;
@@ -36,6 +37,7 @@ class UtilizadorRepositoryTest {
 
 
     // Para ambos os testes funcionarem deve se comentar os NewUtilizadorInfoDto presentes na WsUtilizadorApplication
+*/
 /*
     @Test
     void shouldSaveUtilizadorWithCorrectAttributes (){
@@ -74,6 +76,8 @@ class UtilizadorRepositoryTest {
         // Assert
         Optional<Utilizador> opUtilizadorDouble = Optional.of(utilizadorDouble);
         assertEquals(opUtilizadorDouble, optionalUtilizador);
-    }*/
+    }*//*
+
 }
 
+*/

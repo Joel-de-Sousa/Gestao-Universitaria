@@ -92,7 +92,7 @@ class AnoLetivoControllerTest {
         assertEquals(res, listaAnoLetivo);
     }
 
-    @Test
+    /*@Test
     void shouldCreateAnoLetivoWithCorrectAttributes() {
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -116,6 +116,6 @@ class AnoLetivoControllerTest {
 
         Object res = responseEntity.getBody();
         assertEquals(res, anoLetivoDouble);
-    }
+    }*/
 }
 

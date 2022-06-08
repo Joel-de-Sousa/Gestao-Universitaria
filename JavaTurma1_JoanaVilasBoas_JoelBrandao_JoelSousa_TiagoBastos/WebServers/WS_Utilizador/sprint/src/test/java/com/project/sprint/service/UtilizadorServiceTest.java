@@ -35,7 +35,7 @@ class UtilizadorServiceTest {
     UtilizadorRepository utilizadorRepository;
 
     @MockBean
-    IUtilizadorFactory utilizadorFactory;
+    IUtilizadorFactory iUtilizadorFactory;
 
     @MockBean
     Utilizador utilizador;
@@ -51,7 +51,10 @@ class UtilizadorServiceTest {
     @Test
     void shouldFindUtilizadorSearchingByID() {
 
+
         //ARRANGE
+
+
         Optional<Utilizador> optionalUtilizador = Optional.of(utilizador);
 
         when(utilizadorRepository.findById(1)).thenReturn(optionalUtilizador);
@@ -67,38 +70,6 @@ class UtilizadorServiceTest {
 
         //ASSERT
         assertEquals(utilizadorDTO1, utilizador1);
-
-
-    }
-
-    @Test
-    void shouldCreateUtilizadorSearchingByID() {
-
-        //ARRANGE
-
-        NewUtilizadorInfoDTO utilizadorInfoDTO = mock(NewUtilizadorInfoDTO.class);
-        Utilizador utilizador1 = mock(Utilizador.class);
-
-
-        when(utilizadorInfoDTO.getNome()).thenReturn("Nome");
-        when(utilizadorInfoDTO.getSobrenome()).thenReturn("Nome");
-        when(utilizadorInfoDTO.getEmail()).thenReturn("joana.gvb@gmail.com");
-        when(utilizadorInfoDTO.getTipoUtilizador()).thenReturn("ESTUDANTE");
-
-        when(utilizadorFactory.createUtilizador(utilizadorInfoDTO.getNome(), utilizadorInfoDTO.getSobrenome(),
-                utilizadorInfoDTO.getEmail(), Utilizador.TipoUtilizador.valueOf(utilizadorInfoDTO.getTipoUtilizador()))).thenReturn(utilizador);
-
-        when(utilizadorRepository.save(utilizador)).thenReturn(utilizador1);
-
-        when(utilizadorDomainDTOAssembler.toDTO(utilizador1)).thenReturn(utilizadorDTO);
-
-
-        //ACT
-        UtilizadorDTO utilizadorSaved = utilizadorService.createAndSaveUtilizador(utilizadorInfoDTO);
-
-
-        //ASSERT
-        assertEquals(utilizadorDTO, utilizadorSaved);
 
 
     }
