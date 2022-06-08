@@ -8,8 +8,6 @@ import lombok.Getter;
  */
 
 public class NewPropostaInfoDTO {
-
-
     @Getter
     int codUtilizador;
     @Getter

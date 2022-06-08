@@ -2,7 +2,6 @@ package wsproposta.proposta.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wsproposta.proposta.DTO.ErrorDTO;
 import wsproposta.proposta.DTO.NewPropostaInfoDTO;
 import wsproposta.proposta.DTO.PropostaDTO;
 import wsproposta.proposta.DTO.PropostaDTOParcial;

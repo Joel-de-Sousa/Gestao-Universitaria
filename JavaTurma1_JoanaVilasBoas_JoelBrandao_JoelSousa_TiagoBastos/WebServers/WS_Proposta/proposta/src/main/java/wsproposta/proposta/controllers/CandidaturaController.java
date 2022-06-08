@@ -6,9 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import wsproposta.proposta.DTO.PropostaDTO;
+import wsproposta.proposta.DTO.*;
 import wsproposta.proposta.services.CandidaturaService;
-import wsproposta.proposta.services.PropostaService;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,8 +35,8 @@ public class CandidaturaController {
     @GetMapping("")
     @ResponseBody
     public ResponseEntity<Object> getAllCandidaturas() {
-        List<CandidaturaDTO> listCandidaturasDTO = candidaturaService.findAll();
-        return new ResponseEntity<>(listPropostasDTO, HttpStatus.OK);
+        List<CandidaturaDTO> listCandidaturasDTO = candidaturaService.findAllCandidaturas();
+        return new ResponseEntity<>(listCandidaturasDTO, HttpStatus.OK);
     }
 
     //MÉTODO GET CANDIDATURAS BY COD CANDIDATURA
@@ -45,12 +44,43 @@ public class CandidaturaController {
     @ResponseBody
     public ResponseEntity<Object> getCandidaturaByCode(@PathVariable int codCandidatura) {
 
-        Optional<PropostaDTO> opPropostaDTO = service.getPropostaById(codProposta);
+        Optional<CandidaturaDTO> opCandidaturaDTO = candidaturaService.getCandidaturaByCodCandidatura(codCandidatura);
 
-        if (opPropostaDTO.isPresent()) {
-            return new ResponseEntity<>(opPropostaDTO, HttpStatus.OK);
+        if (opCandidaturaDTO.isPresent()) {
+            return new ResponseEntity<>(opCandidaturaDTO, HttpStatus.OK);
         } else
-            return new ResponseEntity<>("O codigo da proposta nao consta na Base de Dados", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("O codigo da candidatura nao consta na Base de Dados", HttpStatus.NOT_FOUND);
     }
 
+    //MÉTODO CREATE CANDIDATURA
+    @PostMapping("")
+    @ResponseBody
+    public ResponseEntity<Object> createAndSaveCandidatura (@RequestBody NewCandidaturaInfoDTO candidaturaInfoDTO) {
+
+        try {
+            CandidaturaDTO candidaturaDTO = candidaturaService.createAndSaveCandidatura (candidaturaInfoDTO);
+            return new ResponseEntity<>(candidaturaDTO, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    //MÉTODO PATCH ALTERA ESTADO CANDIDATURA ESTUDANTE
+
+    @PatchMapping("/estudante/{codCandidatura}")
+    public ResponseEntity<Object> partialUpdateEstadoCandidaturaEstudante (@RequestBody CandidaturaDTOParcial candidaturaUpdate, @PathVariable int codCandidatura) {
+
+        CandidaturaDTO updatedCandidatura = candidaturaService.updateEstadoCandidatura (candidaturaUpdate, codCandidatura);
+        return new ResponseEntity<>(updatedCandidatura, HttpStatus.OK);
+    }
+
+    //MÉTODO PATCH ALTERA ESTADO PEDIDO AO DOCENTE
+
+    @PatchMapping("/orientador/{codCandidatura}")
+    public ResponseEntity<Object> partialUpdateEstadoCandidaturaOrientador (@RequestBody CandidaturaDTOParcial candidaturaUpdate, @PathVariable int codCandidatura) {
+
+        CandidaturaDTO updatedCandidatura = candidaturaService.updateEstadoCandidatura (candidaturaUpdate, codCandidatura);
+        return new ResponseEntity<>(updatedCandidatura, HttpStatus.OK);
+    }
 }

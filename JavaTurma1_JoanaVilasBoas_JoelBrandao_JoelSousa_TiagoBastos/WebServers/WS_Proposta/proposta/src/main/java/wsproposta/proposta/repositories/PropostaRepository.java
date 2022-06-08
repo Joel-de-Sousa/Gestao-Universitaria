@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import wsproposta.proposta.datamodel.JPA.PropostaJPA;
 import wsproposta.proposta.datamodel.JPA.assembler.PropostaDomainDataAssembler;
 import wsproposta.proposta.domain.entities.Proposta;
-import wsproposta.proposta.repositories.JPA.PropostaJPARepository;
+import wsproposta.proposta.repositories.JPA.IPropostaJPARepository;
 import wsproposta.proposta.repositories.iRepositories.IPropostaRepository;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public class PropostaRepository implements IPropostaRepository {
     @Autowired
-    PropostaJPARepository propostaJPARepository;
+    IPropostaJPARepository propostaJPARepository;
     @Autowired
     PropostaDomainDataAssembler propostaAssembler;
 

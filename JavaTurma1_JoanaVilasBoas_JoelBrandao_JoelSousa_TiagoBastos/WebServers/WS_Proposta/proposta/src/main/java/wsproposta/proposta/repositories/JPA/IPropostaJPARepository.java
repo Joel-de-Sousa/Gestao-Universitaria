@@ -6,7 +6,7 @@ import wsproposta.proposta.datamodel.JPA.PropostaJPA;
 import java.util.List;
 import java.util.Optional;
 
-public interface PropostaJPARepository extends CrudRepository<PropostaJPA, Integer> {
+public interface IPropostaJPARepository extends CrudRepository<PropostaJPA, Integer> {
 
     Optional<PropostaJPA> findById(int codProposta);
 
