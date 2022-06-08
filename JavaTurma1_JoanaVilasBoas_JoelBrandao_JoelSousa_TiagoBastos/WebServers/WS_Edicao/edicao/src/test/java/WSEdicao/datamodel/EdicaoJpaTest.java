@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+/*@SpringBootTest
 class EdicaoJpaTest {
 
     @Test
@@ -41,4 +41,4 @@ class EdicaoJpaTest {
 
         assertNotEquals(edicao1, edicao2);
     }
-}
+}*/

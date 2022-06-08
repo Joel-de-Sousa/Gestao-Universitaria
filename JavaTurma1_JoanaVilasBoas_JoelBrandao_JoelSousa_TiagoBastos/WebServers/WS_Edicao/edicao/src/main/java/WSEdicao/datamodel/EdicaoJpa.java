@@ -1,6 +1,7 @@
 package WSEdicao.datamodel;
 
 import WSEdicao.domain.entities.AnoLetivo;
+import WSEdicao.domain.entities.Edicao;
 import WSEdicao.domain.entities.Uc;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,11 +28,16 @@ public class EdicaoJpa {
     //@JoinColumn(name="codAnoLetivo")
     private int codAnoLetivo;
 
+    private int codRUC;
+
+    private Edicao.Estado estado;
 
 
     protected EdicaoJpa(){}
-    public EdicaoJpa(int codUc, int codAnoLetivo) {
+    public EdicaoJpa(int codUc, int codAnoLetivo, int codRUC, Edicao.Estado estado) {
         this.codUc = codUc;
         this.codAnoLetivo = codAnoLetivo;
+        this.codRUC = codRUC;
+        this.estado = estado;
     }
 }

@@ -28,7 +28,7 @@ public class EdicaoDomainDTOAssembler {
     }
 
     public EdicaoDTO toDTO(Edicao edicao) {
-        return new EdicaoDTO(edicao.getCodEdicao(),edicao.getUc(),edicao.getAnoLetivo());
+        return new EdicaoDTO(edicao.getCodEdicao(),edicao.getUc(),edicao.getAnoLetivo(), edicao.getCodRUC(), edicao.getEstado().toString());
     }
 
     public EdicaoAllArgsDTO toDTOAllArgs(Edicao edicao){
@@ -37,6 +37,6 @@ public class EdicaoDomainDTOAssembler {
 
         return new EdicaoAllArgsDTO(edicao.getCodEdicao(), ucDTO.get().getCodUc(),ucDTO.get().getSigla(),
                 ucDTO.get().getDenominacao(), anoLetivoDTO.get().getCodAnoLetivo(),
-                anoLetivoDTO.get().getAno());
+                anoLetivoDTO.get().getAno(), edicao.getCodRUC());
     }
 }
