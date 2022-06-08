@@ -25,6 +25,16 @@ class ProjetoTest {
     }
 
     @Test
+    void shouldCreateNewProjetoWithCorrectAttributesALL(){
+        Projeto projeto = new Projeto(1,1,2,3);
+
+        assertEquals(projeto.getCodProjeto(),1);
+        assertEquals(projeto.getCodProposta(),1);
+        assertEquals(projeto.getCodEstudante(),2);
+        assertEquals(projeto.getCodOrientador(),3);
+    }
+
+    @Test
 
     void shouldReturnEqualSameProjeto(){
         Projeto projeto = new Projeto(1,2,3);
