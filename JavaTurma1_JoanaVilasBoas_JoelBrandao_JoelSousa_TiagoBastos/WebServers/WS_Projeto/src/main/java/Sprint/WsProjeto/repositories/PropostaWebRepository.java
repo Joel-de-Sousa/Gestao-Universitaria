@@ -16,6 +16,8 @@ public class PropostaWebRepository {
     @Autowired
     PropostaRestRepository propostaRestRepository;
 
+
+
     public Optional<PropostaRestDTO> findPropostaByCode (int codProposta){
 
         Optional<PropostaRestDTO> opCode = propostaRestRepository.findPropostaByCode(codProposta);
