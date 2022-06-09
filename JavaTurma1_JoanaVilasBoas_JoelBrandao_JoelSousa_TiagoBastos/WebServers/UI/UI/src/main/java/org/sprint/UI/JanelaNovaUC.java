@@ -50,6 +50,7 @@ public class JanelaNovaUC implements Initializable {
                 AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar uma nova Unidade Curricular.",
                         criou ? "Unidade Curricular criada com sucesso."
                                 : "Não foi possível criar a Unidade Curricular.").show();
+
                 ((Node) actionEvent.getSource()).getScene().getWindow().hide();
             }
         }
@@ -66,7 +67,7 @@ public class JanelaNovaUC implements Initializable {
     @FXML
     public void actDenominacao(Event event) {
 
-        if (textFieldDenominacao.getText().trim().length() >= 10 && textFielSigla.getText().trim().length() >= 3) {
+        if (textFieldDenominacao.getText().trim().length() > 10 && textFielSigla.getText().trim().length() > 3) {
             idBtconfirm.setDisable(false);
         }
     }
@@ -74,10 +75,10 @@ public class JanelaNovaUC implements Initializable {
     @FXML
     public void actSigla(Event event) {
 
-        if (textFielSigla.getText().length() >= 3)
+        if (textFielSigla.getText().length() > 3)
             textFieldDenominacao.setDisable(false);
 
-        if (textFieldDenominacao.getText().length() >= 10 && textFielSigla.getText().length() >= 3)
+        if (textFieldDenominacao.getText().length() > 10 && textFielSigla.getText().length() > 3)
             idBtconfirm.setDisable(false);
 
     }

@@ -10,7 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import wsproposta.proposta.datamodel.JPA.PropostaJPA;
 import wsproposta.proposta.datamodel.JPA.assembler.PropostaDomainDataAssembler;
 import wsproposta.proposta.domain.entities.Proposta;
-import wsproposta.proposta.repositories.JPA.PropostaJPARepository;
+import wsproposta.proposta.repositories.JPA.IPropostaJPARepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ class PropostaRepositoryTest {
     PropostaDomainDataAssembler propostaAssembler;
 
     @MockBean
-    PropostaJPARepository propostaJPARepository;
+    IPropostaJPARepository propostaJPARepository;
     @InjectMocks
     PropostaRepository propostaRepository;
 

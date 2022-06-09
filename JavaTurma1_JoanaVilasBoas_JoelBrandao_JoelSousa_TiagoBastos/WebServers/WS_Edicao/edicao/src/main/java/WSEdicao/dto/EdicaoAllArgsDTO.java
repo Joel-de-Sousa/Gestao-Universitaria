@@ -15,5 +15,6 @@ public class EdicaoAllArgsDTO {
     String denominacao;
     int codAnoLetivo;
     String ano;
+    int codRUC;
 
 }

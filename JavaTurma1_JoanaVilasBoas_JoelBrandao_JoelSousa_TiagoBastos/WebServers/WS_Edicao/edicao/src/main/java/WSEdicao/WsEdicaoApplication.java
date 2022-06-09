@@ -33,9 +33,9 @@ public class WsEdicaoApplication {
 
 
 				//Create a few Uc, AnoLetivos and Edicões
-				UcDTO uc1 = ucService.createAndSaveUc("FCUP", "FACULDADE DE CIENCIAS DA UP");
+				UcDTO uc1 = ucService.createAndSaveUc("PTRW", "Portugadfsdsfl");
 				AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015");
-				//EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo1.getCodAnoLetivo());
+				//EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo1.getCodAnoLetivo(), uc1.getCodUc());
 			};
 
 

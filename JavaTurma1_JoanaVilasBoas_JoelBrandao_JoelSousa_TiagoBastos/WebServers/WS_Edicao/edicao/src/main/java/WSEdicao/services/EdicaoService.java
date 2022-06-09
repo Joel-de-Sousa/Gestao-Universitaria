@@ -43,17 +43,18 @@ public class EdicaoService {
     @Autowired
     EdicaoDomainDTOAssembler edicaoDTOAssembler;
 
+
     public EdicaoService() {
     }
 
-    public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo) throws Exception {
+    public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo,int codRUC) throws Exception {
 
         Optional<UcDTO> optionalUc = ucRepository.findBycodUc(codUc);
         Optional<AnoLetivoDTO> optionalAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
 
         if (optionalUc.isPresent() && optionalAnoLetivo.isPresent()) {
 
-            Edicao edicao = edicaoFactory.createEdicao(codUc,codAnoLetivo);
+            Edicao edicao = edicaoFactory.createEdicao(codUc,codAnoLetivo,codRUC);
             Edicao savedEdicao = edicaoRepository.save(edicao);
             EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(savedEdicao);
 
@@ -99,6 +100,21 @@ public class EdicaoService {
         EdicaoAllArgsDTO edicaoAllArgsDTO = edicaoDTOAssembler.toDTOAllArgs(opEdicao.get());
 
         return Optional.of(edicaoAllArgsDTO);
+    }
+
+    //MÉTODO PATCH ESTADO EDICAO
+
+    public EdicaoDTO updateEstadoEdicao(EdicaoDTOParcial edicaoUpdate, int codEdicao) throws Exception {
+
+        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(codEdicao);
+
+        opEdicao.get().setCodEdicao(edicaoUpdate.getCodEdicao());
+        opEdicao.get().setEstado(Edicao.Estado.valueOf(edicaoUpdate.getEstado()));
+
+        Edicao edicaoSaved = edicaoRepository.save(opEdicao.get());
+        EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
+
+        return edicaoSavedDTO;
     }
 
 

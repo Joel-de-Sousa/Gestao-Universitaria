@@ -50,7 +50,7 @@ public class Candidatura {
         this.estadoOrientador = estadoOrientador;
     }
 
-    public Candidatura(int codProposta, int codEstudante, int codOrientador, Estado estadoEstudante, Estado estadoOrientador) {
+    public Candidatura(int codProposta, int codEstudante) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
         this.codOrientador = COD_ORIENTADOR_POR_OMISSAO;
@@ -58,10 +58,10 @@ public class Candidatura {
         this.estadoOrientador = ESTADO_ORIENTADOR_POR_OMISSAO;
     }
 
-    public Candidatura(int codCandidatura, Estado estadoEstudante) {
+    /*public Candidatura(int codCandidatura, Estado estadoEstudante) {
         this.codCandidatura = codCandidatura;
         this.estadoEstudante = estadoEstudante;
-    }
+    }*/
 
    /* public Candidatura(int codCandidatura, Estado estadoOrientador) {
         this.codCandidatura = codCandidatura;

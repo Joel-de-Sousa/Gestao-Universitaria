@@ -29,7 +29,6 @@ public class PropostaJPA {
     private String problema;
     @Getter
     private String objetivo;
-
     @Getter
     private Estado estado;
 

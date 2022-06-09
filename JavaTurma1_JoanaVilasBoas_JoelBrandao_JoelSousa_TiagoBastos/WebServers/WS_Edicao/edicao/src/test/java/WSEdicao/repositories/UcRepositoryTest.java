@@ -49,7 +49,7 @@ class UcRepositoryTest {
     }
 
     @Test
-    void shouldSaveUc() {
+    void shouldSaveUc() throws Exception {
         //Arrange
         when(ucDomainDataAssembler.toData(uc)).thenReturn(ucJpa);
 

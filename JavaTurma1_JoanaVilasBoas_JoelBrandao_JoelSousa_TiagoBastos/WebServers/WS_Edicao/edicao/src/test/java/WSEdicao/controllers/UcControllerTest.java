@@ -98,7 +98,7 @@ class UcControllerTest {
         assertEquals(res, listaUc);
     }
 
-    @Test
+    /*@Test
     void shouldCreateUcWithCorrectAttributes() {
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -123,5 +123,5 @@ class UcControllerTest {
         Object res = responseEntity.getBody();
         assertEquals(res, ucDouble);
 
-    }
+    }*/
 }

@@ -31,7 +31,7 @@ public class EdicaoDomainDataAssembler {
         //UcJpa ucJpa= ucRepository.findJPAbyCodUC(edicao.getUc());
         //AnoLetivoJpa anoLetivoJpa = anoLetivoRepository.findJPAbyCodAnoLetivo(edicao.getAnoLetivo());
 
-        return new EdicaoJpa(edicao.getUc(), edicao.getAnoLetivo());
+        return new EdicaoJpa(edicao.getUc(), edicao.getAnoLetivo(), edicao.getCodRUC(),edicao.getEstado());
 
     }
 
@@ -40,6 +40,6 @@ public class EdicaoDomainDataAssembler {
         //Uc uc = ucAssembler.toDomain(edicaoJpa.getCodUc());
         //AnoLetivo anoLetivo = anoLetivoAssembler.toDomain(edicaoJpa.getCodAnoLetivo());
 
-        return new Edicao(edicaoJpa.getCodEdicao(), edicaoJpa.getCodUc(), edicaoJpa.getCodAnoLetivo());
+        return new Edicao(edicaoJpa.getCodEdicao(), edicaoJpa.getCodUc(), edicaoJpa.getCodAnoLetivo(), edicaoJpa.getCodRUC(), edicaoJpa.getEstado());
     }
 }

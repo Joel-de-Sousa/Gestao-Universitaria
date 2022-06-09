@@ -3,6 +3,7 @@ package WSEdicao.controllers;
 import WSEdicao.domain.entities.Edicao;
 import WSEdicao.dto.EdicaoAllArgsDTO;
 import WSEdicao.dto.EdicaoDTO;
+import WSEdicao.dto.EdicaoDTOParcial;
 import WSEdicao.dto.NewEdicaoInfoDTO;
 import WSEdicao.services.EdicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,12 +74,22 @@ public class EdicaoController {
     //@ResponseBody
     public ResponseEntity<Object> createEdicao(@RequestBody NewEdicaoInfoDTO info){
         try{
-        EdicaoDTO edicao = service.createAndSaveEdicao(info.getCodUc(),info.getCodAnoLetivo());
+        EdicaoDTO edicao = service.createAndSaveEdicao(info.getCodUc(),info.getCodAnoLetivo(),info.getCodRUC());
 
         return new ResponseEntity<>(edicao, HttpStatus.CREATED);
 
         }catch (Exception ex){
             return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
         }
+    }
+
+    //MÉTODO PATCH ALTERA ESTADO EDICAO || - REVER
+
+    @PatchMapping("/{codEdicao}")
+    public ResponseEntity<Object> partialUpdateEstadoProposta(@RequestBody EdicaoDTOParcial edicaoUpdate, @PathVariable int codEdicao) throws Exception {
+
+        EdicaoDTO updatedProposta = service.updateEstadoEdicao (edicaoUpdate, codEdicao);
+        return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
+
     }
 }

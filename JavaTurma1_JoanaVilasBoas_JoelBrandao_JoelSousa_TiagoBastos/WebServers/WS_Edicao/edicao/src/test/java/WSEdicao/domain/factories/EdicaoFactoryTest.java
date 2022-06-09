@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+/*@SpringBootTest
 class EdicaoFactoryTest {
 
     @Test
@@ -16,4 +16,4 @@ class EdicaoFactoryTest {
         EdicaoFactory edicaoFactory = new EdicaoFactory();
         edicaoFactory.createEdicao(1, 1);
     }
-}
+}*/
