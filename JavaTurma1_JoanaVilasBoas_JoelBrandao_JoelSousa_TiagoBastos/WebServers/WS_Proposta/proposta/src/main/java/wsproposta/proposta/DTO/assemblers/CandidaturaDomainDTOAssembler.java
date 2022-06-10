@@ -11,11 +11,11 @@ public class CandidaturaDomainDTOAssembler {
     private CandidaturaDomainDTOAssembler(){}
 
     public CandidaturaDTO toDTO (int codProposta, int codEstudante, int codOrientador, String estadoEstudante, String estadoOrientador){
-        return new CandidaturaDTO(codProposta, codEstudante, codOrientador, estadoEstudante, estadoOrientador);
+        return new CandidaturaDTO(codProposta, codEstudante, estadoEstudante);
     }
 
     public CandidaturaDTO toDTO (Candidatura candidatura){
-        return new CandidaturaDTO(candidatura.getCodProposta(), candidatura.getCodEstudante(), candidatura.getCodOrientador(),
-               candidatura.getEstadoEstudante().toString(),candidatura.getEstadoOrientador().toString());
+        return new CandidaturaDTO(candidatura.getCodProposta(), candidatura.getCodEstudante(),
+               candidatura.getEstadoEstudante().toString());
     }
 }

@@ -20,20 +20,14 @@ public class CandidaturaJPA {
     @Getter
     int codEstudante;
     @Getter
-    int codOrientador;
-    @Getter
     Candidatura.Estado estadoEstudante;
-    @Getter
-    Candidatura.Estado estadoOrientador;
 
     public CandidaturaJPA() {
     }
 
-    public CandidaturaJPA(int codProposta, int codEstudante, int codOrientador, Candidatura.Estado estadoEstudante, Candidatura.Estado estadoOrientador) {
+    public CandidaturaJPA(int codProposta, int codEstudante, Candidatura.Estado estadoEstudante) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
-        this.codOrientador = codOrientador;
         this.estadoEstudante = estadoEstudante;
-        this.estadoOrientador = estadoOrientador;
     }
 }

@@ -29,33 +29,21 @@ public class Candidatura {
     int codEstudante;
 
     @Getter @Setter
-    int codOrientador;
-
-    @Getter @Setter
     Estado estadoEstudante;
 
-    @Getter @Setter
-    Estado estadoOrientador;
-
     private static final Candidatura.Estado ESTADO_ESTUDANTE_POR_OMISSAO = Candidatura.Estado.PENDENTE;
-    private static final Candidatura.Estado ESTADO_ORIENTADOR_POR_OMISSAO = Candidatura.Estado.PENDENTE;
-    private static final int COD_ORIENTADOR_POR_OMISSAO = 0;
 
-    public Candidatura(int codCandidatura, int codProposta, int codEstudante, int codOrientador, Estado estadoEstudante, Estado estadoOrientador) {
+    public Candidatura(int codCandidatura, int codProposta, int codEstudante, Estado estadoEstudante) {
         this.codCandidatura = codCandidatura;
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
-        this.codOrientador = codOrientador;
         this.estadoEstudante = estadoEstudante;
-        this.estadoOrientador = estadoOrientador;
     }
 
     public Candidatura(int codProposta, int codEstudante) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
-        this.codOrientador = COD_ORIENTADOR_POR_OMISSAO;
         this.estadoEstudante = ESTADO_ESTUDANTE_POR_OMISSAO;
-        this.estadoOrientador = ESTADO_ORIENTADOR_POR_OMISSAO;
     }
 
     /*public Candidatura(int codCandidatura, Estado estadoEstudante) {

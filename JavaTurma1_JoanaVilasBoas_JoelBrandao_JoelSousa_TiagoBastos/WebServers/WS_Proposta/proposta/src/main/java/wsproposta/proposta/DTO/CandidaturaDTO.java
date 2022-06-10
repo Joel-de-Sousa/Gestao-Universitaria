@@ -12,9 +12,5 @@ public class CandidaturaDTO {
     @Getter
     int codEstudante;
     @Getter
-    int codOrientador;
-    @Getter
     String estadoEstudante;
-    @Getter
-    String estadoOrientador;
 }

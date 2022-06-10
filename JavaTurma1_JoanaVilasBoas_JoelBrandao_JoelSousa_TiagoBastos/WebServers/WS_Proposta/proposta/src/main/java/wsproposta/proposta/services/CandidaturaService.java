@@ -66,9 +66,7 @@ public class CandidaturaService {
         Optional<Candidatura> opCandidatura = candidaturaRepository.findById(codCandidatura);
 
         opCandidatura.get().setCodCandidatura(candidaturaUpdate.getCodCandidatura());
-        opCandidatura.get().setCodOrientador(candidaturaUpdate.getCodOrientador());
         opCandidatura.get().setEstadoEstudante(Candidatura.Estado.valueOf(candidaturaUpdate.getEstadoEstudante()));
-        opCandidatura.get().setEstadoOrientador(Candidatura.Estado.valueOf(candidaturaUpdate.getEstadoOrientador()));
 
         Candidatura candidaturaSaved = candidaturaRepository.save(opCandidatura.get());
         CandidaturaDTO candidaturaSavedDTO = candidaturaAssembler.toDTO(candidaturaSaved);

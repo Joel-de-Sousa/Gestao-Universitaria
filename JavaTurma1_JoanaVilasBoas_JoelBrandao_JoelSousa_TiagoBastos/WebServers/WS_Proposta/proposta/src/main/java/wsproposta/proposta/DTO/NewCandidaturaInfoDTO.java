@@ -9,20 +9,14 @@ public class NewCandidaturaInfoDTO {
     @Getter
     int codEstudante;
     @Getter
-    int codOrientador;
-    @Getter
     String estadoEstudante;
-    @Getter
-    String estadoOrientador;
 
     public NewCandidaturaInfoDTO() {
     }
 
-    public NewCandidaturaInfoDTO(int codProposta, int codEstudante, int codOrientador, String estadoEstudante, String estadoOrientador) {
+    public NewCandidaturaInfoDTO(int codProposta, int codEstudante, String estadoEstudante) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
-        this.codOrientador = codOrientador;
         this.estadoEstudante = estadoEstudante;
-        this.estadoOrientador = estadoOrientador;
     }
 }
