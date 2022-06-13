@@ -18,7 +18,6 @@ public class Candidatura {
     public enum Estado {PENDENTE, ACEITE, REJEITADA};
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     @Getter @Setter
     int codCandidatura;
 

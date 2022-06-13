@@ -13,7 +13,7 @@ public class CandidaturaJPA {
 
     @Id
     @Getter
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = "codCandidatura")
     int codCandidatura;
     @Getter
     int codProposta;
