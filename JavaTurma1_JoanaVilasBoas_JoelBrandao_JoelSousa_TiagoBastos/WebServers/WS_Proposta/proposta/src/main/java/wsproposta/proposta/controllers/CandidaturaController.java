@@ -68,19 +68,19 @@ public class CandidaturaController {
 
     //MÉTODO PATCH ALTERA ESTADO CANDIDATURA ESTUDANTE
 
-    @PatchMapping("/estudante/{codCandidatura}")
+    @PatchMapping("/estado/{codCandidatura}")
     public ResponseEntity<Object> partialUpdateEstadoCandidaturaEstudante (@RequestBody CandidaturaDTOParcial candidaturaUpdate, @PathVariable int codCandidatura) {
 
         CandidaturaDTO updatedCandidatura = candidaturaService.updateEstadoCandidatura (candidaturaUpdate, codCandidatura);
         return new ResponseEntity<>(updatedCandidatura, HttpStatus.OK);
     }
 
-    //MÉTODO PATCH ALTERA ESTADO PEDIDO AO DOCENTE
+   /* //MÉTODO PATCH ALTERA ESTADO PEDIDO AO DOCENTE
 
     @PatchMapping("/orientador/{codCandidatura}")
     public ResponseEntity<Object> partialUpdateEstadoCandidaturaOrientador (@RequestBody CandidaturaDTOParcial candidaturaUpdate, @PathVariable int codCandidatura) {
 
         CandidaturaDTO updatedCandidatura = candidaturaService.updateEstadoCandidatura (candidaturaUpdate, codCandidatura);
         return new ResponseEntity<>(updatedCandidatura, HttpStatus.OK);
-    }
+    }*/
 }
