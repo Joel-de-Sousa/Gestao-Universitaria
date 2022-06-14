@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.sprint3.model.DTO.ConviteRestDTO;
 import reactor.core.publisher.Mono;
@@ -13,6 +14,7 @@ import reactor.netty.resources.ConnectionProvider;
 import java.util.Collections;
 import java.util.Optional;
 
+@Repository
 public class ConviteRestRepository {
     WebClient webClient = WebClient.builder()
             .baseUrl("http://localhost:8085")

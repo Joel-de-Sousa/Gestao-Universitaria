@@ -19,7 +19,7 @@ public class CandidaturaService {
     @Autowired
     ICandidaturaFactory candidaturaFactory;
     @Autowired
-    ICandidaturaRepository candidaturaRepository;
+    CandidaturaRepository candidaturaRepository;
     @Autowired
     CandidaturaDomainDTOAssembler candidaturaAssembler;
 

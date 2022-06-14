@@ -24,6 +24,9 @@ public class JanelaPrincipalController implements Initializable {
 
     private UtilizadorController utilizadorController;
     private Stage novaJanelaEstudante;
+
+    private Stage novaJanelaDocente;
+
     @FXML
     private TextField codUtilizadorField;
     @FXML
@@ -65,6 +68,30 @@ public class JanelaPrincipalController implements Initializable {
                 novaJanelaEstudante.setScene(scene);
                 novaJanelaEstudante.show();
             }
+
+
+            if (utilizador.getTipoUtilizador().equals("DOCENTE")) {
+
+                novaJanelaDocente = new Stage();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaDocente.fxml"));
+                Parent root = loader.load();
+
+
+                /*String nome = utilizador.getNome();
+                JanelaEstudanteController janelaController = loader.getController();
+                janelaController.displayName(nome);
+                janelaController.displayObject(utilizador);*/
+
+                Scene scene = new Scene(root);
+                novaJanelaDocente.initModality(Modality.APPLICATION_MODAL);
+                novaJanelaDocente.setTitle("Área Docente");
+                novaJanelaDocente.setResizable(false);
+                novaJanelaDocente.setScene(scene);
+                novaJanelaDocente.show();
+            }
+
+
 
         } catch (Exception e) {
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "","O código de Utilizador introduzido não é válido").show();

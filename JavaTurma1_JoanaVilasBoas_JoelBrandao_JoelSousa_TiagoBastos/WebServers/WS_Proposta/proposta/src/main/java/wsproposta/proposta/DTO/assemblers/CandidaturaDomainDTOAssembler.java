@@ -10,12 +10,12 @@ public class CandidaturaDomainDTOAssembler {
 
     private CandidaturaDomainDTOAssembler(){}
 
-    public CandidaturaDTO toDTO (int codProposta, int codEstudante, int codOrientador, String estadoEstudante, String estadoOrientador){
-        return new CandidaturaDTO(codProposta, codEstudante, estadoEstudante);
+    public CandidaturaDTO toDTO (int codCandidatura, int codProposta, int codEstudante, String estadoEstudante){
+        return new CandidaturaDTO(codCandidatura, codProposta, codEstudante, estadoEstudante);
     }
 
     public CandidaturaDTO toDTO (Candidatura candidatura){
-        return new CandidaturaDTO(candidatura.getCodProposta(), candidatura.getCodEstudante(),
+        return new CandidaturaDTO(candidatura.getCodCandidatura(), candidatura.getCodProposta(), candidatura.getCodEstudante(),
                candidatura.getEstadoEstudante().toString());
     }
 }

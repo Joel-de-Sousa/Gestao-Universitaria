@@ -8,7 +8,8 @@ import lombok.*;
 @ToString
 public class PropostaDTO {
 
-
+    @Getter
+    int codProposta;
     @Getter
     int codUtilizador;
     @Getter

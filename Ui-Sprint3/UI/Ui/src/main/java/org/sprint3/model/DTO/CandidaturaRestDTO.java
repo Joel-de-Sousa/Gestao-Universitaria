@@ -6,23 +6,19 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjetoRestDTO {
+public class CandidaturaRestDTO {
 
     @Getter
-    private int codProjeto;
-
+    int codCandidatura;
     @Getter
-    private int codProposta;
-
+    int codProposta;
     @Getter
-    private int codEstudante;
-
+    int codEstudante;
     @Getter
-    private int codOrientador;
+    String estadoEstudante;
 
-    public ProjetoRestDTO(int codProposta, int codEstudante, int codOrientador) {
+    public CandidaturaRestDTO(int codProposta, int codEstudante) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
-        this.codOrientador = codOrientador;
     }
 }

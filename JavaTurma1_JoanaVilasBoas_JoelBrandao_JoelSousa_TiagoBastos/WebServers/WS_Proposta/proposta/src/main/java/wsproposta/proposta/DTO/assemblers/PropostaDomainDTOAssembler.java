@@ -9,12 +9,12 @@ public class PropostaDomainDTOAssembler {
 
     private PropostaDomainDTOAssembler(){}
 
-    public PropostaDTO toDTO (int codUtilizador, long nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo, String estado){
-        return new PropostaDTO(codUtilizador, nifOrganizacao, codEdicao, sTitulo, sProblema, sObjetivo, estado);
+    public PropostaDTO toDTO (int codProposta,int codUtilizador, long nifOrganizacao, int codEdicao, String sTitulo, String sProblema, String sObjetivo, String estado){
+        return new PropostaDTO(codProposta, codUtilizador, nifOrganizacao, codEdicao, sTitulo, sProblema, sObjetivo, estado);
     }
 
     public PropostaDTO toDTO (Proposta proposta){
-        return new PropostaDTO(proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
+        return new PropostaDTO(proposta.getCodProposta(), proposta.getCodUtilizador(), proposta.getNifOrganizacao(), proposta.getCodEdicao(),
                 proposta.getTitulo(), proposta.getProblema(), proposta.getObjetivo(), proposta.getEstado().toString());
     }
 

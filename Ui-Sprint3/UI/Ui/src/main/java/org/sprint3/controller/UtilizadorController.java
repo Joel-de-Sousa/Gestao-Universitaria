@@ -1,9 +1,7 @@
 package org.sprint3.controller;
 
-import org.sprint3.model.DTO.PropostaRestDTO;
 import org.sprint3.model.DTO.UtilizadorRestDTO;
 import org.sprint3.model.repository.REST.UtilizadorRestRepository;
-import org.sprint3.model.repository.UtilizadorWebRepository;
 
 import java.util.ArrayList;
 import java.util.List;

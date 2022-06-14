@@ -8,6 +8,8 @@ import lombok.*;
 public class CandidaturaDTO {
 
     @Getter
+    int codCandidatura;
+    @Getter
     int codProposta;
     @Getter
     int codEstudante;

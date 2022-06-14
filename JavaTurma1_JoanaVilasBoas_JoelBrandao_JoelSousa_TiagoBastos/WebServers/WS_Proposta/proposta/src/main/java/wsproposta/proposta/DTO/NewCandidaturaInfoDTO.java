@@ -14,9 +14,9 @@ public class NewCandidaturaInfoDTO {
     public NewCandidaturaInfoDTO() {
     }
 
-    public NewCandidaturaInfoDTO(int codProposta, int codEstudante, String estadoEstudante) {
+    public NewCandidaturaInfoDTO(int codProposta, int codEstudante/*, String estadoEstudante*/) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
-        this.estadoEstudante = estadoEstudante;
+        //this.estadoEstudante = estadoEstudante;
     }
 }

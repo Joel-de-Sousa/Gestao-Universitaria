@@ -10,10 +10,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import org.sprint3.controller.ConviteController;
-import org.sprint3.controller.PropostaController;
-import org.sprint3.controller.UtilizadorController;
+import org.sprint3.controller.*;
+import org.sprint3.model.DTO.ProjetoRestDTO;
+import org.sprint3.model.DTO.PropostaRestDTO;
 import org.sprint3.model.DTO.UtilizadorRestDTO;
+import org.sprint3.model.repository.REST.ProjetoRestRepository;
 
 import java.net.URL;
 import java.util.List;
@@ -22,10 +23,12 @@ import java.util.ResourceBundle;
 public class JanelaEstudanteController implements Initializable {
 
     private UtilizadorController utilizadorController;
-
     private PropostaController propostaController;
-
     private ConviteController conviteController;
+
+    private CandidaturaController candidaturaController;
+    private ProjetoController projetoController;
+
 
     private UtilizadorRestDTO utilizadorIntroduzido;
 
@@ -43,11 +46,14 @@ public class JanelaEstudanteController implements Initializable {
     @FXML
     private Button btnConvidar2;
     String docenteSeleccionado;
+    String propostaSeleccionada;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         utilizadorController = new UtilizadorController();
         propostaController = new PropostaController();
+        candidaturaController = new CandidaturaController();
+        conviteController = new ConviteController();
 
         btnConvidar2.setVisible(false);
         btnCancelar.setVisible(false);
@@ -65,34 +71,41 @@ public class JanelaEstudanteController implements Initializable {
     public void displayObject (UtilizadorRestDTO utilizador){
         utilizadorIntroduzido = utilizador;
     }
+
+    //BOTAO APRESENTA LISTA DE PROPOSTAS PARA ESTUDANTE SE CANDIDATAR
     @FXML
     public void handleButtonCandidatarAction(ActionEvent actionEvent) {
         listView.getItems().clear();
+
+        btnConvidar2.setVisible(true);
+        btnCancelar.setVisible(true);
+        btnConvidar2.setText("Candidatar");
+        btnConvidar2.setOnAction(this::handleButtonCandidatarAPropostaAction);
+
         List<String> list = propostaController.getAllPropostas();
-        //System.out.println(list);
         listView.getItems().addAll(list);
 
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                docenteSeleccionado = listView.getSelectionModel().getSelectedItem();
-                System.out.println(docenteSeleccionado);
+                propostaSeleccionada = listView.getSelectionModel().getSelectedItem();
+                System.out.println(propostaSeleccionada);
             }
         });
     }
 
+    //BOTAO APRESENTA LISTA DOCENTES PARA CONVIDAR ORIENTADOR
     @FXML
     public void handleButtonConvidarAction(ActionEvent actionEvent) {
+
         listView.getItems().clear();
 
         btnConvidar2.setVisible(true);
+        btnConvidar2.setText("Convidar");
         btnCancelar.setVisible(true);
 
         List<String> list = utilizadorController.getAllUtilizadores();
         listView.getItems().setAll(list);
-        /*listView.getItems().setAll(utilizadorController.getUtilizadorById(1).getNome(),
-                utilizadorController.getUtilizadorById(2).getNome()+" "+
-                utilizadorController.getUtilizadorById(2).getSobrenome());*/
 
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -103,11 +116,13 @@ public class JanelaEstudanteController implements Initializable {
         });
     }
 
+    //BOTAO CANCELAR ACÇÃO CONVIDAR
     @FXML
     public void handleButtonCancelarAction(ActionEvent actionEvent) {
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
 
+    //BOTAO CONVIDAR DOCENTE
     @FXML
     public void handleButtonConvidarDocenteAction(ActionEvent actionEvent) {
 
@@ -116,19 +131,46 @@ public class JanelaEstudanteController implements Initializable {
             String [] docente = docenteSeleccionado.split("-");
             int codDocente = Integer.parseInt(docente[0]);
 
+            ProjetoRestDTO projeto = projetoController.getProjetoByCodEstudante(codEstudante);
+            int codProjeto = projeto.getCodProjeto();
 
+            boolean criou = conviteController.criarNovoConvite(codEstudante, codDocente, codProjeto);
 
-            boolean criou = conviteController.criarNovoConvite(codEstudante, codDocente);
-
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar uma nova Edição.",
-                    criou ? "Edição criada com sucesso."
-                            : "Não foi possível criar a edição.").show();
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar um novo Convite.",
+                    criou ? "Convite enviado com sucesso."
+                            : "Não foi possível enviar convite.").show();
             ((Node) actionEvent.getSource()).getScene().getWindow().hide();
         }catch (Exception e){
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
 
         }
+
+    }
+
+    //BOTAO CANDIDATAR
+
+    public void handleButtonCandidatarAPropostaAction(ActionEvent actionEvent){
+
+        try {
+            int codEstudante = utilizadorIntroduzido.getCodUtilizador();
+            System.out.println(codEstudante);
+            String [] proposta = propostaSeleccionada.split("-");
+            int codProposta = Integer.parseInt(proposta[0]);
+            System.out.println(codProposta);
+
+            boolean criou = candidaturaController.criarNovoCandidatura(codProposta, codEstudante);
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar um nova Candidatura.",
+                    criou ? "Candidatura criada com sucesso."
+                            : "Não foi possível criar candidatura.").show();
+            ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        }catch (Exception e){
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    e.getMessage()).show();
+
+        }
+
 
     }
 }
