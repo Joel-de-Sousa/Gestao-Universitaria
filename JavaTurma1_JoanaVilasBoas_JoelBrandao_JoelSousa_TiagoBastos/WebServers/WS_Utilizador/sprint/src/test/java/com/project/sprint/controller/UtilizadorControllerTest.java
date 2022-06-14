@@ -17,6 +17,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -100,6 +102,34 @@ class UtilizadorControllerTest {
 
         Object res = responseEntity.getBody();
         assertEquals(res, utilizadorDouble);
+    }
+
+    @Test
+    void test(){
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        UtilizadorDTO utilizadorDTO1 = mock(UtilizadorDTO.class);
+        when(utilizadorDTO1.getTipoUtilizador()).thenReturn("ESTUDANTE");
+
+        UtilizadorDTO utilizadorDTO2 = mock(UtilizadorDTO.class);
+        when(utilizadorDTO2.getTipoUtilizador()).thenReturn("ESTUDANTE");
+
+        List<UtilizadorDTO> listUtlizadores = new ArrayList<>();
+        listUtlizadores.add(utilizadorDTO1);
+        listUtlizadores.add(utilizadorDTO2);
+
+        when(utilizadorService.findAllByTipoUtilizador("ESTUDANTE")).thenReturn(listUtlizadores);
+
+        ResponseEntity<Object> responseEntity = utilizadorController.getAllUtilizadoresByTipoUtilizador("ESTUDANTE");
+
+        assertEquals(responseEntity.getStatusCodeValue(),HttpStatus.OK.value());
+
+        List<UtilizadorDTO> listFinal = (List<UtilizadorDTO>) responseEntity.getBody();
+
+        assertEquals(listFinal,listUtlizadores);
+
     }
 
 }

@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RestController
 @RequestMapping(path = "/utilizadores")
@@ -58,5 +60,14 @@ public class UtilizadorController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
+    }
+    @GetMapping("/tipo/{tipoUtilizador}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllUtilizadoresByTipoUtilizador(@PathVariable String tipoUtilizador) {
+
+        List<UtilizadorDTO> listUtilizadorDTO = service.findAllByTipoUtilizador(tipoUtilizador);
+
+        return new ResponseEntity<>(listUtilizadorDTO, HttpStatus.OK);
+
     }
 }

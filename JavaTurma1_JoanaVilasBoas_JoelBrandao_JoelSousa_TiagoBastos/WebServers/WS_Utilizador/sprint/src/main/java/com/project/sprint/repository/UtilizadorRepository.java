@@ -7,6 +7,8 @@ import com.project.sprint.repository.JPA.UtilizadorJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -53,4 +55,14 @@ public class UtilizadorRepository implements IUtilizadorRepository {
             return Optional.empty();
     }
 
+    public List<Utilizador> findAllByTipoUtilizador(String tipoUtilizador) {
+
+        List<UtilizadorJPA> listUtilizadoresJPA = utilizadorJpaRepository.findAllByTipoUtilizador(Utilizador.TipoUtilizador.valueOf(tipoUtilizador));
+        List<Utilizador> listUtilizadores =new ArrayList<>();
+        for (UtilizadorJPA l : listUtilizadoresJPA) {
+            listUtilizadores.add(utilizadorDomainDataAssembler.toDomain(l));
+        }
+        return listUtilizadores;
+
+    }
 }

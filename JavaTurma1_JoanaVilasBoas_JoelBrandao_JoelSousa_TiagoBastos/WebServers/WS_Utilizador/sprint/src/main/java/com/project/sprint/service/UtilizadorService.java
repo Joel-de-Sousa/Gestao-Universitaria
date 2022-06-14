@@ -9,6 +9,8 @@ import com.project.sprint.repository.UtilizadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,4 +58,16 @@ public class UtilizadorService {
     }
 
 
+    public List<UtilizadorDTO> findAllByTipoUtilizador(String tipoUtilizador) {
+
+        List<Utilizador> listUtilizador = utilizadorRepository.findAllByTipoUtilizador(tipoUtilizador);
+
+        List<UtilizadorDTO> listUtilizadorDTO = new ArrayList<>();
+        for (Utilizador utilizador : listUtilizador) {
+            UtilizadorDTO utilizadorDTO = utilizadorDomainDTOAssembler.toDTO(utilizador);
+            listUtilizadorDTO.add(utilizadorDTO);
+        }
+        return listUtilizadorDTO;
+
+    }
 }
