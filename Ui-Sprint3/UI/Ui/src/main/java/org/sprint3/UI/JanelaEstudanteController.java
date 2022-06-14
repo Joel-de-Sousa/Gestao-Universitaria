@@ -25,14 +25,13 @@ public class JanelaEstudanteController implements Initializable {
     private UtilizadorController utilizadorController;
     private PropostaController propostaController;
     private ConviteController conviteController;
-
     private CandidaturaController candidaturaController;
     private ProjetoController projetoController;
 
 
     private UtilizadorRestDTO utilizadorIntroduzido;
 
-    JanelaPrincipalController janelaPrincipalUI;
+    private JanelaPrincipalController janelaPrincipalController;
     @FXML
     private Label nameLabel;
     @FXML
@@ -54,19 +53,23 @@ public class JanelaEstudanteController implements Initializable {
         propostaController = new PropostaController();
         candidaturaController = new CandidaturaController();
         conviteController = new ConviteController();
+        projetoController = new ProjetoController();
+        janelaPrincipalController = new JanelaPrincipalController();
 
         btnConvidar2.setVisible(false);
         btnCancelar.setVisible(false);
 
 
+
     }
 
-    public void associarParentUI(JanelaPrincipalController janelaPrincipalUI) {
-        this.janelaPrincipalUI = janelaPrincipalUI;
+    public void associarParentUI(JanelaPrincipalController janelaPrincipal) {
+        this.janelaPrincipalController = janelaPrincipal;
     }
 
     public void displayName (String username){
-        nameLabel.setText("Olá "+username);
+        nameLabel.setText(username);
+        nameLabel.setVisible(true);
     }
     public void displayObject (UtilizadorRestDTO utilizador){
         utilizadorIntroduzido = utilizador;
