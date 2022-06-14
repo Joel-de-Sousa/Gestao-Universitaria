@@ -3,39 +3,42 @@ package Sprint.WsProjeto.datamodel.JPA;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "projetos")
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class ProjetoJPA {
 
     @Id
     @GeneratedValue
-    @Getter
     private int codProjeto;
-    @Getter
-    private int codProposta;
 
-    @Getter
 
     private int codEstudante;
 
-    @Getter
 
     private int codOrientador;
 
-    public ProjetoJPA() {
-    }
 
-    public ProjetoJPA(int nCodProposta, int nCodEstudante, int nCodOrientador) {
-        this.codProposta = nCodProposta;
-        this.codEstudante = nCodEstudante;
-        this.codOrientador = nCodOrientador;
+    private int codProposta;
+
+    @OneToMany
+    @JoinColumn(name = "listaAvaliacoes")
+    private List<AvaliacaoJPA> listaAvaliacoes;
+
+
+    public ProjetoJPA(int codEstudante, int codOrientador, int codProposta) {
+        this.codEstudante = codEstudante;
+        this.codOrientador = codOrientador;
+        this.codProposta = codProposta;
+
     }
 }

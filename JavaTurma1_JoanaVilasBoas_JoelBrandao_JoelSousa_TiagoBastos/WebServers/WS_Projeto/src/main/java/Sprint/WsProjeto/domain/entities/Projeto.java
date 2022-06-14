@@ -4,32 +4,33 @@ package Sprint.WsProjeto.domain.entities;
 import lombok.*;
 
 import javax.persistence.Id;
+import java.util.List;
 
 @EqualsAndHashCode
 @ToString
 @AllArgsConstructor
+@Getter
+@Setter
 public class Projeto {
 
-    @Getter
-    @Setter
-private int codProjeto;
 
-    @Getter
-    @Setter
+    private int codProjeto;
+
+
+    private int codEstudante;
+
+
+    private int codOrientador;
+
 
     private int codProposta;
 
-    @Getter
-    @Setter
-    private int codEstudante;
 
-    @Getter
-    @Setter
-    private int codOrientador;
+    private List<Integer> listaAvaliacoes;
 
-    public Projeto(int nCodProposta, int nCodEstudante, int nCodOrientador) {
-        this.codProposta = nCodProposta;
-        this.codEstudante = nCodEstudante;
-        this.codOrientador = nCodOrientador;
+    public Projeto(int codEstudante, int codOrientador, int codProposta) {
+        this.codEstudante = codEstudante;
+        this.codOrientador = codOrientador;
+        this.codProposta = codProposta;
     }
 }
