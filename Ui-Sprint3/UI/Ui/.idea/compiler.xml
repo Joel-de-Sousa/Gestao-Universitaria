@@ -13,7 +13,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Ui" options="-parameters -bootclasspath C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\lib\resources.jar;C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\lib\rt.jar;C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\lib\sunrsasign.jar;C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\lib\jsse.jar;C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\lib\jce.jar;C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\lib\charsets.jar;C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\lib\jfr.jar;C:\Users\Joana\.jdks\corretto-1.8.0_332\jre\classes;$USER_HOME$/.jdks/corretto-1.8.0_332/jre/lib/jfxrt.jar" />
+      <module name="Ui" options="-parameters -bootclasspath C:\Users\35191\.jdks\corretto-1.8.0_332\jre\lib\resources.jar;C:\Users\35191\.jdks\corretto-1.8.0_332\jre\lib\rt.jar;C:\Users\35191\.jdks\corretto-1.8.0_332\jre\lib\sunrsasign.jar;C:\Users\35191\.jdks\corretto-1.8.0_332\jre\lib\jsse.jar;C:\Users\35191\.jdks\corretto-1.8.0_332\jre\lib\jce.jar;C:\Users\35191\.jdks\corretto-1.8.0_332\jre\lib\charsets.jar;C:\Users\35191\.jdks\corretto-1.8.0_332\jre\lib\jfr.jar;C:\Users\35191\.jdks\corretto-1.8.0_332\jre\classes;$USER_HOME$/.jdks/corretto-1.8.0_332/jre/lib/jfxrt.jar" />
     </option>
   </component>
 </project>
