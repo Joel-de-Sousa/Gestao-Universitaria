@@ -14,7 +14,7 @@ public class PropostaJPA {
 
     @Id
     @Getter
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.AUTO)
 
     private int codProposta;
     @Getter

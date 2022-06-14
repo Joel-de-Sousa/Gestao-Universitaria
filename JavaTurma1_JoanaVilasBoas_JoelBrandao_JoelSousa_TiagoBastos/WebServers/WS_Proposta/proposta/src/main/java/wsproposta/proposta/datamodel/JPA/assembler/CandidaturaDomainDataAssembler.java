@@ -8,7 +8,7 @@ import wsproposta.proposta.domain.entities.Candidatura;
 public class CandidaturaDomainDataAssembler {
 
     public CandidaturaJPA toData (Candidatura candidatura){
-        return new CandidaturaJPA(candidatura.getCodProposta(), candidatura.getCodEstudante(),
+        return new CandidaturaJPA( candidatura.getCodProposta(), candidatura.getCodEstudante(),
                 candidatura.getEstadoEstudante());
     }
 

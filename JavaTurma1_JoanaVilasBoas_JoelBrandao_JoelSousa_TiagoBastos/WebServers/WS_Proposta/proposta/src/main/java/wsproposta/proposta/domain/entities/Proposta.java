@@ -16,7 +16,6 @@ public class Proposta {
     public enum Estado {PENDENTE, ACEITE, REJEITADA};
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     @Getter @Setter
     int codProposta;
 

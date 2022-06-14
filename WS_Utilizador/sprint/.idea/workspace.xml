@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35de449-cd1e-45c1-9c66-9d5a62876ca1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../WS_Edicao/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../WS_Edicao/edicao/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../WS_Proposta/proposta/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../WS_Proposta/proposta/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/data/demo.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +48,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Joana/Desktop/Sprint2/WS_Utilizador/sprint"
+    "last_opened_file_path": "C:/Users/35191/Desktop/SprintUp2/JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Utilizador/sprint"
   }
 }]]></component>
   <component name="RunManager">
