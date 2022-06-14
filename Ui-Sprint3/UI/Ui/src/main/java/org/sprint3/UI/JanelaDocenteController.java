@@ -12,13 +12,11 @@ import java.util.ResourceBundle;
 public class JanelaDocenteController implements Initializable {
 
     UtilizadorController utilizadorController;
-
-
-
     @javafx.fxml.FXML
     private Button btnAceitar;
     @javafx.fxml.FXML
     private Button btnRejeitar;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -26,6 +24,7 @@ public class JanelaDocenteController implements Initializable {
 
 
     }
+
 
     @javafx.fxml.FXML
     public void handleButtonActionAceitar(ActionEvent actionEvent) {
