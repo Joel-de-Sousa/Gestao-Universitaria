@@ -1,3 +1,4 @@
+/*
 package Sprint.WsProjeto.datamodel.JPA;
 
 import org.junit.jupiter.api.Test;
@@ -38,4 +39,4 @@ class ProjetoJPATest {
         assertNotEquals(projetoJPA,projetoJPA1);
     }
 
-}
+}*/

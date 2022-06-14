@@ -10,7 +10,7 @@ public class ProjetoDomainDataAssembler {
 
     public ProjetoJPA toData (Projeto projeto){
 
-        return new ProjetoJPA(projeto.getCodProposta(), projeto.getCodEstudante(), projeto.getCodOrientador());
+        return new ProjetoJPA( projeto.getCodEstudante(), projeto.getCodOrientador(),projeto.getCodProposta());
     }
 
     public Projeto toDomain (ProjetoJPA projetoJPA){
