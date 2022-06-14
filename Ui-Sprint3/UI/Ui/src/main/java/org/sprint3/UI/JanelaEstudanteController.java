@@ -6,11 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import org.sprint3.controller.ConviteController;
 import org.sprint3.controller.PropostaController;
 import org.sprint3.controller.UtilizadorController;
+import org.sprint3.model.DTO.UtilizadorRestDTO;
 
 import java.net.URL;
 import java.util.List;
@@ -22,6 +25,10 @@ public class JanelaEstudanteController implements Initializable {
 
     private PropostaController propostaController;
 
+    private ConviteController conviteController;
+
+    private UtilizadorRestDTO utilizadorIntroduzido;
+
     JanelaPrincipalController janelaPrincipalUI;
     @FXML
     private Label nameLabel;
@@ -31,12 +38,11 @@ public class JanelaEstudanteController implements Initializable {
     private Button btnConvidar;
     @FXML
     private ListView<String> listView;
-
-    String docenteSeleccionado;
     @FXML
     private Button btnCancelar;
     @FXML
     private Button btnConvidar2;
+    String docenteSeleccionado;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,18 +61,16 @@ public class JanelaEstudanteController implements Initializable {
 
     public void displayName (String username){
         nameLabel.setText("Olá "+username);
-
     }
-
+    public void displayObject (UtilizadorRestDTO utilizador){
+        utilizadorIntroduzido = utilizador;
+    }
     @FXML
     public void handleButtonCandidatarAction(ActionEvent actionEvent) {
         listView.getItems().clear();
         List<String> list = propostaController.getAllPropostas();
-        System.out.println(list);
+        //System.out.println(list);
         listView.getItems().addAll(list);
-        /*listView.getItems().setAll(utilizadorController.getUtilizadorById(1).getNome(),
-                utilizadorController.getUtilizadorById(2).getNome()+" "+
-                        utilizadorController.getUtilizadorById(2).getSobrenome());*/
 
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -75,7 +79,6 @@ public class JanelaEstudanteController implements Initializable {
                 System.out.println(docenteSeleccionado);
             }
         });
-
     }
 
     @FXML
@@ -103,13 +106,29 @@ public class JanelaEstudanteController implements Initializable {
     @FXML
     public void handleButtonCancelarAction(ActionEvent actionEvent) {
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
-
-
     }
 
     @FXML
     public void handleButtonConvidarDocenteAction(ActionEvent actionEvent) {
 
+        try {
+            int codEstudante = utilizadorIntroduzido.getCodUtilizador();
+            String [] docente = docenteSeleccionado.split("-");
+            int codDocente = Integer.parseInt(docente[0]);
+
+
+
+            boolean criou = conviteController.criarNovoConvite(codEstudante, codDocente);
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar uma nova Edição.",
+                    criou ? "Edição criada com sucesso."
+                            : "Não foi possível criar a edição.").show();
+            ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        }catch (Exception e){
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    e.getMessage()).show();
+
+        }
 
     }
 }

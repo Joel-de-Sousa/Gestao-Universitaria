@@ -56,6 +56,7 @@ public class JanelaPrincipalController implements Initializable {
                 String nome = utilizador.getNome();
                 JanelaEstudanteController janelaController = loader.getController();
                 janelaController.displayName(nome);
+                janelaController.displayObject(utilizador);
 
                 Scene scene = new Scene(root);
                 novaJanelaEstudante.initModality(Modality.APPLICATION_MODAL);

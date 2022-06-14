@@ -21,7 +21,7 @@ public class ConviteRestRepository {
             .clientConnector(new ReactorClientHttpConnector(HttpClient.create(ConnectionProvider.newConnection())))
             .build();
 
-    public boolean createUc (ConviteRestDTO novoConvite) throws Exception {
+    public boolean createConvite (ConviteRestDTO novoConvite) throws Exception {
 
         ResponseEntity<String> result = null;
         try {
