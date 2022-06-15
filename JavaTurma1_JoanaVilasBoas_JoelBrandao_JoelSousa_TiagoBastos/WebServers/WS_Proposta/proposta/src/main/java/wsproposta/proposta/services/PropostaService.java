@@ -7,9 +7,11 @@ import wsproposta.proposta.DTO.PropostaDTO;
 import wsproposta.proposta.DTO.PropostaDTOParcial;
 import wsproposta.proposta.DTO.assemblers.PropostaDomainDTOAssembler;
 import wsproposta.proposta.datamodel.REST.OrganizacaoRestDTO;
+import wsproposta.proposta.datamodel.REST.ProjetoRestDto;
 import wsproposta.proposta.datamodel.REST.UtilizadorRestDTO;
 import wsproposta.proposta.domain.entities.Proposta;
 import wsproposta.proposta.domain.factories.IPropostaFactory;
+import wsproposta.proposta.repositories.ProjetoWebRepository;
 import wsproposta.proposta.repositories.PropostaRepository;
 import wsproposta.proposta.repositories.iRepositories.IOrganizacaoWebRepository;
 import wsproposta.proposta.repositories.iRepositories.IUtilizadorWebRepository;
@@ -31,6 +33,10 @@ public class PropostaService {
     IUtilizadorWebRepository utilizadorWebRepository;
     @Autowired
     IOrganizacaoWebRepository organizacaoWebRepository;
+    @Autowired
+    ProjetoWebRepository projetoWebRepository;
+
+
 
 
 
@@ -191,6 +197,10 @@ public class PropostaService {
 
         Proposta propostaSaved = propostaRepository.save(opProposta.get());
         PropostaDTO propostaSavedDTO = propostaAssembler.toDTO(propostaSaved);
+
+        ProjetoRestDto projetoParcial = new ProjetoRestDto(opProposta.get().getCodUtilizador(), codProposta);
+        Optional<ProjetoRestDto> optionalProjetoRestDto = projetoWebRepository.createAndSaveProjeto(projetoParcial);
+
 
         return propostaSavedDTO;
     }

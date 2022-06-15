@@ -1,8 +1,6 @@
 package org.sprint3.UI;
 
-<<<<<<< HEAD
-public class JanelaRUCController {
-=======
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -98,5 +96,5 @@ public class JanelaRUCController implements Initializable {
     @FXML
     public void handleButtonPropostasAction(ActionEvent actionEvent) {
     }
->>>>>>> 5331ab3afb599fd712540df7ec951ab27fb815e5
+
 }

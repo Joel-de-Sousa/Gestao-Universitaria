@@ -18,7 +18,7 @@ public class EdicaoService {
     public List<String> getListaEdicoesByCodRUC(){
         List<String> edicoes=new ArrayList<>();
 
-        List<EdicaoRestDTO> lista =edicaoWebRepository.getListaEdicoesByCodRUC();
+        List<EdicaoRestDTO> lista = edicaoWebRepository.getListaEdicoesByCodRUC();
         for (EdicaoRestDTO a: lista) {
             String sigla= a.getSigla();
             String ano = a.getAno();

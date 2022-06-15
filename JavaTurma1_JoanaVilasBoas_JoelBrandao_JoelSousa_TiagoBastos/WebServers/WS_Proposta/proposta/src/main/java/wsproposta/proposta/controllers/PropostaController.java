@@ -147,6 +147,7 @@ public class PropostaController {
     public ResponseEntity<Object> partialUpdateEstadoProposta( @RequestBody PropostaDTOParcial propostaUpdate, @PathVariable int codProposta) {
 
         PropostaDTO updatedProposta = service.updateEstadoProposta (propostaUpdate, codProposta);
+
         return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
 
     }
