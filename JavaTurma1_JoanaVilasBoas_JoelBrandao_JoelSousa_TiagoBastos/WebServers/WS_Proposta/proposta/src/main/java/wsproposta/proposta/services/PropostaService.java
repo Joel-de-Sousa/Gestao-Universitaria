@@ -198,8 +198,10 @@ public class PropostaService {
         Proposta propostaSaved = propostaRepository.save(opProposta.get());
         PropostaDTO propostaSavedDTO = propostaAssembler.toDTO(propostaSaved);
 
+
         ProjetoRestDto projetoParcial = new ProjetoRestDto(opProposta.get().getCodUtilizador(), codProposta);
         Optional<ProjetoRestDto> optionalProjetoRestDto = projetoWebRepository.createAndSaveProjeto(projetoParcial);
+
 
 
         return propostaSavedDTO;
