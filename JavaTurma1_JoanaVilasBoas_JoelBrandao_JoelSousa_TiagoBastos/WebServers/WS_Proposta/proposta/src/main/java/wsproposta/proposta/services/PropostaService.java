@@ -192,6 +192,8 @@ public class PropostaService {
         Proposta propostaSaved = propostaRepository.save(opProposta.get());
         PropostaDTO propostaSavedDTO = propostaAssembler.toDTO(propostaSaved);
 
+
+
         return propostaSavedDTO;
     }
 
