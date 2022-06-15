@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -9,15 +8,15 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sprint3.UI.JanelaDocenteController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sprint3.UI.JanelaProjetoController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="155.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <GridPane BorderPane.alignment="CENTER">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="179.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.0" minWidth="10.0" prefWidth="246.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="142.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -25,12 +24,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Convites Para Orientação de Projetos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label fx:id="label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </top>
          <bottom>
-            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+            <GridPane BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,17 +42,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnAceitar" mnemonicParsing="false" onAction="#handleButtonActionAceitar" prefHeight="31.0" prefWidth="84.0" text="Visualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button fx:id="btnRejeitar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonActionRejeitar" prefHeight="31.0" prefWidth="84.0" text="Sair" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button fx:id="btnAceitar" mnemonicParsing="false" onAction="#handleBtnActionAceitar" text="Aceitar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button fx:id="btnRejeitar" mnemonicParsing="false" onAction="#handleButtonActionRejeitar" text="Rejeitar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </bottom>
          <center>
-            <ListView prefHeight="220.0" prefWidth="487.0" BorderPane.alignment="CENTER">
+            <TextField prefHeight="214.0" prefWidth="450.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets left="100.0" right="100.0" />
+                  <Insets left="75.0" right="75.0" />
                </BorderPane.margin>
-            </ListView>
+            </TextField>
          </center>
       </BorderPane>
    </children>

@@ -17,15 +17,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.sprint3.controller.EdicaoController;
 import org.sprint3.controller.UtilizadorController;
+import org.sprint3.model.DTO.EdicaoRestDTO;
 import org.sprint3.model.DTO.UtilizadorRestDTO;
 
 public class JanelaPrincipalController implements Initializable {
 
     private UtilizadorController utilizadorController;
+    private EdicaoController edicaoController;
+
     private Stage novaJanelaEstudante;
 
     private Stage novaJanelaDocente;
+
+    private Stage novaJanelaRUC;
 
     @FXML
     private TextField codUtilizadorField;
@@ -35,6 +41,7 @@ public class JanelaPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         utilizadorController = new UtilizadorController();
+        edicaoController = new EdicaoController();
 
         btnEntrar.setDisable(true);
 
@@ -45,6 +52,8 @@ public class JanelaPrincipalController implements Initializable {
     public void handleButtonAction(ActionEvent actionEvent) throws IOException {
 
         UtilizadorRestDTO utilizador = utilizadorController.getUtilizadorById(Integer.parseInt(codUtilizadorField.getText()));
+        EdicaoRestDTO edicao = new EdicaoRestDTO(1,1,2,"ATIVA");/*edicaoController.getEdicaoByCodRUC(Integer.parseInt(codUtilizadorField.getText()));*/
+
 
         try {
             if (utilizador.getTipoUtilizador().equals("ESTUDANTE")) {
@@ -60,6 +69,8 @@ public class JanelaPrincipalController implements Initializable {
                 JanelaEstudanteController janelaController = loader.getController();
                 janelaController.displayName(nome);
                 janelaController.displayObject(utilizador);
+
+
 
                 Scene scene = new Scene(root);
                 novaJanelaEstudante.initModality(Modality.APPLICATION_MODAL);
@@ -79,7 +90,7 @@ public class JanelaPrincipalController implements Initializable {
 
 
                 /*String nome = utilizador.getNome();
-                JanelaEstudanteController janelaController = loader.getController();
+                JanelaDocenteController janelaController = loader.getController();
                 janelaController.displayName(nome);
                 janelaController.displayObject(utilizador);*/
 
@@ -91,6 +102,27 @@ public class JanelaPrincipalController implements Initializable {
                 novaJanelaDocente.show();
             }
 
+
+            if (utilizador.getTipoUtilizador().equals("DOCENTE") && edicao.getCodRUC() == utilizador.getCodUtilizador() ) {
+
+                novaJanelaRUC = new Stage();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaRUCInicial.fxml"));
+                Parent root = loader.load();
+
+
+                //String nome = utilizador.getNome();
+                JanelaRUCInicialController janelaController = loader.getController();
+                //janelaController.displayName(nome);
+                janelaController.displayObject(utilizador);
+
+                Scene scene = new Scene(root);
+                novaJanelaRUC.initModality(Modality.APPLICATION_MODAL);
+                novaJanelaRUC.setTitle("Área de Responsável por Unidade Curricular");
+                novaJanelaRUC.setResizable(false);
+                novaJanelaRUC.setScene(scene);
+                novaJanelaRUC.show();
+            }
 
 
         } catch (Exception e) {
