@@ -14,16 +14,16 @@ import wsproposta.proposta.datamodel.REST.ProjetoRestDto;
 
 import java.util.Collections;
 import java.util.Optional;
-
+// falta corrigir 
 @Repository
 public class ProjetoRestRepository {
 
     public Optional<ProjetoRestDto> createAndSaveProjeto (ProjetoRestDto projetoRestDto) {
 
         WebClient webClient = WebClient.builder()
-                .baseUrl("http://193.136.62.227:8085")
+                .baseUrl("http://localhost:8085")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://193.136.62.227:8085"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8085"))
                 .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
                 .build();
 
@@ -31,7 +31,7 @@ public class ProjetoRestRepository {
         try {
            projetoRestDto1 = webClient
                     .post()
-                    .uri("/projetos/" + projetoRestDto)
+                    .uri("/projetos" )
                     .retrieve()
 
                     .onStatus(HttpStatus::is4xxClientError, error -> { return Mono.empty(); })

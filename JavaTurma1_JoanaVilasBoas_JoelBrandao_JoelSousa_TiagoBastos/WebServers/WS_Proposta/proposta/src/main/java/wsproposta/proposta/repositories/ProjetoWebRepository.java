@@ -17,7 +17,7 @@ public class ProjetoWebRepository {
 
     public Optional<ProjetoRestDto> createAndSaveProjeto( ProjetoRestDto projetoRestDto){
 
-        Optional<ProjetoRestDto> opProjeto = createAndSaveProjeto(projetoRestDto);
+        Optional<ProjetoRestDto> opProjeto = projetoRestRepository.createAndSaveProjeto(projetoRestDto);
         if ( opProjeto.isPresent() ) {
             return opProjeto;
         }
