@@ -65,7 +65,7 @@ public class JanelaPrincipalController implements Initializable {
                 Parent root = loader.load();
 
 
-                String nome = utilizador.getNome();
+                String nome = utilizador.getNome()+" "+utilizador.getSobrenome();
                 JanelaEstudanteController janelaController = loader.getController();
                 janelaController.displayName(nome);
                 janelaController.displayObject(utilizador);

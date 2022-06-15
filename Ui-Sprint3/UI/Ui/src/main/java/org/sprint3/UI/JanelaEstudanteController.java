@@ -12,9 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import org.sprint3.controller.*;
 import org.sprint3.model.DTO.ProjetoRestDTO;
-import org.sprint3.model.DTO.PropostaRestDTO;
 import org.sprint3.model.DTO.UtilizadorRestDTO;
-import org.sprint3.model.repository.REST.ProjetoRestRepository;
 
 import java.net.URL;
 import java.util.List;
@@ -69,7 +67,7 @@ public class JanelaEstudanteController implements Initializable {
 
     public void displayName (String username){
         nameLabel.setText(username);
-        nameLabel.setVisible(true);
+        //nameLabel.setVisible(true);
     }
     public void displayObject (UtilizadorRestDTO utilizador){
         utilizadorIntroduzido = utilizador;
