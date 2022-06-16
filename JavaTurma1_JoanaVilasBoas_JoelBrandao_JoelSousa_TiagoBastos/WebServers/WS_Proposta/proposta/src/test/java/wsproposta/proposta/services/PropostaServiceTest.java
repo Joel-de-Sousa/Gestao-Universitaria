@@ -237,7 +237,7 @@ class PropostaServiceTest {
 
     @Test
     @DisplayName("Teste Get Update Estado Proposta")
-    void shouldUpdateEstadoPropostasWithCorrectAttributes() {
+    void shouldUpdateEstadoPropostasWithCorrectAttributes() throws Exception {
 
         // Arrange
         PropostaDTOParcial dtoParcialDouble = mock(PropostaDTOParcial.class);

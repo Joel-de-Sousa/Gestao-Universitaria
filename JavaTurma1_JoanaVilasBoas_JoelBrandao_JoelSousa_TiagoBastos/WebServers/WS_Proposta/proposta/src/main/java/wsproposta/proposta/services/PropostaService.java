@@ -188,7 +188,7 @@ public class PropostaService {
 
     //MÉTODOs UODATE ESTADO PROPOSTA
 
-    public PropostaDTO updateEstadoProposta(PropostaDTOParcial propostaUpdate, int codProposta) {
+    public PropostaDTO updateEstadoProposta(PropostaDTOParcial propostaUpdate, int codProposta) throws Exception {
 
         Optional<Proposta> opProposta = propostaRepository.findById(codProposta);
 
@@ -200,9 +200,7 @@ public class PropostaService {
 
 
         ProjetoRestDto projetoParcial = new ProjetoRestDto(opProposta.get().getCodUtilizador(), codProposta);
-        Optional<ProjetoRestDto> optionalProjetoRestDto = projetoWebRepository.createAndSaveProjeto(projetoParcial);
-
-
+        boolean criado = projetoWebRepository.createAndSaveProjeto(projetoParcial);
 
         return propostaSavedDTO;
     }

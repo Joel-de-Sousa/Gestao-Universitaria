@@ -144,7 +144,7 @@ public class PropostaController {
     //MÉTODO PATCH ALTERA ESTADO PROPOSTA
 
     @PatchMapping("/{codProposta}")
-    public ResponseEntity<Object> partialUpdateEstadoProposta( @RequestBody PropostaDTOParcial propostaUpdate, @PathVariable int codProposta) {
+    public ResponseEntity<Object> partialUpdateEstadoProposta( @RequestBody PropostaDTOParcial propostaUpdate, @PathVariable int codProposta) throws Exception {
 
         PropostaDTO updatedProposta = service.updateEstadoProposta (propostaUpdate, codProposta);
 

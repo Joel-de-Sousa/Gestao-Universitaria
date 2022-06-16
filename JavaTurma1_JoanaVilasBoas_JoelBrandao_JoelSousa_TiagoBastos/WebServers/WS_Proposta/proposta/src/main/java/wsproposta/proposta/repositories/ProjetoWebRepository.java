@@ -15,17 +15,12 @@ public class ProjetoWebRepository {
     ProjetoRestRepository projetoRestRepository;
 
 
-    public Optional<ProjetoRestDto> createAndSaveProjeto( ProjetoRestDto projetoRestDto){
+    public boolean createAndSaveProjeto(ProjetoRestDto projetoRestDto) throws Exception {
 
-        Optional<ProjetoRestDto> opProjeto = projetoRestRepository.createAndSaveProjeto(projetoRestDto);
-        if ( opProjeto.isPresent() ) {
-            return opProjeto;
-        }
-        else
-            return Optional.empty();
+        boolean criado = projetoRestRepository.createAndSaveProjeto(projetoRestDto);
+
+        return criado;
     }
-
-
 }
 
 

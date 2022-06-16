@@ -348,7 +348,7 @@ class PropostaControllerTest {
     }
     @Test
     @DisplayName("Teste Update Estado Proposta")
-    void shouldUpdateEstadoPropostaWithCorrectAtributes() {
+    void shouldUpdateEstadoPropostaWithCorrectAtributes() throws Exception {
 
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();

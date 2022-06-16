@@ -1,15 +1,14 @@
 package wsproposta.proposta.repositories.REST;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
-import wsproposta.proposta.datamodel.REST.OrganizacaoRestDTO;
 import wsproposta.proposta.datamodel.REST.ProjetoRestDto;
 
 import java.util.Collections;
@@ -17,40 +16,37 @@ import java.util.Optional;
 // falta corrigir 
 @Repository
 public class ProjetoRestRepository {
+    WebClient webClient = WebClient.builder()
+            .baseUrl("http://localhost:8085")
+            .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8085"))
+            .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
+            .build();
 
-    public Optional<ProjetoRestDto> createAndSaveProjeto (ProjetoRestDto projetoRestDto) {
 
-        WebClient webClient = WebClient.builder()
-                .baseUrl("http://localhost:8085")
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8085"))
-                .clientConnector( new ReactorClientHttpConnector( HttpClient.create(ConnectionProvider.newConnection())) )
-                .build();
+    public boolean createAndSaveProjeto (ProjetoRestDto novoProjeto) throws Exception {
 
-        ProjetoRestDto projetoRestDto1;
+        ResponseEntity<String> result = null;
         try {
-           projetoRestDto1 = webClient
+            result= webClient
                     .post()
-                    .uri("/projetos" )
-                    .retrieve()
-
-                    .onStatus(HttpStatus::is4xxClientError, error -> { return Mono.empty(); })
-
-                    .bodyToMono(ProjetoRestDto.class)
-
-                    .onErrorReturn( null )
-
-                    .doOnError(throwable -> { System.out.println( throwable.getMessage() );} )
+                    .uri("/projetos")
+                    .body(Mono.just(novoProjeto), ProjetoRestDto.class).exchange().flatMap(response -> response.toEntity(String.class))
+                    .onErrorReturn(ResponseEntity.of(Optional.of(novoProjeto.toString())))
+                    .doOnError(throwable -> {
+                        System.out.println(throwable.getMessage());
+                    })
                     .block();
         }
         catch( Exception e) {
 
-            projetoRestDto1 = null;
+            System.out.println(e.getMessage());
         }
 
-        if( projetoRestDto1 != null )
-            return Optional.of(projetoRestDto1);
+        if (result.getStatusCode().is2xxSuccessful())
+            return true;
         else
-            return Optional.empty();
+            throw new Exception( result.getBody());
     }
+
 }
