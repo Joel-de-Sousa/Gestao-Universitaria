@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -12,9 +13,11 @@ import wsproposta.proposta.DTO.PropostaDTO;
 import wsproposta.proposta.DTO.PropostaDTOParcial;
 import wsproposta.proposta.DTO.assemblers.PropostaDomainDTOAssembler;
 import wsproposta.proposta.datamodel.REST.OrganizacaoRestDTO;
+import wsproposta.proposta.datamodel.REST.ProjetoRestDto;
 import wsproposta.proposta.datamodel.REST.UtilizadorRestDTO;
 import wsproposta.proposta.domain.entities.Proposta;
 import wsproposta.proposta.domain.factories.PropostaFactory;
+import wsproposta.proposta.repositories.ProjetoWebRepository;
 import wsproposta.proposta.repositories.PropostaRepository;
 import wsproposta.proposta.repositories.iRepositories.IOrganizacaoWebRepository;
 import wsproposta.proposta.repositories.iRepositories.IUtilizadorWebRepository;
@@ -30,6 +33,9 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class PropostaServiceTest {
 
+
+    @MockBean
+    ProjetoWebRepository projetoWebRepository;
 
     @MockBean
     PropostaRepository propostaRepository;
@@ -235,7 +241,7 @@ class PropostaServiceTest {
     }
 
 
-    @Test
+   @Test
     @DisplayName("Teste Get Update Estado Proposta")
     void shouldUpdateEstadoPropostasWithCorrectAttributes() throws Exception {
 
@@ -249,14 +255,22 @@ class PropostaServiceTest {
 
         when( propostaRepository.findById(1)).thenReturn(opPropostaDouble);
 
+
         PropostaDTO propostaDtoDouble = mock(PropostaDTO.class);
         Proposta propostaDouble2 = mock(Proposta.class);
         when(propostaRepository.save(opPropostaDouble.get())).thenReturn(propostaDouble2);
         when(propostaAssembler.toDTO(propostaDouble2)).thenReturn(propostaDtoDouble);
 
+       ProjetoRestDto projetoRestDto = mock(ProjetoRestDto.class);
+       when(projetoRestDto.getCodEstudante()).thenReturn(1);
+       when(projetoRestDto.getCodProposta()).thenReturn(1);
+       when(projetoRestDto.getCodProjeto()).thenReturn(1);
+       when(projetoRestDto.getCodOrientador()).thenReturn(1);
+       when(projetoWebRepository.createAndSaveProjeto(projetoRestDto)).thenReturn(true);
+
 
         // Act
-        PropostaDTO propostaUpdated = propostaService.updateEstadoProposta(dtoParcialDouble, 1);
+        PropostaDTO propostaUpdated = propostaService.updateEstadoProposta(dtoParcialDouble,1);
 
         // Assert
         assertEquals(propostaDtoDouble,  propostaUpdated);
