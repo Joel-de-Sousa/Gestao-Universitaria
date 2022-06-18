@@ -13,6 +13,8 @@ public class NewEdicaoInfoDTO {
     int codUc;
     int codAnoLetivo;
     int codRUC;
+    int codMomentoAvaliacao;
+
 
     public NewEdicaoInfoDTO() {
     }

@@ -4,6 +4,8 @@ import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.Uc;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString

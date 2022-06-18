@@ -1,5 +1,8 @@
 package WSEdicao.services;
 
+import WSEdicao.datamodel.EdicaoJpa;
+import WSEdicao.datamodel.EstudanteJpa;
+import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.Edicao;
 import WSEdicao.domain.entities.Uc;
@@ -10,9 +13,12 @@ import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
 import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
 import WSEdicao.repositories.AnoLetivoRepository;
 import WSEdicao.repositories.EdicaoRepository;
+import WSEdicao.repositories.MomentoAvaliacaoRepository;
 import WSEdicao.repositories.UcRepository;
+import WSEdicao.repositories.jpa.EdicaoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,18 +49,29 @@ public class EdicaoService {
     @Autowired
     EdicaoDomainDTOAssembler edicaoDTOAssembler;
 
+    @Autowired
+    MomentoAvaliacaoService momentoAvaliacaoService;
+
+    @Autowired
+    MomentoAvaliacaoRepository momentoAvaliacaoRepository;
+
+    @Autowired
+    EdicaoJpaRepository edicaoJpaRepository;
+
+    @Autowired
+    EdicaoDomainDataAssembler edicaoDomainDataAssembler;
 
     public EdicaoService() {
     }
 
-    public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo,int codRUC) throws Exception {
+    public EdicaoDTO createAndSaveEdicao(int codUc, int codAnoLetivo, int codRUC) throws Exception {
 
         Optional<UcDTO> optionalUc = ucRepository.findBycodUc(codUc);
         Optional<AnoLetivoDTO> optionalAnoLetivo = anoLetivoRepository.findBycodAnoLetivo(codAnoLetivo);
 
         if (optionalUc.isPresent() && optionalAnoLetivo.isPresent()) {
 
-            Edicao edicao = edicaoFactory.createEdicao(codUc,codAnoLetivo,codRUC);
+            Edicao edicao = edicaoFactory.createEdicao(codUc, codAnoLetivo, codRUC);
             Edicao savedEdicao = edicaoRepository.save(edicao);
             EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(savedEdicao);
 
@@ -74,19 +91,19 @@ public class EdicaoService {
     public List<EdicaoDTO> getAllEdicao() {
         List<Edicao> listEdicao = edicaoRepository.findAll();
 
-        List<EdicaoDTO> listaDto=new ArrayList<>();
-        for (Edicao edicao:listEdicao) {
+        List<EdicaoDTO> listaDto = new ArrayList<>();
+        for (Edicao edicao : listEdicao) {
             EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
             listaDto.add(edicaoDTO);
         }
         return listaDto;
     }
 
-    public List<EdicaoAllArgsDTO> getEdicaoAllArgs(){
+    public List<EdicaoAllArgsDTO> getEdicaoAllArgs() {
         List<Edicao> listEdicao = edicaoRepository.findAll();
 
-        List<EdicaoAllArgsDTO> listaDto=new ArrayList<>();
-        for (Edicao edicao:listEdicao) {
+        List<EdicaoAllArgsDTO> listaDto = new ArrayList<>();
+        for (Edicao edicao : listEdicao) {
 
             EdicaoAllArgsDTO edicaoAllArgsDTO = edicaoDTOAssembler.toDTOAllArgs(edicao);
             listaDto.add(edicaoAllArgsDTO);
@@ -103,19 +120,47 @@ public class EdicaoService {
     }
 
     //MÉTODO PATCH ESTADO EDICAO
+    public EdicaoDTO updateEstadoEdicao(EdicaoDTOParcial edicaoUpdate) throws Exception {
 
-    public EdicaoDTO updateEstadoEdicao(EdicaoDTOParcial edicaoUpdate, int codEdicao) throws Exception {
+        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(edicaoUpdate.getCodEdicao());
 
-        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(codEdicao);
-
-        opEdicao.get().setCodEdicao(edicaoUpdate.getCodEdicao());
+        //opEdicao.get().setCodEdicao(edicaoUpdate.getCodEdicao());
         opEdicao.get().setEstado(Edicao.Estado.valueOf(edicaoUpdate.getEstado()));
 
-        Edicao edicaoSaved = edicaoRepository.save(opEdicao.get());
+        Edicao edicaoSaved = edicaoRepository.addAndSaveMA(opEdicao.get());
         EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
 
         return edicaoSavedDTO;
     }
 
 
+    /*public EdicaoDTO addMomentoAvaliacaoToEdicao(EdicaoDTOParcial edicaoUpdate) throws Exception {
+
+        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(edicaoUpdate.getCodEdicao());
+
+        opEdicao.get().setCodEdicao(edicaoUpdate.getCodEdicao());
+        opEdicao.get().setMomentoAvaliacaoList(edicaoUpdate.getMomentoAvaliacaoList());
+
+        Edicao edicaoSaved = edicaoRepository.save(opEdicao.get());
+        EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
+
+        return edicaoSavedDTO;
+    }*/
+
+    public EdicaoDTO addEstudantes(AddStudentDTO addStudent) throws Exception {
+
+        EdicaoJpa opEdicao = edicaoRepository.findBycodEdicaoJpa(addStudent.getCodEdicao());
+        EstudanteJpa estudanteJpa = new EstudanteJpa(addStudent.getCodEdicao(),addStudent.getCodEstudante());
+        opEdicao.getListEstudantes().add(estudanteJpa);
+
+        Edicao edicao = edicaoDomainDataAssembler.toDomain(opEdicao);
+        Edicao edicaoSaved = edicaoRepository.addAndSaveMA(edicao);
+        EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
+
+        return edicaoSavedDTO;
+    }
+
 }
+
+
+

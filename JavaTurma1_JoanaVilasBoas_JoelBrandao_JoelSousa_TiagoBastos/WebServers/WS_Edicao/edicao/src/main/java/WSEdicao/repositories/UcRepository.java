@@ -49,12 +49,6 @@ public class UcRepository {
             return Optional.empty();
     }
 
-    /*public UcJpa findJPAbyCodUC(int codUc){
-        UcJpa ucJpa = ucJpaRepository.findBycodUcNopOp(codUc);
-
-        return ucJpa;
-    }*/
-
     public List<Uc> findAll() {
         List<UcJpa> setUcJpa = ucJpaRepository.findAll();
 

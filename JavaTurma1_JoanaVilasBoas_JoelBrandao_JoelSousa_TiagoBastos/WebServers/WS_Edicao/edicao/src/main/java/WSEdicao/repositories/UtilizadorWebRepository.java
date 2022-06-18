@@ -27,23 +27,4 @@ public class UtilizadorWebRepository implements IUtilizadorWebRepository {
             return Optional.empty();
     }
 
-    public List<UtilizadorRestDTO> findAllEstudantes(int codUtilizador) {
-
-        Optional<UtilizadorRestDTO> listEstudantesDTO = utilizadorRestRepository.findUtilizadorByCodUtilizador(codUtilizador);
-        List<UtilizadorRestDTO> listEstudantes = new ArrayList<>();
-        listEstudantes.add(listEstudantesDTO);
-
-        if (listEstudantesDTO.isPresent(listEstudantes::add) && Objects.equals(listEstudantesDTO.get().getTipoUtilizador(), "Estudante")) {
-            return listEstudantes;
-        } else
-            return null;
-
-        /*for(UtilizadorRestDTO student: listEstudantesDTO) {
-            listEstudantes.add()
-        }
-            return listEstudantes;
-    }*/
-    }
-
-
 }

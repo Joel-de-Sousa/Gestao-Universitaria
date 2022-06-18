@@ -5,10 +5,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*@SpringBootTest
+@SpringBootTest
 class EdicaoTest {
 
-    @Test
+    /*@Test
     void shouldCreateANewEdicao() {
         new Edicao(1,1);
     }
@@ -31,5 +31,16 @@ class EdicaoTest {
         Edicao edicao2 = new Edicao(2,2);
 
         assertNotEquals(edicao1,edicao2);
+    }*/
+
+    @Test
+    void shouldAddMA(){
+        Edicao edicao = new Edicao(1,1,1,1);
+        MomentoAvaliacao ma = new MomentoAvaliacao(1,1,"sprint1");
+        edicao.addMomentoAvaliacao(ma);
+
+        assertEquals(edicao.getMomentoAvaliacaoList().size(),1);
     }
-}*/
+
+
+}

@@ -1,17 +1,16 @@
 package WSEdicao.dto.assemblers;
 
-import WSEdicao.domain.entities.AnoLetivo;
+import WSEdicao.datamodel.EstudanteJpa;
 import WSEdicao.domain.entities.Edicao;
-import WSEdicao.domain.entities.Uc;
-import WSEdicao.dto.AnoLetivoDTO;
-import WSEdicao.dto.EdicaoAllArgsDTO;
-import WSEdicao.dto.EdicaoDTO;
-import WSEdicao.dto.UcDTO;
+import WSEdicao.domain.entities.MomentoAvaliacao;
+import WSEdicao.dto.*;
 import WSEdicao.repositories.AnoLetivoRepository;
 import WSEdicao.repositories.UcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,8 +34,28 @@ public class EdicaoDomainDTOAssembler {
         Optional<UcDTO> ucDTO= ucRepository.findBycodUc(edicao.getUc());
         Optional<AnoLetivoDTO> anoLetivoDTO= anoLetivoRepository.findBycodAnoLetivo(edicao.getAnoLetivo());
 
-        return new EdicaoAllArgsDTO(edicao.getCodEdicao(), ucDTO.get().getCodUc(),ucDTO.get().getSigla(),
-                ucDTO.get().getDenominacao(), anoLetivoDTO.get().getCodAnoLetivo(),
-                anoLetivoDTO.get().getAno(), edicao.getCodRUC());
+        ArrayList<MomentoAvaliacaoDTO> listMA = new ArrayList<>();
+        for (MomentoAvaliacao ma: edicao.getMomentoAvaliacaoList()){
+            MomentoAvaliacaoDTO momentoAvaliacaoDTO = new MomentoAvaliacaoDTO(ma.getCodMomentoAvaliacao(), ma.getCodEdicao(), ma.getDenominacao());
+            listMA.add(momentoAvaliacaoDTO);
+        }
+
+        ArrayList<AddStudentDTO> listEstudante = new ArrayList<>();
+        for (EstudanteJpa estudante: edicao.getEstudantesList()){
+            AddStudentDTO estudanteDTO = new AddStudentDTO(estudante.getCodEdicao(),estudante.getCodEstudante());
+            listEstudante.add(estudanteDTO);
+        }
+
+
+        return new EdicaoAllArgsDTO(edicao.getCodEdicao(),
+                ucDTO.get().getCodUc(),
+                ucDTO.get().getSigla(),
+                ucDTO.get().getDenominacao(),
+                anoLetivoDTO.get().getCodAnoLetivo(),
+                anoLetivoDTO.get().getAno(),
+                edicao.getCodRUC(),
+                edicao.getEstado().toString(),
+                listMA,
+                listEstudante);
     }
 }

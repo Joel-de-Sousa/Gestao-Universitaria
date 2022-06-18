@@ -1,45 +1,89 @@
 package WSEdicao.datamodel.assemblers;
 
-import WSEdicao.datamodel.AnoLetivoJpa;
 import WSEdicao.datamodel.EdicaoJpa;
-import WSEdicao.datamodel.UcJpa;
-import WSEdicao.domain.entities.AnoLetivo;
+import WSEdicao.datamodel.EstudanteJpa;
+import WSEdicao.datamodel.MomentoAvaliacaoJpa;
 import WSEdicao.domain.entities.Edicao;
-import WSEdicao.domain.entities.Uc;
-import WSEdicao.repositories.AnoLetivoRepository;
-import WSEdicao.repositories.UcRepository;
+import WSEdicao.domain.entities.MomentoAvaliacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
 public class EdicaoDomainDataAssembler {
 
     @Autowired
-    UcDomainDataAssembler ucAssembler;
-    @Autowired
-    AnoLetivoDomainDataAssembler anoLetivoAssembler;
+    MomentoAvaliacaoDomainDataAssembler domainAssembler;
 
-    @Autowired
-    UcRepository ucRepository;
+    /*public EdicaoJpa toData(Edicao edicao){
+        List<MomentoAvaliacaoJpa> oMomentoAvaliacao= (List<MomentoAvaliacaoJpa>) domainAssembler.toData((MomentoAvaliacao) edicao.getMomentoAvaliacao());
+        return new EdicaoJpa(edicao.getUc(), edicao.getAnoLetivo(), edicao.getCodRUC(),edicao.getEstado(),oMomentoAvaliacao);
+    }*/
 
-    @Autowired
-    AnoLetivoRepository anoLetivoRepository;
+    /*public Edicao toDomain(EdicaoJpa edicaoJpa){
+        List<Integer> oMomentoAvaliacao1= (List<Integer>) domainAssembler.toDomain((MomentoAvaliacaoJpa) edicaoJpa.getMomentoAvaliacao());
 
-    public EdicaoJpa toData(Edicao edicao){
+        return new Edicao(edicaoJpa.getCodEdicao(), edicaoJpa.getCodUc(), edicaoJpa.getCodAnoLetivo(), edicaoJpa.getCodRUC(), edicaoJpa.getEstado(),oMomentoAvaliacao1);
+    }*/
 
-        //UcJpa ucJpa= ucRepository.findJPAbyCodUC(edicao.getUc());
-        //AnoLetivoJpa anoLetivoJpa = anoLetivoRepository.findJPAbyCodAnoLetivo(edicao.getAnoLetivo());
+    public EdicaoJpa toData(Edicao edicao) {
+        List<MomentoAvaliacaoJpa> listMA = new ArrayList<>();
+        for (MomentoAvaliacao ma : edicao.getMomentoAvaliacaoList()) {
+            MomentoAvaliacaoJpa momentoAvaliacao = new MomentoAvaliacaoJpa(ma.getCodMomentoAvaliacao(),
+                    ma.getCodEdicao(),
+                    ma.getDenominacao());
+            listMA.add(momentoAvaliacao);
+        }
 
-        return new EdicaoJpa(edicao.getUc(), edicao.getAnoLetivo(), edicao.getCodRUC(),edicao.getEstado());
+        List<EstudanteJpa> listEstudante = new ArrayList<>();
+        for (EstudanteJpa  estudante: edicao.getEstudantesList()) {
+            EstudanteJpa estudanteJpa = new EstudanteJpa(estudante.getCodEdicao(),
+                    estudante.getCodEstudante());
+            listEstudante.add(estudanteJpa);
+        }
 
+        EdicaoJpa edicaoJpa = new EdicaoJpa(edicao.getCodEdicao(),
+                edicao.getUc(),
+                edicao.getAnoLetivo(),
+                edicao.getCodRUC(),
+                edicao.getEstado(),
+                listMA,
+                listEstudante);
+
+        return edicaoJpa;
     }
 
-    public Edicao toDomain(EdicaoJpa edicaoJpa){
+    public Edicao toDomain(EdicaoJpa edicaoJpa) {
 
-        //Uc uc = ucAssembler.toDomain(edicaoJpa.getCodUc());
-        //AnoLetivo anoLetivo = anoLetivoAssembler.toDomain(edicaoJpa.getCodAnoLetivo());
+        List<MomentoAvaliacao> listMA = new ArrayList<>();
+        for (MomentoAvaliacaoJpa ma : edicaoJpa.getMomentoAvaliacao()) {
+            MomentoAvaliacao momentoAvaliacao = new MomentoAvaliacao(ma.getCodMomentoAvaliacao(),
+                    ma.getCodEdicao(),
+                    ma.getDenominacao());
+            listMA.add(momentoAvaliacao);
+        }
 
-        return new Edicao(edicaoJpa.getCodEdicao(), edicaoJpa.getCodUc(), edicaoJpa.getCodAnoLetivo(), edicaoJpa.getCodRUC(), edicaoJpa.getEstado());
+        //nao funfa
+        /*List<EstudanteJpa> listEstudante = new ArrayList<>();
+        for (EstudanteJpa estudante : edicaoJpa.getListEstudantes()) {
+            EstudanteJpa estudanteJpa = new EstudanteJpa(estudante.getCodEdicao(),estudante.getCodEstudante());
+            listEstudante.add(estudanteJpa);
+        }*/
+
+        Edicao edicao = new Edicao(edicaoJpa.getCodEdicao(),
+                edicaoJpa.getCodUc(), edicaoJpa.getCodAnoLetivo(),
+                edicaoJpa.getCodRUC(),
+                edicaoJpa.getEstado(),
+                edicaoJpa.getListEstudantes());
+
+        edicao.setMomentoAvaliacaoList(listMA);
+        //edicao.setEstudantesList(listEstudante);
+
+        return edicao;
     }
+
 }
+

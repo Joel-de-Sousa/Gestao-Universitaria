@@ -1,10 +1,7 @@
 package WSEdicao.controllers;
 
 import WSEdicao.domain.entities.Edicao;
-import WSEdicao.dto.EdicaoAllArgsDTO;
-import WSEdicao.dto.EdicaoDTO;
-import WSEdicao.dto.EdicaoDTOParcial;
-import WSEdicao.dto.NewEdicaoInfoDTO;
+import WSEdicao.dto.*;
 import WSEdicao.services.EdicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,25 +22,26 @@ public class EdicaoController {
     @Autowired
     private EdicaoService service;
 
-    public EdicaoController(EdicaoService service){this.service=service;}
+    public EdicaoController(EdicaoService service) {
+        this.service = service;
+    }
 
     @GetMapping("/{codEdicao}")
     @ResponseBody
-    public ResponseEntity<Object> getByCode(@PathVariable int codEdicao){
+    public ResponseEntity<Object> getByCode(@PathVariable int codEdicao) {
 
         Optional<EdicaoDTO> opEdicao = service.getEdicaoByCode(codEdicao);
 
-        if(opEdicao.isPresent()){
+        if (opEdicao.isPresent()) {
             EdicaoDTO edicao = opEdicao.get();
             return new ResponseEntity<>(edicao, HttpStatus.OK);
-        }
-        else
+        } else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("")
     @ResponseBody
-    public ResponseEntity<Object> findAll(){
+    public ResponseEntity<Object> findAll() {
         List<EdicaoDTO> listEdicao = service.getAllEdicao();
 
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
@@ -50,7 +49,7 @@ public class EdicaoController {
 
     @GetMapping("/allargs")
     @ResponseBody
-    public ResponseEntity<Object> findAllArgs(){
+    public ResponseEntity<Object> findAllArgs() {
         List<EdicaoAllArgsDTO> listEdicao = service.getEdicaoAllArgs();
 
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
@@ -58,38 +57,55 @@ public class EdicaoController {
 
     @GetMapping("/allargs/{codEdicao}")
     @ResponseBody
-    public ResponseEntity<Object> getAllArgsByCode(@PathVariable int codEdicao){
+    public ResponseEntity<Object> getAllArgsByCode(@PathVariable int codEdicao) {
 
         Optional<EdicaoAllArgsDTO> opEdicao = service.getEdicaoAllArgsByCode(codEdicao);
 
-        if(opEdicao.isPresent()){
+        if (opEdicao.isPresent()) {
             EdicaoAllArgsDTO edicao = opEdicao.get();
             return new ResponseEntity<>(edicao, HttpStatus.OK);
-        }
-        else
+        } else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("")
     //@ResponseBody
-    public ResponseEntity<Object> createEdicao(@RequestBody NewEdicaoInfoDTO info){
-        try{
-        EdicaoDTO edicao = service.createAndSaveEdicao(info.getCodUc(),info.getCodAnoLetivo(),info.getCodRUC());
+    public ResponseEntity<Object> createEdicao(@RequestBody NewEdicaoInfoDTO info) {
+        try {
+            EdicaoDTO edicao = service.createAndSaveEdicao(info.getCodUc(), info.getCodAnoLetivo(), info.getCodRUC());
 
-        return new ResponseEntity<>(edicao, HttpStatus.CREATED);
+            return new ResponseEntity<>(edicao, HttpStatus.CREATED);
 
-        }catch (Exception ex){
-            return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    //MÉTODO PATCH ALTERA ESTADO EDICAO || - REVER
 
+    //MÉTODO PATCH ALTERA ESTADO EDICAO
     @PatchMapping("/{codEdicao}")
-    public ResponseEntity<Object> partialUpdateEstadoProposta(@RequestBody EdicaoDTOParcial edicaoUpdate, @PathVariable int codEdicao) throws Exception {
+    public ResponseEntity<Object> partialUpdateEstadoProposta(@RequestBody EdicaoDTOParcial edicaoUpdate) throws Exception {
 
-        EdicaoDTO updatedProposta = service.updateEstadoEdicao (edicaoUpdate, codEdicao);
+        EdicaoDTO updatedProposta = service.updateEstadoEdicao(edicaoUpdate);
         return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
+    }
 
+
+    //MÉTODO PATCH PARA ADICIONAR MOMENTOS DE AVALIAÇÃO || - REVER
+    /*@PatchMapping("/addMA/{codEdicao}")
+    public ResponseEntity<Object> addMomentoAvaliacao(@RequestBody EdicaoDTOParcial edicaoUpdate) throws Exception {
+
+        EdicaoDTO addMomentoAvaliacao = service.addMomentoAvaliacaoToEdicao(edicaoUpdate);
+
+        return new ResponseEntity<>(addMomentoAvaliacao, HttpStatus.OK);
+
+    }*/
+
+    @PatchMapping("/addEstudante/{codEdicao}")
+    public ResponseEntity<Object> addEstudante(@RequestBody AddStudentDTO addStudent) throws Exception {
+
+        EdicaoDTO addMomentoAvaliacao = service.addEstudantes(addStudent);
+
+        return new ResponseEntity<>(addMomentoAvaliacao, HttpStatus.OK);
     }
 }

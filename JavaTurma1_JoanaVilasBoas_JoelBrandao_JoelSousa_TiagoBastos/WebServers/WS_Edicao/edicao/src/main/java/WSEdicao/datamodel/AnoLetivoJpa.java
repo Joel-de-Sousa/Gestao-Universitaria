@@ -18,6 +18,7 @@ public class AnoLetivoJpa {
     private int codAnoLetivo;
     private String ano;
 
+
     protected AnoLetivoJpa(){}
 
     public AnoLetivoJpa(String ano) {

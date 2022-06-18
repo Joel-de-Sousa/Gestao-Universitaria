@@ -1,8 +1,6 @@
 package WSEdicao.domain.factories;
 
-import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.Edicao;
-import WSEdicao.domain.entities.Uc;
 import org.springframework.stereotype.Service;
 
 @Service

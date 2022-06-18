@@ -1,6 +1,10 @@
 package WSEdicao.dto;
 
+import WSEdicao.datamodel.EstudanteJpa;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -16,5 +20,8 @@ public class EdicaoAllArgsDTO {
     int codAnoLetivo;
     String ano;
     int codRUC;
+    String estado;
+    ArrayList<MomentoAvaliacaoDTO> momentoAvaliacaoList;
+    ArrayList<AddStudentDTO> estudantesList;
 
 }

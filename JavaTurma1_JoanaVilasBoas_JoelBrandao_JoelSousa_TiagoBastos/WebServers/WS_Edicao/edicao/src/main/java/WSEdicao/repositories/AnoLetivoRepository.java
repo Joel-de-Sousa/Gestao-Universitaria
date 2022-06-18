@@ -1,7 +1,6 @@
 package WSEdicao.repositories;
 
 import WSEdicao.datamodel.AnoLetivoJpa;
-import WSEdicao.datamodel.UcJpa;
 import WSEdicao.datamodel.assemblers.AnoLetivoDomainDataAssembler;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.dto.AnoLetivoDTO;
@@ -48,12 +47,6 @@ public class AnoLetivoRepository {
         else
             return Optional.empty();
     }
-
-    /*public AnoLetivoJpa findJPAbyCodAnoLetivo(int codAnoLetivo){
-        AnoLetivoJpa anoLetivoJpa = anoLetivoJpaRepository.findBycodAnoLetivoNopOp(codAnoLetivo);
-
-        return anoLetivoJpa;
-    }*/
 
     public List<AnoLetivo> findAll() {
         List<AnoLetivoJpa> setAnoLetivoJpa = anoLetivoJpaRepository.findAll();
