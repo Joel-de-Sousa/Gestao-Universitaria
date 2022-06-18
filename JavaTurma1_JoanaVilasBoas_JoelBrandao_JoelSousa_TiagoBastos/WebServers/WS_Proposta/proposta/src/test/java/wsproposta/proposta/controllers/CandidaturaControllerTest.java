@@ -3,15 +3,22 @@ package wsproposta.proposta.controllers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import wsproposta.proposta.DTO.CandidaturaDTO;
+import wsproposta.proposta.DTO.CandidaturaDTOParcial;
+import wsproposta.proposta.DTO.NewCandidaturaInfoDTO;
+import wsproposta.proposta.domain.entities.Candidatura;
 import wsproposta.proposta.services.CandidaturaService;
 
 import java.util.ArrayList;
@@ -23,11 +30,11 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class CandidaturaControllerTest {
-/*
+
     @MockBean
     CandidaturaService candidaturaService;
 
-    @MockBean
+    @InjectMocks
     CandidaturaController candidaturaController;
 
     @BeforeEach
@@ -94,29 +101,54 @@ class CandidaturaControllerTest {
         assertEquals(candidaturaFinal,optionalCandidaturaDTO);
 
         assertEquals(candidaturaFinal.get().getCodCandidatura(),1);
-    }*/
+    }
+
+    @Test
+    @DisplayName("test Create and save Candidaturas")
+    void shouldCreateAndSaveCandidatura(){
+
+        //arrange
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        NewCandidaturaInfoDTO candidaturaInfoDTO = mock(NewCandidaturaInfoDTO.class);
+
+        CandidaturaDTO candidatura = mock(CandidaturaDTO.class);
+
+        when(candidaturaService.createAndSaveCandidatura(candidaturaInfoDTO)).thenReturn(candidatura);
 
 
+        //act
+        ResponseEntity<Object> responseEntity = candidaturaController.createAndSaveCandidatura(candidaturaInfoDTO);
+
+        //assert
+
+        assertEquals(responseEntity.getStatusCodeValue(),201);
+        CandidaturaDTO result = (CandidaturaDTO) responseEntity.getBody();
+        assertEquals(result , candidatura );
+    }
+    @Test
+    void shouldUpdateEstadoProposta(){
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
 
+        //arrange
+        CandidaturaDTOParcial candidaturaParcial = mock(CandidaturaDTOParcial.class);
 
+        CandidaturaDTO candidaturaDTO = mock(CandidaturaDTO.class);
 
-/*    @GetMapping("/{codCandidatura}")
-    @ResponseBody
-    public ResponseEntity<Object> getCandidaturaByCode(@PathVariable int codCandidatura) {
+        when(candidaturaService.updateEstadoCandidatura(candidaturaParcial,1)).thenReturn(candidaturaDTO);
 
-        Optional<CandidaturaDTO> opCandidaturaDTO = candidaturaService.getCandidaturaByCodCandidatura(codCandidatura);
+        //act
+        ResponseEntity<Object> responseEntity = candidaturaController.partialUpdateEstadoCandidaturaEstudante(candidaturaParcial,1);
 
-        if (opCandidaturaDTO.isPresent()) {
-            return new ResponseEntity<>(opCandidaturaDTO, HttpStatus.OK);
-        } else
-            return new ResponseEntity<>("O codigo da candidatura nao consta na Base de Dados", HttpStatus.NOT_FOUND);
-    }*/
+        assertEquals(responseEntity.getStatusCodeValue(),200);
 
-  /*  @GetMapping("")
-    @ResponseBody
-    public ResponseEntity<Object> getAllCandidaturas() {
-        List<CandidaturaDTO> listCandidaturasDTO = candidaturaService.findAllCandidaturas();
-        return new ResponseEntity<>(listCandidaturasDTO, HttpStatus.OK);
-    }*/
+        CandidaturaDTO result = (CandidaturaDTO) responseEntity.getBody();
+
+        assertEquals(result,candidaturaDTO);
+    }
+
 }
