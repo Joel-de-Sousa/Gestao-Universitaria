@@ -128,7 +128,7 @@ class CandidaturaServiceTest {
     }
 
     @Test
-    void shouldUpdateEstadoCandidatura (){
+    void shouldUpdateEstadoCandidatura () throws Exception {
 
         //arrange
         CandidaturaDTOParcial candidaturaDTOParcialDouble = mock(CandidaturaDTOParcial.class);

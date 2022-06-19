@@ -33,8 +33,7 @@ public class PropostaService {
     IUtilizadorWebRepository utilizadorWebRepository;
     @Autowired
     IOrganizacaoWebRepository organizacaoWebRepository;
-    @Autowired
-    ProjetoWebRepository projetoWebRepository;
+
 
 
 
@@ -197,10 +196,6 @@ public class PropostaService {
 
         Proposta propostaSaved = propostaRepository.save(opProposta.get());
         PropostaDTO propostaSavedDTO = propostaAssembler.toDTO(propostaSaved);
-
-
-        ProjetoRestDto projetoParcial = new ProjetoRestDto(opProposta.get().getCodUtilizador(), codProposta);
-        boolean criado = projetoWebRepository.createAndSaveProjeto(projetoParcial);
 
         return propostaSavedDTO;
     }
