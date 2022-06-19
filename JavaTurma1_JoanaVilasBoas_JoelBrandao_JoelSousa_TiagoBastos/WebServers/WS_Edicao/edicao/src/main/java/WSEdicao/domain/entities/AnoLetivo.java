@@ -19,14 +19,14 @@ public class AnoLetivo {
         this.ano = setValidAno(ano);
     }
 
+    public AnoLetivo(int codAnoLetivo) {
+        this.codAnoLetivo = codAnoLetivo;
+    }
+
     private String setValidAno(String ano) {
         if (ano == null || ano.isEmpty())
             throw new IllegalArgumentException("Ano Inválido, preencha o Ano com o seguinte formato: AAAA");
         else {
-            /*if (ano.length() == 8) {
-                ano = addHyphenToAno(ano);
-                return ano;
-            }*/
             if (anoIsANumber(ano)) {
                 return anoIsInCorrectFormat(ano);
             } else {
@@ -43,10 +43,6 @@ public class AnoLetivo {
         return matcher.matches();
     }
 
-    /*private static String addHyphenToAno(String ano) {
-        return ano.substring(0, 4) + "-" + ano.substring(4, ano.length());
-    }*/
-
     private String anoIsInCorrectFormat(String ano){
         int aux = Integer.parseInt(ano);
         if(aux>1949 && aux<2050) {
@@ -55,9 +51,7 @@ public class AnoLetivo {
         } else
             throw new IllegalArgumentException("Porfavor escreva um ano válido");
     }
-
-    public AnoLetivo(int codAnoLetivo) {
-        this.codAnoLetivo = codAnoLetivo;
-    }
 }
+
+
 
