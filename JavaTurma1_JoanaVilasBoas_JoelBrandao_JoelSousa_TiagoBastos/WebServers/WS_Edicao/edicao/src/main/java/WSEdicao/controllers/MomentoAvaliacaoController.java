@@ -1,5 +1,6 @@
 package WSEdicao.controllers;
 
+import WSEdicao.domain.entities.MomentoAvaliacao;
 import WSEdicao.dto.MomentoAvaliacaoDTO;
 
 import WSEdicao.services.EdicaoService;
@@ -45,6 +46,15 @@ public class MomentoAvaliacaoController {
         List<MomentoAvaliacaoDTO> listMomentoAvaliacao = service.getAllMomentoAvaliacao();
 
         return new ResponseEntity<>(listMomentoAvaliacao, HttpStatus.OK);
+    }
+
+    @GetMapping("/allByCodEdicao/{codEdicao}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllMomentoAvaliacaoByCodEdicao(@PathVariable int codEdicao) {
+
+        List<MomentoAvaliacaoDTO> listMAByCodEdicao = service.getAllMomentoAvaliacaoByCodEdicao(codEdicao);
+        return new ResponseEntity<>(listMAByCodEdicao, HttpStatus.OK);
+
     }
 
     @PostMapping("")

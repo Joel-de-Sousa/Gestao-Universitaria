@@ -68,6 +68,15 @@ public class EdicaoController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/allEstudantes/{codEdicao}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllEstudantesByCodEdicao(@PathVariable int codEdicao) {
+
+        List<AddStudentDTO> listEstudantesByCodEdicao = service.getAllEstudantesByCodEdicao(codEdicao);
+        return new ResponseEntity<>(listEstudantesByCodEdicao, HttpStatus.OK);
+
+    }
+
     @PostMapping("")
     //@ResponseBody
     public ResponseEntity<Object> createEdicao(@RequestBody NewEdicaoInfoDTO info) {
@@ -81,31 +90,26 @@ public class EdicaoController {
         }
     }
 
-
     //MÉTODO PATCH ALTERA ESTADO EDICAO
     @PatchMapping("/{codEdicao}")
     public ResponseEntity<Object> partialUpdateEstadoProposta(@RequestBody EdicaoDTOParcial edicaoUpdate) throws Exception {
+        try {
+            EdicaoDTO updatedProposta = service.updateEstadoEdicao(edicaoUpdate);
+            return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
 
-        EdicaoDTO updatedProposta = service.updateEstadoEdicao(edicaoUpdate);
-        return new ResponseEntity<>(updatedProposta, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
-
-
-    //MÉTODO PATCH PARA ADICIONAR MOMENTOS DE AVALIAÇÃO || - REVER
-    /*@PatchMapping("/addMA/{codEdicao}")
-    public ResponseEntity<Object> addMomentoAvaliacao(@RequestBody EdicaoDTOParcial edicaoUpdate) throws Exception {
-
-        EdicaoDTO addMomentoAvaliacao = service.addMomentoAvaliacaoToEdicao(edicaoUpdate);
-
-        return new ResponseEntity<>(addMomentoAvaliacao, HttpStatus.OK);
-
-    }*/
 
     @PatchMapping("/addEstudante/{codEdicao}")
     public ResponseEntity<Object> addEstudante(@RequestBody AddStudentDTO addStudent) throws Exception {
+        try {
+            EdicaoDTO addEstudante = service.addEstudantes(addStudent);
 
-        EdicaoDTO addMomentoAvaliacao = service.addEstudantes(addStudent);
-
-        return new ResponseEntity<>(addMomentoAvaliacao, HttpStatus.OK);
+            return new ResponseEntity<>(addEstudante, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -17,42 +17,56 @@ import java.util.Optional;
 public class MomentoAvaliacaoRepository {
 
     @Autowired
-    MomentoAvaliacaoJpaRepository momentoAvaliacaoJpaRepository;
+    MomentoAvaliacaoJpaRepository maJpaRepository;
     @Autowired
-    MomentoAvaliacaoDomainDataAssembler momentoAvaliacaoAssembler;
+    MomentoAvaliacaoDomainDataAssembler maAssembler;
     @Autowired
-    MomentoAvaliacaoDomainDTOAssembler momentoAvaliacaoDTOAssembler;
+    MomentoAvaliacaoDomainDTOAssembler maDTOAssembler;
+
 
     public MomentoAvaliacao save(MomentoAvaliacao momentoAvaliacao) throws Exception {
+        MomentoAvaliacaoJpa momentoAvaliacaoJpa1 = maAssembler.toData(momentoAvaliacao);
+        if(!maJpaRepository.existsByDenominacao(momentoAvaliacaoJpa1.getDenominacao())) {
 
-        MomentoAvaliacaoJpa momentoAvaliacaoJpa = momentoAvaliacaoAssembler.toData(momentoAvaliacao);
+            MomentoAvaliacaoJpa momentoAvaliacaoJpa = maAssembler.toData(momentoAvaliacao);
 
-        MomentoAvaliacaoJpa savedMomentoAvaliacaoJpa = momentoAvaliacaoJpaRepository.save(momentoAvaliacaoJpa);
+            MomentoAvaliacaoJpa savedMomentoAvaliacaoJpa = maJpaRepository.save(momentoAvaliacaoJpa);
 
-        return momentoAvaliacaoAssembler.toDomain(savedMomentoAvaliacaoJpa);
+            return maAssembler.toDomain(savedMomentoAvaliacaoJpa);
+        }else
+            throw new Exception("Já existe um momento de avaliação com essa denominação");
     }
 
     public Optional<MomentoAvaliacaoDTO> findBycodMomentoAvaliacao(int codMomentoAvaliacao) {
-        Optional<MomentoAvaliacaoJpa> opMomentoAvaliacao = momentoAvaliacaoJpaRepository.findBycodMomentoAvaliacao(codMomentoAvaliacao);
+        Optional<MomentoAvaliacaoJpa> opMomentoAvaliacao = maJpaRepository.findBycodMomentoAvaliacao(codMomentoAvaliacao);
 
         if (opMomentoAvaliacao.isPresent()) {
-            MomentoAvaliacao momentoAvaliacao = momentoAvaliacaoAssembler.toDomain(opMomentoAvaliacao.get());
-            MomentoAvaliacaoDTO momentoAvaliacaoDTO = momentoAvaliacaoDTOAssembler.toDTO(momentoAvaliacao);
+            MomentoAvaliacao momentoAvaliacao = maAssembler.toDomain(opMomentoAvaliacao.get());
+            MomentoAvaliacaoDTO momentoAvaliacaoDTO = maDTOAssembler.toDTO(momentoAvaliacao);
             return Optional.of(momentoAvaliacaoDTO);
         } else
             return Optional.empty();
     }
 
     public List<MomentoAvaliacao> findAll() {
-        List<MomentoAvaliacaoJpa> setMomentoAvaliacaoJpa = momentoAvaliacaoJpaRepository.findAll();
+        List<MomentoAvaliacaoJpa> setMomentoAvaliacaoJpa = maJpaRepository.findAll();
 
         List<MomentoAvaliacao> setMomentoAvaliacao = new ArrayList<MomentoAvaliacao>();
         for (MomentoAvaliacaoJpa momentoAvaliacaoJpa : setMomentoAvaliacaoJpa) {
-            MomentoAvaliacao momentoAvaliacao = momentoAvaliacaoAssembler.toDomain(momentoAvaliacaoJpa);
+            MomentoAvaliacao momentoAvaliacao = maAssembler.toDomain(momentoAvaliacaoJpa);
             setMomentoAvaliacao.add(momentoAvaliacao);
         }
 
         return setMomentoAvaliacao;
+    }
+
+    public List<MomentoAvaliacao> findAllByCodEdicao (int codEdicao){
+        List<MomentoAvaliacaoJpa> listMAJPA = maJpaRepository.findByCodEdicao(codEdicao);
+        List<MomentoAvaliacao> listMA =new ArrayList<>();
+        for (MomentoAvaliacaoJpa ma : listMAJPA) {
+            listMA.add(maAssembler.toDomain(ma));
+        }
+        return listMA;
     }
 
 

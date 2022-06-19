@@ -3,9 +3,8 @@ package WSEdicao.services;
 import WSEdicao.datamodel.EdicaoJpa;
 import WSEdicao.datamodel.EstudanteJpa;
 import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
-import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.Edicao;
-import WSEdicao.domain.entities.Uc;
+import WSEdicao.domain.entities.MomentoAvaliacao;
 import WSEdicao.domain.factories.IEdicaoFactory;
 import WSEdicao.dto.*;
 import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
@@ -18,12 +17,11 @@ import WSEdicao.repositories.UcRepository;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.OptionalDouble;
 
 @Service
 public class EdicaoService {
@@ -124,40 +122,36 @@ public class EdicaoService {
 
         Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(edicaoUpdate.getCodEdicao());
 
-        //opEdicao.get().setCodEdicao(edicaoUpdate.getCodEdicao());
-        opEdicao.get().setEstado(Edicao.Estado.valueOf(edicaoUpdate.getEstado()));
+        if(!(Objects.equals(edicaoUpdate.getEstado(), opEdicao.get().getEstado().toString()))) {
+            opEdicao.get().setEstado(Edicao.Estado.valueOf(edicaoUpdate.getEstado()));
 
-        Edicao edicaoSaved = edicaoRepository.addAndSaveMA(opEdicao.get());
+        } else
+            throw new IllegalArgumentException("A proposta já se encontra " + opEdicao.get().getEstado().toString());
+
+        Edicao edicaoSaved = edicaoRepository.saveWithoutValidation(opEdicao.get());
         EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
 
         return edicaoSavedDTO;
     }
 
-
-    /*public EdicaoDTO addMomentoAvaliacaoToEdicao(EdicaoDTOParcial edicaoUpdate) throws Exception {
-
-        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(edicaoUpdate.getCodEdicao());
-
-        opEdicao.get().setCodEdicao(edicaoUpdate.getCodEdicao());
-        opEdicao.get().setMomentoAvaliacaoList(edicaoUpdate.getMomentoAvaliacaoList());
-
-        Edicao edicaoSaved = edicaoRepository.save(opEdicao.get());
-        EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
-
-        return edicaoSavedDTO;
-    }*/
-
     public EdicaoDTO addEstudantes(AddStudentDTO addStudent) throws Exception {
 
         EdicaoJpa opEdicao = edicaoRepository.findBycodEdicaoJpa(addStudent.getCodEdicao());
         EstudanteJpa estudanteJpa = new EstudanteJpa(addStudent.getCodEdicao(),addStudent.getCodEstudante());
-        opEdicao.getListEstudantes().add(estudanteJpa);
-
+        if(!opEdicao.getListEstudantes().contains(estudanteJpa)) {
+            opEdicao.getListEstudantes().add(estudanteJpa);
+        } else
+            throw new IllegalArgumentException(" O estudante já se encontra inscrito na Edição");
         Edicao edicao = edicaoDomainDataAssembler.toDomain(opEdicao);
-        Edicao edicaoSaved = edicaoRepository.addAndSaveMA(edicao);
+        Edicao edicaoSaved = edicaoRepository.saveWithoutValidation(edicao);
         EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
 
         return edicaoSavedDTO;
+    }
+
+    public List<AddStudentDTO> getAllEstudantesByCodEdicao(int codEdicao) {
+
+        return edicaoRepository.findEstudantesByCodEdicao(codEdicao);
     }
 
 }

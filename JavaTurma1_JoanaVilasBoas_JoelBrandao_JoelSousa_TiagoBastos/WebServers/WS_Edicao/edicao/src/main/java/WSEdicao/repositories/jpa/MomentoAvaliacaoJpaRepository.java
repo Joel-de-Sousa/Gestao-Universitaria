@@ -12,8 +12,10 @@ public interface MomentoAvaliacaoJpaRepository extends CrudRepository<MomentoAva
 
 
     Optional<MomentoAvaliacaoJpa> findBycodMomentoAvaliacao(int codMomentoAvaliacao);
-
     List<MomentoAvaliacaoJpa> findAll();
+    boolean existsByDenominacao(String denominacao);
+    List<MomentoAvaliacaoJpa> findByCodEdicao(int codEdicao);
+
 
 
 
