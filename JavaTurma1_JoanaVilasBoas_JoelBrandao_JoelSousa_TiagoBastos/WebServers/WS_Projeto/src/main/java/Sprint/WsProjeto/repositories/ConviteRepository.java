@@ -42,4 +42,8 @@ public class ConviteRepository {
         else
             return Optional.empty();
     }
+
+    public void deleteByCodConvite(int codConvite){
+        conviteJPARepository.deleteById(codConvite);
+    }
 }

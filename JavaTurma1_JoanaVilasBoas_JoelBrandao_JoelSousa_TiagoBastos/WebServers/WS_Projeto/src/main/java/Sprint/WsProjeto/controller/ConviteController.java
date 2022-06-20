@@ -21,20 +21,21 @@ public class ConviteController {
             this.conviteService = conviteService;
         }
 
-      /*  @GetMapping("/{codDocente}")
+        @GetMapping("/{codDocente}")
         @ResponseBody
-        public ResponseEntity<Object> findJuriByCode(@PathVariable int codJuri) {
+        public ResponseEntity<Object> findConviteByCode(@PathVariable int codDocente) {
 
-          JuriDTO oJuri = juriService.findJuriByCode(codJuri);
+          ConviteDTO oConvite = conviteService.findConviteByCode(codDocente);
 
 
-            if (oJuri!=null) {
-                return new ResponseEntity<>(oJuri, HttpStatus.OK);
+            if (oConvite!=null) {
+                return new ResponseEntity<>(oConvite, HttpStatus.OK);
             } else
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
 
-        }*/
+        }
+
 
 
         @PostMapping("")

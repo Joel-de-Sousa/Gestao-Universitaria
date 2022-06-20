@@ -10,4 +10,6 @@ public interface ConviteJPARepository extends CrudRepository<ConviteJPA, Integer
 
 
     Optional<ConviteJPA> findById(int codDocente);
+    void deleteById(int codConvite);
+
 }

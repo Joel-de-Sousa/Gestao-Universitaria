@@ -1,6 +1,7 @@
 package Sprint.WsProjeto.datamodel.JPA.assembler;
 
 import Sprint.WsProjeto.datamodel.JPA.ConviteJPA;
+import Sprint.WsProjeto.datamodel.JPA.ConviteRecusadoJPA;
 import Sprint.WsProjeto.datamodel.JPA.JuriJPA;
 import Sprint.WsProjeto.domain.entities.Convite;
 import Sprint.WsProjeto.domain.entities.Juri;
@@ -19,4 +20,13 @@ public class ConviteDomainDataAssembler {
         return new Convite(conviteJPA.getCodConvite(),conviteJPA.getCodProjeto(),conviteJPA.getCodEstudante(),conviteJPA.getCodDocente(),conviteJPA.getEstado());
     }
 
+    public ConviteRecusadoJPA toDataRecusado (Convite convite){
+
+        return new ConviteRecusadoJPA (convite.getCodConvite(),convite.getCodProjeto(),convite.getCodEstudante(),convite.getCodDocente(),convite.getEstado());
+    }
+
+    public Convite toDomainRecusado (ConviteRecusadoJPA conviteJPA){
+
+        return new Convite(conviteJPA.getCodConvite(),conviteJPA.getCodProjeto(),conviteJPA.getCodEstudante(),conviteJPA.getCodDocente(),conviteJPA.getEstado());
+    }
 }

@@ -8,6 +8,7 @@ import Sprint.WsProjeto.domain.entities.Juri;
 import Sprint.WsProjeto.domain.entities.Projeto;
 import Sprint.WsProjeto.domain.factories.IConviteFactory;
 import Sprint.WsProjeto.domain.factories.IJuriFactory;
+import Sprint.WsProjeto.repositories.ConviteRecusadoRepository;
 import Sprint.WsProjeto.repositories.ConviteRepository;
 import Sprint.WsProjeto.repositories.JuriRepository;
 import Sprint.WsProjeto.repositories.ProjetoRepository;
@@ -26,6 +27,9 @@ public class ConviteService {
 
     @Autowired
     ConviteRepository conviteRepository;
+
+    @Autowired
+    ConviteRecusadoRepository conviteRecusadoRepository;
 
     @Autowired
     ProjetoRepository projetoRepository;
@@ -68,7 +72,21 @@ public class ConviteService {
 
             return conviteSavedDTO;
         }
-       return null; //else// colocar aqui o else para conviteRecusado
+       else{
+           if (conviteUpdate.getEstado().equals("REJEITADO")){
+               Optional<Convite> opConvite = conviteRepository.findById(conviteUpdate.getCodConvite());
+
+               opConvite.get().setCodConvite(conviteUpdate.getCodConvite());
+               opConvite.get().setEstado(Convite.Estado.valueOf(conviteUpdate.getEstado()));
+
+               Convite conviteSaved = conviteRepository.save(opConvite.get());
+               Convite conviteSavedRecusado=conviteRecusadoRepository.save(conviteSaved);
+               conviteRepository.deleteByCodConvite(conviteSaved.getCodConvite());
+               ConviteDTO conviteSavedDTO = conviteDomainDTOAssembler.toDto(conviteSavedRecusado);
+               return conviteSavedDTO;
+           }
+           throw new Exception("Não foi alterado o estado do Convite");
+        }
     }
 
     public ConviteDTO findConviteByCode(int codConvite) {
