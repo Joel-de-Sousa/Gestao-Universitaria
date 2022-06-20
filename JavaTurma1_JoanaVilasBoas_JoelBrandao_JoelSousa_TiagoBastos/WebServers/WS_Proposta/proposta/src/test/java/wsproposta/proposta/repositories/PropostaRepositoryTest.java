@@ -243,4 +243,35 @@ class PropostaRepositoryTest {
         assertEquals(0, listPropostaFiltrada.size());
         assertEquals(listPropostasDouble, listPropostaFiltrada);
     }
+    @Test
+    @DisplayName("Get Propostas By Code Edição")
+    void shouldfindAllByCodEdicao (){
+
+        // Arrange
+        PropostaJPA propostaJPADouble = mock(PropostaJPA.class);
+        PropostaJPA propostaJPADouble2 = mock(PropostaJPA.class);
+
+        List<PropostaJPA> listPropostasJPA = new ArrayList<>();
+        listPropostasJPA.add(propostaJPADouble);
+        listPropostasJPA.add(propostaJPADouble2);
+
+        when(propostaJPARepository.findAllByCodEdicao(1)).thenReturn(listPropostasJPA);
+
+        Proposta propostaDouble = mock(Proposta.class);
+        Proposta propostaDouble2 = mock(Proposta.class);
+        when(propostaAssembler.toDomain(propostaJPADouble)).thenReturn(propostaDouble);
+        when(propostaAssembler.toDomain(propostaJPADouble2)).thenReturn(propostaDouble2);
+
+        List<Proposta> listPropostasDouble = new ArrayList<>();
+        listPropostasDouble.add(propostaDouble);
+        listPropostasDouble.add(propostaDouble2);
+
+        // Act
+        List<Proposta> listPropostaFiltrada = propostaRepository.findAllByCodEdicao(1);
+
+        // Assert
+        assertEquals(2, listPropostaFiltrada.size());
+        assertEquals(listPropostasDouble, listPropostaFiltrada);
+
+    }
 }

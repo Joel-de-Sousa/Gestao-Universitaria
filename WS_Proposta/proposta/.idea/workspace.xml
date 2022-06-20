@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9254c978-23e0-47d0-971d-22a64aa8e53d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/data/demo.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/data/demo.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/src/main/java/wsproposta/proposta/PropostaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/src/main/java/wsproposta/proposta/PropostaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Utilizador/sprint/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Utilizador/sprint/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Utilizador/sprint/src/main/java/com/project/sprint/controller/UtilizadorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Utilizador/sprint/src/main/java/com/project/sprint/controller/UtilizadorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Utilizador/sprint/src/main/java/com/project/sprint/repository/IUtilizadorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Utilizador/sprint/src/main/java/com/project/sprint/repository/IUtilizadorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../documentation/Sprint3/Diagramas/SSD/FicheirosOriginais/.SSD - RUC.vpp.lck" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +72,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_opened_file_path": "C:/Users/Joana/Desktop/Sprint2/WS_Proposta/proposta",
+    "last_opened_file_path": "C:/Users/35191/Desktop/Sprint3/JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -168,10 +175,10 @@
     <list>
       <item itemvalue="Application.PropostaApplication" />
       <item itemvalue="JUnit.PropostaIT [*]" />
+      <item itemvalue="JUnit.All in proposta" />
       <item itemvalue="JUnit.PropostaITOtherTests" />
       <item itemvalue="JUnit.PropostaITOtherTests.shouldGetPropostaByIdProposta" />
       <item itemvalue="JUnit.PropostaITOtherTests.shouldGetPropostaByIdUtilizadorIT" />
-      <item itemvalue="JUnit.All in proposta" />
     </list>
     <recent_temporary>
       <list>
@@ -206,24 +213,24 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/proposta$PropostaControllerTest.ic" NAME="PropostaControllerTest Coverage Results" MODIFIED="1654339461568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>wsproposta.proposta.controllers.*</FILTER>
+    <SUITE FILE_PATH="coverage/proposta$PropostaRepositoryTest.ic" NAME="PropostaRepositoryTest Coverage Results" MODIFIED="1654351133311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>wsproposta.proposta.repositories.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/proposta$PropostaServiceTest.ic" NAME="PropostaServiceTest Coverage Results" MODIFIED="1654347207452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>wsproposta.proposta.services.*</FILTER>
-    </SUITE>
+    <SUITE FILE_PATH="coverage/proposta$All_in_proposta.ic" NAME="All in proposta Coverage Results" MODIFIED="1654357370356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/proposta$wsproposta_proposta_in_proposta.ic" NAME="wsproposta.proposta in proposta Coverage Results" MODIFIED="1654264396053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>wsproposta.proposta.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/proposta$OrganizacaoWebRepositoryTest.ic" NAME="OrganizacaoWebRepositoryTest Coverage Results" MODIFIED="1654347974984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>wsproposta.proposta.repositories.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/proposta$PropostaServiceTest.ic" NAME="PropostaServiceTest Coverage Results" MODIFIED="1654347207452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>wsproposta.proposta.services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/proposta$PropostaControllerTest.ic" NAME="PropostaControllerTest Coverage Results" MODIFIED="1654339461568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>wsproposta.proposta.controllers.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/proposta$PropostaTest.ic" NAME="PropostaTest Coverage Results" MODIFIED="1654269164203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>wsproposta.proposta.domain.entities.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/proposta$All_in_proposta.ic" NAME="All in proposta Coverage Results" MODIFIED="1654357370356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/proposta$PropostaRepositoryTest.ic" NAME="PropostaRepositoryTest Coverage Results" MODIFIED="1654351133311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>wsproposta.proposta.repositories.*</FILTER>
     </SUITE>
   </component>
 </project>

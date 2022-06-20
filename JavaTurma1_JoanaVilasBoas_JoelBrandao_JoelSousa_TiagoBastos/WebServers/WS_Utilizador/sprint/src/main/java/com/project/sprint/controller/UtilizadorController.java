@@ -61,6 +61,8 @@ public class UtilizadorController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }
+
+
     @GetMapping("/tipo/{tipoUtilizador}")
     @ResponseBody
     public ResponseEntity<Object> getAllUtilizadoresByTipoUtilizador(@PathVariable String tipoUtilizador) {
@@ -70,4 +72,5 @@ public class UtilizadorController {
         return new ResponseEntity<>(listUtilizadorDTO, HttpStatus.OK);
 
     }
+
 }

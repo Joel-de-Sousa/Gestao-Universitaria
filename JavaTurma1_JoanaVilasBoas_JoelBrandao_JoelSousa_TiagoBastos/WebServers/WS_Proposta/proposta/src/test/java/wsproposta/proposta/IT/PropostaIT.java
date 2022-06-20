@@ -78,7 +78,6 @@ public class PropostaIT {
 
         Optional<UtilizadorRestDTO> opUtilizador = Optional.of(utilizadorDouble);
         when(utilizadorRestRepository.findUtilizadorByCodUtilizador(1)).thenReturn(opUtilizador);
-
         Optional<OrganizacaoRestDTO> opOrganizacao = Optional.of(organizacaoDouble);
         when(organizacaoRestRepository.findOrganizacaoByNifOrganizacao(257837248L)).thenReturn(opOrganizacao);
 
