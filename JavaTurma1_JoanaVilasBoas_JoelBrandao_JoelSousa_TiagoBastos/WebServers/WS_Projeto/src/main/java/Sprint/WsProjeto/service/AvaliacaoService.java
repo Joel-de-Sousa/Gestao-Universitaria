@@ -49,7 +49,9 @@ public class AvaliacaoService {
 
         JuriDTO juriDTO=juriService.findJuriByCode(avaliacaoInfoDto.getCodJuri());
         Juri juri=juriDomainDTOAssembler.toDomain(juriDTO);
+        if(avaliacaoInfoDto.getCodSubmissao()==0){
 
+        }
         Optional<Submissao> opSubmissao=submissaoRepository.findById(avaliacaoInfoDto.getCodSubmissao());
 
         Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(avaliacaoInfoDto.getCodMA(),juri,opSubmissao.get());

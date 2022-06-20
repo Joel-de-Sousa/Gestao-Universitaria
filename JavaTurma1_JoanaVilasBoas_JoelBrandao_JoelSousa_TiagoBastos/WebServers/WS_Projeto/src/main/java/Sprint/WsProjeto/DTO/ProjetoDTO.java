@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @ToString
@@ -25,4 +27,7 @@ public class ProjetoDTO {
     @Getter
 
     private int codOrientador;
+
+    @Getter
+    private ArrayList<AvaliacaoDTO> avaliacaoList;
 }

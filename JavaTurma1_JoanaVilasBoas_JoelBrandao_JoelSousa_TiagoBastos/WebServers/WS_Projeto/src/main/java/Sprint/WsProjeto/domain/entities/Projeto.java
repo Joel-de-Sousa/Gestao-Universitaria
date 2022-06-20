@@ -4,6 +4,7 @@ package Sprint.WsProjeto.domain.entities;
 import lombok.*;
 
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode
@@ -26,9 +27,16 @@ public class Projeto {
     private int codProposta;
 
 
-    private List<Integer> listaAvaliacoes;
+    private List<Avaliacao> listaAvaliacoes= new ArrayList<>();
 
     public Projeto(int codEstudante, int codOrientador, int codProposta) {
+        this.codEstudante = codEstudante;
+        this.codOrientador = codOrientador;
+        this.codProposta = codProposta;
+    }
+
+    public Projeto(int codProjeto, int codEstudante, int codOrientador, int codProposta) {
+        this.codProjeto = codProjeto;
         this.codEstudante = codEstudante;
         this.codOrientador = codOrientador;
         this.codProposta = codProposta;

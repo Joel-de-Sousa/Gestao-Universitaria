@@ -28,4 +28,9 @@ public class NewProjetoInfoDto {
         this.codEstudante = codEstudante;
         this.codOrientador = codOrientador;
     }
+
+    public NewProjetoInfoDto(int codProposta, int codEstudante) {
+        this.codProposta = codProposta;
+        this.codEstudante = codEstudante;
+    }
 }
