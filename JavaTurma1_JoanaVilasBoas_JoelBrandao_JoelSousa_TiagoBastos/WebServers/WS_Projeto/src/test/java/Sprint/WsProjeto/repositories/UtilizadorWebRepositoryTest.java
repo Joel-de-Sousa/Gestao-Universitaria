@@ -1,8 +1,6 @@
 package Sprint.WsProjeto.repositories;
 
-import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
 import Sprint.WsProjeto.datamodel.REST.UtilizadorRestDTO;
-import Sprint.WsProjeto.domain.entities.Projeto;
 import Sprint.WsProjeto.repositories.REST.UtilizadorRestRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

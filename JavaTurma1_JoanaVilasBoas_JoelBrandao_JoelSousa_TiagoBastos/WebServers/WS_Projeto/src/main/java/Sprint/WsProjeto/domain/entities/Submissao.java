@@ -3,6 +3,8 @@ package Sprint.WsProjeto.domain.entities;
 
 import lombok.*;
 
+import java.io.File;
+
 @EqualsAndHashCode
 @ToString
 @AllArgsConstructor
@@ -14,10 +16,13 @@ int codSubmissao;
 
 String titulo;
 
-String urlFile;
+File file;
 
 String linguagemFile;
 
-
-
+    public Submissao(String titulo, File file, String linguagemFile) {
+        this.titulo = titulo;
+        this.file = file;
+        this.linguagemFile = linguagemFile;
+    }
 }

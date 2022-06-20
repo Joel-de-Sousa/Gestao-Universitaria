@@ -20,4 +20,9 @@ public class Juri {
 
     int codArguente;
 
+    public Juri(int codPresidente, int codOrientador, int codArguente) {
+        this.codPresidente = codPresidente;
+        this.codOrientador = codOrientador;
+        this.codArguente = codArguente;
+    }
 }

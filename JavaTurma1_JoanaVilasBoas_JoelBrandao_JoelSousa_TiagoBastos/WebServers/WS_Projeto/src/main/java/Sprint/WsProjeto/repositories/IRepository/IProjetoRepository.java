@@ -1,6 +1,5 @@
 package Sprint.WsProjeto.repositories.IRepository;
 
-import Sprint.WsProjeto.datamodel.JPA.ProjetoJPA;
 import Sprint.WsProjeto.domain.entities.Projeto;
 
 import java.util.Optional;
