@@ -18,6 +18,12 @@ public class EdicaoWebRepository {
 
         return opEdicao;
     }
+
+    public Optional<EdicaoRestDTO> findByEdicaoByCodEstudante(int codEstudante) {
+        Optional<EdicaoRestDTO> opEdicao = edicaoRestRepository. findEdicaoByCodEstudante(codEstudante);
+
+        return opEdicao;
+    }
     public List<EdicaoRestDTO> getListaEdicoesByCodRUC(int codRuc){
 
         Optional<List<EdicaoRestDTO>> lista =edicaoRestRepository.getAllEdicoesByCodRUC(codRuc);

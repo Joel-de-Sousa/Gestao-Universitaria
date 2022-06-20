@@ -53,16 +53,16 @@ public class PropostaRestRepository {
 
     public Optional<List<PropostaRestDTO>> findAllPropostasAceitesByCodEdicao (int codEdicao) {
 
-        PropostaRestDTO propo1 = new PropostaRestDTO(1, "Desenvolvimento Software Têxtil", "ACEITE");
+       /* PropostaRestDTO propo1 = new PropostaRestDTO(1, "Desenvolvimento Software Têxtil", "ACEITE");
         PropostaRestDTO propo2 = new PropostaRestDTO(2, "Novo Canal de Comunicação On-site Messaging", "ACEITE");
         List<PropostaRestDTO> list = new ArrayList<>();
         list.add(propo1);
         list.add(propo2);
-        return Optional.of(list);
+        return Optional.of(list);*/
 
-        /*try {
+        try {
             Mono<List<PropostaRestDTO>> response = webClient.get()
-                    .uri("/propostas/edicao/" +codEdicao)
+                    .uri("/propostas/edicao/aceite/" +codEdicao)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -79,7 +79,6 @@ public class PropostaRestRepository {
         }catch( Exception e) {
             return Optional.empty();
         }
-*/
     }
     public Optional<PropostaRestDTO> findById(int codProposta) {
 

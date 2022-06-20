@@ -30,7 +30,7 @@ public class ConviteRestRepository {
         try {
             result= webClient
                     .post()
-                    .uri("/convite")
+                    .uri("/convites")
                     .body(Mono.just(novoConvite), ConviteRestDTO.class).exchange().flatMap(response -> response.toEntity(String.class))
                     .onErrorReturn(ResponseEntity.of(Optional.of(novoConvite.toString())))
                     .doOnError(throwable -> {

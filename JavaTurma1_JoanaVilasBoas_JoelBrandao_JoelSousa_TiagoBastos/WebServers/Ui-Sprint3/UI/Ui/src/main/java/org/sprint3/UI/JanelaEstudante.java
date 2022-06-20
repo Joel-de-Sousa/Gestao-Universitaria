@@ -81,8 +81,8 @@ public class JanelaEstudante implements Initializable {
     }
     public void displayObject (UtilizadorRestDTO utilizador){
         utilizadorIntroduzido = utilizador;
-        codEdicao = edicaoController.getCodEdicaoEstudante(utilizador.getCodUtilizador());
-        edicao = edicaoController.getEdicaoByCodUtilizador(utilizador.getCodUtilizador());
+        codEdicao = edicaoController.getCodEdicaoByCodEstudante(utilizador.getCodUtilizador());
+        edicao = edicaoController.getEdicaoByCodEstudante(utilizador.getCodUtilizador());
         edicaoLabel.setText(edicao);
 
         initFuncoes();
@@ -210,6 +210,8 @@ public class JanelaEstudante implements Initializable {
         }
     }
 
+
+    //BOTAO ESTUDANTE SUBMETER PROPOSTA
     @FXML
     public void handleButtonSubmeterAction(ActionEvent actionEvent) throws IOException {
 

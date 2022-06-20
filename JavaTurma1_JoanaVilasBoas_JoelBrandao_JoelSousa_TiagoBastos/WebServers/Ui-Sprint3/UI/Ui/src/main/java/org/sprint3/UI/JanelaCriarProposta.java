@@ -41,7 +41,7 @@ public class JanelaCriarProposta implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         propostaController = new PropostaController();
         edicaoController = new EdicaoController();
-        //cmbxEdicao.getItems().addAll(edicaoController.getListaEdicoes());
+        cmbxEdicao.getItems().addAll(edicaoController.getListaEdicoes());
         reniciarDisable();
     }
 
