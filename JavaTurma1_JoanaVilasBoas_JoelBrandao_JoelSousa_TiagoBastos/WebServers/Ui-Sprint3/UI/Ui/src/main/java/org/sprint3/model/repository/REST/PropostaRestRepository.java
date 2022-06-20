@@ -82,9 +82,9 @@ public class PropostaRestRepository {
     }
     public Optional<PropostaRestDTO> findById(int codProposta) {
 
-        PropostaRestDTO prop = new PropostaRestDTO(1, 1, "Joana", "Vilas Boas", 500000025, 1, "Titulo desta proposta", "Problema desta propostas", "Objectivo detsa proposta", "PENDENTE");
-        return Optional.of(prop);
-       /* try {
+      /*  PropostaRestDTO prop = new PropostaRestDTO(1, 1, "Joana", "Vilas Boas", 500000025, 1, "Titulo desta proposta", "Problema desta propostas", "Objectivo detsa proposta", "PENDENTE");
+        return Optional.of(prop);*/
+        try {
             Mono<PropostaRestDTO> response = webClient
                     .get()
                     .uri("/propostas/" + codProposta)
@@ -104,7 +104,6 @@ public class PropostaRestRepository {
         } catch (Exception e) {
             return Optional.empty();
         }
-*/
     }
 
 

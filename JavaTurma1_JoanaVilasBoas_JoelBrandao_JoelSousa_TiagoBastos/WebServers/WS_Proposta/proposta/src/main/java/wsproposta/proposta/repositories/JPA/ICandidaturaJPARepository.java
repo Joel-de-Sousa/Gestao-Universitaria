@@ -10,6 +10,9 @@ public interface ICandidaturaJPARepository extends CrudRepository<CandidaturaJPA
 
     Optional<CandidaturaJPA> findById(int codCandidatura);
 
+    Optional<CandidaturaJPA> findByCodEstudante(int codEstudante);
+
+
     void deleteById (int codCandidatura);
 
     List<CandidaturaJPA> findAll();

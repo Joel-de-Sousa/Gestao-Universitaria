@@ -4,7 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import wsproposta.proposta.DTO.NewCandidaturaInfoDTO;
 import wsproposta.proposta.DTO.NewPropostaInfoDTO;
+import wsproposta.proposta.services.CandidaturaService;
 import wsproposta.proposta.services.PropostaService;
 
 @SpringBootApplication
@@ -15,7 +17,7 @@ public class PropostaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(PropostaService propostaService) {
+	public CommandLineRunner demo(PropostaService propostaService, CandidaturaService candidaturaService) {
 		return (args) -> {
 
 			NewPropostaInfoDTO novaProposta1 = new NewPropostaInfoDTO(1, 500000025, 1, "Real-time data analytics for Non-Functional Requirements satisfaction",
@@ -28,6 +30,8 @@ public class PropostaApplication {
 			propostaService.createAndSaveProposta(novaProposta2);
 
 
+			NewCandidaturaInfoDTO novaCandidatura1 = new NewCandidaturaInfoDTO(1, 1);
+			candidaturaService.createAndSaveCandidatura(novaCandidatura1);
 
 
 		};

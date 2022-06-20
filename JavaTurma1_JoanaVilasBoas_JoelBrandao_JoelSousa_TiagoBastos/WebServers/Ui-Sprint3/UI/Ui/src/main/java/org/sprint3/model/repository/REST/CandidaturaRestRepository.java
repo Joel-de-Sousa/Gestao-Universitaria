@@ -57,14 +57,14 @@ public class CandidaturaRestRepository {
 
     public Optional<List<CandidaturaRestDTO>> findAllCandidaturas() {
 
-        CandidaturaRestDTO cand1 = new CandidaturaRestDTO(1,"Tecnologias Assistidas para Terapia da Fala", "Joel", "Sousa", "PENDENTE");
+       /* CandidaturaRestDTO cand1 = new CandidaturaRestDTO(1,"Tecnologias Assistidas para Terapia da Fala", "Joel", "Sousa", "PENDENTE");
         CandidaturaRestDTO cand2 = new CandidaturaRestDTO(1,"Applicant Tracking System", "Joel", "Sousa", "PENDENTE");
 
         List<CandidaturaRestDTO> list = new ArrayList<>();
         list.add(cand1);
         list.add(cand2);
-        return Optional.of(list);
-      /*  try {
+        return Optional.of(list);*/
+        try {
             Mono<List<CandidaturaRestDTO>> response = webClient
                     .get()
                     .uri("/candidaturas")
@@ -83,15 +83,15 @@ public class CandidaturaRestRepository {
             return Optional.of(lista);
         }catch( Exception e) {
             return Optional.empty();
-        }*/
+        }
 
     }
 
     public Optional<CandidaturaRestDTO> findById(int codCandidatura) {
 
-        CandidaturaRestDTO c1  = new CandidaturaRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais,baseados num modelo on-premises, com um conjunto de servidores mais ou menos estático.", "aferir este impacto foi desenvolvido um caso de estudo, inserido no contexto de uma loja e-Commerce de artigos de arte", "PDS 2022-2023", 1, "Joel", "Sousa", "PENDENTE");
-        return Optional.of(c1);
-        /*try {
+      /*  CandidaturaRestDTO c1  = new CandidaturaRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais,baseados num modelo on-premises, com um conjunto de servidores mais ou menos estático.", "aferir este impacto foi desenvolvido um caso de estudo, inserido no contexto de uma loja e-Commerce de artigos de arte", "PDS 2022-2023", 1, "Joel", "Sousa", "PENDENTE");
+        return Optional.of(c1);*/
+        try {
             Mono<CandidaturaRestDTO> response = webClient
                     .get()
                     .uri("/candidaturas/" + codCandidatura)
@@ -110,15 +110,15 @@ public class CandidaturaRestRepository {
             return Optional.of(tutorial);
         } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
 
     }
 
     public Optional<CandidaturaRestDTO> findByCodEstudante(int codEstudante) {
 
-        CandidaturaRestDTO c1  = new CandidaturaRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais,baseados num modelo on-premises, com um conjunto de servidores mais ou menos estático.", "aferir este impacto foi desenvolvido um caso de estudo, inserido no contexto de uma loja e-Commerce de artigos de arte", "PDS 2022-2023", 1, "Joel", "Sousa", "PENDENTE");
-        return Optional.of(c1);
-        /*try {
+        /*CandidaturaRestDTO c1  = new CandidaturaRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais,baseados num modelo on-premises, com um conjunto de servidores mais ou menos estático.", "aferir este impacto foi desenvolvido um caso de estudo, inserido no contexto de uma loja e-Commerce de artigos de arte", "PDS 2022-2023", 1, "Joel", "Sousa", "PENDENTE");
+        return Optional.of(c1);*/
+        try {
             Mono<CandidaturaRestDTO> response = webClient
                     .get()
                     .uri("/candidaturas/" + codEstudante)
@@ -137,13 +137,13 @@ public class CandidaturaRestRepository {
             return Optional.of(tutorial);
         } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
     }
 
     public boolean updateEstadoCandidatura (CandidaturaRestDTO candidaturaParcial) throws Exception {
-        return true;
 
-        /*ResponseEntity<String> result = null;
+
+        ResponseEntity<String> result = null;
         int codCandidatura = candidaturaParcial.getCodCandidatura();
         try {
             result= webClient
@@ -164,7 +164,7 @@ public class CandidaturaRestRepository {
         if (result.getStatusCode().is2xxSuccessful())
             return true;
         else
-            throw new Exception( result.getBody());*/
+            throw new Exception( result.getBody());
     }
 
 

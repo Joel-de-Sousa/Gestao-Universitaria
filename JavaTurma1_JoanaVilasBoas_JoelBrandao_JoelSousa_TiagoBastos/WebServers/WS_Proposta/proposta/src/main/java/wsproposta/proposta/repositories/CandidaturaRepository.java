@@ -40,6 +40,17 @@ public class CandidaturaRepository implements ICandidaturaRepository {
             return Optional.empty();
     }
 
+    public Optional<Candidatura> findByIdEstudante(int codEstudante) {
+        Optional<CandidaturaJPA> opCandidatura = candidaturaJPARepository.findByCodEstudante(codEstudante);
+
+        if ( opCandidatura.isPresent() ) {
+            Candidatura candidatura = candidaturaAssembler.toDomain(opCandidatura.get());
+            return Optional.of( candidatura );
+        }
+        else
+            return Optional.empty();
+    }
+
     public List<Candidatura> findAll(){
         List<CandidaturaJPA> listCandidaturasJPA = candidaturaJPARepository.findAll();
         List<Candidatura> listCandidaturas =new ArrayList<>();
