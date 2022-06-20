@@ -39,12 +39,46 @@ public class CandidaturaController {
         return new ResponseEntity<>(listCandidaturasDTO, HttpStatus.OK);
     }
 
+    //MÉTODO FIND ALL CANDIDATURAS AllArgs
+    @GetMapping("/allArgs")
+    @ResponseBody
+    public ResponseEntity<Object> getAllCandidaturasAllArgs() {
+        List<CandidaturaDTOAllArgs> listCandidaturasDTO = candidaturaService.findAllCandidaturasAllArgs();
+        return new ResponseEntity<>(listCandidaturasDTO, HttpStatus.OK);
+    }
+
     //MÉTODO GET CANDIDATURAS BY COD CANDIDATURA
     @GetMapping("/{codCandidatura}")
     @ResponseBody
     public ResponseEntity<Object> getCandidaturaByCode(@PathVariable int codCandidatura) {
 
         Optional<CandidaturaDTO> opCandidaturaDTO = candidaturaService.getCandidaturaByCodCandidatura(codCandidatura);
+
+        if (opCandidaturaDTO.isPresent()) {
+            return new ResponseEntity<>(opCandidaturaDTO, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>("O codigo da candidatura nao consta na Base de Dados", HttpStatus.NOT_FOUND);
+    }
+
+    //MÉTODO GET CANDIDATURAS BY COD CANDIDATURA
+    @GetMapping("/estudante/{codEstudante}")
+    @ResponseBody
+    public ResponseEntity<Object> getCandidaturaByCodeEstudante(@PathVariable int codEstudante) {
+
+        Optional<CandidaturaDTO> opCandidaturaDTO = candidaturaService.getCandidaturaByCodCandidaturaEstudante(codEstudante);
+
+        if (opCandidaturaDTO.isPresent()) {
+            return new ResponseEntity<>(opCandidaturaDTO, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>("O codigo da candidatura nao consta na Base de Dados", HttpStatus.NOT_FOUND);
+    }
+
+    //MÉTODO GET CANDIDATURAS BY COD CANDIDATURA allArgs
+    @GetMapping("/allArgs/{codCandidatura}")
+    @ResponseBody
+    public ResponseEntity<Object> getCandidaturaByCodeAllArgs(@PathVariable int codCandidatura) {
+
+        Optional<CandidaturaDTOAllArgs> opCandidaturaDTO = candidaturaService.getCandidaturaByCodCandidaturaAllArgs(codCandidatura);
 
         if (opCandidaturaDTO.isPresent()) {
             return new ResponseEntity<>(opCandidaturaDTO, HttpStatus.OK);

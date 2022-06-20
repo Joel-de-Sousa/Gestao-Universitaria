@@ -37,10 +37,10 @@ public class JanelaAdmin implements Initializable {
 
         btnConfirmEdicao.setDisable(true);
         comboBoxUC.setDisable(true);
-        //comboBoxUC.getItems().addAll(ucController.getListaUnidadeCurricular());
-        comboBoxUC.getItems().addAll("PDS");
-        //comboBoxAnoLetivo.getItems().addAll(anoLetivoController.getListaAnos());
-        comboBoxAnoLetivo.getItems().addAll("TESTE");
+        comboBoxUC.getItems().addAll(ucController.getListaUnidadeCurricular());
+        //comboBoxUC.getItems().addAll("PDS");
+        comboBoxAnoLetivo.getItems().addAll(anoLetivoController.getListaAnos());
+        //comboBoxAnoLetivo.getItems().addAll("TESTE");
     }
 
     @FXML

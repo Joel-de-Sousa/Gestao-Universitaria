@@ -53,6 +53,17 @@ public class CandidaturaService {
         return listCandidaturasDTO;
     }
 
+    public List<CandidaturaDTOAllArgs> findAllCandidaturasAllArgs() {
+        List<Candidatura> listCandidaturas = candidaturaRepository.findAll();
+
+        List<CandidaturaDTOAllArgs> listCandidaturasDTO = new ArrayList<>();
+        for (Candidatura candidatura : listCandidaturas) {
+            CandidaturaDTOAllArgs candidaturaDTO = candidaturaAssembler.toDTOAllArgs(candidatura);
+            listCandidaturasDTO.add(candidaturaDTO);
+        }
+        return listCandidaturasDTO;
+    }
+
     public Optional<CandidaturaDTO> getCandidaturaByCodCandidatura (int codCandidatura) {
 
         Optional<Candidatura> opCandidatura = candidaturaRepository.findById(codCandidatura);
@@ -61,6 +72,30 @@ public class CandidaturaService {
             Candidatura candidatura = opCandidatura.get();
             CandidaturaDTO candidaturaDTO = candidaturaAssembler.toDTO(candidatura);
             Optional<CandidaturaDTO> opCandidaturaDTO = Optional.of(candidaturaDTO);
+            return opCandidaturaDTO;
+        } else return Optional.empty();
+    }
+
+    public Optional<CandidaturaDTO> getCandidaturaByCodCandidaturaEstudante (int codEstudante) {
+
+        Optional<Candidatura> opCandidatura = candidaturaRepository.findByIdEstudante(codEstudante);
+
+        if (opCandidatura.isPresent()) {
+            Candidatura candidatura = opCandidatura.get();
+            CandidaturaDTO candidaturaDTO = candidaturaAssembler.toDTO(candidatura);
+            Optional<CandidaturaDTO> opCandidaturaDTO = Optional.of(candidaturaDTO);
+            return opCandidaturaDTO;
+        } else return Optional.empty();
+    }
+
+    public Optional<CandidaturaDTOAllArgs> getCandidaturaByCodCandidaturaAllArgs (int codCandidatura) {
+
+        Optional<Candidatura> opCandidatura = candidaturaRepository.findById(codCandidatura);
+
+        if (opCandidatura.isPresent()) {
+            Candidatura candidatura = opCandidatura.get();
+            CandidaturaDTOAllArgs candidaturaDTO = candidaturaAssembler.toDTOAllArgs(candidatura);
+            Optional<CandidaturaDTOAllArgs> opCandidaturaDTO = Optional.of(candidaturaDTO);
             return opCandidaturaDTO;
         } else return Optional.empty();
     }

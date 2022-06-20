@@ -161,4 +161,14 @@ public class PropostaController {
         return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
 
     }
+
+    //MÉTODO GET PROPOSTAS ACEITES BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS ACEITES DESTA EDICAO
+    @GetMapping("/edicao/aceite/{codEdicao}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllPropostasAceitesByCodEdicao(@PathVariable int codEdicao) {
+
+        List<PropostaDTO> listFiltradaPropostasDTO = service.findAllPropostasAceitesByCodEdicao(codEdicao);
+        return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
+
+    }
 }

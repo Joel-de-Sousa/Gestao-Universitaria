@@ -41,12 +41,24 @@ public class WsEdicaoApplication {
 
 
             //Create a few Uc, AnoLetivos and Edicões
-            UcDTO uc1 = ucService.createAndSaveUc("PTRW", "Portugadfsdsfl");
-            AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015");
-            EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo1.getCodAnoLetivo(), 1);
+            UcDTO uc1 = ucService.createAndSaveUc("POO", "Programação Orientada Objectos");
+            UcDTO uc2 = ucService.createAndSaveUc("PDS", "Princípios de Desenvolvimento de Software");
+            UcDTO uc3 = ucService.createAndSaveUc("BDD", "Base de Dados");
 
-            MomentoAvaliacaoDTO info = new MomentoAvaliacaoDTO(1, "Sprint1");
+            AnoLetivoDTO anoLetivo1 = anoLetivoService.createAndSaveAnoLetivo("2015");
+            AnoLetivoDTO anoLetivo2 = anoLetivoService.createAndSaveAnoLetivo("2022");
+            AnoLetivoDTO anoLetivo3 = anoLetivoService.createAndSaveAnoLetivo("2021");
+
+            EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo2.getCodAnoLetivo(), 1);
+            EdicaoDTO edicao2 = edicaoService.createAndSaveEdicao(uc2.getCodUc(), anoLetivo2.getCodAnoLetivo(), 1);
+            EdicaoDTO edicao3 = edicaoService.createAndSaveEdicao(uc3.getCodUc(), anoLetivo2.getCodAnoLetivo(), 1);
+
+            MomentoAvaliacaoDTO info = new MomentoAvaliacaoDTO(1, "MA1");
             MomentoAvaliacaoDTO ma1 = momentoAvaliacaoService.createAndSaveMomentoAvaliacao(info);
+
+            MomentoAvaliacaoDTO info2 = new MomentoAvaliacaoDTO(1, "MA2");
+            MomentoAvaliacaoDTO ma2 = momentoAvaliacaoService.createAndSaveMomentoAvaliacao(info2);
+
 			Optional<Edicao > ed1 = repository.findBycodEdicao(edicao1.getCodEdicao());
             EdicaoAllArgsDTO allarg = edicaoAssembler.toDTOAllArgs(ed1.get());
 

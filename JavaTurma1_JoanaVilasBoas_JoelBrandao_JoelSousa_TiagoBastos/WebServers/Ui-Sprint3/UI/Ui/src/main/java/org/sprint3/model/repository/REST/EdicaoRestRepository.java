@@ -57,6 +57,30 @@ public class EdicaoRestRepository {
 
     }
 
+    public Optional<EdicaoRestDTO> findEdicaoByCodEstudante (int codEstudante) {
+
+        try {
+            Mono<EdicaoRestDTO> response = webClient
+                    .get()
+                    .uri("/edicao/" + codEstudante)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, error -> {
+                        return Mono.empty();
+                    })
+                    .bodyToMono(EdicaoRestDTO.class)
+                    .onErrorReturn(null)
+                    .doOnError(throwable -> {
+                        System.out.println(throwable.getMessage());
+                    });
+
+            EdicaoRestDTO tutorial = response.block();
+
+            return Optional.of(tutorial);
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+    }
+
     public Optional<List<EdicaoRestDTO>> getAllEdicoesByCodRUC(int codRuc) {
 
         EdicaoRestDTO ed1 = new EdicaoRestDTO(1, "POO", "2022-2023");
@@ -90,10 +114,8 @@ public class EdicaoRestRepository {
     }
 
     public boolean createEdicao (EdicaoRestDTO novaEdicao) throws Exception {
-        return true;
-    }
 
-      /*  ResponseEntity<String> result = null;
+       ResponseEntity<String> result = null;
         try {
             result= webClient
                     .post()
@@ -114,7 +136,7 @@ public class EdicaoRestRepository {
             return true;
         else
             throw new Exception( result.getBody());
-    }*/
+    }
 
     public Optional<List<EdicaoRestDTO>> getAllEdicoes () {
         try {

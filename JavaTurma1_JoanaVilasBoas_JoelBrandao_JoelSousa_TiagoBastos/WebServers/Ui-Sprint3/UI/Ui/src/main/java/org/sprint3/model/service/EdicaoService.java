@@ -22,6 +22,12 @@ public class EdicaoService {
         return opEdicao;
     }
 
+    public Optional<EdicaoRestDTO> getEdicaoByCodEstudante(int codEstudante) {
+        Optional<EdicaoRestDTO> opEdicao = edicaoWebRepository.findByEdicaoByCodRUC(codEstudante);
+
+        return opEdicao;
+    }
+
     public List<String> getListaEdicoesByCodRUC(int codRuc) {
         List<String> edicoes = new ArrayList<>();
 

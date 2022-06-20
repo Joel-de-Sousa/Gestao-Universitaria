@@ -1,11 +1,15 @@
 package org.sprint3.model.repository.REST;
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.sprint3.model.DTO.ConviteRestDTO;
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
@@ -25,12 +29,11 @@ public class ConviteRestRepository {
 
     public boolean createConvite (ConviteRestDTO novoConvite) throws Exception {
 
-        return true;
-       /* ResponseEntity<String> result = null;
+        ResponseEntity<String> result = null;
         try {
             result= webClient
                     .post()
-                    .uri("/convite")
+                    .uri("/convites")
                     .body(Mono.just(novoConvite), ConviteRestDTO.class).exchange().flatMap(response -> response.toEntity(String.class))
                     .onErrorReturn(ResponseEntity.of(Optional.of(novoConvite.toString())))
                     .doOnError(throwable -> {
@@ -46,23 +49,23 @@ public class ConviteRestRepository {
         if (result.getStatusCode().is2xxSuccessful())
             return true;
         else
-            throw new Exception( result.getBody());*/
+            throw new Exception( result.getBody());
     }
 
 
     public Optional<List<ConviteRestDTO>> getListaConvitesByCodDocente (int codDocente) {
-
+/*
         ConviteRestDTO conv1 = new ConviteRestDTO(1, 7,"Joana","Gomes", 4,2,"Centro de Controlo para Veículos Elétricos", "Problema do projeto", "Objetivo do projeto","PDS 2022/2023", "PENDENTE");
         ConviteRestDTO conv2 = new ConviteRestDTO(2,7,"Tiago","Bastos", 4,2,"O Paradigma \"Code Push-Down\"", "Problema do projeto", "Objetivo do projeto","PDS 2022/2023", "ACEITE");
         List<ConviteRestDTO> list = new ArrayList<>();
         list.add(conv1);
         list.add(conv2);
 
-        return Optional.of(list);
+        return Optional.of(list);*/
 
-       /* try {
+       try {
             Mono<List<ConviteRestDTO>> response = webClient.get()
-                    .uri("/edicao/allargs" + codDocente)
+                    .uri("/convite/allArgs/" + codDocente)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -78,19 +81,19 @@ public class ConviteRestRepository {
             return Optional.of(lista);
         } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
 
     }
 
     public Optional<ConviteRestDTO> findConviteByCodConvite (int codConvite) {
 
-        ConviteRestDTO conv1 = new ConviteRestDTO(1, 7,"Joana","Gomes", 4,2,"Centro de Controlo para Veículos Elétricos", "Problema do projeto", "Objetivo do projeto","PDS 2022/2023", "PENDENTE");
-        return Optional.of(conv1);
+       /* ConviteRestDTO conv1 = new ConviteRestDTO(1, 7,"Joana","Gomes", 4,2,"Centro de Controlo para Veículos Elétricos", "Problema do projeto", "Objetivo do projeto","PDS 2022/2023", "PENDENTE");
+        return Optional.of(conv1);*/
 
-       /* try {
+       try {
             Mono<ConviteRestDTO> response = webClient
                     .get()
-                    .uri("/convites/" + codConvite)
+                    .uri("/convites/allArgs/" + codConvite)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -107,14 +110,14 @@ public class ConviteRestRepository {
         } catch (Exception e) {
             return Optional.empty();
         }
-*/
+
     }
 
 
     public boolean updateEstadoConvite (ConviteRestDTO conviteParcial) throws Exception {
 
-        return true;
-       /* ResponseEntity<String> result = null;
+
+        ResponseEntity<String> result = null;
         int codConvite = conviteParcial.getCodConvite();
         try {
             result= webClient
@@ -135,6 +138,6 @@ public class ConviteRestRepository {
         if (result.getStatusCode().is2xxSuccessful())
             return true;
         else
-            throw new Exception( result.getBody());*/
+            throw new Exception( result.getBody());
     }
 }

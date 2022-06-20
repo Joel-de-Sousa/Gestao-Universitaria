@@ -83,8 +83,8 @@ public class ProjetoService {
             return null;
     }
 
-    public boolean criarNovoJuri (String orientador, String arguente, String presidente) throws Exception {
-        JuriRestDTO juri = new JuriRestDTO (orientador,arguente,presidente);
+    public boolean criarNovoJuri (String presidente, String orientador, String arguente) throws Exception {
+        JuriRestDTO juri = new JuriRestDTO (presidente, orientador,arguente);
         boolean create= projetoWebRepository.createJuri (juri);
         return create;
     }
