@@ -32,11 +32,17 @@ public class WsUtilizadorApplication {
             NewUtilizadorInfoDTO novoUtilizador4 = new NewUtilizadorInfoDTO("Nuno", "Morgado", "nunoMorgado@gmail.com", "DOCENTE");
             utilizadorService.createAndSaveUtilizador(novoUtilizador4);
 
-            NewUtilizadorInfoDTO novoUtilizador5 = new NewUtilizadorInfoDTO("Paulo", "Baltarejo", "pauloBaltarejo@gmail.com", "DOCENTE");
+            NewUtilizadorInfoDTO novoUtilizador5 = new NewUtilizadorInfoDTO("Carlos", "Ferreira", "pauloBaltarejo@gmail.com", "DOCENTE");
             utilizadorService.createAndSaveUtilizador(novoUtilizador5);
 
             NewUtilizadorInfoDTO novoUtilizador6 = new NewUtilizadorInfoDTO("Joana", "Silva", "joanaSilva@gmail.com", "ADMINISTRADOR");
             utilizadorService.createAndSaveUtilizador(novoUtilizador6);
+
+            NewUtilizadorInfoDTO novoUtilizador7 = new NewUtilizadorInfoDTO("Isabel", "Azevedo", "isabelAzevedo@gmail.com", "DOCENTE");
+            utilizadorService.createAndSaveUtilizador(novoUtilizador7);
+
+            NewUtilizadorInfoDTO novoUtilizador8 = new NewUtilizadorInfoDTO("Alexandre", "Silva", "alexandreSilva@gmail.com", "DOCENTE");
+            utilizadorService.createAndSaveUtilizador(novoUtilizador8);
         };
     }
 }
