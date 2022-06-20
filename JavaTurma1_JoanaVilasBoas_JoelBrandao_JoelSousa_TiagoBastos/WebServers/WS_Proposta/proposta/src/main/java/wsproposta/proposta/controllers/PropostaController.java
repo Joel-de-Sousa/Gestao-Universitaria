@@ -153,7 +153,7 @@ public class PropostaController {
     }
 
     //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
-    @GetMapping("/utilizador/{codEdicao}")
+    @GetMapping("/edicao/{codEdicao}")
     @ResponseBody
     public ResponseEntity<Object> getAllPropostasByCodEdicao(@PathVariable int codEdicao) {
 

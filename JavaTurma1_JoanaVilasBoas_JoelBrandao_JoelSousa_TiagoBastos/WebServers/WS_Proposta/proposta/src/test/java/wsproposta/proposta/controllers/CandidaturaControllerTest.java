@@ -128,7 +128,7 @@ class CandidaturaControllerTest {
         assertEquals(result , candidatura );
     }
     @Test
-    void shouldUpdateEstadoProposta(){
+    void shouldUpdateEstadoProposta() throws Exception {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));

@@ -69,7 +69,7 @@ public class CandidaturaController {
     //MÉTODO PATCH ALTERA ESTADO CANDIDATURA ESTUDANTE
 
     @PatchMapping("/estado/{codCandidatura}")
-    public ResponseEntity<Object> partialUpdateEstadoCandidaturaEstudante (@RequestBody CandidaturaDTOParcial candidaturaUpdate, @PathVariable int codCandidatura) {
+    public ResponseEntity<Object> partialUpdateEstadoCandidaturaEstudante (@RequestBody CandidaturaDTOParcial candidaturaUpdate, @PathVariable int codCandidatura) throws Exception {
 
         CandidaturaDTO updatedCandidatura = candidaturaService.updateEstadoCandidatura (candidaturaUpdate, codCandidatura);
         return new ResponseEntity<>(updatedCandidatura, HttpStatus.OK);

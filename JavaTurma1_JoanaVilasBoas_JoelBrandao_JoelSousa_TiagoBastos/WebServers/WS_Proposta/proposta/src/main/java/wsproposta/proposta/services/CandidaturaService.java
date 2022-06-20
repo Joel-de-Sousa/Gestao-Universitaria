@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wsproposta.proposta.DTO.*;
 import wsproposta.proposta.DTO.assemblers.CandidaturaDomainDTOAssembler;
+import wsproposta.proposta.datamodel.REST.ProjetoRestDto;
 import wsproposta.proposta.domain.entities.Candidatura;
 import wsproposta.proposta.domain.factories.ICandidaturaFactory;
 import wsproposta.proposta.repositories.CandidaturaRepository;
+import wsproposta.proposta.repositories.ProjetoWebRepository;
 import wsproposta.proposta.repositories.iRepositories.ICandidaturaRepository;
 
 
@@ -22,6 +24,9 @@ public class CandidaturaService {
     CandidaturaRepository candidaturaRepository;
     @Autowired
     CandidaturaDomainDTOAssembler candidaturaAssembler;
+
+    @Autowired
+    ProjetoWebRepository projetoWebRepository;
 
     public CandidaturaService() {
     }
@@ -61,7 +66,7 @@ public class CandidaturaService {
     }
 
     //MÉTODO UODATE ESTADO CANDIDATURA
-    public CandidaturaDTO updateEstadoCandidatura (CandidaturaDTOParcial candidaturaUpdate, int codCandidatura) {
+    public CandidaturaDTO updateEstadoCandidatura (CandidaturaDTOParcial candidaturaUpdate, int codCandidatura) throws Exception {
 
         Optional<Candidatura> opCandidatura = candidaturaRepository.findById(codCandidatura);
 
@@ -70,6 +75,9 @@ public class CandidaturaService {
 
         Candidatura candidaturaSaved = candidaturaRepository.save(opCandidatura.get());
         CandidaturaDTO candidaturaSavedDTO = candidaturaAssembler.toDTO(candidaturaSaved);
+
+        ProjetoRestDto projetoParcial = new ProjetoRestDto(opCandidatura.get().getCodEstudante(), codCandidatura);
+        boolean criado = projetoWebRepository.createAndSaveProjeto(projetoParcial);
 
         return candidaturaSavedDTO;
     }

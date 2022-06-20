@@ -2,6 +2,7 @@ package WSEdicao.services;
 
 import WSEdicao.datamodel.EdicaoJpa;
 import WSEdicao.datamodel.EstudanteJpa;
+import WSEdicao.datamodel.REST.UtilizadorRestDTO;
 import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
 import WSEdicao.domain.entities.Edicao;
 import WSEdicao.domain.entities.MomentoAvaliacao;
@@ -10,10 +11,8 @@ import WSEdicao.dto.*;
 import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
 import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
 import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
-import WSEdicao.repositories.AnoLetivoRepository;
-import WSEdicao.repositories.EdicaoRepository;
-import WSEdicao.repositories.MomentoAvaliacaoRepository;
-import WSEdicao.repositories.UcRepository;
+import WSEdicao.repositories.*;
+import WSEdicao.repositories.REST.UtilizadorRestRepository;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +57,9 @@ public class EdicaoService {
 
     @Autowired
     EdicaoDomainDataAssembler edicaoDomainDataAssembler;
+
+    @Autowired
+    UtilizadorRestRepository utilizadorRestRepository;
 
     public EdicaoService() {
     }
@@ -138,8 +140,14 @@ public class EdicaoService {
 
         EdicaoJpa opEdicao = edicaoRepository.findBycodEdicaoJpa(addStudent.getCodEdicao());
         EstudanteJpa estudanteJpa = new EstudanteJpa(addStudent.getCodEdicao(),addStudent.getCodEstudante());
-        if(!opEdicao.getListEstudantes().contains(estudanteJpa)) {
+
+        Optional<UtilizadorRestDTO> utilizadorRestDTO =
+                utilizadorRestRepository.findUtilizadorByCodUtilizador(addStudent.getCodEstudante());
+
+        if(!opEdicao.getListEstudantes().contains(estudanteJpa) && utilizadorRestDTO.get().getTipoUtilizador() == "ESTUDANTE") {
+
             opEdicao.getListEstudantes().add(estudanteJpa);
+
         } else
             throw new IllegalArgumentException(" O estudante já se encontra inscrito na Edição");
         Edicao edicao = edicaoDomainDataAssembler.toDomain(opEdicao);
