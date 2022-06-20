@@ -9,6 +9,5 @@ public interface IUtilizadorRepository {
 
     public Utilizador save(Utilizador utilizador );
     public Optional<Utilizador> findById(int codUtilizador );
-
     List<Utilizador> findAllByTipoUtilizador(String tipoUtilizador);
 }

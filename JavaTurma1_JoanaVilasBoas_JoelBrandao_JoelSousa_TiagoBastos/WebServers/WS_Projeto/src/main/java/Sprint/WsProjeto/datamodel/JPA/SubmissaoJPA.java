@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class SubmissaoJPA {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "codSubmissao")
    private int codSubmissao;
 
    private String titulo;
@@ -29,6 +29,9 @@ public class SubmissaoJPA {
 
    private String linguagemFicheiro;
 
-
-
+    public SubmissaoJPA(String titulo, String urlFicheiro, String linguagemFicheiro) {
+        this.titulo = titulo;
+        this.urlFicheiro = urlFicheiro;
+        this.linguagemFicheiro = linguagemFicheiro;
+    }
 }

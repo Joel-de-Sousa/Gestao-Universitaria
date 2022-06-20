@@ -12,6 +12,25 @@ class PropostaTest {
     }
 
     @Test
+    void shouldNotCreatePropostaWithWrongNIF(){
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            new Proposta(1, 25783, 1,
+                    "testtte", "A proposta está a ser criada correctamente?", "Testar criação de proposta");
+        });
+        String expectedMessage = "O valor do parâmetro 'NIF' deve ter 9 algarismos";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+    }
+
+    @Test
+    void shouldCreatePropostaWithCorrectAttributes2(){
+
+        Proposta proposta = new Proposta(1, Proposta.Estado.PENDENTE);
+    }
+
+    @Test
     void shouldCreatePropostaWithCorrectAttributesEquals() {
         Proposta propostaTeste = new Proposta(1, 257837248, 1,
                 "Cria Proposta com atributos correctos", "A proposta está a ser criada correctamente?", "Testar criação de proposta");

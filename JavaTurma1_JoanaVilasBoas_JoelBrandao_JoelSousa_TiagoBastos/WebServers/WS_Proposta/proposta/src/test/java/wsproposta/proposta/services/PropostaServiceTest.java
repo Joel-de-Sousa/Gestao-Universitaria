@@ -277,4 +277,35 @@ class PropostaServiceTest {
         assertEquals(propostaDtoDouble.getEstado(),  propostaUpdated.getEstado());
 
     }
+    @Test
+    void shouldFindAllByCodEdicao(){
+
+        //arrange
+        Proposta proposta1 = mock(Proposta.class);
+    /*    Proposta proposta2 = mock(Proposta.class);*/
+
+        List<Proposta> propostaList = new ArrayList<>();
+        propostaList.add(proposta1);
+        /*propostaList.add(proposta2);*/
+
+        when(propostaRepository.findAllByCodEdicao(1)).thenReturn(propostaList);
+
+        PropostaDTO propostaDTO1 = mock(PropostaDTO.class);
+        /*PropostaDTO propostaDTO2 = mock(PropostaDTO.class);*/
+
+        when(propostaAssembler.toDTO(proposta1)).thenReturn(propostaDTO1);
+       /* when(propostaAssembler.toDTO(proposta2)).thenReturn(propostaDTO2);*/
+
+        List<PropostaDTO> propostaDTOList = new ArrayList<>();
+        propostaDTOList.add(propostaDTO1);
+       /* propostaDTOList.add(propostaDTO2);*/
+
+
+        //act
+        List<PropostaDTO> listTeste = propostaService.findAllByCodEdicao(1);
+
+        // Assert
+        assertEquals(1,  listTeste.size());
+        assertEquals(propostaDTOList,  listTeste);
+    }
 }

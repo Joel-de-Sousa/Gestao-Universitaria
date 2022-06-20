@@ -1,9 +1,5 @@
 package Sprint.WsProjeto.datamodel.REST.assembler;
 
-import Sprint.WsProjeto.datamodel.REST.ProjetoRestDTO;
-import Sprint.WsProjeto.domain.entities.Projeto;
-import org.springframework.stereotype.Service;
-
 /*@Service*/
 public class ProjetoDomainDataRestAssembler {
 

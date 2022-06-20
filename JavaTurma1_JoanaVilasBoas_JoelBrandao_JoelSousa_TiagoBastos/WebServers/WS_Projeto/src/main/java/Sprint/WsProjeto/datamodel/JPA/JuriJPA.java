@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "juris")
+@Table(name = "juri")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class JuriJPA {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "codJuri")
    private int codJuri;
 
    private int codPresidente;
@@ -25,4 +25,10 @@ public class JuriJPA {
    private int codOrientador;
 
    private int codArguente;
+
+    public JuriJPA(int codPresidente, int codOrientador, int codArguente) {
+        this.codPresidente = codPresidente;
+        this.codOrientador = codOrientador;
+        this.codArguente = codArguente;
+    }
 }

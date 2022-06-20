@@ -370,4 +370,33 @@ class PropostaControllerTest {
         assertEquals(propostaResult, propostaDouble);
 
     }
+
+    @Test
+    @DisplayName("Teste Get Propostas By Code Edicão")
+    void shouldGetAllPropostasByCodEdicao(){
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        //arrange
+
+
+        List<PropostaDTO> list1 = new ArrayList<>();
+
+
+        when(propostaService.findAllByCodEdicao(1)).thenReturn(list1);
+
+
+        //act
+        ResponseEntity<Object> responseEntity = propostaController.getAllPropostasByCodEdicao(1);
+
+        //assert
+        assertEquals(responseEntity.getStatusCodeValue(),HttpStatus.OK.value());
+
+        List<PropostaDTO> listResult = (List<PropostaDTO>) responseEntity.getBody();
+
+        assertEquals(listResult,list1);
+
+
+    }
 }

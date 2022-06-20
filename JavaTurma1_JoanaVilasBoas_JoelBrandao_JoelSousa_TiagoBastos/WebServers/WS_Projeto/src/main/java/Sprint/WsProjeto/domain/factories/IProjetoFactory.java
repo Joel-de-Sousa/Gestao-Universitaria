@@ -2,8 +2,6 @@ package Sprint.WsProjeto.domain.factories;
 
 import Sprint.WsProjeto.domain.entities.Projeto;
 
-import java.util.List;
-
 public interface IProjetoFactory {
 
 

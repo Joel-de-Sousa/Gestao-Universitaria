@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "avaliacao")
@@ -20,13 +17,27 @@ import javax.persistence.Table;
 public class AvaliacaoJPA {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "codAvaliacao")
     int codAvaliacao;
 
     int codMA;
 
-    int codJuri;
 
-    int codSubmissao;
+    @ManyToOne
+    @JoinColumn(name = "juri_cod_juri")
+    JuriJPA juri;
 
+    @OneToOne
+    @JoinColumn( name = "submissao_cod_submissao")
+    SubmissaoJPA submissao;
+
+    public AvaliacaoJPA(int codMA, JuriJPA juri, SubmissaoJPA submissao) {
+        this.codMA = codMA;
+        this.juri = juri;
+        this.submissao = submissao;
+    }
+
+    public AvaliacaoJPA(int codMA) {
+        this.codMA = codMA;
+    }
 }
