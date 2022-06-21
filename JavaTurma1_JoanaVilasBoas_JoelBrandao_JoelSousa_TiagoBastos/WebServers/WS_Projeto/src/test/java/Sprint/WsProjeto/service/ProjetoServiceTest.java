@@ -136,7 +136,7 @@ class ProjetoServiceTest {
     }
 
     @Test
-    void souldCreateAndSaveProjeto(){
+    void shouldCreateAndSaveProjeto(){
 
 
         //ARRANGE
@@ -144,11 +144,11 @@ class ProjetoServiceTest {
         NewProjetoInfoDto projetoInfoDto = mock(NewProjetoInfoDto.class);
         Projeto projeto1 = mock(Projeto.class);
 
-        when(projetoInfoDto.getCodOrientador()).thenReturn(1);
+
         when(projetoInfoDto.getCodProposta()).thenReturn(2);
         when(projetoInfoDto.getCodEstudante()).thenReturn(3);
 
-        when(projetoFactory.createProjeto(projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante(),projetoInfoDto.getCodOrientador())).thenReturn(projeto);
+        when(projetoFactory.createProjeto(projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante())).thenReturn(projeto);
 
         when(projetoRepository.save(projeto)).thenReturn(projeto1);
 

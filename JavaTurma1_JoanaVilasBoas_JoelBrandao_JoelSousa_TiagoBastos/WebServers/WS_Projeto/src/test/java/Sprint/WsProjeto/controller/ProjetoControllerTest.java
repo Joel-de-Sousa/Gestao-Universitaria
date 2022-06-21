@@ -1,5 +1,6 @@
 package Sprint.WsProjeto.controller;
 
+import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.service.ProjetoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -83,6 +85,31 @@ class ProjetoControllerTest {
         ProjetoDTO result = (ProjetoDTO) objectResponseEntity.getBody();
 
         assertNotEquals(result,projetoDTO);
+    }
+
+    @Test
+    void shouldCreateAndSaveProjeto(){
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+
+        NewProjetoInfoDto newProjetoInfoDto = mock(NewProjetoInfoDto.class);
+
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        when(projetoService.createAndSaveProjeto(newProjetoInfoDto)).thenReturn(projetoDTO);
+
+
+        //act
+        ResponseEntity<Object> responseEntity = projetoController.createAndSaveProjeto( newProjetoInfoDto);
+
+        assertEquals(responseEntity.getStatusCodeValue(), HttpStatus.CREATED.value());
+
+        ProjetoDTO result = (ProjetoDTO) responseEntity.getBody();
+
+        assertEquals(result,projetoDTO);
+
+
     }
 
 }

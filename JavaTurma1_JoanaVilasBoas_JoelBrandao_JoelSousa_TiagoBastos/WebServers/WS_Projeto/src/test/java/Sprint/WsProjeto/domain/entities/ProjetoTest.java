@@ -11,27 +11,34 @@ class ProjetoTest {
 
         new Projeto(2,3,3);
     }
-    @Test
-    void ShouldNotCreateNewProjeto(){
-        //Falta
-    }
+
     @Test
     void shouldCreateNewProjetoWithCorrectAttributes(){
         Projeto projeto = new Projeto(1,2,3);
 
-        assertEquals(projeto.getCodProposta(),1);
-        assertEquals(projeto.getCodEstudante(),2);
-        assertEquals(projeto.getCodOrientador(),3);
+        assertEquals(projeto.getCodEstudante(),1);
+        assertEquals(projeto.getCodOrientador(),2);
+        assertEquals(projeto.getCodProposta(),3);
+
+    }
+
+    @Test
+    void shouldCreateNewProjetoWithCorrectAttributes2(){
+
+        Projeto projeto = new Projeto(1,2);
+
+        assertEquals(projeto.getCodEstudante(),1);
+        assertEquals(projeto.getCodProposta(),2);
     }
 
     @Test
     void shouldCreateNewProjetoWithCorrectAttributesALL(){
-        Projeto projeto = new Projeto(1,1,2,3);
+        Projeto projeto = new Projeto(1,2,3,4);
 
         assertEquals(projeto.getCodProjeto(),1);
-        assertEquals(projeto.getCodProposta(),1);
         assertEquals(projeto.getCodEstudante(),2);
         assertEquals(projeto.getCodOrientador(),3);
+        assertEquals(projeto.getCodProposta(),4);
     }
 
     @Test
