@@ -19,9 +19,17 @@ public class SubmissaoRestDTO {
     @Getter
     String linguagemFicheiro;
 
+    @Getter
+    String estado;
+
     public SubmissaoRestDTO(int codSubmissao, String titulo, String linguagemFicheiro) {
         this.codSubmissao = codSubmissao;
         this.titulo = titulo;
         this.linguagemFicheiro = linguagemFicheiro;
+    }
+
+    public SubmissaoRestDTO(int codSubmissao, String estado) {
+        this.codSubmissao = codSubmissao;
+        this.estado = estado;
     }
 }

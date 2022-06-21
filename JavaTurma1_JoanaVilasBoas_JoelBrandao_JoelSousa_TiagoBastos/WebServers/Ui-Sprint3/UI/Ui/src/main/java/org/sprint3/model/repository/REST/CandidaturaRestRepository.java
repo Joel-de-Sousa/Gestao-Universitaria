@@ -67,7 +67,7 @@ public class CandidaturaRestRepository {
         try {
             Mono<List<CandidaturaRestDTO>> response = webClient
                     .get()
-                    .uri("/candidaturas")
+                    .uri("/candidaturas/allArgs")
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -94,7 +94,7 @@ public class CandidaturaRestRepository {
         try {
             Mono<CandidaturaRestDTO> response = webClient
                     .get()
-                    .uri("/candidaturas/" + codCandidatura)
+                    .uri("/candidaturas/allArgs/" + codCandidatura)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -121,7 +121,7 @@ public class CandidaturaRestRepository {
         try {
             Mono<CandidaturaRestDTO> response = webClient
                     .get()
-                    .uri("/candidaturas/" + codEstudante)
+                    .uri("/candidaturas/estudante/" + codEstudante)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();

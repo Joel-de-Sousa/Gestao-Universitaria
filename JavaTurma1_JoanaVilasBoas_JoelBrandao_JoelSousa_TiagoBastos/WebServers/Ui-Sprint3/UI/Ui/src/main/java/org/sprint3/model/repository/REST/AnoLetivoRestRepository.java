@@ -103,7 +103,6 @@ public class AnoLetivoRestRepository {
                     .doOnError(throwable -> {
                         System.out.println(throwable.getMessage());
                     });
-
             List<AnoLetivoRestDTO> lista = response.block();
             return Optional.of(lista);
         }catch( Exception e) {

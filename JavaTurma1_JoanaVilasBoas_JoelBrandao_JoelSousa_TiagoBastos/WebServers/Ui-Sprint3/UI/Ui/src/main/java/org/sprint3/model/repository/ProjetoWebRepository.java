@@ -1,8 +1,6 @@
 package org.sprint3.model.repository;
 
-import org.sprint3.model.DTO.ConviteRestDTO;
-import org.sprint3.model.DTO.JuriRestDTO;
-import org.sprint3.model.DTO.ProjetoRestDTO;
+import org.sprint3.model.DTO.*;
 import org.sprint3.model.repository.REST.ProjetoRestRepository;
 
 import java.util.ArrayList;
@@ -55,5 +53,11 @@ public class ProjetoWebRepository {
     public boolean createJuri (JuriRestDTO juri) throws Exception {
         boolean create= projetoRestRepository.createJuri (juri);
         return create;
+    }
+
+    public boolean updateEstadoSubmissao (SubmissaoRestDTO submissaoParcial) throws Exception {
+
+        boolean alterou = projetoRestRepository.updateEstadoSubmissao (submissaoParcial);
+        return  alterou;
     }
 }

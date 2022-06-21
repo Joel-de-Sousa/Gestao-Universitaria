@@ -18,8 +18,8 @@ public class CandidaturaRestDTO {
     String problemaProposta;
     @Getter
     String objectivoProposta;
-    @Getter
-    String edicaoProposta;
+   /* @Getter
+    String edicaoProposta;*/
     @Getter
     int codEstudante;
     @Getter
@@ -46,4 +46,6 @@ public class CandidaturaRestDTO {
         this.sobrenomeEstudante = sobrenomeEstudante;
         this.estado = estado;
     }
+
+
 }

@@ -55,7 +55,27 @@ public class JanelaPrincipal implements Initializable {
         try {
             if (utilizador.getTipoUtilizador().equals("ESTUDANTE")) {
 
+
                 novaJanelaEstudante = new Stage();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaEstudanteInicial.fxml"));
+                Parent root = loader.load();
+
+
+
+                //String nome = utilizador.getNome()+" "+utilizador.getSobrenome();
+                JanelaEstudanteInicial janelaController = loader.getController();
+                //janelaController.displayName(nome);
+                janelaController.displayObject(utilizador);
+
+                Scene scene = new Scene(root);
+                novaJanelaEstudante.initModality(Modality.APPLICATION_MODAL);
+                novaJanelaEstudante.setTitle("Área Estudante");
+                novaJanelaEstudante.setResizable(false);
+                novaJanelaEstudante.setScene(scene);
+                novaJanelaEstudante.show();
+
+               /* novaJanelaEstudante = new Stage();
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaEstudante.fxml"));
                 Parent root = loader.load();
@@ -70,7 +90,7 @@ public class JanelaPrincipal implements Initializable {
                 novaJanelaEstudante.setTitle("Área Estudante");
                 novaJanelaEstudante.setResizable(false);
                 novaJanelaEstudante.setScene(scene);
-                novaJanelaEstudante.show();
+                novaJanelaEstudante.show();*/
             }
 
 

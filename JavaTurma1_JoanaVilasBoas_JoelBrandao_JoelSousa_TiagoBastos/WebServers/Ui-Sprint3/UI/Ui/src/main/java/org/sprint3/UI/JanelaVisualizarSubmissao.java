@@ -46,6 +46,7 @@ public class JanelaVisualizarSubmissao implements Initializable {
     public void displayName(String submissaoSeleccionada) {
         String[] submissao1 = submissaoSeleccionada.split("-");
         int codSubmissao = Integer.parseInt(submissao1[0]);
+
         submissaoCompleta = new SubmissaoRestDTO(1, "Titulo teste","PT");//projetoController.getSubmissaoById(codSubmissao);
 
         int codS = submissaoCompleta.getCodSubmissao();
@@ -62,12 +63,10 @@ public class JanelaVisualizarSubmissao implements Initializable {
     @FXML
     public void handleButtonActionAceitar(ActionEvent actionEvent) {
 
-       /* try {
+        try {
             int codSubmissao = submissaoCompleta.getCodSubmissao();
             String estado = "ACEITE";
-            boolean alterou = projetoController.alterarEstadoAceite(codSubmissao, estado);
-            *//*int codEstudante = propostaCompleta.getCodUtilizador();
-            //projetoController.criarProjeto(codProp, codEstudante);*//*
+            boolean alterou = projetoController.alterarEstadoSubmissao(codSubmissao, estado);
 
             if (alterou) {
                 AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Aceitar Conteúdo Submetido",
@@ -78,7 +77,7 @@ public class JanelaVisualizarSubmissao implements Initializable {
         } catch (Exception e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
-        }*/
+        }
     }
 
     @javafx.fxml.FXML
@@ -90,10 +89,10 @@ public class JanelaVisualizarSubmissao implements Initializable {
     @javafx.fxml.FXML
     public void handleButtonActionRejeitar(ActionEvent actionEvent) {
 
-       /* try {
+        try {
             int codSubmissao = submissaoCompleta.getCodSubmissao();
             String estado = "REJEITADA";
-            boolean alterou = projetoController.alterarEstadoAceite(codSubmissao, estado);
+            boolean alterou = projetoController.alterarEstadoSubmissao(codSubmissao, estado);
 
             if (alterou) {
                 AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Rejeitar Conteúdo Submetido",
@@ -104,6 +103,6 @@ public class JanelaVisualizarSubmissao implements Initializable {
         } catch (Exception e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
-        }*/
+        }
     }
 }

@@ -1,8 +1,6 @@
 package org.sprint3.model.service;
 
-import org.sprint3.model.DTO.ConviteRestDTO;
-import org.sprint3.model.DTO.JuriRestDTO;
-import org.sprint3.model.DTO.ProjetoRestDTO;
+import org.sprint3.model.DTO.*;
 import org.sprint3.model.repository.ProjetoWebRepository;
 
 import java.util.ArrayList;
@@ -87,5 +85,12 @@ public class ProjetoService {
         JuriRestDTO juri = new JuriRestDTO (presidente, orientador,arguente);
         boolean create= projetoWebRepository.createJuri (juri);
         return create;
+    }
+
+    public boolean alterarEstadoSubmissao (int codSubmissao, String estado) throws Exception {
+
+        SubmissaoRestDTO submissaoParcial = new SubmissaoRestDTO(codSubmissao, estado);
+        boolean alterou = projetoWebRepository.updateEstadoSubmissao (submissaoParcial);
+        return  alterou;
     }
 }

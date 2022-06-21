@@ -4,6 +4,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -171,8 +172,12 @@ public class ProjetoRestRepository {
 
 
     public Optional<List<ProjetoRestDTO>> findAllProjetosByEdicao (int codEdicao) {
+        ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.","POO: 2022-2023", "Joel", "Brandão", "MA1");
+        List<ProjetoRestDTO> list = new ArrayList<>();
+        list.add(proj);
+        return Optional.of(list);
 
-        try {
+        /*try {
             Mono<List<ProjetoRestDTO>> response = webClient.get()
                     .uri("/projetos/edicao/" +codEdicao)
                     .retrieve()
@@ -190,13 +195,17 @@ public class ProjetoRestRepository {
             return Optional.of(lista);
         }catch( Exception e) {
             return Optional.empty();
-        }
+        }*/
     }
 
 
     public Optional<List<ProjetoRestDTO>> findAllProjetosByCodOrientador (int codOrientador) {
+        ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.","POO: 2022-2023", "Joel", "Brandão", "MA1");
+        List<ProjetoRestDTO> list = new ArrayList<>();
+        list.add(proj);
+        return Optional.of(list);
 
-        try {
+       /* try {
             Mono<List<ProjetoRestDTO>> response = webClient.get()
                     .uri("/projetos/edicao/" + codOrientador)
                     .retrieve()
@@ -214,6 +223,34 @@ public class ProjetoRestRepository {
             return Optional.of(lista);
         }catch( Exception e) {
             return Optional.empty();
-        }
+        }*/
     }
+
+    public boolean updateEstadoSubmissao (SubmissaoRestDTO submissaoParcial) throws Exception {
+        return true;
+
+       /* ResponseEntity<String> result = null;
+        int codSubmissao = submissaoParcial.getCodSubmissao();
+        try {
+            result= webClient
+                    .patch()
+                    .uri("/submissoes/estado/" + codSubmissao)
+                    .body(Mono.just(submissaoParcial), SubmissaoRestDTO.class).exchange().flatMap(response -> response.toEntity(String.class))
+                    .onErrorReturn(ResponseEntity.of(Optional.of(submissaoParcial.toString())))
+                    .doOnError(throwable -> {
+                        System.out.println(throwable.getMessage());
+                    })
+                    .block();
+        }
+        catch( Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+
+        if (result.getStatusCode().is2xxSuccessful())
+            return true;
+        else
+            throw new Exception( result.getBody());*/
+    }
+
 }

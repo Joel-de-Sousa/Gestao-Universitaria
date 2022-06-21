@@ -55,4 +55,10 @@ public class ProjetoController {
         boolean create= projetoService.criarNovoJuri (orientador, arguente, presidente);
         return create;
     }
+
+    public boolean alterarEstadoSubmissao (int codSubmissao, String estado) throws Exception {
+
+        boolean alterou = projetoService.alterarEstadoSubmissao (codSubmissao, estado);
+        return alterou;
+    }
 }
