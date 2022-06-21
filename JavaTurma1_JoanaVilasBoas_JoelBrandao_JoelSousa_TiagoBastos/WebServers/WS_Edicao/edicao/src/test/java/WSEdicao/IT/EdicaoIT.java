@@ -1,14 +1,38 @@
 package WSEdicao.IT;
-/*
+
+import WSEdicao.domain.entities.Edicao;
+import WSEdicao.dto.AnoLetivoDTO;
+import WSEdicao.dto.NewEdicaoInfoDTO;
+import WSEdicao.dto.UcDTO;
+import WSEdicao.repositories.EdicaoRepository;
+import WSEdicao.services.EdicaoService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.apache.commons.lang3.RandomStringUtils;
+
+@AutoConfigureMockMvc
+@SpringBootTest
 public class EdicaoIT {
-@Autowired
-    PropostaRepository propostaRepository;
     @Autowired
-    PropostaService propostaService;
-    @MockBean
-    private UtilizadorRestRepository utilizadorRestRepository;
-    @MockBean
-    private OrganizacaoRestRepository organizacaoRestRepository;
+    EdicaoRepository edicaoRepository;
+    @Autowired
+    EdicaoService edicaoService;
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -20,92 +44,91 @@ public class EdicaoIT {
     }
 
     @Test
+    void shouldPostNewEdicaoIT() throws Exception {
 
-    void shouldPostNewPropostaIT() throws Exception {
+        UcDTO ucDTO = mock(UcDTO.class);
+        when(ucDTO.getCodUc()).thenReturn(1);
 
-        UtilizadorRestDTO utilizadorDouble = mock(UtilizadorRestDTO.class);
-        when(utilizadorDouble.getCodUtilizador()).thenReturn(1);
-
-        OrganizacaoRestDTO organizacaoDouble = mock(OrganizacaoRestDTO.class);
-        when(organizacaoDouble.getNr()).thenReturn(257837248L);
+        AnoLetivoDTO anoLetivoDTO = mock(AnoLetivoDTO.class);
+        when(anoLetivoDTO.getCodAnoLetivo()).thenReturn(1);
 
         int generatedCodEdicao = Integer.parseInt(RandomStringUtils.randomNumeric(4));
-        String generatedTitulo = RandomStringUtils.randomAlphanumeric(20);
-        String generatedProblema = RandomStringUtils.randomAlphanumeric(20);
-        String generatedObjectivo = RandomStringUtils.randomAlphanumeric(20);
+        int generatedCodRUC = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        String generatedDenominacao = RandomStringUtils.randomAlphabetic(10,20);
+        //String generatedProblema = RandomStringUtils.randomAlphanumeric(20);
+        //String generatedObjectivo = RandomStringUtils.randomAlphanumeric(20);
 
-        NewPropostaInfoDTO newPropostaInfoDTO = new NewPropostaInfoDTO(utilizadorDouble.getCodUtilizador(),
-                (int) organizacaoDouble.getNr(), generatedCodEdicao, generatedTitulo,
-                generatedProblema, generatedObjectivo);
+        NewEdicaoInfoDTO newEdicaoInfoDTO = new NewEdicaoInfoDTO(generatedCodEdicao,ucDTO.getCodUc(),
+                anoLetivoDTO.getCodAnoLetivo(),generatedCodRUC);
 
+        // First call: GET edicao/{generatedCode}
 
-        Optional<UtilizadorRestDTO> opUtilizador = Optional.of(utilizadorDouble);
-        when(utilizadorRestRepository.findUtilizadorByCodUtilizador(1)).thenReturn(opUtilizador);
-        Optional<OrganizacaoRestDTO> opOrganizacao = Optional.of(organizacaoDouble);
-        when(organizacaoRestRepository.findOrganizacaoByNifOrganizacao(257837248L)).thenReturn(opOrganizacao);
+        MvcResult result1 = mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get("/edicao/" + generatedCodEdicao)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andReturn();
+
+        String resultContent1 = result1.getResponse().getContentAsString();
+
+        String msgErro = "O codigo da Edição não consta na Base de Dados";
+        assertEquals(msgErro, resultContent1);
 
 
         // POST
 
         MvcResult resultPost = mockMvc
                 .perform(MockMvcRequestBuilders
-                .post("/propostas")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(newPropostaInfoDTO))
-                .accept(MediaType.APPLICATION_JSON))
+                        .post("/edicao")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(newEdicaoInfoDTO))
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andReturn();
 
 
         String resultContentStr = resultPost.getResponse().getContentAsString();
-        JSONObject resultJsonObject = new JSONObject( resultContentStr );
+        JSONObject resultJsonObject = new JSONObject(resultContentStr);
 
-        int codUtilizador = newPropostaInfoDTO.getCodUtilizador();
-        int nif = newPropostaInfoDTO.getNifOrganizacao();
-        int codEdicao = newPropostaInfoDTO.getCodEdicao();
-        String titulo = newPropostaInfoDTO.getTitulo();
-        String problema = newPropostaInfoDTO.getProblema();
-        String objetivo = newPropostaInfoDTO.getObjetivo();
-        String estado = String.valueOf(Proposta.Estado.PENDENTE);
+        int codEdicao = newEdicaoInfoDTO.getCodEdicao();
+        int codUc = newEdicaoInfoDTO.getCodUc();
+        int codAnoLetivo = newEdicaoInfoDTO.getCodAnoLetivo();
+        int codRUC = newEdicaoInfoDTO.getCodRUC();
+        String estado = String.valueOf(Edicao.Estado.PENDENTE);
 
-        assertEquals(codUtilizador, resultJsonObject.getInt("codUtilizador"));
-        assertEquals(nif, resultJsonObject.getInt("nifOrganizacao"));
         assertEquals(codEdicao, resultJsonObject.getInt("codEdicao"));
-        assertEquals(titulo , resultJsonObject.get("titulo"));
-        assertEquals(problema , resultJsonObject.get("problema"));
-        assertEquals(objetivo , resultJsonObject.get("objetivo"));
-        assertEquals(estado , resultJsonObject.get("estado"));
+        assertEquals(codUc, resultJsonObject.getInt("codUc"));
+        assertEquals(codAnoLetivo, resultJsonObject.getInt("codAnoLetivo"));
+        assertEquals(codRUC, resultJsonObject.get("codRUC"));
+        assertEquals(estado, resultJsonObject.get("estado"));
 
 
-        // GET Proposta/{codProposta = 1}
+        // GET Edicao/{codEdicao = 1}
 
         MvcResult resultGet = mockMvc
                 .perform(MockMvcRequestBuilders
-                .get("/propostas/" + 1)
-                .accept(MediaType.APPLICATION_JSON))
+                        .get("/edicao/" + 1)
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
         String resultContentStr3 = resultGet.getResponse().getContentAsString();
-        JSONObject resultJsonObject3 = new JSONObject( resultContentStr3 );
+        JSONObject resultJsonObject3 = new JSONObject(resultContentStr3);
 
-        int codUtilizador3 = newPropostaInfoDTO.getCodUtilizador();
-        int nif3 = newPropostaInfoDTO.getNifOrganizacao();
-        int codEdicao3 = newPropostaInfoDTO.getCodEdicao();
-        String titulo3 = newPropostaInfoDTO.getTitulo();
-        String problema3 = newPropostaInfoDTO.getProblema();
-        String objetivo3 = newPropostaInfoDTO.getObjetivo();
-        String estado3 = String.valueOf(Proposta.Estado.PENDENTE);
+        int codEdicao3 = newEdicaoInfoDTO.getCodEdicao();
+        int codUc3 = newEdicaoInfoDTO.getCodUc();
+        int codAnoLetivo3 = newEdicaoInfoDTO.getCodAnoLetivo();
+        int codRUC3 = newEdicaoInfoDTO.getCodRUC();
+        String estado3 = String.valueOf(Edicao.Estado.PENDENTE);
 
 
-        assertEquals(codUtilizador3, resultJsonObject3.getInt("codUtilizador"));
-        assertEquals(nif3, resultJsonObject3.getInt("nifOrganizacao"));
         assertEquals(codEdicao3, resultJsonObject3.getInt("codEdicao"));
-        assertEquals(titulo3 , resultJsonObject3.get("titulo"));
-        assertEquals(problema3 , resultJsonObject3.get("problema"));
-        assertEquals(objetivo3 , resultJsonObject3.get("objetivo"));
-        assertEquals(estado3 , resultJsonObject3.get("estado"));
+        assertEquals(codUc3, resultJsonObject3.getInt("codUc"));
+        assertEquals(codAnoLetivo3, resultJsonObject3.getInt("codAnoLetivo"));
+        assertEquals(codRUC3, resultJsonObject3.get("codRUC"));
+        assertEquals(estado3, resultJsonObject3.get("estado"));
 
         assertNotNull(resultContentStr3);
     }
-}*/
+}

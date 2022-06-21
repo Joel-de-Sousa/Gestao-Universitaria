@@ -1,8 +1,10 @@
 package WSEdicao.repositories;
 
 import WSEdicao.datamodel.EdicaoJpa;
+import WSEdicao.datamodel.EstudanteJpa;
 import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
 import WSEdicao.domain.entities.Edicao;
+import WSEdicao.dto.AddStudentDTO;
 import WSEdicao.dto.EdicaoDTO;
 import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
@@ -122,5 +124,67 @@ class EdicaoRepositoryTest {
         assertEquals(listEdicaoAct,listEdicao);
         assertTrue(listEdicaoAct.size()==2);
     }
+
+    @Test
+    void shouldReturnListOfEstudantesByCodEdicao(){
+        //Arrange
+        AddStudentDTO addStudentDTO = mock(AddStudentDTO.class);
+
+
+
+
+
+        //Act
+       List<AddStudentDTO> addStudentDTOList = findEstudantesByCodEdicao(1);
+    }
+
+    public List<AddStudentDTO> findEstudantesByCodEdicao(int codEdicao) {
+        Optional<EdicaoJpa> opEdicaoJpa = edicaoJpaRepository.findBycodEdicao(codEdicao);
+
+        if (opEdicaoJpa.isPresent()) {
+            EdicaoJpa edicaoJpa = opEdicaoJpa.get();
+
+            List<AddStudentDTO> listEstudante = new ArrayList<>();
+            for (EstudanteJpa estudante : edicaoJpa.getListEstudantes()) {
+                AddStudentDTO estudanteDTO = new AddStudentDTO(estudante.getCodEdicao(), estudante.getCodEstudante());
+                listEstudante.add(estudanteDTO);
+            }
+            return listEstudante;
+        } else
+            return null; // it should throw a descriptive exception
+    }
+
+    @Test
+    void shouldReturnListEdicaoByCodRUC() throws Exception {
+        //Arrange
+        EdicaoJpa edicaoJpa = mock(EdicaoJpa.class);
+        when( edicaoJpa.getCodUc()).thenReturn(1);
+        when( edicaoJpa.getCodAnoLetivo()).thenReturn(1);
+        when( edicaoJpa.getCodRUC()).thenReturn(1);
+        when(edicaoJpaRepository.save(edicaoJpa));
+
+        List<EdicaoJpa> listEdicaoJpa = edicaoJpaRepository.findListEdicaoBycodRUC(1);
+
+        List<Edicao> newEdicaoList = new ArrayList<>();
+        for (EdicaoJpa edicao : listEdicaoJpa) {
+            newEdicaoList.add(edicaoDomainDataAssembler.toDomain(edicao));
+        }
+
+        //Act
+        List<Edicao> listEdicao = edicaoRepository.findListEdicaoBycodRUC(1);
+
+        //Assert
+        assertEquals(listEdicao, newEdicaoList);
+
+    }
+
+    /*public List<Edicao> findListEdicaoBycodRUC(int codRUC) {
+        List<EdicaoJpa> listEdicaoJPA = edicaoJpaRepository.findListEdicaoBycodRUC(codRUC);
+        List<Edicao> listEdicao = new ArrayList<>();
+        for (EdicaoJpa edicaoJpa : listEdicaoJPA) {
+            listEdicao.add(edicaoAssembler.toDomain(edicaoJpa));
+        }
+        return listEdicao;
+    }*/
 
 }

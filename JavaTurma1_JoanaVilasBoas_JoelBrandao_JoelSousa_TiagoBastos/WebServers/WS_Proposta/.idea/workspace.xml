@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b096c69-9f93-41f5-add4-dd696e96e151" name="Changes" comment="" />
+    <list default="true" id="5b096c69-9f93-41f5-add4-dd696e96e151" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/dto/NewEdicaoInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/dto/NewEdicaoInfoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/IT/EdicaoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/IT/EdicaoIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,18 +23,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2Arg1xtwq7EVm92fKJIXn4p8bla" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

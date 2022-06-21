@@ -36,7 +36,7 @@ public class EdicaoController {
             EdicaoDTO edicao = opEdicao.get();
             return new ResponseEntity<>(edicao, HttpStatus.OK);
         } else
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("O codigo da Edição não consta na Base de Dados", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("")
