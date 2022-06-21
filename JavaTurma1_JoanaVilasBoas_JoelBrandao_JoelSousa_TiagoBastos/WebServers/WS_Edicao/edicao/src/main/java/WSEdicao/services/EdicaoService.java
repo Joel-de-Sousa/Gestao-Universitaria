@@ -14,6 +14,7 @@ import WSEdicao.dto.assemblers.UcDomainDTOAssembler;
 import WSEdicao.repositories.*;
 import WSEdicao.repositories.REST.UtilizadorRestRepository;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
+import WSEdicao.repositories.jpa.EstudanteJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +61,9 @@ public class EdicaoService {
 
     @Autowired
     UtilizadorRestRepository utilizadorRestRepository;
+
+    @Autowired
+    EstudanteJpaRepository estudanteJpaRepository;
 
     public EdicaoService() {
     }
@@ -173,17 +177,19 @@ public class EdicaoService {
         }
         return listaDto;
     }
+    public EdicaoAllArgsDTO getEdicaoByCodEstudante(int codEstudante) throws Exception {
+        //return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
+        Optional<EstudanteJpa> estudanteJpa= estudanteJpaRepository.findByCodEstudante(codEstudante);
 
-    public List<EdicaoDTO> getEdicaoByCodEstudante(int codEstudante) {
-        return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
-        //List<Edicao> listEdicao = edicaoRepository.findEdicaoByCodEstudante(codEstudante);
+        Optional<Edicao> edicao=edicaoRepository.findBycodEdicao(estudanteJpa.get().getCodEdicao());
 
-        /*List<EdicaoDTO> listaDto = new ArrayList<>();
-        for (Edicao edicao : listEdicao) {
-            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
-            listaDto.add(edicaoDTO);
+
+        if (edicao.isPresent()){
+            EdicaoAllArgsDTO edicaoAllArgsDTO=edicaoDTOAssembler.toDTOAllArgs(edicao.get());
+            return edicaoAllArgsDTO;
+        }else {
+            throw new Exception("Estudante não tem Edição");
         }
-        return listaDto;*/
     }
 
 

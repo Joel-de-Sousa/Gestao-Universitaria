@@ -123,17 +123,18 @@ public class EdicaoController {
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }
 
-    @GetMapping("/edicaoByCodEstudante/{codEstudante}")
+    @GetMapping("/estudante/{codEstudante}")
     @ResponseBody
-    public ResponseEntity<Object> getEdicaoByCodEstudante(@PathVariable int codEstudante) {
-
-        List<EdicaoDTO> listEdicao = service.getEdicaoByCodEstudante(codEstudante);
+    public ResponseEntity<Object> getEdicaoByCodEstudante(@PathVariable int codEstudante) throws Exception {
+        try {
+            EdicaoAllArgsDTO listEdicao = service.getEdicaoByCodEstudante(codEstudante);
 
             return new ResponseEntity<>(listEdicao, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
-
-
-
 
 
 }

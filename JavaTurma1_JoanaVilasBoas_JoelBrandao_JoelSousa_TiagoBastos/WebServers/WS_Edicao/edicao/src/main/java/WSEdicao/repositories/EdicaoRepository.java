@@ -5,6 +5,7 @@ import WSEdicao.datamodel.EstudanteJpa;
 import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
 import WSEdicao.domain.entities.Edicao;
 import WSEdicao.dto.AddStudentDTO;
+import WSEdicao.dto.EdicaoDTO;
 import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
 import WSEdicao.repositories.jpa.EstudanteJpaRepository;
@@ -106,22 +107,25 @@ public class EdicaoRepository {
         return listEdicao;
     }
 
-    public List<EdicaoDTO> findEdicaoByCodEstudante(int codEstudante) {
+  /*  public List<Edicao> findEdicaoByCodEstudante(int codEstudante) {
 
-        List<EstudanteJpa> estudanteJpaList = estudanteJpaRepository.findListEstudanteByCodEstudante(codEstudante);
+       // List<EstudanteJpa> estudanteJpaList = estudanteJpaRepository.findListEstudanteByCodEstudante(codEstudante);
         //List<Integer> codEdicao = estudanteJpaList.stream().map(EstudanteJpa::getCodEdicao).collect(Collectors.toList());
 
         //List<EdicaoJpa> listEdicaoJPA = edicaoJpaRepository.findListEdicaoBycodEdicao(codEstudante);
 
 
 
-        List<EdicaoDTO> listEdicaoDTO = new ArrayList<>();
+        List<EdicaoJpa> listEdicaoJPA=edicaoJpaRepository.findListEdicaoBycodEdicao()
+        List<EdicaoJpa> listEdição=edicaoJpaRepository.findAllBycodEstudante(codEstudante);
 
-        for (EstudanteJpa estudanteJpa : estudanteJpaList) {
+        List<Edicao> listEdicaoDTO = new ArrayList<>();
 
-            EdicaoDTO edicaoDTO = new EdicaoDTO(estudanteJpa.getCodEdicao());
+        for (EdicaoJpa edicaoJpa : listEdição) {
+
+            Edicao edicaoDTO = edicaoAssembler.toDomain(edicaoJpa);
             listEdicaoDTO.add(edicaoDTO);
         }
         return listEdicaoDTO;
-    }
+    }*/
 }
