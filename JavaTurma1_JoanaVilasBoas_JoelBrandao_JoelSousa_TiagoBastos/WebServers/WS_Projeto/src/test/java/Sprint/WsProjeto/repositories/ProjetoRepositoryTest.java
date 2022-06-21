@@ -69,6 +69,19 @@ class ProjetoRepositoryTest {
 
         assertEquals(opProjetoAct,Optional.of(projeto));
     }
+    @Test
+    void shouldFindByCodEstudante(){
+        //arrange
+        ProjetoJPA projetoJPA = mock(ProjetoJPA.class);
+        Optional<ProjetoJPA> optionalProjetoJPA = Optional.of(projetoJPA);
+        when(projetoJPARepository.findByCodEstudante(1)).thenReturn(optionalProjetoJPA);
+        Projeto projeto = mock(Projeto.class);
+        when(projetoDomainDataAssembler.toDomain(optionalProjetoJPA.get())).thenReturn(projeto);
+        //act
+        Optional<Projeto> result = projetoRepository.findByCodEstudante(1);
+        //assert
+        assertEquals(result,Optional.of(projeto));
+    }
 
 
 

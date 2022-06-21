@@ -1,4 +1,4 @@
-/*package Sprint.WsProjeto.IT;
+package Sprint.WsProjeto.IT;
 import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -67,17 +67,19 @@ public class ITTest {
         int generatedCodProposta = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
         UtilizadorRestDTO estudanteDouble = mock(UtilizadorRestDTO.class);
-        when(estudanteDouble.getCodUtilizador()).thenReturn(generatedCodEstudadante);
-
+        when(estudanteDouble.getCodUtilizador()).thenReturn(1);
 
         PropostaRestDTO propostaDouble = mock(PropostaRestDTO.class);
-        when(propostaDouble.getCodProposta()).thenReturn(generatedCodProposta);
+        when(propostaDouble.getCodProposta()).thenReturn(1);
+
 
 
         NewProjetoInfoDto newProjetoInfoDto = new NewProjetoInfoDto(propostaDouble.getCodProposta(),estudanteDouble.getCodUtilizador());
 
         Optional<UtilizadorRestDTO> optionalEstudante = Optional.of(estudanteDouble);
         when(utilizadorRestRepository.findUtilizadorByCode(1)).thenReturn(optionalEstudante);
+        Optional<PropostaRestDTO> optionalPropostaRestDTO = Optional.of(propostaDouble);
+        when(propostaRestRepository.findPropostaByCode(1)).thenReturn(optionalPropostaRestDTO);
 
 
 
@@ -119,8 +121,9 @@ public class ITTest {
         int codEstudante = newProjetoInfoDto.getCodEstudante();
         int codProposta = newProjetoInfoDto.getCodProposta();
 
-        assertEquals(codEstudante, resultJsonObject.getInt("codEstudante"));
         assertEquals(codProposta, resultJsonObject.getInt("codProposta"));
+        assertEquals(codEstudante, resultJsonObject.getInt("codEstudante"));
+
 
 
         // GET Projeto/{codProjeto = 1}
@@ -148,5 +151,5 @@ public class ITTest {
 
 
 
-}*/
+}
 
