@@ -41,16 +41,11 @@ class AnoLetivoControllerTest {
     @Test
     void shouldFindSpecificAnoLetivoSearchingById() {
         // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         AnoLetivoDTO anoLetivoDouble = mock(AnoLetivoDTO.class);
-        when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
-        when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
 
         Optional<AnoLetivoDTO> opAnoLetivo = Optional.of(anoLetivoDouble);
+        when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
         when(anoLetivoService.getAnoLetivoByCode(1)).thenReturn(opAnoLetivo);
-
         // Act
         ResponseEntity<Object> responseEntity = anoLetivoController.getByCode(1);
 
@@ -59,15 +54,11 @@ class AnoLetivoControllerTest {
 
         AnoLetivoDTO anoLetivoRes = (AnoLetivoDTO) responseEntity.getBody();
         assertEquals(anoLetivoRes.getCodAnoLetivo(), 1);
-        assertEquals(anoLetivoRes.getAno(), "2015-2016");
     }
 
     @Test
     void shouldFindEveryAnoLetivoDTOCreatedCorrectly() {
         // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         AnoLetivoDTO anoLetivoDouble = mock(AnoLetivoDTO.class);
         when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
         when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
@@ -92,12 +83,9 @@ class AnoLetivoControllerTest {
         assertEquals(res, listaAnoLetivo);
     }
 
-    /*@Test
-    void shouldCreateAnoLetivoWithCorrectAttributes() {
+    @Test
+    void shouldCreateAndSaveAnoLetivoWithCorrectAttributes() throws Exception {
         // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         AnoLetivoDTO anoLetivoDouble = mock(AnoLetivoDTO.class);
         when(anoLetivoDouble.getCodAnoLetivo()).thenReturn(1);
         when(anoLetivoDouble.getAno()).thenReturn("2015-2016");
@@ -116,6 +104,6 @@ class AnoLetivoControllerTest {
 
         Object res = responseEntity.getBody();
         assertEquals(res, anoLetivoDouble);
-    }*/
+    }
 }
 

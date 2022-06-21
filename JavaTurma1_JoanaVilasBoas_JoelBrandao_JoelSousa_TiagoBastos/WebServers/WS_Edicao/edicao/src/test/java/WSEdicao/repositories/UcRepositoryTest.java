@@ -64,28 +64,29 @@ class UcRepositoryTest {
         //Assert
         assertEquals(savedUc,uc);
     }
-    /*
+
     @Test
     void shouldFindSpecificUcSearchingById() {
         //Arrange
-        when(ucJpa.getCodUc()).thenReturn(1);
-        when(ucJpa.getSigla()).thenReturn("POOJ");
-        when(ucJpa.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
+        UcJpa ucDouble = mock(UcJpa.class);
+        Optional<UcJpa> opUcDouble = Optional.of(ucDouble);
 
-        Optional<UcJpa> opUcJpa = Optional.of(ucJpa);
-        when(ucJpaRepository.findBycodUc(1)).thenReturn(opUcJpa);
+        when(ucJpaRepository.findBycodUc(1)).thenReturn(opUcDouble);
 
-        when(ucDomainDataAssembler.toDomain(opUcJpa.get())).thenReturn(uc);
-        //UcDTO ucDTO = ucDTOAssembler.toDTO(uc);
-
-
+        UcJpa ucJpa = opUcDouble.get();
+        Uc uc = mock(Uc.class);
+        when(ucDomainDataAssembler.toDomain(ucJpa)).thenReturn(uc);
+        UcDTO ucDTO = mock(UcDTO.class);
+        when(ucDTOAssembler.toDTO(uc)).thenReturn(ucDTO);
 
         //Act
         Optional<UcDTO> opUcAct = ucRepository.findBycodUc(1);
 
         //Assert
-        assertEquals(opUcAct,Optional.of(ucDTO));
-    }*/
+        Optional<UcDTO> opUc = Optional.of(ucDTO);
+
+        assertEquals(opUcAct, opUc);
+    }
 
     @Test
     void findAll() {
@@ -117,40 +118,4 @@ class UcRepositoryTest {
         assertEquals(listUcAct,listUc);
         assertTrue(listUcAct.size()==2);
     }
-
-    /*@Test //Futuro teste para verificar se existe já um objeto igual no repository
-    void shouldCheckIfSiglaIsUnique() {
-        //Arrange
-        UcJpa ucJpa1 = mock(UcJpa.class);
-        when(ucJpa1.getSigla()).thenReturn("POOJ");
-        when(ucJpa1.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
-
-        ucJpaRepository.save(ucJpa1);
-
-        UcJpa ucJpa2 = mock(UcJpa.class);
-        when(ucJpa2.getSigla()).thenReturn("POOJ");
-        when(ucJpa2.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
-
-        ucJpaRepository.save(ucJpa2);
-
-        List<UcJpa> listUcJpa = new ArrayList<>();
-        listUcJpa.add(ucJpa1);
-        listUcJpa.add(ucJpa2);
-
-        when(ucJpaRepository.findAll()).thenReturn(listUcJpa);
-
-        List<Uc> listUc = new ArrayList<>();
-        for (UcJpa ucJpa : listUcJpa) {
-            when(ucDomainDataAssembler.toDomain(ucJpa)).thenReturn(uc);
-            listUc.add(uc);
-        }
-
-        //Act
-        List<Uc> listUcAct = ucRepository.findAll();
-
-        //Assert
-        assertEquals(listUcAct, listUc);
-        assertTrue(listUcAct.size() == 2);
-    }*/
-
 }

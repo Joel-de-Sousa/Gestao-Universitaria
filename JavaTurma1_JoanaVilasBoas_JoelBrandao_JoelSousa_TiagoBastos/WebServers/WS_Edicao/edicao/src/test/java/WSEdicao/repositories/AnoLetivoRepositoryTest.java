@@ -1,11 +1,12 @@
 package WSEdicao.repositories;
-/*
+
 import WSEdicao.datamodel.AnoLetivoJpa;
 import WSEdicao.datamodel.AnoLetivoJpa;
 import WSEdicao.datamodel.assemblers.AnoLetivoDomainDataAssembler;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.domain.entities.AnoLetivo;
 import WSEdicao.dto.AnoLetivoDTO;
+import WSEdicao.dto.assemblers.AnoLetivoDomainDTOAssembler;
 import WSEdicao.repositories.jpa.AnoLetivoJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,9 @@ class AnoLetivoRepositoryTest {
     AnoLetivoDomainDataAssembler anoLetivoDomainDataAssembler;
 
     @MockBean
+    AnoLetivoDomainDTOAssembler anoLetivoDTOAssembler;
+
+    @MockBean
     AnoLetivoJpaRepository anoLetivoJpaRepository;
 
     @MockBean
@@ -45,7 +49,7 @@ class AnoLetivoRepositoryTest {
     }
 
     @Test
-    void shouldSaveAnoLetivo() {
+    void shouldSaveAnoLetivo() throws Exception {
         //Arrange
         when(anoLetivoDomainDataAssembler.toData(anoLetivo)).thenReturn(anoLetivoJpa);
 
@@ -64,18 +68,24 @@ class AnoLetivoRepositoryTest {
     @Test
     void shouldFindSpecificAnoLetivoSearchingById() {
         //Arrange
-        when(anoLetivoJpa.getAno()).thenReturn("2015-2016");
+        AnoLetivoJpa anoLetivoDouble = mock(AnoLetivoJpa.class);
+        Optional<AnoLetivoJpa> opAnoLetivoDouble = Optional.of(anoLetivoDouble);
 
-        Optional<AnoLetivoJpa> opAnoLetivoJpa = Optional.of(anoLetivoJpa);
-        when(anoLetivoJpaRepository.findBycodAnoLetivo(1)).thenReturn(opAnoLetivoJpa);
+        when(anoLetivoJpaRepository.findBycodAnoLetivo(1)).thenReturn(opAnoLetivoDouble);
 
-        when(anoLetivoDomainDataAssembler.toDomain(opAnoLetivoJpa.get())).thenReturn(anoLetivo);
+        AnoLetivoJpa anoLetivoJpa = opAnoLetivoDouble.get();
+        AnoLetivo anoLetivo = mock(AnoLetivo.class);
+        when(anoLetivoDomainDataAssembler.toDomain(anoLetivoJpa)).thenReturn(anoLetivo);
+        AnoLetivoDTO anoLetivoDTO = mock(AnoLetivoDTO.class);
+        when(anoLetivoDTOAssembler.toDTO(anoLetivo)).thenReturn(anoLetivoDTO);
 
         //Act
         Optional<AnoLetivoDTO> opAnoLetivoAct = anoLetivoRepository.findBycodAnoLetivo(1);
 
         //Assert
-        assertEquals(opAnoLetivoAct, Optional.of(anoLetivo));
+        Optional<AnoLetivoDTO> opAnoLetivo = Optional.of(anoLetivoDTO);
+
+        assertEquals(opAnoLetivoAct, opAnoLetivo);
     }
 
     @Test
@@ -108,5 +118,5 @@ class AnoLetivoRepositoryTest {
         assertEquals(listAnoLetivoAct, listAnoLetivo);
         assertTrue(listAnoLetivoAct.size() == 2);
     }
-}*/
+}
 
