@@ -2,6 +2,7 @@ package WSEdicao.repositories;
 
 import WSEdicao.datamodel.MomentoAvaliacaoJpa;
 import WSEdicao.datamodel.assemblers.MomentoAvaliacaoDomainDataAssembler;
+import WSEdicao.domain.entities.Edicao;
 import WSEdicao.domain.entities.MomentoAvaliacao;
 import WSEdicao.dto.MomentoAvaliacaoDTO;
 import WSEdicao.dto.assemblers.MomentoAvaliacaoDomainDTOAssembler;
@@ -63,7 +64,7 @@ class MomentoAvaliacaoRepositoryTest {
         MomentoAvaliacao savedMomentoAvaliacao = momentoAvaliacaoRepository.save(momentoAvaliacao);
 
         //Assert
-        assertEquals(savedMomentoAvaliacao,momentoAvaliacao);
+        assertEquals(savedMomentoAvaliacao, momentoAvaliacao);
     }
 
     @Test
@@ -109,7 +110,7 @@ class MomentoAvaliacaoRepositoryTest {
         when(momentoAvaliacaoJpaRepository.findAll()).thenReturn(listMomentoAvaliacaoJpa);
 
         List<MomentoAvaliacao> listMomentoAvaliacao = new ArrayList<>();
-        for(MomentoAvaliacaoJpa momentoAvaliacaoJpa : listMomentoAvaliacaoJpa){
+        for (MomentoAvaliacaoJpa momentoAvaliacaoJpa : listMomentoAvaliacaoJpa) {
             when(momentoAvaliacaoDomainDataAssembler.toDomain(momentoAvaliacaoJpa)).thenReturn(momentoAvaliacao);
             listMomentoAvaliacao.add(momentoAvaliacao);
         }
@@ -118,8 +119,31 @@ class MomentoAvaliacaoRepositoryTest {
         List<MomentoAvaliacao> listMomentoAvaliacaoAct = momentoAvaliacaoRepository.findAll();
 
         //Assert
-        assertEquals(listMomentoAvaliacaoAct,listMomentoAvaliacao);
-        assertTrue(listMomentoAvaliacaoAct.size()==2);
+        assertEquals(listMomentoAvaliacaoAct, listMomentoAvaliacao);
+        assertTrue(listMomentoAvaliacaoAct.size() == 2);
     }
 
+    /*@Test
+    void shouldFindAllMomentoAvaliacaoByCodEdicao() throws Exception {
+        //Arrange
+        MomentoAvaliacao momentoAvaliacaoJpa1 = mock(MomentoAvaliacao.class);
+        when(momentoAvaliacaoJpa1.getCodMomentoAvaliacao()).thenReturn(1);
+        when(momentoAvaliacaoJpa1.getCodEdicao()).thenReturn(1);
+        when(momentoAvaliacaoJpa1.getDenominacao()).thenReturn("Sprint1");
+
+        MomentoAvaliacao momentoAvaliacaoJpa2 = mock(MomentoAvaliacao.class);
+        when(momentoAvaliacaoJpa2.getCodMomentoAvaliacao()).thenReturn(1);
+        when(momentoAvaliacaoJpa1.getCodEdicao()).thenReturn(1);
+        when(momentoAvaliacaoJpa2.getDenominacao()).thenReturn("Sprint2");
+        when(momentoAvaliacaoRepository.save(momentoAvaliacaoJpa2)).thenReturn(momentoAvaliacaoJpa2);
+        when(momentoAvaliacaoRepository.save(momentoAvaliacaoJpa1)).thenReturn(momentoAvaliacaoJpa1);
+
+        List<MomentoAvaliacaoJpa> listMAJPA = momentoAvaliacaoJpaRepository.findAll();
+
+        //Act
+        List<MomentoAvaliacao> listMomentoAvaliacaoAct = momentoAvaliacaoRepository.findAllByCodEdicao(1);
+
+        //Assert
+        assertEquals(listMAJPA, listMomentoAvaliacaoAct);
+    }*/
 }

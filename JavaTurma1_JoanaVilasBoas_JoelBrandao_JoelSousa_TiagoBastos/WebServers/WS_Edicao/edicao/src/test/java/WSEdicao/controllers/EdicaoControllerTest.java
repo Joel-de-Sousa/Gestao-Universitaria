@@ -110,9 +110,6 @@ class EdicaoControllerTest {
     @Test
     void shouldCreateEdicaoWithCorrectAttributes() throws Exception {
         // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         EdicaoDTO edicaoDTODouble = mock(EdicaoDTO.class);
         when(edicaoDTODouble.getCodEdicao()).thenReturn(1);
         when(edicaoDTODouble.getCodUc()).thenReturn(1);

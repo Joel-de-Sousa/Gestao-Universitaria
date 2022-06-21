@@ -1,5 +1,6 @@
 package WSEdicao.datamodel;
 
+import WSEdicao.utils.Util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -23,6 +24,9 @@ public class MomentoAvaliacaoJpa {
 
     public MomentoAvaliacaoJpa(int codEdicao,String denominacao) {
         this.codEdicao = codEdicao;
-        this.denominacao = denominacao;
+        if (Util.validaStringMinCarateresNaoBrancos(3, denominacao)) {
+            this.denominacao = denominacao;
+        } else
+            throw new IllegalArgumentException("A denominção deve contem no mínimo 3 caracteres não brancos");
     }
 }
