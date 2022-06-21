@@ -41,4 +41,9 @@ public class Projeto {
         this.codOrientador = codOrientador;
         this.codProposta = codProposta;
     }
+
+    public Projeto(int codEstudante, int codProposta) {
+        this.codEstudante = codEstudante;
+        this.codProposta = codProposta;
+    }
 }

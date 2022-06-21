@@ -16,18 +16,18 @@ public class NewProjetoInfoDto {
 
     private int codEstudante;
 
-    @Getter
+    /*@Getter
 
-    private int codOrientador;
+    private int codOrientador;*/
 
     public NewProjetoInfoDto() {
     }
 
-    public NewProjetoInfoDto( int codProposta, int codEstudante, int codOrientador) {
+   /* public NewProjetoInfoDto( int codProposta, int codEstudante, int codOrientador) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
         this.codOrientador = codOrientador;
-    }
+    }*/
 
     public NewProjetoInfoDto(int codProposta, int codEstudante) {
         this.codProposta = codProposta;

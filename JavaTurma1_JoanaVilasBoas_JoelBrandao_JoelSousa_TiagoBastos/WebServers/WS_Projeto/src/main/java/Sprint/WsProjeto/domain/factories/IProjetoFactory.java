@@ -6,5 +6,5 @@ public interface IProjetoFactory {
 
 
 
-    Projeto createProjeto(int nCodEstudante, int nCodOrientador, int nCodProposta);
+    Projeto createProjeto(int nCodEstudante,int nCodProposta);
 }

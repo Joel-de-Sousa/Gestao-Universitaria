@@ -38,7 +38,7 @@ public class ProjetoService {
 
     public ProjetoDTO createAndSaveProjeto(NewProjetoInfoDto projetoInfoDto){
 
-        Projeto projeto = projetoFactory.createProjeto(projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante(),projetoInfoDto.getCodOrientador());
+        Projeto projeto = projetoFactory.createProjeto(projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante());
 
         Projeto oProjetoSaved = projetoRepository.save(projeto);
 
