@@ -162,7 +162,6 @@ public class EdicaoService {
     }
 
     public List<AddStudentDTO> getAllEstudantesByCodEdicao(int codEdicao) {
-
         return edicaoRepository.findEstudantesByCodEdicao(codEdicao);
     }
 
@@ -178,12 +177,9 @@ public class EdicaoService {
         return listaDto;
     }
     public EdicaoAllArgsDTO getEdicaoByCodEstudante(int codEstudante) throws Exception {
-        //return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
         Optional<EstudanteJpa> estudanteJpa= estudanteJpaRepository.findByCodEstudante(codEstudante);
 
-
         Optional<Edicao> edicao=edicaoRepository.findBycodEdicao(estudanteJpa.get().getCodEdicao());
-
 
         if (edicao.isPresent()){
             EdicaoAllArgsDTO edicaoAllArgsDTO=edicaoDTOAssembler.toDTOAllArgs(edicao.get());
@@ -193,16 +189,14 @@ public class EdicaoService {
         }
     }
     public EdicaoAllArgsDTO getEdicaoByCodRUC (int codRUC) throws Exception {
-        //return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
 
         Optional<Edicao> edicao=edicaoRepository.getEdicaoByCodRUC(codRUC);
-
 
         if (edicao.isPresent()){
             EdicaoAllArgsDTO edicaoAllArgsDTO=edicaoDTOAssembler.toDTOAllArgs(edicao.get());
             return edicaoAllArgsDTO;
         }else {
-            throw new Exception("Estudante não tem Edição");
+            throw new Exception("O codigo RUC não está atribuido a nenhuma Edicão");
         }
     }
 

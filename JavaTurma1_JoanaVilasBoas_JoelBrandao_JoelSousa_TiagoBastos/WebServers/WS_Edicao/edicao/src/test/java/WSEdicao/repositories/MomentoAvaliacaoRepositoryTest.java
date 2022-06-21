@@ -123,27 +123,29 @@ class MomentoAvaliacaoRepositoryTest {
         assertTrue(listMomentoAvaliacaoAct.size() == 2);
     }
 
-    /*@Test
+    @Test
     void shouldFindAllMomentoAvaliacaoByCodEdicao() throws Exception {
         //Arrange
-        MomentoAvaliacao momentoAvaliacaoJpa1 = mock(MomentoAvaliacao.class);
-        when(momentoAvaliacaoJpa1.getCodMomentoAvaliacao()).thenReturn(1);
-        when(momentoAvaliacaoJpa1.getCodEdicao()).thenReturn(1);
-        when(momentoAvaliacaoJpa1.getDenominacao()).thenReturn("Sprint1");
+        MomentoAvaliacao momentoAvaliacao = mock(MomentoAvaliacao.class);
+        when(momentoAvaliacao.getCodEdicao()).thenReturn(1);
+        when(momentoAvaliacao.getDenominacao()).thenReturn("Sprint1");
 
-        MomentoAvaliacao momentoAvaliacaoJpa2 = mock(MomentoAvaliacao.class);
-        when(momentoAvaliacaoJpa2.getCodMomentoAvaliacao()).thenReturn(1);
-        when(momentoAvaliacaoJpa1.getCodEdicao()).thenReturn(1);
-        when(momentoAvaliacaoJpa2.getDenominacao()).thenReturn("Sprint2");
-        when(momentoAvaliacaoRepository.save(momentoAvaliacaoJpa2)).thenReturn(momentoAvaliacaoJpa2);
-        when(momentoAvaliacaoRepository.save(momentoAvaliacaoJpa1)).thenReturn(momentoAvaliacaoJpa1);
+        MomentoAvaliacao momentoAvaliacao2 = mock(MomentoAvaliacao.class);
+        when(momentoAvaliacao2.getCodEdicao()).thenReturn(1);
+        when(momentoAvaliacao2.getDenominacao()).thenReturn("Sprint2");
 
-        List<MomentoAvaliacaoJpa> listMAJPA = momentoAvaliacaoJpaRepository.findAll();
+        List<MomentoAvaliacaoJpa> listMAJPA = new ArrayList<>();
+        when(momentoAvaliacaoJpaRepository.findByCodEdicao(1)).thenReturn(listMAJPA);
+
+        List<MomentoAvaliacao> listMA =new ArrayList<>();
+        for (MomentoAvaliacaoJpa ma : listMAJPA) {
+            listMA.add(momentoAvaliacaoDomainDataAssembler.toDomain(ma));
+        }
 
         //Act
         List<MomentoAvaliacao> listMomentoAvaliacaoAct = momentoAvaliacaoRepository.findAllByCodEdicao(1);
 
         //Assert
-        assertEquals(listMAJPA, listMomentoAvaliacaoAct);
-    }*/
+        assertEquals(listMA, listMomentoAvaliacaoAct);
+    }
 }

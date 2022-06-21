@@ -179,14 +179,14 @@ class EdicaoControllerTest {
     @Test
     void shouldReturnListEdicoesByCodRUC() {
         //Arrange
-        EdicaoDTO edicaoDouble1 = mock(EdicaoDTO.class);
+        EdicaoAllArgsDTO edicaoDouble1 = mock(EdicaoAllArgsDTO.class);
         when(edicaoDouble1.getCodRUC()).thenReturn(1);
 
-        EdicaoDTO edicaoDouble2 = mock(EdicaoDTO.class);
+        EdicaoAllArgsDTO edicaoDouble2 = mock(EdicaoAllArgsDTO.class);
         when(edicaoDouble2.getCodRUC()).thenReturn(1);
 
 
-        List<EdicaoDTO> listaEdicao = new ArrayList<>();
+        List<EdicaoAllArgsDTO> listaEdicao = new ArrayList<>();
         listaEdicao.add(edicaoDouble1);
         listaEdicao.add(edicaoDouble2);
 
