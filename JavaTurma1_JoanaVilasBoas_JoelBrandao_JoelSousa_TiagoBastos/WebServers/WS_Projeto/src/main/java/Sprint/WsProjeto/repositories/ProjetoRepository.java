@@ -41,4 +41,15 @@ public class ProjetoRepository implements IProjetoRepository {
         else
             return Optional.empty();
     }
+
+    public Optional<Projeto> findByCodEstudante(int codEstudante) {
+        Optional<ProjetoJPA> opProjeto = projetoJPARepository.findByCodEstudante (codEstudante);
+
+        if ( opProjeto.isPresent() ) {
+            Projeto projeto = projetoDomainDataAssembler.toDomain(opProjeto.get());
+            return Optional.of( projeto );
+        }
+        else
+            return Optional.empty();
+    }
 }

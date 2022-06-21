@@ -16,16 +16,21 @@ public class EdicaoService {
         edicaoWebRepository = new EdicaoWebRepository();
     }
 
-    public Optional<EdicaoRestDTO> getEdicaoByCodRUC(int codRUC) {
-        Optional<EdicaoRestDTO> opEdicao = edicaoWebRepository.findByEdicaoByCodRUC(codRUC);
+    public boolean getEdicaoByCodRUC(int codRUC) {
 
-        return opEdicao;
+        List<EdicaoRestDTO> opEdicao = edicaoWebRepository.getListaEdicoesByCodRUC(codRUC);
+        if(!opEdicao.isEmpty()){
+        return true;
+        } return  false;
     }
 
     public Optional<EdicaoRestDTO> getEdicaoByCodEstudante(int codEstudante) {
-        Optional<EdicaoRestDTO> opEdicao = edicaoWebRepository.findByEdicaoByCodRUC(codEstudante);
 
+        Optional<EdicaoRestDTO> opEdicao = edicaoWebRepository.findByEdicaoByCodEstudante(codEstudante);
+        if(opEdicao.isPresent()){
         return opEdicao;
+        } return  null;
+
     }
 
     public List<String> getListaEdicoesByCodRUC(int codRuc) {

@@ -12,4 +12,6 @@ public interface ProjetoJPARepository extends CrudRepository<ProjetoJPA, Integer
 
 
     Optional<ProjetoJPA> findById(int codProjeto);
+    Optional<ProjetoJPA> findByCodEstudante (int CodEstudante);
+
 }

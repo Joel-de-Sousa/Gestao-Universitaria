@@ -141,7 +141,7 @@ public class JanelaJuri implements Initializable {
         int codProj = Integer.parseInt(projeto[0]);
 
         ProjetoRestDTO projDto = projetoController.getProjetoByCodProjeto(codProj);
-        String nomeOrientador = String.format(projDto.getNomeOrientador() + " " + projDto.getSobrenomeOrientador());
+        String nomeOrientador = "";//String.format(projDto.getNomeOrientador() + " " + projDto.getSobrenomeOrientador());
 
         labelOrientador.setText("Orientador: " + nomeOrientador);
 

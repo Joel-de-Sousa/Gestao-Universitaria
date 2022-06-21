@@ -37,7 +37,7 @@ public class JanelaRUCInicial implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         edicaoController = new EdicaoController();
-
+        utilizadorIntroduzido = new UtilizadorRestDTO();
         btnEntrar.setDisable(true);
 
         // TODO

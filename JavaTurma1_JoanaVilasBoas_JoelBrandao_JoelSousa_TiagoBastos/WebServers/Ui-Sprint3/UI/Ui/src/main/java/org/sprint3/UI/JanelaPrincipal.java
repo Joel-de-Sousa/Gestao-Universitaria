@@ -49,7 +49,8 @@ public class JanelaPrincipal implements Initializable {
     public void handleButtonAction(ActionEvent actionEvent) throws Exception {
 
         UtilizadorRestDTO utilizador = utilizadorController.getUtilizadorById(Integer.parseInt(codUtilizadorField.getText()));
-        EdicaoRestDTO edicao = edicaoController.getEdicaoByCodRUC(Integer.parseInt(codUtilizadorField.getText()));
+        boolean edicao = edicaoController.getEdicaoByCodRUC(Integer.parseInt(codUtilizadorField.getText()));
+
 
 
         try {
@@ -66,7 +67,7 @@ public class JanelaPrincipal implements Initializable {
                 //String nome = utilizador.getNome()+" "+utilizador.getSobrenome();
                 JanelaEstudanteInicial janelaController = loader.getController();
                 //janelaController.displayName(nome);
-                janelaController.displayObject(utilizador);
+                /*janelaController.displayObject(utilizador);*/
 
                 Scene scene = new Scene(root);
                 novaJanelaEstudante.initModality(Modality.APPLICATION_MODAL);
@@ -94,7 +95,7 @@ public class JanelaPrincipal implements Initializable {
             }
 
 
-            if (utilizador.getTipoUtilizador().equals("DOCENTE") && edicao.getCodRUC() != utilizador.getCodUtilizador()) {
+            if (utilizador.getTipoUtilizador().equals("DOCENTE") && edicao==false) {
 
                 novaJanelaDocente = new Stage();
 
@@ -102,7 +103,7 @@ public class JanelaPrincipal implements Initializable {
                 Parent root = loader.load();
 
                 JanelaDocente janelaController = loader.getController();
-                janelaController.displayObject(utilizador);
+                /*janelaController.displayObject(utilizador);*/
 
                 Scene scene = new Scene(root);
                 novaJanelaDocente.initModality(Modality.APPLICATION_MODAL);
@@ -113,7 +114,7 @@ public class JanelaPrincipal implements Initializable {
             }
 
 
-            if (utilizador.getTipoUtilizador().equals("DOCENTE") && edicao.getCodRUC() == utilizador.getCodUtilizador() ) {
+            if (utilizador.getTipoUtilizador().equals("DOCENTE") && edicao==true ) {
 
                 novaJanelaRUC = new Stage();
 

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.sprint3.model.DTO.CandidaturaAllArgsDTO;
 import org.sprint3.model.DTO.CandidaturaRestDTO;
 import org.sprint3.model.DTO.PropostaRestDTO;
 import reactor.core.publisher.Mono;
@@ -55,7 +56,7 @@ public class CandidaturaRestRepository {
             throw new Exception( result.getBody());
     }
 
-    public Optional<List<CandidaturaRestDTO>> findAllCandidaturas() {
+    public Optional<List<CandidaturaAllArgsDTO>> findAllCandidaturas() {
 
        /* CandidaturaRestDTO cand1 = new CandidaturaRestDTO(1,"Tecnologias Assistidas para Terapia da Fala", "Joel", "Sousa", "PENDENTE");
         CandidaturaRestDTO cand2 = new CandidaturaRestDTO(1,"Applicant Tracking System", "Joel", "Sousa", "PENDENTE");
@@ -65,21 +66,21 @@ public class CandidaturaRestRepository {
         list.add(cand2);
         return Optional.of(list);*/
         try {
-            Mono<List<CandidaturaRestDTO>> response = webClient
+            Mono<List<CandidaturaAllArgsDTO>> response = webClient
                     .get()
                     .uri("/candidaturas/allArgs")
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
                     })
-                    .bodyToMono(new ParameterizedTypeReference<List<CandidaturaRestDTO>>() {
+                    .bodyToMono(new ParameterizedTypeReference<List<CandidaturaAllArgsDTO>>() {
                     })
                     .onErrorReturn(null)
                     .doOnError(throwable -> {
                         System.out.println(throwable.getMessage());
                     });
 
-            List<CandidaturaRestDTO> lista = response.block();
+            List<CandidaturaAllArgsDTO> lista = response.block();
             return Optional.of(lista);
         }catch( Exception e) {
             return Optional.empty();

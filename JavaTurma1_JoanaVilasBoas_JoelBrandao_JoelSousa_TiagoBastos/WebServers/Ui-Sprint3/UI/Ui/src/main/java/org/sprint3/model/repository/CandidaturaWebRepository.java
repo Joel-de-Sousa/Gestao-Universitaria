@@ -1,5 +1,6 @@
 package org.sprint3.model.repository;
 
+import org.sprint3.model.DTO.CandidaturaAllArgsDTO;
 import org.sprint3.model.DTO.CandidaturaRestDTO;
 import org.sprint3.model.DTO.PropostaRestDTO;
 import org.sprint3.model.repository.REST.CandidaturaRestRepository;
@@ -22,8 +23,8 @@ public class CandidaturaWebRepository {
         return create;
     }
 
-    public Optional<List<CandidaturaRestDTO>> findAllCandidaturas() {
-        Optional<List<CandidaturaRestDTO>> lista = candidaturaRestRepository.findAllCandidaturas();
+    public Optional<List<CandidaturaAllArgsDTO>> findAllCandidaturas() {
+        Optional<List<CandidaturaAllArgsDTO>> lista = candidaturaRestRepository.findAllCandidaturas();
 
         return lista;
     }

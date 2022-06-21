@@ -166,13 +166,13 @@ public class EdicaoService {
         return edicaoRepository.findEstudantesByCodEdicao(codEdicao);
     }
 
-    public List<EdicaoDTO> getAllEdicaoByCodRUC(int codRUC) {
+    public List<EdicaoAllArgsDTO> getAllEdicaoByCodRUC(int codRUC) {
 
         List<Edicao> listEdicao = edicaoRepository.findListEdicaoBycodRUC(codRUC);
 
-        List<EdicaoDTO> listaDto = new ArrayList<>();
+        List<EdicaoAllArgsDTO> listaDto = new ArrayList<>();
         for (Edicao edicao : listEdicao) {
-            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
+            EdicaoAllArgsDTO edicaoDTO = edicaoDTOAssembler.toDTOAllArgs(edicao);
             listaDto.add(edicaoDTO);
         }
         return listaDto;
@@ -192,7 +192,19 @@ public class EdicaoService {
             throw new Exception("Estudante não tem Edição");
         }
     }
+    public EdicaoAllArgsDTO getEdicaoByCodRUC (int codRUC) throws Exception {
+        //return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
 
+        Optional<Edicao> edicao=edicaoRepository.getEdicaoByCodRUC(codRUC);
+
+
+        if (edicao.isPresent()){
+            EdicaoAllArgsDTO edicaoAllArgsDTO=edicaoDTOAssembler.toDTOAllArgs(edicao.get());
+            return edicaoAllArgsDTO;
+        }else {
+            throw new Exception("Estudante não tem Edição");
+        }
+    }
 
 }
 

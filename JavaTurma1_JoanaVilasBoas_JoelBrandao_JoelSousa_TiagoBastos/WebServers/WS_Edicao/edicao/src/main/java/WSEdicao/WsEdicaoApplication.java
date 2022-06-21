@@ -49,10 +49,12 @@ public class WsEdicaoApplication {
             AnoLetivoDTO anoLetivo2 = anoLetivoService.createAndSaveAnoLetivo("2022");
             AnoLetivoDTO anoLetivo3 = anoLetivoService.createAndSaveAnoLetivo("2021");
 
-            EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo2.getCodAnoLetivo(), 1);
-            EdicaoDTO edicao2 = edicaoService.createAndSaveEdicao(uc2.getCodUc(), anoLetivo2.getCodAnoLetivo(), 1);
-            EdicaoDTO edicao3 = edicaoService.createAndSaveEdicao(uc3.getCodUc(), anoLetivo2.getCodAnoLetivo(), 1);
+            EdicaoDTO edicao1 = edicaoService.createAndSaveEdicao(uc1.getCodUc(), anoLetivo2.getCodAnoLetivo(), 2);
+            EdicaoDTO edicao2 = edicaoService.createAndSaveEdicao(uc2.getCodUc(), anoLetivo2.getCodAnoLetivo(), 2);
+            EdicaoDTO edicao3 = edicaoService.createAndSaveEdicao(uc3.getCodUc(), anoLetivo2.getCodAnoLetivo(), 3);
 
+            AddStudentDTO e1 = new AddStudentDTO(1, 1);
+            edicaoService.addEstudantes(e1);
             MomentoAvaliacaoDTO info = new MomentoAvaliacaoDTO(1, "MA1");
             MomentoAvaliacaoDTO ma1 = momentoAvaliacaoService.createAndSaveMomentoAvaliacao(info);
 

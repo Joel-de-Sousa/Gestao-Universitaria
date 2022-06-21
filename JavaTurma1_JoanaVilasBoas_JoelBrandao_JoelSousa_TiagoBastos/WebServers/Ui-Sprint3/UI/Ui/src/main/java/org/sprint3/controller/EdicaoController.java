@@ -14,48 +14,47 @@ public class EdicaoController {
         edicaoService = new EdicaoService();
     }
 
-    public EdicaoRestDTO getEdicaoByCodRUC (int codRUC){
-        Optional<EdicaoRestDTO> opEdicao = edicaoService.getEdicaoByCodRUC(codRUC);
+    public boolean getEdicaoByCodRUC(int codRUC) {
+        boolean opEdicao = edicaoService.getEdicaoByCodRUC(codRUC);
 
-        EdicaoRestDTO edicao = opEdicao.get();
+           return opEdicao;
 
-        return edicao;
     }
 
-    public String getEdicaoByCodUtilizador (int codUtilizador){
+   /* public String getEdicaoByCodUtilizador(int codUtilizador) {
         Optional<EdicaoRestDTO> opEdicao = edicaoService.getEdicaoByCodRUC(codUtilizador);
 
         EdicaoRestDTO edicao = opEdicao.get();
 
-        String sigla= edicao.getSigla();
+        String sigla = edicao.getSigla();
         String ano = edicao.getAno();
-        String edicaoString = String.format(sigla+" "+ano);
+        String edicaoString = String.format(sigla + " " + ano);
 
         return edicaoString;
-    }
+    }*/
 
-    public int getCodEdicaoEstudante (int codUtilizador){
+   /* public int getCodEdicaoEstudante(int codUtilizador) {
         Optional<EdicaoRestDTO> opEdicao = edicaoService.getEdicaoByCodRUC(codUtilizador);
 
         EdicaoRestDTO edicao = opEdicao.get();
 
         int codEdicao = edicao.getCodEdicao();
         return codEdicao;
-    }
+    }*/
 
-    public String getEdicaoByCodEstudante (int codEstudante){
+    public String getEdicaoByCodEstudante(int codEstudante) {
         Optional<EdicaoRestDTO> opEdicao = edicaoService.getEdicaoByCodEstudante(codEstudante);
 
         EdicaoRestDTO edicao = opEdicao.get();
 
-        String sigla= edicao.getSigla();
+        String sigla = edicao.getSigla();
         String ano = edicao.getAno();
-        String edicaoString = String.format(sigla+" "+ano);
+        String edicaoString = String.format(sigla + " " + ano);
 
         return edicaoString;
     }
 
-    public int getCodEdicaoByCodEstudante (int codEstudante){
+    public int getCodEdicaoByCodEstudante(int codEstudante) {
         Optional<EdicaoRestDTO> opEdicao = edicaoService.getEdicaoByCodEstudante(codEstudante);
 
         EdicaoRestDTO edicao = opEdicao.get();
@@ -69,7 +68,7 @@ public class EdicaoController {
     }
 
     public boolean criarNovaEdicao(int ano, int uc) throws Exception {
-        boolean create=edicaoService.criarNovaEdicao(ano,uc);
+        boolean create = edicaoService.criarNovaEdicao(ano, uc);
         return create;
     }
 

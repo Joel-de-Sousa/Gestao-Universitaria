@@ -4,11 +4,32 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjetoRestDTO {
 
     @Getter
+
+    private int codProjeto;
+
+    @Getter
+
+    private int codProposta;
+
+    @Getter
+
+    private int codEstudante;
+
+    @Getter
+
+    private int codOrientador;
+
+    @Getter
+    private ArrayList<AvaliacaoDTO> avaliacaoList;
+
+   /* @Getter
     int codProjeto;
     @Getter
     int codProposta;
@@ -33,9 +54,9 @@ public class ProjetoRestDTO {
     @Getter
     String sobrenomeOrientador;
     @Getter
-    String momentoAvaliacao;
+    String momentoAvaliacao;*/
 
-    public ProjetoRestDTO(int codProposta, int codEstudante, int codOrientador) {
+  /*  public ProjetoRestDTO(int codProposta, int codEstudante, int codOrientador) {
         this.codProposta = codProposta;
         this.codEstudante = codEstudante;
     }
@@ -67,5 +88,5 @@ public class ProjetoRestDTO {
         this.codProjeto = codProjeto;
         this.tituloProjeto = tituloProjeto;
         this.momentoAvaliacao = momentoAvaliacao;
-    }
+    }*/
 }
