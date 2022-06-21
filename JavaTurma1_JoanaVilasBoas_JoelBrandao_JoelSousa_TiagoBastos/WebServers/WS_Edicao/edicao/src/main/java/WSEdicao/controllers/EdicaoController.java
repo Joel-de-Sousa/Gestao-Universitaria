@@ -112,4 +112,28 @@ public class EdicaoController {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    @GetMapping("/listEdicaoByCodRUC/{codRUC}")
+    @ResponseBody
+    public ResponseEntity<Object> getAllEdicaoByCodRUC(@PathVariable int codRUC) {
+
+        List<EdicaoDTO> listEdicao = service.getAllEdicaoByCodRUC(codRUC);
+
+        return new ResponseEntity<>(listEdicao, HttpStatus.OK);
+    }
+
+    @GetMapping("/edicaoByCodEstudante/{codEstudante}")
+    @ResponseBody
+    public ResponseEntity<Object> getEdicaoByCodEstudante(@PathVariable int codEstudante) {
+
+        List<EdicaoDTO> listEdicao = service.getEdicaoByCodEstudante(codEstudante);
+
+            return new ResponseEntity<>(listEdicao, HttpStatus.OK);
+    }
+
+
+
+
+
 }

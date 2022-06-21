@@ -7,6 +7,7 @@ import WSEdicao.domain.entities.Edicao;
 import WSEdicao.dto.AddStudentDTO;
 import WSEdicao.dto.assemblers.EdicaoDomainDTOAssembler;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
+import WSEdicao.repositories.jpa.EstudanteJpaRepository;
 import WSEdicao.repositories.jpa.MomentoAvaliacaoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,11 +25,8 @@ public class EdicaoRepository {
     @Autowired
     EdicaoDomainDataAssembler edicaoAssembler;
 
-    @Autowired
-    EdicaoDomainDTOAssembler edicaoDTOAssembler;
-
-    @Autowired
-    MomentoAvaliacaoJpaRepository momentoAvaliacaoJpaRepository;
+   @Autowired
+   EstudanteJpaRepository estudanteJpaRepository;
 
     public Edicao save(Edicao edicao) throws Exception {
         EdicaoJpa edicaoJpa1 = edicaoAssembler.toData(edicao);
@@ -97,5 +95,33 @@ public class EdicaoRepository {
             return listEstudante;
         } else
             return null; // it should throw a descriptive exception
+    }
+
+    public List<Edicao> findListEdicaoBycodRUC(int codRUC) {
+        List<EdicaoJpa> listEdicaoJPA = edicaoJpaRepository.findListEdicaoBycodRUC(codRUC);
+        List<Edicao> listEdicao = new ArrayList<>();
+        for (EdicaoJpa edicaoJpa : listEdicaoJPA) {
+            listEdicao.add(edicaoAssembler.toDomain(edicaoJpa));
+        }
+        return listEdicao;
+    }
+
+    public List<EdicaoDTO> findEdicaoByCodEstudante(int codEstudante) {
+
+        List<EstudanteJpa> estudanteJpaList = estudanteJpaRepository.findListEstudanteByCodEstudante(codEstudante);
+        //List<Integer> codEdicao = estudanteJpaList.stream().map(EstudanteJpa::getCodEdicao).collect(Collectors.toList());
+
+        //List<EdicaoJpa> listEdicaoJPA = edicaoJpaRepository.findListEdicaoBycodEdicao(codEstudante);
+
+
+
+        List<EdicaoDTO> listEdicaoDTO = new ArrayList<>();
+
+        for (EstudanteJpa estudanteJpa : estudanteJpaList) {
+
+            EdicaoDTO edicaoDTO = new EdicaoDTO(estudanteJpa.getCodEdicao());
+            listEdicaoDTO.add(edicaoDTO);
+        }
+        return listEdicaoDTO;
     }
 }

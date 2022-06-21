@@ -139,12 +139,12 @@ public class EdicaoService {
     public EdicaoDTO addEstudantes(AddStudentDTO addStudent) throws Exception {
 
         EdicaoJpa opEdicao = edicaoRepository.findBycodEdicaoJpa(addStudent.getCodEdicao());
-        EstudanteJpa estudanteJpa = new EstudanteJpa(addStudent.getCodEdicao(),addStudent.getCodEstudante());
+        EstudanteJpa estudanteJpa = new EstudanteJpa(addStudent.getCodEdicao(), addStudent.getCodEstudante());
 
-        Optional<UtilizadorRestDTO> utilizadorRestDTO =
-                utilizadorRestRepository.findUtilizadorByCodUtilizador(addStudent.getCodEstudante());
+        //Optional<UtilizadorRestDTO> utilizadorRestDTO =
+          //      utilizadorRestRepository.findUtilizadorByCodUtilizador(addStudent.getCodEstudante());
 
-        if(!opEdicao.getListEstudantes().contains(estudanteJpa) && utilizadorRestDTO.get().getTipoUtilizador() == "ESTUDANTE") {
+        if (!opEdicao.getListEstudantes().contains(estudanteJpa) /*&& utilizadorRestDTO.get().getTipoUtilizador() == "ESTUDANTE"*/) {
 
             opEdicao.getListEstudantes().add(estudanteJpa);
 
@@ -161,6 +161,31 @@ public class EdicaoService {
 
         return edicaoRepository.findEstudantesByCodEdicao(codEdicao);
     }
+
+    public List<EdicaoDTO> getAllEdicaoByCodRUC(int codRUC) {
+
+        List<Edicao> listEdicao = edicaoRepository.findListEdicaoBycodRUC(codRUC);
+
+        List<EdicaoDTO> listaDto = new ArrayList<>();
+        for (Edicao edicao : listEdicao) {
+            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
+            listaDto.add(edicaoDTO);
+        }
+        return listaDto;
+    }
+
+    public List<EdicaoDTO> getEdicaoByCodEstudante(int codEstudante) {
+        return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
+        //List<Edicao> listEdicao = edicaoRepository.findEdicaoByCodEstudante(codEstudante);
+
+        /*List<EdicaoDTO> listaDto = new ArrayList<>();
+        for (Edicao edicao : listEdicao) {
+            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
+            listaDto.add(edicaoDTO);
+        }
+        return listaDto;*/
+    }
+
 
 }
 
