@@ -123,18 +123,26 @@ public class EdicaoController {
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }
 
+<<<<<<< HEAD
     @GetMapping("/estudante/{codEstudante}")
+=======
+   /* @GetMapping("/edicaoByCodEstudante/{codEstudante}")
+>>>>>>> 8f452aaeb2bde24ccd182ec10b3c8f3fd6e42bda
     @ResponseBody
     public ResponseEntity<Object> getEdicaoByCodEstudante(@PathVariable int codEstudante) throws Exception {
         try {
             EdicaoAllArgsDTO listEdicao = service.getEdicaoByCodEstudante(codEstudante);
 
             return new ResponseEntity<>(listEdicao, HttpStatus.OK);
+<<<<<<< HEAD
         }
         catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+=======
+    }*/
+>>>>>>> 8f452aaeb2bde24ccd182ec10b3c8f3fd6e42bda
 
 
 }

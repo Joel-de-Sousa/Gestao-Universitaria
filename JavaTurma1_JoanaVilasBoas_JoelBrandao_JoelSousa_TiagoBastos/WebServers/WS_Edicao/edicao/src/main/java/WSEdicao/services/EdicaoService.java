@@ -181,6 +181,7 @@ public class EdicaoService {
         //return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
         Optional<EstudanteJpa> estudanteJpa= estudanteJpaRepository.findByCodEstudante(codEstudante);
 
+<<<<<<< HEAD
         Optional<Edicao> edicao=edicaoRepository.findBycodEdicao(estudanteJpa.get().getCodEdicao());
 
 
@@ -191,6 +192,19 @@ public class EdicaoService {
             throw new Exception("Estudante não tem Edição");
         }
     }
+=======
+   /* public List<EdicaoDTO> getEdicaoByCodEstudante(int codEstudante) {
+        return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
+        //List<Edicao> listEdicao = edicaoRepository.findEdicaoByCodEstudante(codEstudante);
+
+        *//*List<EdicaoDTO> listaDto = new ArrayList<>();
+        for (Edicao edicao : listEdicao) {
+            EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
+            listaDto.add(edicaoDTO);
+        }
+        return listaDto;*//*
+    }*/
+>>>>>>> 8f452aaeb2bde24ccd182ec10b3c8f3fd6e42bda
 
 
 }

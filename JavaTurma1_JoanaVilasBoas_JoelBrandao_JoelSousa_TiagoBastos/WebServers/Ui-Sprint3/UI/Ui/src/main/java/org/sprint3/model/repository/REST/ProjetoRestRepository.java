@@ -29,10 +29,10 @@ public class ProjetoRestRepository {
             .build();
 
     public Optional<ProjetoRestDTO> findByCodEstudante(int codEstudante) {
-        ProjetoRestDTO proj = new ProjetoRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Problema do projecto", "Objectivo do projecto", "POO: 2022-2023",1, "Joel", "Sousa", 5, "Paulo", "B", "MA1");
-        return Optional.of(proj);
+        /*ProjetoRestDTO proj = new ProjetoRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Problema do projecto", "Objectivo do projecto", "POO: 2022-2023",1, "Joel", "Sousa", 5, "Paulo", "B", "MA1");
+        return Optional.of(proj);*/
 
-       /* try {
+        try {
             Mono<ProjetoRestDTO> response = webClient
                     .get()
                     .uri("/projetos/" + codEstudante)
@@ -52,16 +52,15 @@ public class ProjetoRestRepository {
         } catch (Exception e) {
             return Optional.empty();
         }
-*/
     }
 
 
     public Optional<ProjetoRestDTO> findByCodOrientador(int codOrientador) {
 
-        ProjetoRestDTO proj = new ProjetoRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Problema do projecto", "Objectivo do projecto","POO: 2022-2023", 5, "Joel", "Sousa", 5, "Paulo", "B", "MA1");
+        /*ProjetoRestDTO proj = new ProjetoRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Problema do projecto", "Objectivo do projecto","POO: 2022-2023", 5, "Joel", "Sousa", 5, "Paulo", "B", "MA1");
         return Optional.of(proj);
-
-        /*try {
+*/
+        try {
             Mono<ProjetoRestDTO> response = webClient
                     .get()
                     .uri("/projetos/" + codOrientador)
@@ -80,16 +79,16 @@ public class ProjetoRestRepository {
             return Optional.of(tutorial);
         } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
 
     }
 
     public Optional<ProjetoRestDTO> findByCodProjeto(int codProjeto) {
 
-        ProjetoRestDTO proj = new ProjetoRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Problema do projecto", "Objectivo do projecto", "POO: 2022-2023",5, "Joel", "Sousa", 5, "Paulo", "Silva", "MA1");
-        return Optional.of(proj);
+     /*   ProjetoRestDTO proj = new ProjetoRestDTO(1, 1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Problema do projecto", "Objectivo do projecto", "POO: 2022-2023",5, "Joel", "Sousa", 5, "Paulo", "Silva", "MA1");
+        return Optional.of(proj);*/
 
-        /*try {
+        try {
             Mono<ProjetoRestDTO> response = webClient
                     .get()
                     .uri("/projetos/" + codProjeto)
@@ -108,18 +107,18 @@ public class ProjetoRestRepository {
             return Optional.of(tutorial);
         } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
 
     }
 
 
     public Optional<List<ProjetoRestDTO>> findAllProjetos() {
 
-        ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.","POO: 2022-2023", "Joel", "Brandão", "MA1");
+        /*ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.","POO: 2022-2023", "Joel", "Brandão", "MA1");
         List<ProjetoRestDTO> list = new ArrayList<>();
         list.add(proj);
-        return Optional.of(list);
-        /*try {
+        return Optional.of(list);*/
+        try {
             Mono<List<ProjetoRestDTO>> response = webClient.get()
                     .uri("/projetos")
                     .retrieve()
@@ -135,20 +134,21 @@ public class ProjetoRestRepository {
 
             List<ProjetoRestDTO> lista = response.block();
             return Optional.of(lista);
-        }catch( Exception e) {
+        } catch (Exception e) {
             return Optional.empty();
         }
 
-    }*/
-
     }
 
-    public boolean createJuri (JuriRestDTO novoJuri) throws Exception {
 
+    public boolean createJuri(JuriRestDTO novoJuri) throws Exception {
+
+/*
         return true;
-       /* ResponseEntity<String> result = null;
+*/
+        ResponseEntity<String> result = null;
         try {
-            result= webClient
+            result = webClient
                     .post()
                     .uri("/juri")
                     .body(Mono.just(novoJuri), JuriRestDTO.class).exchange().flatMap(response -> response.toEntity(String.class))
@@ -157,8 +157,8 @@ public class ProjetoRestRepository {
                         System.out.println(throwable.getMessage());
                     })
                     .block();
-        }
-        catch( Exception e) {
+            System.out.println(result);
+        } catch (Exception e) {
 
             System.out.println(e.getMessage());
         }
@@ -166,20 +166,19 @@ public class ProjetoRestRepository {
         if (result.getStatusCode().is2xxSuccessful())
             return true;
         else
-            throw new Exception( result.getBody());*/
+            throw new Exception(result.getBody());
     }
 
 
-
-    public Optional<List<ProjetoRestDTO>> findAllProjetosByEdicao (int codEdicao) {
-        ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.","POO: 2022-2023", "Joel", "Brandão", "MA1");
+    public Optional<List<ProjetoRestDTO>> findAllProjetosByEdicao(int codEdicao) {
+     /*   ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.","POO: 2022-2023", "Joel", "Brandão", "MA1");
         List<ProjetoRestDTO> list = new ArrayList<>();
         list.add(proj);
-        return Optional.of(list);
+        return Optional.of(list);*/
 
-        /*try {
+        try {
             Mono<List<ProjetoRestDTO>> response = webClient.get()
-                    .uri("/projetos/edicao/" +codEdicao)
+                    .uri("/projetos/edicao/" + codEdicao)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -193,19 +192,19 @@ public class ProjetoRestRepository {
 
             List<ProjetoRestDTO> lista = response.block();
             return Optional.of(lista);
-        }catch( Exception e) {
+        } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
     }
 
 
-    public Optional<List<ProjetoRestDTO>> findAllProjetosByCodOrientador (int codOrientador) {
-        ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.","POO: 2022-2023", "Joel", "Brandão", "MA1");
+    public Optional<List<ProjetoRestDTO>> findAllProjetosByCodOrientador(int codOrientador) {
+        /*ProjetoRestDTO proj = new ProjetoRestDTO(1, "Desenvolvimento Serverless: Soluções, Impacto e Futuro", "Os processos de implantação de software tradicionais tem cada vez mais vindo a revelar-se problemático.", "Identificar as diferenças existentes entre o desenvolvimento serverless e os métodos de desenvolvimento atuais.", "POO: 2022-2023", "Joel", "Brandão", "MA1");
         List<ProjetoRestDTO> list = new ArrayList<>();
         list.add(proj);
-        return Optional.of(list);
+        return Optional.of(list);*/
 
-       /* try {
+        try {
             Mono<List<ProjetoRestDTO>> response = webClient.get()
                     .uri("/projetos/edicao/" + codOrientador)
                     .retrieve()
@@ -223,13 +222,13 @@ public class ProjetoRestRepository {
             return Optional.of(lista);
         }catch( Exception e) {
             return Optional.empty();
-        }*/
+        }
     }
 
-    public boolean updateEstadoSubmissao (SubmissaoRestDTO submissaoParcial) throws Exception {
-        return true;
+    public boolean updateEstadoSubmissao(SubmissaoRestDTO submissaoParcial) throws Exception {
+        //return true;
 
-       /* ResponseEntity<String> result = null;
+        ResponseEntity<String> result = null;
         int codSubmissao = submissaoParcial.getCodSubmissao();
         try {
             result= webClient
@@ -241,6 +240,7 @@ public class ProjetoRestRepository {
                         System.out.println(throwable.getMessage());
                     })
                     .block();
+            System.out.println(result);
         }
         catch( Exception e) {
 
@@ -250,7 +250,7 @@ public class ProjetoRestRepository {
         if (result.getStatusCode().is2xxSuccessful())
             return true;
         else
-            throw new Exception( result.getBody());*/
+            throw new Exception( result.getBody());
     }
 
 }

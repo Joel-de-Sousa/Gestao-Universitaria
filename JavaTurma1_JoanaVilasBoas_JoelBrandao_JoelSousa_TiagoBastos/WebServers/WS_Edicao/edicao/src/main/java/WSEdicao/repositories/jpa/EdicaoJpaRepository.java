@@ -16,7 +16,13 @@ public interface EdicaoJpaRepository extends CrudRepository<EdicaoJpa, Integer> 
     List<EdicaoJpa> findListEdicaoBycodRUC(int codRUC);
     List<EdicaoJpa> findListEdicaoBycodEdicao(int codEdicao);
     //Optional<EdicaoJpa> findByCodRUC(int codRUC);
+<<<<<<< HEAD
    /* List<EdicaoJpa> findListEstudantesJpaBylistEstudantes(List<EstudanteJpa> listEstudantes);*/
+=======
+/*
+    List<EdicaoJpa> findListEstudantesJpaBylistEstudantes(List<EstudanteJpa> listEstudantes);
+*/
+>>>>>>> 8f452aaeb2bde24ccd182ec10b3c8f3fd6e42bda
     boolean existsByCodUc(int codUc);
     boolean existsByCodAnoLetivo(int codAnoLetivo);
 

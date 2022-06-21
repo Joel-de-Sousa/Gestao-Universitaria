@@ -107,7 +107,11 @@ public class EdicaoRepository {
         return listEdicao;
     }
 
+<<<<<<< HEAD
   /*  public List<Edicao> findEdicaoByCodEstudante(int codEstudante) {
+=======
+    /*public List<EdicaoDTO> findEdicaoByCodEstudante(int codEstudante) {
+>>>>>>> 8f452aaeb2bde24ccd182ec10b3c8f3fd6e42bda
 
        // List<EstudanteJpa> estudanteJpaList = estudanteJpaRepository.findListEstudanteByCodEstudante(codEstudante);
         //List<Integer> codEdicao = estudanteJpaList.stream().map(EstudanteJpa::getCodEdicao).collect(Collectors.toList());
