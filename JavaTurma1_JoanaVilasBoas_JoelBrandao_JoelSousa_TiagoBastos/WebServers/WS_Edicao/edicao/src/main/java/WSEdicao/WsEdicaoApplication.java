@@ -41,7 +41,7 @@ public class WsEdicaoApplication {
 
 
             //Create a few Uc, AnoLetivos and Edicões
-            UcDTO uc1 = ucService.createAndSaveUc("POO", "Programação Orientada Objectos");
+            /*UcDTO uc1 = ucService.createAndSaveUc("POO", "Programação Orientada Objectos");
             UcDTO uc2 = ucService.createAndSaveUc("PDS", "Princípios de Desenvolvimento de Software");
             UcDTO uc3 = ucService.createAndSaveUc("BDD", "Base de Dados");
 
@@ -64,7 +64,7 @@ public class WsEdicaoApplication {
 			Optional<Edicao > ed1 = repository.findBycodEdicao(edicao1.getCodEdicao());
             EdicaoAllArgsDTO allarg = edicaoAssembler.toDTOAllArgs(ed1.get());
 
-                    System.out.println(allarg);
+                    System.out.println(allarg);*/
         };
 
 

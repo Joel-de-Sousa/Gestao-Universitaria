@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="44b582c4-8088-45d4-b381-236e83783269" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/WsEdicaoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/WsEdicaoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/MomentoAvaliacaoJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/MomentoAvaliacaoJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/EdicaoJpaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/EdicaoJpaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/entities/EdicaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/entities/EdicaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/EdicaoFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/EdicaoFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/MomentoAvaliacaoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/MomentoAvaliacaoRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/UcServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/UcServiceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2AsujBMwEOsn14IZOc1p2ZPvU14" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="WSEdicao.services" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.WSEdicao in demo">
+    <configuration name="EdicaoRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao.repositories" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.repositories.EdicaoRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EdicaoRepositoryTest.shouldFindSpecificEdicaoSearchingById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao.repositories" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.repositories.EdicaoRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldFindSpecificEdicaoSearchingById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MomentoAvaliacaoJpaTest.shouldNotCreateANewMomentoAvaliacaoWithTheWrongFormat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.datamodel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao.datamodel" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.datamodel.MomentoAvaliacaoJpaTest" />
+      <option name="METHOD_NAME" value="shouldNotCreateANewMomentoAvaliacaoWithTheWrongFormat" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MomentoAvaliacaoRepositoryTest.shouldFindAllMomentoAvaliacaoByCodEdicao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao.repositories" />
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.repositories.MomentoAvaliacaoRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldFindAllMomentoAvaliacaoByCodEdicao" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WSEdicao in demo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="WSEdicao" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.WSEdicao in demo" />
+        <item itemvalue="JUnit.MomentoAvaliacaoJpaTest.shouldNotCreateANewMomentoAvaliacaoWithTheWrongFormat" />
+        <item itemvalue="JUnit.EdicaoRepositoryTest.shouldFindSpecificEdicaoSearchingById" />
+        <item itemvalue="JUnit.EdicaoRepositoryTest" />
+        <item itemvalue="JUnit.MomentoAvaliacaoRepositoryTest.shouldFindAllMomentoAvaliacaoByCodEdicao" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44b582c4-8088-45d4-b381-236e83783269" name="Changes" comment="" />
+      <created>1655810766944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655810766944</updated>
+    </task>
+    <servers />
+  </component>
+</project>

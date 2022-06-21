@@ -47,9 +47,6 @@ class UcControllerTest {
     @Test
     void shouldFindSpecificUcSearchingById() {
         // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         UcDTO ucDouble = mock(UcDTO.class);
         when(ucDouble.getSigla()).thenReturn("POOJ");
         when(ucDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
@@ -71,9 +68,6 @@ class UcControllerTest {
     @Test
     void shouldFindEveryUcCreatedCorrectly() {
         // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         UcDTO ucDouble = mock(UcDTO.class);
         when(ucDouble.getSigla()).thenReturn("POOJ");
         when(ucDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
@@ -98,12 +92,9 @@ class UcControllerTest {
         assertEquals(res, listaUc);
     }
 
-    /*@Test
-    void shouldCreateUcWithCorrectAttributes() {
+    @Test
+    void shouldCreateUcWithCorrectAttributes() throws Exception {
         // Arrange
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         UcDTO ucDouble = mock(UcDTO.class);
         when(ucDouble.getSigla()).thenReturn("POOJ");
         when(ucDouble.getDenominacao()).thenReturn("ProgramacaoOrientadaAObjetos");
@@ -122,6 +113,5 @@ class UcControllerTest {
 
         Object res = responseEntity.getBody();
         assertEquals(res, ucDouble);
-
-    }*/
+    }
 }

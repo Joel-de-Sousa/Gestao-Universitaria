@@ -10,35 +10,37 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/*@SpringBootTest
+@SpringBootTest
 class EdicaoJpaTest {
 
     @Test
     void shouldCreateANewEdicaoJpa() {
-        new EdicaoJpa(1, 1);
+        new EdicaoJpa(1, 1,1, Edicao.Estado.PENDENTE);
     }
 
     @Test
     void shouldCreateAEdicaoJpaWithCorrectAttributes() {
-        EdicaoJpa edicao = new EdicaoJpa(1, 1);
+        EdicaoJpa edicao = new EdicaoJpa(1, 1,1, Edicao.Estado.PENDENTE);
 
         assertEquals(edicao.getCodUc(), 1);
         assertEquals(edicao.getCodAnoLetivo(),1);
+        assertEquals(edicao.getCodRUC(),1);
+        assertEquals(edicao.getEstado(), Edicao.Estado.PENDENTE);
     }
 
 
     @Test
     void shouldReturnEqualSameEdicao() {
-        EdicaoJpa edicao = new EdicaoJpa(1, 1);
+        EdicaoJpa edicao = new EdicaoJpa(1, 1,1, Edicao.Estado.PENDENTE);
 
         assertEquals(edicao, edicao);
     }
 
     @Test
     void shouldReturnNotEqualsDifferentEdicaoJpa() {
-        EdicaoJpa edicao1 = new EdicaoJpa(1, 1);
-        EdicaoJpa edicao2 = new EdicaoJpa(2, 2);
+        EdicaoJpa edicao1 = new EdicaoJpa(1, 1,1, Edicao.Estado.PENDENTE);
+        EdicaoJpa edicao2 = new EdicaoJpa(2, 2,2, Edicao.Estado.PENDENTE);
 
         assertNotEquals(edicao1, edicao2);
     }
-}*/
+}

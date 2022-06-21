@@ -136,6 +136,7 @@ public class EdicaoController {
         }
     }
 
+
     @GetMapping("/ruc/{codRUC}")
     @ResponseBody
     public ResponseEntity<Object> getEdicaoByCodRUC(@PathVariable int codRUC) throws Exception {
@@ -148,7 +149,6 @@ public class EdicaoController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
 
 
 }
