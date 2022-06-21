@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class EdicaoRestDTO {
@@ -25,6 +27,13 @@ public class EdicaoRestDTO {
     int codRUC;
     @Getter
     String estado;
+    @Getter
+    ArrayList<MomentoAvaliacaoDTO> momentoAvaliacaoList;
+    @Getter
+    ArrayList<AddStudentDTO> estudantesList;
+
+
+
 
 
     public EdicaoRestDTO(int codUc, int codAnoLetivo, int codRUC, String estado) {

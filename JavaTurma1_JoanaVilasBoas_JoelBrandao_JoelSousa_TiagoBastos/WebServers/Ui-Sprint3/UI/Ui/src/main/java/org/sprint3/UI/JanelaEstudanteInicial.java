@@ -46,7 +46,7 @@ public class JanelaEstudanteInicial implements Initializable {
         utilizadorIntroduzido = utilizador;
 
         int codEstudante = utilizadorIntroduzido.getCodUtilizador();
-        cmbEdicao.getItems().addAll(edicaoController.getListaEdicoes());
+        cmbEdicao.getItems().addAll(edicaoController.getEdicaoByCodEstudante(codEstudante));
     }
 
     @FXML
@@ -69,9 +69,6 @@ public class JanelaEstudanteInicial implements Initializable {
         janelaController.displayName(nome);
         janelaController.displayObject(utilizadorIntroduzido);
 
-       /* JanelaRUC janelaController = loader.getController();
-        janelaController.displayName(edicao);
-        janelaController.displayObject(utilizadorIntroduzido);*/
 
         Scene scene = new Scene(root);
         novaJanelaEstudante.initModality(Modality.APPLICATION_MODAL);

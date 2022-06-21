@@ -35,7 +35,7 @@ public class ProjetoRestRepository {
         try {
             Mono<ProjetoRestDTO> response = webClient
                     .get()
-                    .uri("/projetos/" + codEstudante)
+                    .uri("/projetos/estudante/" + codEstudante)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();

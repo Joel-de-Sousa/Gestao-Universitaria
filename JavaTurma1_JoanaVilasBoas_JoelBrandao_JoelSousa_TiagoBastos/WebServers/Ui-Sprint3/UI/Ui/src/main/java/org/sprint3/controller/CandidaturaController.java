@@ -32,6 +32,7 @@ public class CandidaturaController {
     }
 
     public CandidaturaRestDTO getCandidaturaByCodEstudante(int codEstudante) {
+
         CandidaturaRestDTO candidatura = candidaturaService.getCandidaturaByCodEstudante(codEstudante);
         return candidatura;
     }

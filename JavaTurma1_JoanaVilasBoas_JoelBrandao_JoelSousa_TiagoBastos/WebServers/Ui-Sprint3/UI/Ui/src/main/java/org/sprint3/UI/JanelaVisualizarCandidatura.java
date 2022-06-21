@@ -10,8 +10,13 @@ import javafx.scene.control.Label;
 import org.sprint3.controller.CandidaturaController;
 import org.sprint3.controller.UtilizadorController;
 import org.sprint3.model.DTO.CandidaturaRestDTO;
+import org.sprint3.model.DTO.PropostaRestDTO;
+import org.sprint3.model.DTO.UtilizadorRestDTO;
+import org.sprint3.model.repository.PropostaWebRepository;
+import org.sprint3.model.repository.UtilizadorWebRepository;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class JanelaVisualizarCandidatura implements Initializable {
@@ -19,6 +24,9 @@ public class JanelaVisualizarCandidatura implements Initializable {
     JanelaRUC janelaRUCController;
     CandidaturaController candidaturaController;
     UtilizadorController utilizadorController;
+
+    PropostaWebRepository propostaWebRepository;
+    UtilizadorWebRepository utilizadorWebRepository;
     @FXML
     private Label labelTitulo;
     @FXML
@@ -38,7 +46,8 @@ public class JanelaVisualizarCandidatura implements Initializable {
         candidaturaController = new CandidaturaController();
         utilizadorController = new UtilizadorController();
 
-
+        propostaWebRepository=new PropostaWebRepository();
+        utilizadorWebRepository = new UtilizadorWebRepository();
     }
 
     public void displayName(String candidatura) {
@@ -46,12 +55,16 @@ public class JanelaVisualizarCandidatura implements Initializable {
         int codCandidatura = Integer.parseInt(candidatura1[0]);
         candidaturaCompleta = candidaturaController.getCandidaturaById(codCandidatura);
 
+        Optional<PropostaRestDTO> proposta = propostaWebRepository.getPropostaById(candidaturaCompleta.getCodProposta());
+
         int codC = candidaturaCompleta.getCodCandidatura();
-        String titulo = candidaturaCompleta.getTituloProposta();
-        String problema = candidaturaCompleta.getProblemaProposta();
-        String objectivo = candidaturaCompleta.getObjectivoProposta();
-        String estado = candidaturaCompleta.getEstado();
-        String nomeUtilizador = candidaturaCompleta.getNomeEstudante() + " " +candidaturaCompleta.getSobrenomeEstudante();
+        String titulo = proposta.get().getTitulo();//candidaturaCompleta.getTituloProposta();
+        String problema = proposta.get().getProblema();
+        String objectivo = proposta.get().getObjetivo();
+        String estado = candidaturaCompleta.getEstadoEstudante();
+
+        Optional<UtilizadorRestDTO> utilizador = utilizadorWebRepository.getUtilizadorById(candidaturaCompleta.getCodEstudante());
+        String nomeUtilizador = utilizador.get().getNome() + " " +utilizador.get().getSobrenome();
 
         String propostaString = String.format(codC + "- " + titulo + "\n" + "Problema: " + problema + "\n" + "Objectivo: " + objectivo +
                 "\n" + "Submetida por: " + nomeUtilizador + "\n" + "Estado: " + estado);

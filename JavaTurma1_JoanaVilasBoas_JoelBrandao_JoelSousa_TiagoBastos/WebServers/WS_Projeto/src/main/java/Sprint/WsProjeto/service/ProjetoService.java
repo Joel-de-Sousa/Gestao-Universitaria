@@ -60,6 +60,18 @@ public class ProjetoService {
         } else return null;
     }
 
+    public ProjetoDTO findProjetoByCodeEstudante (int codEstudante) {
+
+        Optional<Projeto> opProjeto = projetoRepository.findByCodEstudante(codEstudante);
+
+        if (opProjeto.isPresent()) {
+            Projeto oProjeto = opProjeto.get();
+            ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(oProjeto);
+
+            return oProjetoDTO;
+        } else return null;
+    }
+
 
 
     public Optional<UtilizadorRestDTO> findUtilizadorByCode(int codUtilizador) {

@@ -118,7 +118,7 @@ public class EdicaoController {
     @ResponseBody
     public ResponseEntity<Object> getAllEdicaoByCodRUC(@PathVariable int codRUC) {
 
-        List<EdicaoDTO> listEdicao = service.getAllEdicaoByCodRUC(codRUC);
+        List<EdicaoAllArgsDTO> listEdicao = service.getAllEdicaoByCodRUC(codRUC);
 
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }
@@ -130,6 +130,19 @@ public class EdicaoController {
             EdicaoAllArgsDTO listEdicao = service.getEdicaoByCodEstudante(codEstudante);
 
             return new ResponseEntity<>(listEdicao, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/ruc/{codRUC}")
+    @ResponseBody
+    public ResponseEntity<Object> getEdicaoByCodRUC(@PathVariable int codRUC) throws Exception {
+        try {
+            EdicaoAllArgsDTO edicao = service.getEdicaoByCodRUC(codRUC);
+
+            return new ResponseEntity<>(edicao, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);

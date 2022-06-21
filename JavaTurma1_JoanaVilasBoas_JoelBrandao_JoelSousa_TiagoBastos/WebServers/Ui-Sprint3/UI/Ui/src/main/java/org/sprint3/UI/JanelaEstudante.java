@@ -89,22 +89,29 @@ public class JanelaEstudante implements Initializable {
     }
 
     public void initFuncoes(){
-       /* ProjetoRestDTO proj = projetoController.getProjetoByCodEstudante(utilizadorIntroduzido.getCodUtilizador());
+        ProjetoRestDTO proj = projetoController.getProjetoByCodEstudante(utilizadorIntroduzido.getCodUtilizador());
+
+        int codEstudante=0;
+        if (proj!=null){
+        codEstudante=proj.getCodEstudante();}
+
         CandidaturaRestDTO cand = candidaturaController.getCandidaturaByCodEstudante(utilizadorIntroduzido.getCodUtilizador());
 
-        if(cand.getCodEstudante()==utilizadorIntroduzido.getCodUtilizador() && proj.getCodEstudante()==utilizadorIntroduzido.getCodUtilizador()){
+        int codEstudanteCand=0;
+        if (proj!=null){
+            codEstudanteCand =cand.getCodEstudante();}
+
+        if(codEstudanteCand==utilizadorIntroduzido.getCodUtilizador() && codEstudante ==utilizadorIntroduzido.getCodUtilizador()){
             btnCandidatar.setDisable(true);
             btnConvidar.setDisable(true);
         }
-        if(proj.getCodEstudante()==utilizadorIntroduzido.getCodUtilizador()){
+        if(codEstudante==utilizadorIntroduzido.getCodUtilizador()){
             btnCandidatar.setDisable(true);
         }
-        *//*if(proj.getCodOrientador()!=0){
 
-        }*//*
         else{
             btnConvidar.setDisable(true);
-        }*/
+        }
     }
 
     //BOTAO APRESENTA LISTA DE PROPOSTAS PARA ESTUDANTE SE CANDIDATAR

@@ -2,6 +2,7 @@ package org.sprint3.model.service;
 
 import org.sprint3.model.DTO.*;
 import org.sprint3.model.repository.ProjetoWebRepository;
+import org.sprint3.model.repository.PropostaWebRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +12,20 @@ public class ProjetoService {
 
 
     ProjetoWebRepository projetoWebRepository;
+    PropostaWebRepository propostaWebRepository;
     public ProjetoService() {
         projetoWebRepository = new ProjetoWebRepository();
     }
 
     public ProjetoRestDTO getProjetoByCodEstudante (int codEstudante){
+
         Optional<ProjetoRestDTO> projeto = projetoWebRepository.getProjetoByCodEstudante (codEstudante);
 
+        if(projeto.isPresent()){
         ProjetoRestDTO projeto2 = projeto.get();
 
-        return projeto2;
+        return projeto2;}
+        else return null;
     }
 
     public ProjetoRestDTO getProjetoByCodOrientador (int codOrientador){
@@ -46,7 +51,8 @@ public class ProjetoService {
 
         if (lista.isPresent()){
             for (ProjetoRestDTO a:lista.get()) {
-                listaString.add(String.format(a.getCodProjeto()+"-"+a.getTituloProjeto()+"-"+a.getMomentoAvaliacao()));
+                Optional<PropostaRestDTO> prop = propostaWebRepository.getPropostaById(a.getCodProposta());
+                listaString.add(String.format(a.getCodProjeto()+"-"+prop.get().getTitulo()));
             }
             return listaString;
         }else
@@ -60,7 +66,9 @@ public class ProjetoService {
 
         if (lista.isPresent()){
             for (ProjetoRestDTO a:lista.get()) {
-                listaString.add(String.format(a.getCodProjeto()+"-"+a.getTituloProjeto()+"-"+a.getMomentoAvaliacao()));
+                Optional<PropostaRestDTO> prop = propostaWebRepository.getPropostaById(a.getCodProposta());
+
+                listaString.add(String.format(a.getCodProjeto()+"-"+prop.get().getTitulo()));
             }
             return listaString;
         }else
@@ -74,7 +82,9 @@ public class ProjetoService {
 
         if (lista.isPresent()){
             for (ProjetoRestDTO a:lista.get()) {
-                listaString.add(String.format(a.getCodProjeto()+"-"+a.getTituloProjeto()+"-"+a.getMomentoAvaliacao()));
+                Optional<PropostaRestDTO> prop = propostaWebRepository.getPropostaById(a.getCodProposta());
+
+                listaString.add(String.format(a.getCodProjeto()+"-"+prop.get().getTitulo()));
             }
             return listaString;
         }else

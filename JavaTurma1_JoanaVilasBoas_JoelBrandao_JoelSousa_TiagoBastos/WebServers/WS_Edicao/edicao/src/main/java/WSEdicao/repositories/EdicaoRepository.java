@@ -62,6 +62,16 @@ public class EdicaoRepository {
             return Optional.empty();
     }
 
+    public Optional<Edicao> getEdicaoByCodRUC(int codRUC) {
+        Optional<EdicaoJpa> opEdicao = edicaoJpaRepository.findByCodRUC(codRUC);
+
+        if (opEdicao.isPresent()) {
+            Edicao edicao = edicaoAssembler.toDomain(opEdicao.get());
+            return Optional.of(edicao);
+        } else
+            return Optional.empty();
+    }
+
     public EdicaoJpa findBycodEdicaoJpa(int codEdicao) {
         Optional<EdicaoJpa> opEdicao = edicaoJpaRepository.findBycodEdicao(codEdicao);
 

@@ -37,7 +37,7 @@ public class EdicaoRestRepository {
         try {
             Mono<EdicaoRestDTO> response = webClient
                     .get()
-                    .uri("/edicao/" + codRUC)
+                    .uri("/edicao/ruc/" + codRUC)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -49,6 +49,7 @@ public class EdicaoRestRepository {
                     });
 
             EdicaoRestDTO tutorial = response.block();
+
 
             return Optional.of(tutorial);
         } catch (Exception e) {
@@ -62,7 +63,7 @@ public class EdicaoRestRepository {
         try {
             Mono<EdicaoRestDTO> response = webClient
                     .get()
-                    .uri("/edicao/" + codEstudante)
+                    .uri("/edicao/estudante/" + codEstudante)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();
@@ -74,6 +75,8 @@ public class EdicaoRestRepository {
                     });
 
             EdicaoRestDTO tutorial = response.block();
+
+            System.out.println(response);
 
             return Optional.of(tutorial);
         } catch (Exception e) {
@@ -93,7 +96,7 @@ public class EdicaoRestRepository {
         return Optional.of(list);*/
         try {
             Mono<List<EdicaoRestDTO>> response = webClient.get()
-                    .uri("/edicao/allargs/" + codRuc)
+                    .uri("/edicao/listEdicaoByCodRUC/" + codRuc)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, error -> {
                         return Mono.empty();

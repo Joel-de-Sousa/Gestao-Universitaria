@@ -8,7 +8,33 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CandidaturaRestDTO {
 
+
     @Getter
+    int codCandidatura;
+    @Getter
+    int codProposta;
+    @Getter
+    int codEstudante;
+    @Getter
+    String estadoEstudante;
+
+    public CandidaturaRestDTO(int codProposta, int codEstudante) {
+        this.codProposta = codProposta;
+        this.codEstudante = codEstudante;
+    }
+
+    public CandidaturaRestDTO(int codCandidatura, int codProposta, String estadoEstudante) {
+        this.codCandidatura = codCandidatura;
+        this.codProposta = codProposta;
+        this.estadoEstudante = estadoEstudante;
+    }
+
+    public CandidaturaRestDTO(int codCandidatura, String estadoEstudante) {
+        this.codCandidatura = codCandidatura;
+        this.estadoEstudante = estadoEstudante;
+    }
+
+    /*@Getter
     int codCandidatura;
     @Getter
     int codProposta;
@@ -18,8 +44,8 @@ public class CandidaturaRestDTO {
     String problemaProposta;
     @Getter
     String objectivoProposta;
-   /* @Getter
-    String edicaoProposta;*/
+   *//* @Getter
+    String edicaoProposta;*//*
     @Getter
     int codEstudante;
     @Getter
@@ -46,6 +72,6 @@ public class CandidaturaRestDTO {
         this.sobrenomeEstudante = sobrenomeEstudante;
         this.estado = estado;
     }
-
+*/
 
 }

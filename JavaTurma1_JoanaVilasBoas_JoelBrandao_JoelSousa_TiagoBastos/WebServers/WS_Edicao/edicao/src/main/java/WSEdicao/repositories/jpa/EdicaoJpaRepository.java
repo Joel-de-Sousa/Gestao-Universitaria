@@ -11,6 +11,9 @@ import java.util.Optional;
 public interface EdicaoJpaRepository extends CrudRepository<EdicaoJpa, Integer> {
 
     Optional<EdicaoJpa> findBycodEdicao(int codEdicao);
+    Optional<EdicaoJpa> findByCodRUC(int codRUC);
+
+
     List<EdicaoJpa> findAll();
 
     List<EdicaoJpa> findListEdicaoBycodRUC(int codRUC);

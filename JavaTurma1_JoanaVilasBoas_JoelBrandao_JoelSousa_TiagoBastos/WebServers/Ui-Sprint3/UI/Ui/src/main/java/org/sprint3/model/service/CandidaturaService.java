@@ -1,9 +1,12 @@
 package org.sprint3.model.service;
 
 import org.sprint3.controller.UtilizadorController;
+import org.sprint3.model.DTO.CandidaturaAllArgsDTO;
 import org.sprint3.model.DTO.CandidaturaRestDTO;
 import org.sprint3.model.DTO.PropostaRestDTO;
+import org.sprint3.model.DTO.UtilizadorRestDTO;
 import org.sprint3.model.repository.CandidaturaWebRepository;
+import org.sprint3.model.repository.UtilizadorWebRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +15,11 @@ import java.util.Optional;
 public class CandidaturaService {
 
     CandidaturaWebRepository candidaturaWebRepository;
+    UtilizadorWebRepository utilizadorWebRepository;
 
     public CandidaturaService() {
         candidaturaWebRepository = new CandidaturaWebRepository();
+        utilizadorWebRepository=new UtilizadorWebRepository();
     }
 
 
@@ -26,14 +31,16 @@ public class CandidaturaService {
 
 
     public List<String> getAllCandidaturas() {
-        Optional<List<CandidaturaRestDTO>> lista = candidaturaWebRepository.findAllCandidaturas();
+        Optional<List<CandidaturaAllArgsDTO>> lista = candidaturaWebRepository.findAllCandidaturas();
 
         List<String> listaString = new ArrayList<>();
 
         if (lista.isPresent()) {
-            for (CandidaturaRestDTO a : lista.get()) {
+            for (CandidaturaAllArgsDTO a : lista.get()) {
+                Optional<UtilizadorRestDTO> utilizador = utilizadorWebRepository.getUtilizadorById(a.getCodEstudante());
+
                 if (a.getEstado().equals("PENDENTE")) {
-                    listaString.add(String.format(a.getCodCandidatura() + "- " + a.getNomeEstudante() + " " + a.getSobrenomeEstudante()));
+                    listaString.add(String.format(a.getCodCandidatura() + "- " +utilizador.get().getNome() + " " + utilizador.get().getSobrenome()));
                 }
             }
             return listaString;
@@ -53,9 +60,11 @@ public class CandidaturaService {
     public CandidaturaRestDTO getCandidaturaByCodEstudante (int codEstudante){
         Optional<CandidaturaRestDTO> candidatura = candidaturaWebRepository.getCandidaturaByCodEstudante(codEstudante);
 
+        if (candidatura.isPresent()){
         CandidaturaRestDTO candidatura2 = candidatura.get();
 
-        return candidatura2;
+        return candidatura2;}
+        else return null;
     }
 
     public boolean alterarEstadoCandidatura (int codCand, String estado) throws Exception {

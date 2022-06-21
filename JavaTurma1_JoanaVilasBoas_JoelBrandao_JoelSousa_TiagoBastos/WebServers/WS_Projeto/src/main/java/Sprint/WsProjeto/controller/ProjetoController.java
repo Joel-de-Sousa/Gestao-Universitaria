@@ -28,13 +28,22 @@ public class ProjetoController {
 
        ProjetoDTO oProjeto = projetoService.findProjetoByCode(codProjeto);
 
-
        if (oProjeto != null) {
            return new ResponseEntity<>(oProjeto, HttpStatus.OK);
        } else
            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
 
+    @GetMapping("/estudante/{codEstudante}")
+    @ResponseBody
+    public ResponseEntity<Object> findProjetoByCodeEstudante (@PathVariable int codEstudante){
 
+        ProjetoDTO oProjeto = projetoService.findProjetoByCodeEstudante(codEstudante);
+
+        if (oProjeto != null) {
+            return new ResponseEntity<>(oProjeto, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
 
