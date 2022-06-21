@@ -31,10 +31,10 @@ public class EdicaoRestRepository {
 
     public Optional<EdicaoRestDTO> findByEdicaoByCodRUC(int codRUC) {
 
-        EdicaoRestDTO ed = new EdicaoRestDTO(1,"POO", "Programação OO", 1,"2021-2022",2, "ATIVA");
-        return Optional.of(ed);
+        /*EdicaoRestDTO ed = new EdicaoRestDTO(1,"POO", "Programação OO", 1,"2021-2022",2, "ATIVA");
+        return Optional.of(ed);*/
 
-       /* try {
+        try {
             Mono<EdicaoRestDTO> response = webClient
                     .get()
                     .uri("/edicao/" + codRUC)
@@ -53,7 +53,7 @@ public class EdicaoRestRepository {
             return Optional.of(tutorial);
         } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
 
     }
 
@@ -83,15 +83,15 @@ public class EdicaoRestRepository {
 
     public Optional<List<EdicaoRestDTO>> getAllEdicoesByCodRUC(int codRuc) {
 
-        EdicaoRestDTO ed1 = new EdicaoRestDTO(1, "POO", "2022-2023");
+        /*EdicaoRestDTO ed1 = new EdicaoRestDTO(1, "POO", "2022-2023");
         EdicaoRestDTO ed2 = new EdicaoRestDTO(1, "PDS", "2022-2023");
         EdicaoRestDTO ed3 = new EdicaoRestDTO(1, "BD", "2022-2023");
         List<EdicaoRestDTO> list = new ArrayList<>();
         list.add(ed1);
         list.add(ed2);
         list.add(ed3);
-        return Optional.of(list);
-        /*try {
+        return Optional.of(list);*/
+        try {
             Mono<List<EdicaoRestDTO>> response = webClient.get()
                     .uri("/edicao/allargs/" + codRuc)
                     .retrieve()
@@ -109,7 +109,7 @@ public class EdicaoRestRepository {
             return Optional.of(lista);
         } catch (Exception e) {
             return Optional.empty();
-        }*/
+        }
 
     }
 

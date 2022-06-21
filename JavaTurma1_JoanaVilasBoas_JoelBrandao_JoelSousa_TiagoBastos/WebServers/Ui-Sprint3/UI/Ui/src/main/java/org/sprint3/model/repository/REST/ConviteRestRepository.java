@@ -40,6 +40,7 @@ public class ConviteRestRepository {
                         System.out.println(throwable.getMessage());
                     })
                     .block();
+            System.out.println(result);
         }
         catch( Exception e) {
 
@@ -129,6 +130,7 @@ public class ConviteRestRepository {
                         System.out.println(throwable.getMessage());
                     })
                     .block();
+            System.out.println(result);
         }
         catch( Exception e) {
 
