@@ -123,14 +123,14 @@ public class EdicaoController {
         return new ResponseEntity<>(listEdicao, HttpStatus.OK);
     }
 
-    @GetMapping("/edicaoByCodEstudante/{codEstudante}")
+   /* @GetMapping("/edicaoByCodEstudante/{codEstudante}")
     @ResponseBody
     public ResponseEntity<Object> getEdicaoByCodEstudante(@PathVariable int codEstudante) {
 
         List<EdicaoDTO> listEdicao = service.getEdicaoByCodEstudante(codEstudante);
 
             return new ResponseEntity<>(listEdicao, HttpStatus.OK);
-    }
+    }*/
 
 
 

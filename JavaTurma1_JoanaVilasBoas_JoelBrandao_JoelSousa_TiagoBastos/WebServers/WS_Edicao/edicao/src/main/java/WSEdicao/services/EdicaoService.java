@@ -174,17 +174,17 @@ public class EdicaoService {
         return listaDto;
     }
 
-    public List<EdicaoDTO> getEdicaoByCodEstudante(int codEstudante) {
+   /* public List<EdicaoDTO> getEdicaoByCodEstudante(int codEstudante) {
         return edicaoRepository.findEdicaoByCodEstudante(codEstudante);
         //List<Edicao> listEdicao = edicaoRepository.findEdicaoByCodEstudante(codEstudante);
 
-        /*List<EdicaoDTO> listaDto = new ArrayList<>();
+        *//*List<EdicaoDTO> listaDto = new ArrayList<>();
         for (Edicao edicao : listEdicao) {
             EdicaoDTO edicaoDTO = edicaoDTOAssembler.toDTO(edicao);
             listaDto.add(edicaoDTO);
         }
-        return listaDto;*/
-    }
+        return listaDto;*//*
+    }*/
 
 
 }

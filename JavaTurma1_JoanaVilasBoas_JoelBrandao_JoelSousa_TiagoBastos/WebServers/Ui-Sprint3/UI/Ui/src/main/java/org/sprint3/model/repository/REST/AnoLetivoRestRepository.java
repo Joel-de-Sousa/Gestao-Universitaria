@@ -42,6 +42,7 @@ public class AnoLetivoRestRepository {
                         System.out.println(throwable.getMessage());
                     })
                     .block();
+            System.out.println(result);
         }
         catch( Exception e) {
 

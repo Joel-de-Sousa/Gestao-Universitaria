@@ -12,5 +12,7 @@ public interface EstudanteJpaRepository extends CrudRepository<EstudanteJpa, Int
 
     Optional<EstudanteJpa> findByCodEstudante(int codEstudante);
     EstudanteJpa findByCodEdicao(int codEdicao);
+/*
     List<EstudanteJpa> findListEstudanteBy(int codEstudante);
+*/
 }
