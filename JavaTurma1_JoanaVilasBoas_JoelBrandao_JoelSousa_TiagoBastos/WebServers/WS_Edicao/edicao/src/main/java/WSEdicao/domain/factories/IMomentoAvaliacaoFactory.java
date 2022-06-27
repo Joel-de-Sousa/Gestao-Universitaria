@@ -4,5 +4,5 @@ import WSEdicao.domain.entities.MomentoAvaliacao;
 
 public interface IMomentoAvaliacaoFactory {
 
-    public MomentoAvaliacao createMomentoAvaliacao(int codEdicao,String denominacao);
+    public MomentoAvaliacao createMomentoAvaliacao(String denominacao);
 }

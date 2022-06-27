@@ -12,13 +12,11 @@ public class MomentoAvaliacaoDomainDTOAssembler {
 
     public MomentoAvaliacaoDTO toDTO(MomentoAvaliacao momentoAvaliacao){
         return new MomentoAvaliacaoDTO(momentoAvaliacao.getCodMomentoAvaliacao(),
-                momentoAvaliacao.getCodEdicao(),
                 momentoAvaliacao.getDenominacao());
     }
 
     public MomentoAvaliacao toDomain(MomentoAvaliacaoDTO momentoAvaliacaoDTO){
         return new MomentoAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao(),
-                momentoAvaliacaoDTO.getCodEdicao(),
                 momentoAvaliacaoDTO.getDenominacao());
     }
 }

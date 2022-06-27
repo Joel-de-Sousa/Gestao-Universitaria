@@ -48,14 +48,14 @@ public class MomentoAvaliacaoController {
         return new ResponseEntity<>(listMomentoAvaliacao, HttpStatus.OK);
     }
 
-    @GetMapping("/allByCodEdicao/{codEdicao}")
+    /*@GetMapping("/allByCodEdicao/{codEdicao}")
     @ResponseBody
     public ResponseEntity<Object> getAllMomentoAvaliacaoByCodEdicao(@PathVariable int codEdicao) {
 
         List<MomentoAvaliacaoDTO> listMAByCodEdicao = service.getAllMomentoAvaliacaoByCodEdicao(codEdicao);
         return new ResponseEntity<>(listMAByCodEdicao, HttpStatus.OK);
 
-    }
+    }*/
 
     @PostMapping("")
     @ResponseBody

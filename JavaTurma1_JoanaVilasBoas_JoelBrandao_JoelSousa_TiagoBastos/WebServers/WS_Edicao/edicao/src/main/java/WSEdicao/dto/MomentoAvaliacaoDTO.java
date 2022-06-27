@@ -11,14 +11,12 @@ import lombok.*;
 public class MomentoAvaliacaoDTO {
 
     int codMomentoAvaliacao;
-    int codEdicao;
     String denominacao;
 
     public MomentoAvaliacaoDTO() {
     }
 
-    public MomentoAvaliacaoDTO(int codEdicao, String denominacao) {
-        this.codEdicao = codEdicao;
+    public MomentoAvaliacaoDTO(String denominacao) {
         this.denominacao = denominacao;
     }
 }

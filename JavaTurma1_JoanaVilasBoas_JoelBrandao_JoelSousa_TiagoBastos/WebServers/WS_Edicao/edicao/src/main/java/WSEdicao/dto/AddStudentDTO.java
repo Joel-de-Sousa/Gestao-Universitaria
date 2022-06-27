@@ -14,10 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 public class AddStudentDTO {
 
-        int codEdicao;
         int codEstudante;
+        int codUtilizador;
+        int codEdicao;
 
-        public AddStudentDTO(int codEstudante) {
-                this.codEstudante = codEstudante;
+        public AddStudentDTO(int codUtilizador, int codEdicao) {
+                this.codUtilizador = codUtilizador;
+                this.codEdicao = codEdicao;
         }
 }

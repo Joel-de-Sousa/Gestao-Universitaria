@@ -60,14 +60,14 @@ public class MomentoAvaliacaoRepository {
         return setMomentoAvaliacao;
     }
 
-    public List<MomentoAvaliacao> findAllByCodEdicao (int codEdicao){
+    /*public List<MomentoAvaliacao> findAllByCodEdicao (int codEdicao){
         List<MomentoAvaliacaoJpa> listMAJPA = maJpaRepository.findByCodEdicao(codEdicao);
         List<MomentoAvaliacao> listMA =new ArrayList<>();
         for (MomentoAvaliacaoJpa ma : listMAJPA) {
             listMA.add(maAssembler.toDomain(ma));
         }
         return listMA;
-    }
+    }*/
 
 
 }

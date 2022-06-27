@@ -2,9 +2,7 @@ package WSEdicao.datamodel;
 
 import lombok.*;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Embeddable
 @Getter
@@ -16,11 +14,19 @@ import javax.persistence.Id;
 @Entity
 public class EstudanteJpa {
 
-    private int codEdicao;
-    @Id
-    private int codEstudante;
 
-    public EstudanteJpa(int codEstudante) {
-        this.codEstudante = codEstudante;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int codEstudante;
+    private int codUtilizador;
+    private int codEdicao;
+
+    public EstudanteJpa(int codUtilizador) {
+        this.codUtilizador = codUtilizador;
+    }
+
+    public EstudanteJpa(int codUtilizador, int codEdicao) {
+        this.codUtilizador = codUtilizador;
+        this.codEdicao = codEdicao;
     }
 }

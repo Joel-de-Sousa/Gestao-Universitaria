@@ -26,7 +26,6 @@ class MomentoAvaliacaoJpaTest {
     void shouldCreateAMomentoAvaliacaoJpaWithCorrectAttributes() {
         MomentoAvaliacaoJpa momentoAvaliacao1 = new MomentoAvaliacaoJpa(1,"Sprint1");
 
-        assertEquals(momentoAvaliacao1.getCodEdicao(), 1);
         assertEquals(momentoAvaliacao1.getDenominacao(),"Sprint1");
     }
 

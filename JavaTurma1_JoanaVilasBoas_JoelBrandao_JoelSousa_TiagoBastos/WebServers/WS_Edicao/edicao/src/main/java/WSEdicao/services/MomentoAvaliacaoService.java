@@ -33,15 +33,15 @@ public class MomentoAvaliacaoService {
     }
 
     public MomentoAvaliacaoDTO createAndSaveMomentoAvaliacao(MomentoAvaliacaoDTO info) throws Exception {
-        MomentoAvaliacao momentoAvaliacao = maFactory.createMomentoAvaliacao(info.getCodEdicao(),info.getDenominacao());
+        MomentoAvaliacao momentoAvaliacao = maFactory.createMomentoAvaliacao(info.getDenominacao());
         MomentoAvaliacao momentoAvaliacaoSave = maRepository.save(momentoAvaliacao);
 
-        Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(info.getCodEdicao());
+        /*Optional<Edicao> opEdicao = edicaoRepository.findBycodEdicao(info.getCodEdicao());
         if (opEdicao.isPresent()) {
             Edicao edicao = opEdicao.get();
             edicao.getMomentoAvaliacaoList().add(momentoAvaliacaoSave);
             Edicao nova =edicaoRepository.saveWithoutValidation(edicao);
-        }
+        }*/
 
         MomentoAvaliacaoDTO momentoAvaliacaoDTO = maDTOAssembler.toDTO(momentoAvaliacaoSave);
 
@@ -66,7 +66,7 @@ public class MomentoAvaliacaoService {
         return listaDto;
     }
 
-    public List<MomentoAvaliacaoDTO> getAllMomentoAvaliacaoByCodEdicao(int codEdicao) {
+    /*public List<MomentoAvaliacaoDTO> getAllMomentoAvaliacaoByCodEdicao(int codEdicao) {
 
         List<MomentoAvaliacao> lista = maRepository.findAllByCodEdicao(codEdicao);
 
@@ -76,5 +76,5 @@ public class MomentoAvaliacaoService {
             listaDto.add(momentoAvaliacaoDTO);
         }
         return listaDto;
-    }
+    }*/
 }

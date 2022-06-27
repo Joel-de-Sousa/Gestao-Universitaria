@@ -19,15 +19,14 @@ public class EdicaoDomainDataAssembler {
         List<MomentoAvaliacaoJpa> listMA = new ArrayList<>();
         for (MomentoAvaliacao ma : edicao.getMomentoAvaliacaoList()) {
             MomentoAvaliacaoJpa momentoAvaliacao = new MomentoAvaliacaoJpa(ma.getCodMomentoAvaliacao(),
-                    ma.getCodEdicao(),
                     ma.getDenominacao());
             listMA.add(momentoAvaliacao);
         }
 
         List<EstudanteJpa> listEstudante = new ArrayList<>();
         for (EstudanteJpa  estudante: edicao.getEstudantesList()) {
-            EstudanteJpa estudanteJpa = new EstudanteJpa(estudante.getCodEdicao(),
-                    estudante.getCodEstudante());
+            EstudanteJpa estudanteJpa = new EstudanteJpa(estudante.getCodEstudante(),estudante.getCodUtilizador(),
+                    estudante.getCodEdicao());
             listEstudante.add(estudanteJpa);
         }
 
@@ -47,7 +46,6 @@ public class EdicaoDomainDataAssembler {
         List<MomentoAvaliacao> listMA = new ArrayList<>();
         for (MomentoAvaliacaoJpa ma : edicaoJpa.getMomentoAvaliacao()) {
             MomentoAvaliacao momentoAvaliacao = new MomentoAvaliacao(ma.getCodMomentoAvaliacao(),
-                    ma.getCodEdicao(),
                     ma.getDenominacao());
             listMA.add(momentoAvaliacao);
         }
@@ -59,7 +57,6 @@ public class EdicaoDomainDataAssembler {
                 edicaoJpa.getListEstudantes());
 
         edicao.setMomentoAvaliacaoList(listMA);
-        //edicao.setEstudantesList(listEstudante);
 
         return edicao;
     }

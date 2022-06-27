@@ -36,13 +36,16 @@ public class EdicaoDomainDTOAssembler {
 
         ArrayList<MomentoAvaliacaoDTO> listMA = new ArrayList<>();
         for (MomentoAvaliacao ma: edicao.getMomentoAvaliacaoList()){
-            MomentoAvaliacaoDTO momentoAvaliacaoDTO = new MomentoAvaliacaoDTO(ma.getCodMomentoAvaliacao(), ma.getCodEdicao(), ma.getDenominacao());
+            MomentoAvaliacaoDTO momentoAvaliacaoDTO = new MomentoAvaliacaoDTO(ma.getCodMomentoAvaliacao(), ma.getDenominacao());
             listMA.add(momentoAvaliacaoDTO);
         }
 
         ArrayList<AddStudentDTO> listEstudante = new ArrayList<>();
         for (EstudanteJpa estudante: edicao.getEstudantesList()){
-            AddStudentDTO estudanteDTO = new AddStudentDTO(estudante.getCodEdicao(),estudante.getCodEstudante());
+            AddStudentDTO estudanteDTO = new AddStudentDTO(
+                    estudante.getCodEstudante(),
+                    estudante.getCodUtilizador(),
+                    estudante.getCodEdicao());
             listEstudante.add(estudanteDTO);
         }
 

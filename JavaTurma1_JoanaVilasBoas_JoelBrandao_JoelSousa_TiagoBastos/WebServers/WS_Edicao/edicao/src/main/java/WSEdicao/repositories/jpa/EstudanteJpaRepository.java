@@ -11,5 +11,7 @@ import java.util.Optional;
 public interface EstudanteJpaRepository extends CrudRepository<EstudanteJpa, Integer> {
 
     Optional<EstudanteJpa> findByCodEstudante(int codEstudante);
+    boolean existsByCodUtilizador(int codUtilizador);
+
 
 }

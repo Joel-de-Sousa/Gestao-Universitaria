@@ -113,6 +113,17 @@ public class EdicaoController {
         }
     }
 
+    @PatchMapping("/addMA/{codEdicao}")
+    public ResponseEntity<Object> addMA(@RequestBody MomentoAvaliacaoDTO momentoAvaliacaoDTO, @PathVariable int codEdicao) throws Exception {
+        try {
+            EdicaoDTO addMA = service.addMA(momentoAvaliacaoDTO,codEdicao);
+
+            return new ResponseEntity<>(addMA, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     @GetMapping("/listEdicaoByCodRUC/{codRUC}")
     @ResponseBody

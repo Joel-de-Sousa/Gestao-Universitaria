@@ -2,6 +2,7 @@ package WSEdicao.services;
 
 import WSEdicao.datamodel.EdicaoJpa;
 import WSEdicao.datamodel.EstudanteJpa;
+import WSEdicao.datamodel.MomentoAvaliacaoJpa;
 import WSEdicao.datamodel.REST.UtilizadorRestDTO;
 import WSEdicao.datamodel.assemblers.EdicaoDomainDataAssembler;
 import WSEdicao.domain.entities.Edicao;
@@ -15,6 +16,7 @@ import WSEdicao.repositories.*;
 import WSEdicao.repositories.REST.UtilizadorRestRepository;
 import WSEdicao.repositories.jpa.EdicaoJpaRepository;
 import WSEdicao.repositories.jpa.EstudanteJpaRepository;
+import WSEdicao.repositories.jpa.MomentoAvaliacaoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,42 +30,25 @@ public class EdicaoService {
 
     @Autowired
     IEdicaoFactory edicaoFactory;
-
     @Autowired
     EdicaoRepository edicaoRepository;
-
     @Autowired
     UcRepository ucRepository;
-
     @Autowired
     AnoLetivoRepository anoLetivoRepository;
-
-    @Autowired
-    UcDomainDTOAssembler ucDTOAssember;
-
-    @Autowired
-    AnoLetivoDomainDTOAssembler anoLetivoDTOAssembler;
-
     @Autowired
     EdicaoDomainDTOAssembler edicaoDTOAssembler;
-
-    @Autowired
-    MomentoAvaliacaoService momentoAvaliacaoService;
-
-    @Autowired
-    MomentoAvaliacaoRepository momentoAvaliacaoRepository;
-
-    @Autowired
-    EdicaoJpaRepository edicaoJpaRepository;
-
     @Autowired
     EdicaoDomainDataAssembler edicaoDomainDataAssembler;
+    @Autowired
+    EstudanteJpaRepository estudanteJpaRepository;
+    @Autowired
+    MomentoAvaliacaoJpaRepository maJPARepository;
 
     @Autowired
     UtilizadorRestRepository utilizadorRestRepository;
-
     @Autowired
-    EstudanteJpaRepository estudanteJpaRepository;
+    EdicaoJpaRepository edicaoJpaRepository;
 
     public EdicaoService() {
     }
@@ -143,17 +128,37 @@ public class EdicaoService {
     public EdicaoDTO addEstudantes(AddStudentDTO addStudent) throws Exception {
 
         EdicaoJpa opEdicao = edicaoRepository.findBycodEdicaoJpa(addStudent.getCodEdicao());
-        EstudanteJpa estudanteJpa = new EstudanteJpa(addStudent.getCodEdicao(), addStudent.getCodEstudante());
+        EstudanteJpa estudanteJpa = new EstudanteJpa(addStudent.getCodUtilizador(), addStudent.getCodEdicao());
 
-        //Optional<UtilizadorRestDTO> utilizadorRestDTO =
-          //      utilizadorRestRepository.findUtilizadorByCodUtilizador(addStudent.getCodEstudante());
+        Optional<UtilizadorRestDTO> utilizadorRestDTO =
+               utilizadorRestRepository.findUtilizadorByCodUtilizador(addStudent.getCodUtilizador());
 
-        if (!opEdicao.getListEstudantes().contains(estudanteJpa) /*&& utilizadorRestDTO.get().getTipoUtilizador() == "ESTUDANTE"*/) {
+
+        //Está a deixar me guardar o mesmo estudante varias vezes na mesma edicao
+        if (!opEdicao.getListEstudantes().contains(estudanteJpaRepository.existsByCodUtilizador(addStudent.getCodUtilizador())) || Objects.equals(utilizadorRestDTO.get().getTipoUtilizador(), "ESTUDANTE")) {
 
             opEdicao.getListEstudantes().add(estudanteJpa);
 
         } else
             throw new IllegalArgumentException(" O estudante já se encontra inscrito na Edição");
+        Edicao edicao = edicaoDomainDataAssembler.toDomain(opEdicao);
+        Edicao edicaoSaved = edicaoRepository.saveWithoutValidation(edicao);
+        EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);
+
+        return edicaoSavedDTO;
+    }
+
+    public EdicaoDTO addMA(MomentoAvaliacaoDTO momentoAvaliacaoDTO, int codEdicao) throws Exception {
+
+        EdicaoJpa opEdicao = edicaoRepository.findBycodEdicaoJpa(codEdicao);
+        Optional<MomentoAvaliacaoJpa> momentoAvaliacaoJpa = maJPARepository.findBycodMomentoAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao());
+
+        if (!opEdicao.getMomentoAvaliacao().contains(momentoAvaliacaoJpa.get())) {
+
+            opEdicao.getMomentoAvaliacao().add(momentoAvaliacaoJpa.get());
+
+        } else
+            throw new IllegalArgumentException("O momento de avaliação já se encontra inserido na Edição");
         Edicao edicao = edicaoDomainDataAssembler.toDomain(opEdicao);
         Edicao edicaoSaved = edicaoRepository.saveWithoutValidation(edicao);
         EdicaoDTO edicaoSavedDTO = edicaoDTOAssembler.toDTO(edicaoSaved);

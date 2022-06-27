@@ -12,27 +12,27 @@ class MomentoAvaliacaoFactoryTest {
     @Test
     void factoryShouldCreateMomentoAvaliacao() {
         MomentoAvaliacaoFactory momentoAvaliacaoFactory = new MomentoAvaliacaoFactory();
-        momentoAvaliacaoFactory.createMomentoAvaliacao(1,"Sprint1");
+        momentoAvaliacaoFactory.createMomentoAvaliacao("Sprint1");
     }
     @Test
     void factoryShouldNotCreateMomentoAvaliacaoEmptyDenominacao() {
         MomentoAvaliacaoFactory momentoAvaliacaoFactory = new MomentoAvaliacaoFactory();
         assertThrows(Exception.class, () -> {
-            momentoAvaliacaoFactory.createMomentoAvaliacao(1,"");
+            momentoAvaliacaoFactory.createMomentoAvaliacao("");
         });
     }
     @Test
     void factoryShouldNotCreateMomentoAvaliacaoWithWrongFormat() {
         MomentoAvaliacaoFactory momentoAvaliacaoFactory = new MomentoAvaliacaoFactory();
         assertThrows(Exception.class, () -> {
-            momentoAvaliacaoFactory.createMomentoAvaliacao(1,"9*");
+            momentoAvaliacaoFactory.createMomentoAvaliacao("9*");
         });
     }
     @Test
     void factoryShouldNotCreateMomentoAvaliacaoNullName() {
         MomentoAvaliacaoFactory momentoAvaliacaoFactory = new MomentoAvaliacaoFactory();
         assertThrows(Exception.class, () -> {
-            momentoAvaliacaoFactory.createMomentoAvaliacao(1,null);
+            momentoAvaliacaoFactory.createMomentoAvaliacao(null);
         });
     }
 

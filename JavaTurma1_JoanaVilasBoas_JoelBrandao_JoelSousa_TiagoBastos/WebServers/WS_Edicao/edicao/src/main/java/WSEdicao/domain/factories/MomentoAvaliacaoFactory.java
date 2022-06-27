@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MomentoAvaliacaoFactory implements IMomentoAvaliacaoFactory{
 
-    public MomentoAvaliacao createMomentoAvaliacao(int codEdicao,String denominacao){
-        return (new MomentoAvaliacao(codEdicao,denominacao));
+    public MomentoAvaliacao createMomentoAvaliacao(String denominacao){
+        return (new MomentoAvaliacao(denominacao));
     }
 
 

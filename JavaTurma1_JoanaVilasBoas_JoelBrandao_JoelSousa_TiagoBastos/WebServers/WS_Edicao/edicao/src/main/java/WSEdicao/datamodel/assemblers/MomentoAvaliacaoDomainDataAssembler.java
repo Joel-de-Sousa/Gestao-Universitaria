@@ -9,14 +9,12 @@ public class MomentoAvaliacaoDomainDataAssembler {
 
     public MomentoAvaliacaoJpa toData(MomentoAvaliacao momentoAvaliacao){
         return new MomentoAvaliacaoJpa(
-                momentoAvaliacao.getCodEdicao(),
                 momentoAvaliacao.getDenominacao());
     }
 
     public MomentoAvaliacao toDomain(MomentoAvaliacaoJpa momentoAvaliacaoJpa){
         return new MomentoAvaliacao(
-                momentoAvaliacaoJpa.getCodMomentoAvaliacao(),
-                momentoAvaliacaoJpa.getCodEdicao()
+                momentoAvaliacaoJpa.getCodMomentoAvaliacao()
                 ,momentoAvaliacaoJpa.getDenominacao());
     }
 

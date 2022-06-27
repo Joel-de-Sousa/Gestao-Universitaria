@@ -46,7 +46,6 @@ class MomentoAvaliacaoControllerTest {
         MomentoAvaliacaoDTO momentoAvaliacaoDouble = mock(MomentoAvaliacaoDTO.class);
 
         Optional<MomentoAvaliacaoDTO> opMomentoAvaliacao = Optional.of(momentoAvaliacaoDouble);
-        when(momentoAvaliacaoDouble.getCodEdicao()).thenReturn(1);
         when(momentoAvaliacaoService.getMomentoAvaliacaoByCode(1)).thenReturn(opMomentoAvaliacao);
         // Act
         ResponseEntity<Object> responseEntity = momentoAvaliacaoController.getByCode(1);
@@ -55,18 +54,16 @@ class MomentoAvaliacaoControllerTest {
         assertEquals(responseEntity.getStatusCodeValue(), 200);
 
         MomentoAvaliacaoDTO momentoAvaliacaoRes = (MomentoAvaliacaoDTO) responseEntity.getBody();
-        assertEquals(momentoAvaliacaoRes.getCodEdicao(), 1);
+        assertEquals(momentoAvaliacaoRes.getCodMomentoAvaliacao(), 1);
     }
 
     @Test
     void shouldFindEveryMomentoAvaliacaoCreatedCorrectly() {
         // Arrange
         MomentoAvaliacaoDTO momentoAvaliacaoDouble = mock(MomentoAvaliacaoDTO.class);
-        when(momentoAvaliacaoDouble.getCodEdicao()).thenReturn(1);
         when(momentoAvaliacaoDouble.getDenominacao()).thenReturn("Sprint1");
 
         MomentoAvaliacaoDTO momentoAvaliacaoDouble2 = mock(MomentoAvaliacaoDTO.class);
-        when(momentoAvaliacaoDouble2.getCodEdicao()).thenReturn(2);
         when(momentoAvaliacaoDouble2.getDenominacao()).thenReturn("Sprint2");
 
         List<MomentoAvaliacaoDTO> listaMomentoAvaliacao = new ArrayList<>();
@@ -89,11 +86,9 @@ class MomentoAvaliacaoControllerTest {
     void shouldCreateAndSaveMomentoAvaliacaoWithCorrectAttributes() throws Exception {
         // Arrange
         MomentoAvaliacaoDTO momentoAvaliacaoDouble = mock(MomentoAvaliacaoDTO.class);
-        when(momentoAvaliacaoDouble.getCodEdicao()).thenReturn(1);
         when(momentoAvaliacaoDouble.getDenominacao()).thenReturn("Sprint1");
 
         MomentoAvaliacaoDTO momentoAvaliacaoDtoDouble = mock(MomentoAvaliacaoDTO.class);
-        when(momentoAvaliacaoDtoDouble.getCodEdicao()).thenReturn(1);
         when(momentoAvaliacaoDtoDouble.getDenominacao()).thenReturn("Sprint1");
 
         when(momentoAvaliacaoService.createAndSaveMomentoAvaliacao(momentoAvaliacaoDtoDouble)).thenReturn(momentoAvaliacaoDouble);
@@ -112,11 +107,9 @@ class MomentoAvaliacaoControllerTest {
     void shouldFindEveryMomentoAvaliacaoByCodEdicao() {
         //Arrange
         MomentoAvaliacaoDTO momentoAvaliacaoDouble = mock(MomentoAvaliacaoDTO.class);
-        when(momentoAvaliacaoDouble.getCodEdicao()).thenReturn(1);
         when(momentoAvaliacaoDouble.getDenominacao()).thenReturn("Sprint1");
 
         MomentoAvaliacaoDTO momentoAvaliacaoDouble2 = mock(MomentoAvaliacaoDTO.class);
-        when(momentoAvaliacaoDouble2.getCodEdicao()).thenReturn(1);
         when(momentoAvaliacaoDouble2.getDenominacao()).thenReturn("Sprint2");
 
         List<MomentoAvaliacaoDTO> listaMomentoAvaliacao = new ArrayList<>();

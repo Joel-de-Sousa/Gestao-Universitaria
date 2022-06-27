@@ -5,21 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0af4ad26-0cbf-498c-a90c-47edb99bb664" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/data/demo.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edicao/data/demo.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/data/demo.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/WsEdicaoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/WsEdicaoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/EdicaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/MomentoAvaliacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/controllers/MomentoAvaliacaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/EstudanteJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/EstudanteJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/MomentoAvaliacaoJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/MomentoAvaliacaoJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/assemblers/EdicaoDomainDataAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/assemblers/EdicaoDomainDataAssembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/assemblers/MomentoAvaliacaoDomainDataAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/datamodel/assemblers/MomentoAvaliacaoDomainDataAssembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/domain/entities/MomentoAvaliacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/domain/entities/MomentoAvaliacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/domain/factories/IMomentoAvaliacaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/domain/factories/IMomentoAvaliacaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/domain/factories/MomentoAvaliacaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/domain/factories/MomentoAvaliacaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/AddStudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/AddStudentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/MomentoAvaliacaoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/MomentoAvaliacaoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/assemblers/EdicaoDomainDTOAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/assemblers/EdicaoDomainDTOAssembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/assemblers/MomentoAvaliacaoDomainDTOAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/dto/assemblers/MomentoAvaliacaoDomainDTOAssembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/MomentoAvaliacaoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/MomentoAvaliacaoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EdicaoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EdicaoJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EstudanteJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/EstudanteJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/MomentoAvaliacaoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/jpa/MomentoAvaliacaoJpaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/services/EdicaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/services/EdicaoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/IT/EdicaoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/IT/EdicaoIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/services/MomentoAvaliacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/main/java/WSEdicao/services/MomentoAvaliacaoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/controllers/MomentoAvaliacaoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/controllers/MomentoAvaliacaoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/MomentoAvaliacaoJpaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/datamodel/MomentoAvaliacaoJpaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/MomentoAvaliacaoFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/domain/factories/MomentoAvaliacaoFactoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/MomentoAvaliacaoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/repositories/MomentoAvaliacaoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/EdicaoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/EdicaoServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/MomentoAvaliacaoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/edicao/src/test/java/WSEdicao/services/MomentoAvaliacaoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Proposta/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Proposta/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Proposta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Proposta/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/entities/Avaliacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/entities/Convite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/entities/Juri.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/entities/Projeto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/entities/Submissao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/AvaliacaoFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/ConviteFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/IAvaliacaoFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/IConviteFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/IJuriFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/IProjetoFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/ISubmissaoFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/JuriFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/ProjetoFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Projeto/src/main/java/Sprint/WsProjeto/domain/factories/SubmissaoFactory.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,11 +75,26 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Joel Sousa/Desktop/Sprint/JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Projeto"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.WSEdicao in demo">
+  <component name="RunManager" selected="Application.WsEdicaoApplication">
+    <configuration name="WsEdicaoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="WSEdicao.WsEdicaoApplication" />
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WSEdicao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EdicaoServiceTest.shouldFindSpecificEdicaoAllArgsSearchingById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
@@ -100,22 +143,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MomentoAvaliacaoServiceTest.shouldCreateAMomentoAvaliacaoWithCorrectAttributes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="WSEdicao.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="WSEdicao.services" />
-      <option name="MAIN_CLASS_NAME" value="WSEdicao.services.MomentoAvaliacaoServiceTest" />
-      <option name="METHOD_NAME" value="shouldCreateAMomentoAvaliacaoWithCorrectAttributes" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="WSEdicao in demo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
@@ -132,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WsEdicaoApplication" />
         <item itemvalue="JUnit.WSEdicao in demo" />
         <item itemvalue="JUnit.EdicaoServiceTest.shouldUpdateEstadoEdicaoCorrectly" />
         <item itemvalue="JUnit.EdicaoServiceTest.shouldReturnEdicaoByCodRUC" />
         <item itemvalue="JUnit.EdicaoServiceTest.shouldFindSpecificEdicaoAllArgsSearchingById" />
-        <item itemvalue="JUnit.MomentoAvaliacaoServiceTest.shouldCreateAMomentoAvaliacaoWithCorrectAttributes" />
       </list>
     </recent_temporary>
   </component>
@@ -151,15 +178,15 @@
     </task>
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/edicao/src/main/java/WSEdicao/repositories/MomentoAvaliacaoRepository.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

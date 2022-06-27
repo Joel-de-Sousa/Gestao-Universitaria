@@ -41,7 +41,7 @@ public class WsEdicaoApplication {
 
 
             //Create a few Uc, AnoLetivos and Edicões
-            /*UcDTO uc1 = ucService.createAndSaveUc("POO", "Programação Orientada Objectos");
+            UcDTO uc1 = ucService.createAndSaveUc("POO", "Programação Orientada Objectos");
             UcDTO uc2 = ucService.createAndSaveUc("PDS", "Princípios de Desenvolvimento de Software");
             UcDTO uc3 = ucService.createAndSaveUc("BDD", "Base de Dados");
 
@@ -53,18 +53,18 @@ public class WsEdicaoApplication {
             EdicaoDTO edicao2 = edicaoService.createAndSaveEdicao(uc2.getCodUc(), anoLetivo2.getCodAnoLetivo(), 2);
             EdicaoDTO edicao3 = edicaoService.createAndSaveEdicao(uc3.getCodUc(), anoLetivo2.getCodAnoLetivo(), 3);
 
-            AddStudentDTO e1 = new AddStudentDTO(1, 1);
-            edicaoService.addEstudantes(e1);
+            //AddStudentDTO e1 = new AddStudentDTO(1, 1);
+            //edicaoService.addEstudantes(e1);
             MomentoAvaliacaoDTO info = new MomentoAvaliacaoDTO(1, "MA1");
             MomentoAvaliacaoDTO ma1 = momentoAvaliacaoService.createAndSaveMomentoAvaliacao(info);
 
-            MomentoAvaliacaoDTO info2 = new MomentoAvaliacaoDTO(1, "MA2");
+            MomentoAvaliacaoDTO info2 = new MomentoAvaliacaoDTO(2, "MA2");
             MomentoAvaliacaoDTO ma2 = momentoAvaliacaoService.createAndSaveMomentoAvaliacao(info2);
 
 			Optional<Edicao > ed1 = repository.findBycodEdicao(edicao1.getCodEdicao());
             EdicaoAllArgsDTO allarg = edicaoAssembler.toDTOAllArgs(ed1.get());
 
-                    System.out.println(allarg);*/
+                    System.out.println(allarg);
         };
 
 

@@ -17,13 +17,11 @@ public class MomentoAvaliacaoJpa {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "codMomentoAvaliacao_seq")
     private int codMomentoAvaliacao;
-    private int codEdicao;
     private String denominacao;
 
     protected MomentoAvaliacaoJpa(){}
 
-    public MomentoAvaliacaoJpa(int codEdicao,String denominacao) {
-        this.codEdicao = codEdicao;
+    public MomentoAvaliacaoJpa(String denominacao) {
         if (Util.validaStringMinCarateresNaoBrancos(3, denominacao)) {
             this.denominacao = denominacao;
         } else
