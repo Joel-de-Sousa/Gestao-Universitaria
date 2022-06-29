@@ -18,6 +18,17 @@ public class AvaliacaoJDBC {
     public static final int NOTA_INDEFINIDA = Avaliacao.NOTA_INDEFINIDA;
     public static final int ESTADO_POR_OMISSAO = Avaliacao.Estado.PENDENTE.ordinal();
 
+    //ordem retornada pelo PLSQL
+    public static final int COD_AVALIACAO = 1;
+    public static final int COD_PROJETO = 2;
+    public static final int COD_MA = 3;
+    public static final int COD_JURI = 4;
+    public static final int COD_SUBMISSAO = 5;
+    public static final int NOTA = 6;
+    public static final int JUSTIFICACAO = 7;
+    public static final int DATE = 8;
+    public static final int ESTADO = 9;
+
 
     private int codAvaliacao;
 

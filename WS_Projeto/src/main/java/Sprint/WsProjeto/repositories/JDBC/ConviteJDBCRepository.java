@@ -34,7 +34,7 @@ public class ConviteJDBCRepository {
         connection = null;
     }
 
-    private Optional<ConviteJDBC> getById(int codConvite) throws SQLException {
+    public Optional<ConviteJDBC> getById(int codConvite) throws SQLException {
         abrirLigacao();
 
         CallableStatement callableStatement = connection.prepareCall("{? = call fncobterconviteporid(?)}");

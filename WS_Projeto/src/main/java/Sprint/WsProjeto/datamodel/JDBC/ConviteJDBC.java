@@ -13,6 +13,13 @@ import lombok.*;
 public class ConviteJDBC {
 
     private static final int ESTADO_POR_OMISSAO = Convite.Estado.PENDENTE.ordinal();
+    //ordem retornada pelo PLSQL
+    public static final int COD_CONVITE = 1;
+    public static final int COD_PROJETO = 2;
+    public static final int COD_ESTUDANTE = 3;
+    public static final int COD_DOCENTE = 4;
+    public static final int ESTADO = 5;
+
 
     int codConvite;
 

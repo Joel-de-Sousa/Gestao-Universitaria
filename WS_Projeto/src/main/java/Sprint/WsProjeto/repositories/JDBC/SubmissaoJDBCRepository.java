@@ -35,7 +35,7 @@ public class SubmissaoJDBCRepository {
         connection = null;
     }
 
-    private Optional<SubmissaoJDBC> getById(int codSubmissao) throws SQLException {
+    public Optional<SubmissaoJDBC> getById(int codSubmissao) throws SQLException {
         abrirLigacao();
 
         CallableStatement callableStatement = connection.prepareCall("{? = call fncobtersubmissaoporid(?)}");

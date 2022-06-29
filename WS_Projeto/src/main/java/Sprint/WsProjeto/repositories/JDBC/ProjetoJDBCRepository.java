@@ -36,7 +36,7 @@ public class ProjetoJDBCRepository {
         connection = null;
     }
 
-    private Optional<ProjetoJDBC> getById(int codProjeto) throws SQLException {
+    public Optional<ProjetoJDBC> getById(int codProjeto) throws SQLException {
         abrirLigacao();
 
         CallableStatement callableStatement = connection.prepareCall("{? = call fncobterprojetoporid(?)}");

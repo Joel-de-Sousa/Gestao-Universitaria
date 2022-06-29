@@ -34,7 +34,7 @@ public class JuriJDBCRepository {
         connection = null;
     }
 
-    private Optional<JuriJDBC> getById(int codJuri) throws SQLException {
+    public Optional<JuriJDBC> getById(int codJuri) throws SQLException {
         abrirLigacao();
 
         CallableStatement callableStatement = connection.prepareCall("{? = call fncobterjuriporid(?)}");

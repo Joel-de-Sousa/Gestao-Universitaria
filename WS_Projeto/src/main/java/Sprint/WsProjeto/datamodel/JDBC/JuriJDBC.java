@@ -7,6 +7,11 @@ import lombok.*;
 @Getter
 @Setter
 public class JuriJDBC {
+    //ordem retornada pelo PLSQL
+    public static final int COD_JURI = 1;
+    public static final int COD_PRESIDENTE = 2;
+    public static final int COD_ORIENTADOR = 3;
+    public static final int COD_ARGUENTE = 4;
 
     private int codJuri;
 

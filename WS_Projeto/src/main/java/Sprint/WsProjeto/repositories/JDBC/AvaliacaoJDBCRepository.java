@@ -34,7 +34,7 @@ public class AvaliacaoJDBCRepository {
         connection = null;
     }
 
-    private Optional<AvaliacaoJDBC> getById(int codAvaliacao) throws SQLException {
+    public Optional<AvaliacaoJDBC> getById(int codAvaliacao) throws SQLException {
         abrirLigacao();
 
         CallableStatement callableStatement = connection.prepareCall("{? = call fncobteravaliacaoporid(?)}");
