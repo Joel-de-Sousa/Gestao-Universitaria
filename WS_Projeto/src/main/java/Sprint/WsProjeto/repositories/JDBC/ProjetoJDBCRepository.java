@@ -15,6 +15,7 @@ import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
 import java.io.IOException;
 import java.sql.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -124,6 +125,26 @@ public class ProjetoJDBCRepository {
         CallableStatement callableStatement = connection.prepareCall("{call prccobterprojetosconcluidos(?)}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet);
+    }
+
+    public List<ProjetoJDBC> findProjetosDatasAvaliacao(Date fromDate, Date toDate) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{call fncobtermaentredatas(?,?,?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setDate(2, fromDate);
+        callableStatement.setDate(2, toDate);
+
 
         callableStatement.execute();
 

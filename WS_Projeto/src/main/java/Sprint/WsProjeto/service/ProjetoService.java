@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.ProtocolException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -144,6 +146,19 @@ public class ProjetoService {
 
     public List<ProjetoDTO> findProjetosConcluidos() throws SQLException {
         List<Projeto> listProjetos = projetoRepository.findProjetosConcluidos();
+
+        List<ProjetoDTO> listProjetoDTO = new ArrayList<>();
+        for (Projeto projeto : listProjetos) {
+            ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+            listProjetoDTO.add(projetoDTO);
+        }
+        return listProjetoDTO;
+    }
+
+    public List<ProjetoDTO> findProjetosDatasAvaliacao(Date fromDate, Date toDate) throws SQLException {
+
+
+        List<Projeto> listProjetos = projetoRepository.findProjetosDatasAvaliacao(fromDate, toDate);
 
         List<ProjetoDTO> listProjetoDTO = new ArrayList<>();
         for (Projeto projeto : listProjetos) {

@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +68,15 @@ public class ProjetoRepository implements IProjetoRepository {
 
     public List<Projeto> findProjetosConcluidos() throws SQLException {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosConcluidos();
+        List<Projeto> listProjetos =new ArrayList<>();
+        for (ProjetoJDBC p:listProjetosJDBC) {
+            listProjetos.add(projetoJDBCDataAssembler.toDomain(p));
+        }
+        return listProjetos;
+    }
+
+    public List<Projeto> findProjetosDatasAvaliacao (Date fromDate, Date toDate) throws SQLException {
+        List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosDatasAvaliacao(fromDate, toDate);
         List<Projeto> listProjetos =new ArrayList<>();
         for (ProjetoJDBC p:listProjetosJDBC) {
             listProjetos.add(projetoJDBCDataAssembler.toDomain(p));

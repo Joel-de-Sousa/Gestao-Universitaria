@@ -5,14 +5,17 @@ import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.service.ProjetoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.sql.Date;
 import java.sql.SQLException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -100,4 +103,16 @@ public class ProjetoController {
         return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
 
     }
+
+    @GetMapping("/filtro/projetosDatas/fetch/{one_date}/{two_date}")
+    @ResponseBody
+    public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable(value = "one_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date fromDate, @PathVariable(value = "two_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date toDate) throws SQLException {
+
+        Sim
+        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(fromDate, toDate);
+
+        return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+
+    }
+
 }
