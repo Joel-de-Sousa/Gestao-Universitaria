@@ -6,6 +6,7 @@ import Sprint.WsProjeto.DTO.assembler.JuriDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.SubmissaoDomainDTOAssembler;
 import Sprint.WsProjeto.Exceptions.ProjetoNotExists;
 import Sprint.WsProjeto.datamodel.JPA.assembler.JuriDomainDataAssembler;
+import Sprint.WsProjeto.datamodel.REST.EdicaoRestDTO;
 import Sprint.WsProjeto.domain.entities.*;
 import Sprint.WsProjeto.domain.factories.IAvaliacaoFactory;
 import Sprint.WsProjeto.domain.factories.IJuriFactory;
@@ -17,6 +18,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,6 +45,8 @@ public class AvaliacaoService {
 
     @Autowired
     SubmissaoRepository submissaoRepository;
+    @Autowired
+    ProjetoService projetoService;
 
     public AvaliacaoService() {
     }
@@ -70,6 +76,17 @@ public class AvaliacaoService {
         } else return null;
     }
 
+    public List<AvaliacaoDTO> findAvaliacoesByCodProjeto(int CodProjeto) throws SQLException {
+        List<Avaliacao> listAvaliacoes = avaliacaoRepository.findAvaliacoesByCodProjeto(CodProjeto);
+
+        List<AvaliacaoDTO> listAvaliacaoDTO = new ArrayList<>();
+        for (Avaliacao avaliacao : listAvaliacoes) {
+            AvaliacaoDTO avaliacaoDTO = avaliacaoDomainDTOAssembler.toDto(avaliacao);
+            listAvaliacaoDTO.add(avaliacaoDTO);
+        }
+        return listAvaliacaoDTO;
+    }
+
     public AvaliacaoDTO updateAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
 
         Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
@@ -97,10 +114,15 @@ public class AvaliacaoService {
 
     public AvaliacaoDTO updateEstadoAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
 
+
         Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
 
         if (opAvaliacao.isPresent()) {
-            //if (avaliacaoUpdate.getEstado().equals("PENDENTE") || avaliacaoUpdate.getEstado().equals("REVISAO")) {
+            List<ProjetoDTO> listProjetosRUC = projetoService.findProjetosPorCodigoRUC(avaliacaoUpdate.getCodRUC());
+
+            for(ProjetoDTO projeto : listProjetosRUC){
+
+                if(projeto.getCodProjeto()== opAvaliacao.get().getCodProjeto()){
 
                 opAvaliacao.get().setCodAvaliacao(avaliacaoUpdate.getCodAvaliacao());
                 opAvaliacao.get().setEstado(Avaliacao.Estado.valueOf(avaliacaoUpdate.getEstado()));
@@ -108,11 +130,22 @@ public class AvaliacaoService {
                 Avaliacao avaliacaoSaved = avaliacaoRepository.save(opAvaliacao.get());
                 AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
 
-                return avaliacaoSavedDTO;
+                boolean conclusao = true;
+                List<Avaliacao> lisAvaliacao = avaliacaoRepository.findAvaliacoesByCodProjeto(opAvaliacao.get().getCodProjeto());
+                    for(Avaliacao avaliacao : lisAvaliacao){
+                        if(!avaliacao.getEstado().equals(Avaliacao.Estado.CONCLUIDA)){
+                            conclusao=false;
+                            break;
+                        };
+                    }
 
-           /* }
-            throw new Exception("A avaliação está concluída");*/
+                    if(conclusao){
+
+                    }
+
+                return avaliacaoSavedDTO;
+                }
         }
-        throw new Exception("A avaliação não consta na base de dados");
-    }
-}
+
+    }throw new Exception("A avaliação não consta na base de dados");
+}}

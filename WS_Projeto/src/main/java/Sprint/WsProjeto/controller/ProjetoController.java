@@ -128,7 +128,7 @@ public class ProjetoController {
 
     @GetMapping("/filtro/projetosNif/{nifOrganizacao}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosByNifOrganizacao (@PathVariable long nifOrganizacao) throws SQLException {
+    public ResponseEntity<Object> findProjetosByNifOrganizacao (@PathVariable long nifOrganizacao) throws Exception {
 
 
         List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosByNifOrganizacao(nifOrganizacao);

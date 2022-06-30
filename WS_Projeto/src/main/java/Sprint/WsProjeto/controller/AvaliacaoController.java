@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RestController
 @RequestMapping(path = "/avaliacoes")
@@ -35,8 +37,20 @@ public class AvaliacaoController {
             } else
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
-
         }
+
+    @GetMapping("/codProjeto/{codProjeto}")
+    @ResponseBody
+    public ResponseEntity<Object> findAvaliacoesByCodProjeto (@PathVariable int codProjeto){
+        try {
+            List<AvaliacaoDTO> listAvaliacoes = avaliacaoService.findAvaliacoesByCodProjeto(codProjeto);
+
+            return new ResponseEntity<>(listAvaliacoes, HttpStatus.OK);}
+
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 
 
       /*  @PostMapping("")

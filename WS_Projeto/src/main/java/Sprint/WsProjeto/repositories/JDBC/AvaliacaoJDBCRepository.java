@@ -127,6 +127,24 @@ public class AvaliacaoJDBCRepository {
         return optional;
     }
 
+    public List<AvaliacaoJDBC> findAvaliacoesByCodProjeto(int codProjeto) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{call prcobtertodasavaliacoescodprojeto(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setInt(2, codProjeto);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return avaliacaoJDBCDomainDataAssembler.toJDBC(cachedRowSet);
+    }
+
     private Connection abrirLigacao() throws SQLException {
         if (connection == null || connection.isClosed()) {
             OracleDataSource ds = new OracleDataSource();

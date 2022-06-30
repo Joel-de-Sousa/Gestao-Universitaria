@@ -195,7 +195,7 @@ public class ProjetoService {
 
         List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByNif (nifOrganizacao);
         for (PropostaRestDTO proposta : listPropostas) {
-            Projeto projeto = projetoRepository.findByCodProposta(proposta.getCodProposta());
+            Projeto projeto = projetoRepository.findProjetoByCodProposta(proposta.getCodProposta());
             ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
             listFiltradaProjetos.add(projetoDTO);
 
