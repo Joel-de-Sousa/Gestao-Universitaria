@@ -64,7 +64,7 @@ public class ProjetoService {
 
         Optional<PropostaRestDTO> propostaRestDTO = propostaWebRepository.findPropostaByCode(projetoInfoDto.getCodProposta());
         if (propostaRestDTO.isPresent()) {
-            Projeto projeto = projetoFactory.createProjeto( projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante());
+            Projeto projeto = projetoFactory.createProjeto(projetoInfoDto.getCodProposta(), projetoInfoDto.getCodEstudante());
 
             Projeto oProjetoSaved = projetoRepository.save(projeto);
 
@@ -75,7 +75,7 @@ public class ProjetoService {
             for (MomentoAvaliacaoDTO momentoAvaliacaoDTO : momentoAvaliacaoList) {
                 Avaliacao avaliacao = avaliacaoService.createAndSaveAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao());
                 list = oProjetoSaved.getListaAvaliacoes();
-                    list.add(avaliacao);
+                list.add(avaliacao);
             }
             oProjetoSaved.setListaAvaliacoes(list);
             Projeto projetoSave = projetoRepository.save(oProjetoSaved);
@@ -143,7 +143,6 @@ public class ProjetoService {
     }
 
 
-
     public List<ProjetoDTO> findProjetosConcluidos() throws SQLException {
         List<Projeto> listProjetos = projetoRepository.findProjetosConcluidos();
 
@@ -168,4 +167,18 @@ public class ProjetoService {
         return listProjetoDTO;
     }
 
+
+    public List<ProjetoDTO> findProjetosByNifOrganizacao(long nifOrganizacao) throws Exception {
+
+        List<ProjetoDTO> listFiltradaProjetos = new ArrayList<>();
+
+        List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByNif (nifOrganizacao);
+        for (PropostaRestDTO proposta : listPropostas) {
+            Projeto projeto = projetoRepository.findByCodProposta(proposta.getCodProposta());
+            ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+            listFiltradaProjetos.add(projetoDTO);
+
+        }return listFiltradaProjetos;
+
+    }
 }

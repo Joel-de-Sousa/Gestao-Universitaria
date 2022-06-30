@@ -36,4 +36,14 @@ public class PropostaWebRepository {
         throw new Exception("Não foram encontradas Propostas");
     }
 
+    public List<PropostaRestDTO> findAllPropostasAceitesByNif (long nifOrganizacao) throws Exception {
+
+        Optional<List<PropostaRestDTO>> lista = propostaRestRepository.findAllPropostasAceitesByNif (nifOrganizacao);
+
+        if(lista.isPresent()){
+            return lista.get();
+        } else
+            throw new Exception("Não foram encontradas Propostas desta Organizacao");
+    }
+
 }

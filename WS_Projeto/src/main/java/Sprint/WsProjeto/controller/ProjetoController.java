@@ -108,8 +108,19 @@ public class ProjetoController {
     @ResponseBody
     public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable(value = "one_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date fromDate, @PathVariable(value = "two_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date toDate) throws SQLException {
 
-        Sim
+
         List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(fromDate, toDate);
+
+        return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/filtro/projetosNif/{nifOrganizacao}")
+    @ResponseBody
+    public ResponseEntity<Object> findProjetosByNifOrganizacao (@PathVariable long nifOrganizacao) throws SQLException {
+
+
+        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosByNifOrganizacao(nifOrganizacao);
 
         return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
 
