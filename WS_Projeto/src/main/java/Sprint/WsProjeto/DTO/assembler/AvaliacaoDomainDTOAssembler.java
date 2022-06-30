@@ -66,7 +66,7 @@ public class AvaliacaoDomainDTOAssembler {
 
         Date date=Date.valueOf(avaliacao.getDate());
 
-        
+
         return new Avaliacao(avaliacao.getCodAvaliacao(),avaliacao.getCodProjeto(),
                 avaliacao.getCodMA(),juri,submissao,avaliacao.getNota(), avaliacao.getJustificacao(),
                 date,Avaliacao.Estado.valueOf(avaliacao.getEstado()));
