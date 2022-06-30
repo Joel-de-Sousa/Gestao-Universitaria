@@ -1,5 +1,7 @@
 package Sprint.WsProjeto.repositories;
 
+import Sprint.WsProjeto.datamodel.JDBC.ConviteRecusadoJDBC;
+import Sprint.WsProjeto.datamodel.JDBC.assembler.ConviteJDBCDomainDataAssembler;
 import Sprint.WsProjeto.datamodel.JPA.ConviteJPA;
 import Sprint.WsProjeto.datamodel.JPA.ConviteRecusadoJPA;
 import Sprint.WsProjeto.datamodel.JPA.assembler.ConviteDomainDataAssembler;
@@ -15,26 +17,35 @@ import java.util.Optional;
 public class ConviteRecusadoRepository {
 
     @Autowired
-    ConviteRecusadoJPARepository conviteJPARepository;
+    ConviteRecusadoJDBCRepository conviteJDBCRepository;
 
     @Autowired
-    ConviteDomainDataAssembler conviteDomainDataAssembler;
+    ConviteJDBCDomainDataAssembler conviteJDBCDomainDataAssembler;
 
 
 
-    public Convite save(Convite convite) {
+  /*  public Convite save(Convite convite) {
         ConviteRecusadoJPA conviteJPA = conviteDomainDataAssembler.toDataRecusado(convite);
 
         ConviteRecusadoJPA savedConviteJPA = conviteJPARepository.save(conviteJPA);
 
         return conviteDomainDataAssembler.toDomainRecusado(savedConviteJPA);
+    }*/
+
+    public Convite save(Convite convite) {
+        ConviteRecusadoJDBC conviteJDBC = conviteJDBCDomainDataAssembler.toJDBCRecusado(convite);
+
+        ConviteRecusadoJDBC savedConviteJDBC = conviteJDBCRepository.save(conviteJDBC);
+
+        return conviteJDBCDomainDataAssembler.toDomainRecusado(savedConviteJPA);
     }
 
-    public Optional<Convite> findById(int codDocente) {
-        Optional<ConviteRecusadoJPA> opConvite = conviteJPARepository.findById(codDocente);
+
+    public Optional<Convite> findById(int codConvite) {
+        Optional<ConviteRecusadoJDBC> opConvite = conviteJDBCRepository.getById(codConvite);
 
         if ( opConvite.isPresent() ) {
-            Convite convite = conviteDomainDataAssembler.toDomainRecusado(opConvite.get());
+            Convite convite = conviteJDBCDomainDataAssembler.toDomainRecusado(opConvite.get());
             return Optional.of( convite );
         }
         else

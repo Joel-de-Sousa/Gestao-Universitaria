@@ -42,7 +42,8 @@ public class Avaliacao {
         this.submissao = submissao;
     }
 
-    public Avaliacao(int codMA) {
+    public Avaliacao(int codMA, int codProjeto) {
         this.codMA = codMA;
+        this.codProjeto = codProjeto;
     }
 }

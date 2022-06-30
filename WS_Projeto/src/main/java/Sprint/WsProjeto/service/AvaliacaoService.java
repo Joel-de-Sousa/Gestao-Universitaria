@@ -51,9 +51,9 @@ public class AvaliacaoService {
     public AvaliacaoService() {
     }
 
-    public Avaliacao createAndSaveAvaliacao(int codMA) {
+    public Avaliacao createAndSaveAvaliacao(int codMA , int codProjeto) throws Exception {
 
-        Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA);
+        Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA,codProjeto);
 
         Avaliacao oAvaliacaoSaved = avaliacaoRepository.save(avaliacao);
 
@@ -64,7 +64,7 @@ public class AvaliacaoService {
 
     }
 
-    public AvaliacaoDTO findAvaliacaoByCode(int codAvaliacao) {
+    public AvaliacaoDTO findAvaliacaoByCode(int codAvaliacao) throws Exception {
 
         Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(codAvaliacao);
 
@@ -76,7 +76,7 @@ public class AvaliacaoService {
         } else return null;
     }
 
-    public List<AvaliacaoDTO> findAvaliacoesByCodProjeto(int CodProjeto) throws SQLException {
+    public List<AvaliacaoDTO> findAvaliacoesByCodProjeto(int CodProjeto) throws Exception {
         List<Avaliacao> listAvaliacoes = avaliacaoRepository.findAvaliacoesByCodProjeto(CodProjeto);
 
         List<AvaliacaoDTO> listAvaliacaoDTO = new ArrayList<>();

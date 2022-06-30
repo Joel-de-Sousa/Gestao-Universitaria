@@ -27,7 +27,7 @@ public class AvaliacaoController {
         @GetMapping("/{codAvaliacao}")
         @ResponseBody
         //public ResponseEntity<Object> findAvalicaoByCode(@PathVariable int codAvaliacao) {
-            public ResponseEntity<Object> findAvalicaoByCode(@RequestParam int codAvaliacao) {
+            public ResponseEntity<Object> findAvalicaoByCode(@RequestParam int codAvaliacao) throws Exception {
 
           AvaliacaoDTO oAvaliacao = avaliacaoService.findAvaliacaoByCode(codAvaliacao);
 

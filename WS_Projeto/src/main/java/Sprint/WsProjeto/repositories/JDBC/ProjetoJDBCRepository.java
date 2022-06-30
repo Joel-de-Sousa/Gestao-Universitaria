@@ -61,6 +61,29 @@ public class ProjetoJDBCRepository {
         return Optional.of(lProjetoJDBCs.get(0));
     }
 
+    public Optional<ProjetoJDBC> findProjetoByCodeEstudante(int codEstudante) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobterprojetoporcodestudante(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setInt(2, codEstudante);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+
+        List<ProjetoJDBC> lProjetoJDBCs=projetoDomainDataAssembler.toJDBC(cachedRowSet);
+        if(lProjetoJDBCs.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(lProjetoJDBCs.get(0));
+    }
     public List<ProjetoJDBC> findAll() throws SQLException {
         abrirLigacao();
 

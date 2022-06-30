@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class AvaliacaoFactory implements IAvaliacaoFactory{
 
-        public Avaliacao createAvaliacao(int nCodMA) {
-            return new Avaliacao(nCodMA);
+        public Avaliacao createAvaliacao(int nCodMA, int nCodProjeto) {
+            return new Avaliacao(nCodMA, nCodProjeto);
         }
     }
 

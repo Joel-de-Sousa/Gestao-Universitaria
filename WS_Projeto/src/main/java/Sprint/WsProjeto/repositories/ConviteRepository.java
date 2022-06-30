@@ -1,49 +1,53 @@
 package Sprint.WsProjeto.repositories;
 
+import Sprint.WsProjeto.datamodel.JDBC.ConviteJDBC;
+import Sprint.WsProjeto.datamodel.JDBC.assembler.ConviteJDBCDomainDataAssembler;
 import Sprint.WsProjeto.datamodel.JPA.ConviteJPA;
 import Sprint.WsProjeto.datamodel.JPA.JuriJPA;
 import Sprint.WsProjeto.datamodel.JPA.assembler.ConviteDomainDataAssembler;
 import Sprint.WsProjeto.datamodel.JPA.assembler.JuriDomainDataAssembler;
 import Sprint.WsProjeto.domain.entities.Convite;
 import Sprint.WsProjeto.domain.entities.Juri;
+import Sprint.WsProjeto.repositories.JDBC.ConviteJDBCRepository;
 import Sprint.WsProjeto.repositories.JPA.ConviteJPARepository;
 import Sprint.WsProjeto.repositories.JPA.JuriJPARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Repository
 public class ConviteRepository {
 
     @Autowired
-    ConviteJPARepository conviteJPARepository;
+    ConviteJDBCRepository conviteJDBCRepository;
 
     @Autowired
-    ConviteDomainDataAssembler conviteDomainDataAssembler;
+    ConviteJDBCDomainDataAssembler conviteJDBCDomainDataAssembler;
 
 
 
-    public Convite save(Convite convite) {
-        ConviteJPA conviteJPA = conviteDomainDataAssembler.toData(convite);
+    public Convite save(Convite convite) throws SQLException {
+        ConviteJDBC conviteJDBC = conviteJDBCDomainDataAssembler.toJDBC(convite);
 
-        ConviteJPA savedConviteJPA = conviteJPARepository.save(conviteJPA);
+        ConviteJDBC savedConviteJDBC = conviteJDBCRepository.save(conviteJDBC);
 
-        return conviteDomainDataAssembler.toDomain(savedConviteJPA);
+        return conviteJDBCDomainDataAssembler.toDomain(savedConviteJDBC);
     }
 
-    public Optional<Convite> findById(int codConvite) {
-        Optional<ConviteJPA> opConvite = conviteJPARepository.findById(codConvite);
+    public Optional<Convite> findById(int codConvite) throws SQLException {
+        Optional<ConviteJDBC> opConvite = conviteJDBCRepository.getById(codConvite);
 
         if ( opConvite.isPresent() ) {
-            Convite convite = conviteDomainDataAssembler.toDomain(opConvite.get());
+            Convite convite = conviteJDBCDomainDataAssembler.toDomain(opConvite.get());
             return Optional.of( convite );
         }
         else
             return Optional.empty();
     }
 
-    public void deleteByCodConvite(int codConvite){
-        conviteJPARepository.deleteById(codConvite);
+    public void deleteByCodConvite(int codConvite) throws SQLException {
+        conviteJDBCRepository.remove(codConvite);
     }
 }
