@@ -32,7 +32,7 @@ public class ProjetoController {
 
     @GetMapping("/{codProjeto}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetoByCode(@PathVariable int codProjeto) {
+    public ResponseEntity<Object> findProjetoByCode(@PathVariable int codProjeto) throws SQLException {
 
         ProjetoDTO oProjeto = projetoService.findProjetoByCode(codProjeto);
 

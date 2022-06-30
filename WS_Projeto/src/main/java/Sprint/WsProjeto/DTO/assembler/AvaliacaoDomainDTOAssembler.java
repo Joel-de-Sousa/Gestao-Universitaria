@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Date;
 
 @Service
 public class AvaliacaoDomainDTOAssembler {
@@ -40,6 +41,7 @@ public class AvaliacaoDomainDTOAssembler {
 
         int juri = 0;
         int submissao=0;
+
         if (avaliacao.getJuri() != null) {
             juri = avaliacao.getJuri().getCodJuri();
 
@@ -48,7 +50,10 @@ public class AvaliacaoDomainDTOAssembler {
           submissao=avaliacao.getSubmissao().getCodSubmissao();
         }
 
-        return new AvaliacaoDTO(avaliacao.getCodAvaliacao(), avaliacao.getCodMA(),juri,submissao);
+        return new AvaliacaoDTO(avaliacao.getCodAvaliacao(),
+                avaliacao.getCodProjeto(),avaliacao.getCodMA(),
+                juri,submissao,avaliacao.getNota(),avaliacao.getJustificacao(),
+                avaliacao.getDate().toString(),avaliacao.getEstado().name());
     }
 
     public Avaliacao toDomain(AvaliacaoDTO avaliacao) throws IOException {
@@ -58,6 +63,12 @@ public class AvaliacaoDomainDTOAssembler {
 
         SubmissaoDTO submissaoDTO=submissaoService.findSubmissaoBycode(avaliacao.getCodSubmissao());
         Submissao submissao=submissaoDomainDTOAssembler.toDomain(submissaoDTO);
-        return new Avaliacao(avaliacao.getCodAvaliacao(), avaliacao.getCodMA(),juri,submissao);
+
+        Date date=Date.valueOf(avaliacao.getDate());
+
+        
+        return new Avaliacao(avaliacao.getCodAvaliacao(),avaliacao.getCodProjeto(),
+                avaliacao.getCodMA(),juri,submissao,avaliacao.getNota(), avaliacao.getJustificacao(),
+                date,Avaliacao.Estado.valueOf(avaliacao.getEstado()));
     }
 }
