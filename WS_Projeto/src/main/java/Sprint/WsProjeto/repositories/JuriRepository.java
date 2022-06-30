@@ -2,10 +2,7 @@ package Sprint.WsProjeto.repositories;
 
 import Sprint.WsProjeto.datamodel.JDBC.JuriJDBC;
 import Sprint.WsProjeto.datamodel.JDBC.assembler.JuriJDBCDomainDataAssembler;
-import Sprint.WsProjeto.datamodel.JPA.JuriJPA;
-import Sprint.WsProjeto.datamodel.JPA.ProjetoJPA;
-import Sprint.WsProjeto.datamodel.JPA.assembler.JuriDomainDataAssembler;
-import Sprint.WsProjeto.datamodel.JPA.assembler.ProjetoDomainDataAssembler;
+
 import Sprint.WsProjeto.domain.entities.Juri;
 import Sprint.WsProjeto.domain.entities.Projeto;
 import Sprint.WsProjeto.repositories.JDBC.JuriJDBCRepository;

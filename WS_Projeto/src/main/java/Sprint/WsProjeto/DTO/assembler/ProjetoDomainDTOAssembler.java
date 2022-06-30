@@ -20,14 +20,9 @@ public class ProjetoDomainDTOAssembler {
     }
 
     public ProjetoDTO toDto(Projeto projeto){
-        ArrayList<AvaliacaoDTO> list=new ArrayList<>();
-        for (Avaliacao avaliacao: projeto.getListaAvaliacoes()) {
 
-            AvaliacaoDTO avaliacaoDTO=avaliacaoDomainDTOAssembler.toDto(avaliacao);
-            list.add(avaliacaoDTO);
-        }
 
-     return new ProjetoDTO(projeto.getCodProjeto(), projeto.getCodProposta(), projeto.getCodEstudante(), projeto.getCodOrientador(),list);
+     return new ProjetoDTO(projeto.getCodProjeto(), projeto.getCodProposta(), projeto.getCodEstudante(), projeto.getCodOrientador(),projeto.getEstado().name());
  }
 
 }

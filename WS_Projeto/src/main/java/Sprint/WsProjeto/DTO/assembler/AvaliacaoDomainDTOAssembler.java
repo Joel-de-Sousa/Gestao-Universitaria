@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 
 @Service
 public class AvaliacaoDomainDTOAssembler {
@@ -56,7 +57,7 @@ public class AvaliacaoDomainDTOAssembler {
                 avaliacao.getDate().toString(),avaliacao.getEstado().name());
     }
 
-    public Avaliacao toDomain(AvaliacaoDTO avaliacao) throws IOException {
+    public Avaliacao toDomain(AvaliacaoDTO avaliacao) throws IOException, SQLException {
 
         JuriDTO juriDTO=juriService.findJuriByCode(avaliacao.getCodJuri());
         Juri juri=juriDomainDTOAssembler.toDomain(juriDTO);

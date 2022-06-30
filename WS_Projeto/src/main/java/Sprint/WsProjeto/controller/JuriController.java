@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 @Controller
 @RestController
 @RequestMapping(path = "/juris")
@@ -24,7 +26,7 @@ public class JuriController {
 
         @GetMapping("/{codJuri}")
         @ResponseBody
-        public ResponseEntity<Object> findJuriByCode(@PathVariable int codJuri) {
+        public ResponseEntity<Object> findJuriByCode(@PathVariable int codJuri) throws SQLException {
 
           JuriDTO oJuri = juriService.findJuriByCode(codJuri);
 

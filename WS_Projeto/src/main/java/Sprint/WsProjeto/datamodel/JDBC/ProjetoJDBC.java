@@ -36,4 +36,10 @@ public class ProjetoJDBC {
     private int codOrientador;
 
     private int estado;
+
+    public ProjetoJDBC(int codProposta, int codEstudante, int codOrientador) {
+        this.codProposta = codProposta;
+        this.codEstudante = codEstudante;
+        this.codOrientador = codOrientador;
+    }
 }

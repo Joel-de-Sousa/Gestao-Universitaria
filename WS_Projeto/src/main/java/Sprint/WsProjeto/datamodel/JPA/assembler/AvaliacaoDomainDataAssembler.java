@@ -32,7 +32,7 @@ public class AvaliacaoDomainDataAssembler {
         return new AvaliacaoJPA(avaliacao.getCodAvaliacao(),avaliacao.getCodMA(),juriJPA,submissaoJPA);
     }
 
-    public Avaliacao toDomain(AvaliacaoJPA avaliacaoJPA) {
+ /*   public Avaliacao toDomain(AvaliacaoJPA avaliacaoJPA) {
         Juri juri=null;
         Submissao submissao=null;
 
@@ -45,6 +45,6 @@ public class AvaliacaoDomainDataAssembler {
         }
 
         return new Avaliacao(avaliacaoJPA.getCodAvaliacao(), avaliacaoJPA.getCodMA(), juri, submissao);
-    }
+    }*/
 
 }

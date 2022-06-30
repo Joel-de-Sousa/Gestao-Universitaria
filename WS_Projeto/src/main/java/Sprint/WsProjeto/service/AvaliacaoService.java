@@ -12,6 +12,7 @@ import Sprint.WsProjeto.domain.factories.IAvaliacaoFactory;
 import Sprint.WsProjeto.domain.factories.IJuriFactory;
 import Sprint.WsProjeto.repositories.AvaliacaoRepository;
 import Sprint.WsProjeto.repositories.JuriRepository;
+import Sprint.WsProjeto.repositories.ProjetoRepository;
 import Sprint.WsProjeto.repositories.SubmissaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,8 +46,10 @@ public class AvaliacaoService {
 
     @Autowired
     SubmissaoRepository submissaoRepository;
+  /*  @Autowired
+    ProjetoService projetoService;*/
     @Autowired
-    ProjetoService projetoService;
+    ProjetoRepository projetoRepository;
 
     public AvaliacaoService() {
     }
@@ -112,7 +115,7 @@ public class AvaliacaoService {
     }
 
 
-    public AvaliacaoDTO updateEstadoAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
+    /*public AvaliacaoDTO updateEstadoAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
 
 
         Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
@@ -130,7 +133,7 @@ public class AvaliacaoService {
                 Avaliacao avaliacaoSaved = avaliacaoRepository.save(opAvaliacao.get());
                 AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
 
-                boolean conclusao = true;
+                *//*boolean conclusao = true;
                 List<Avaliacao> lisAvaliacao = avaliacaoRepository.findAvaliacoesByCodProjeto(opAvaliacao.get().getCodProjeto());
                     for(Avaliacao avaliacao : lisAvaliacao){
                         if(!avaliacao.getEstado().equals(Avaliacao.Estado.CONCLUIDA)){
@@ -140,12 +143,13 @@ public class AvaliacaoService {
                     }
 
                     if(conclusao){
-                        projetoService.updateEstado(Projeto.Estado.CONCLUIDO, opAvaliacao.get().getCodProjeto());
-                    }
+                        projetoRepository.update(Projeto.Estado.CONCLUIDO, opAvaliacao.get().getCodProjeto());
+                    }*//*
 
                 return avaliacaoSavedDTO;
                 }
         }
 
     }throw new Exception("A avaliação não consta na base de dados");
-}}
+}*/
+}

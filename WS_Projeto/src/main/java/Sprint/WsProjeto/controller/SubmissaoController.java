@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Controller
@@ -26,7 +27,7 @@ public class SubmissaoController {
 
     @GetMapping("/{codSubmissao}")
     @ResponseBody
-    public ResponseEntity<Object> findSubmissaoByCode(@PathVariable int codSubmissao) throws IOException {
+    public ResponseEntity<Object> findSubmissaoByCode(@PathVariable int codSubmissao) throws IOException, SQLException {
 
         SubmissaoDTO submissao = submissaoService.findSubmissaoBycode(codSubmissao);
 
