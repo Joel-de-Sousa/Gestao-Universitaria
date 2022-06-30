@@ -45,7 +45,7 @@ public class AvaliacaoService {
     public AvaliacaoService() {
     }
 
-    public Avaliacao createAndSaveAvaliacao(int codMA , int codProjeto) {
+    public Avaliacao createAndSaveAvaliacao(int codMA , int codProjeto) throws Exception {
 
         Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA,codProjeto);
 

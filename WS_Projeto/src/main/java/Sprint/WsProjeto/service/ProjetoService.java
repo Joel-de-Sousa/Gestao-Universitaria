@@ -59,12 +59,12 @@ public class ProjetoService {
     public ProjetoService() {
     }
 
-    public ProjetoDTO createAndSaveProjeto(NewProjetoInfoDto projetoInfoDto) throws IOException {
+    public ProjetoDTO createAndSaveProjeto(NewProjetoInfoDto projetoInfoDto) throws Exception {
 
 
         Optional<PropostaRestDTO> propostaRestDTO = propostaWebRepository.findPropostaByCode(projetoInfoDto.getCodProposta());
         if (propostaRestDTO.isPresent()) {
-            Projeto projeto = projetoFactory.createProjeto( projetoInfoDto.getCodProposta(),projetoInfoDto.getCodEstudante());
+            Projeto projeto = projetoFactory.createProjeto(projetoInfoDto.getCodProposta(), projetoInfoDto.getCodEstudante());
 
             Projeto oProjetoSaved = projetoRepository.save(projeto);
 
@@ -72,7 +72,9 @@ public class ProjetoService {
             Optional<EdicaoRestDTO> edicaoRestDTO = edicaoWebRepository.findEdicaoByCode(propostaRestDTO.get().getCodEdicao());
             List<MomentoAvaliacaoDTO> momentoAvaliacaoList = edicaoRestDTO.get().getMomentoAvaliacaoList();
             for (MomentoAvaliacaoDTO momentoAvaliacaoDTO : momentoAvaliacaoList) {
+
                 Avaliacao avaliacao = avaliacaoService.createAndSaveAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao(),oProjetoSaved.getCodProjeto());
+
             }
             ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(oProjetoSaved);
 
@@ -128,7 +130,7 @@ public class ProjetoService {
         for (EdicaoRestDTO edicao : listEdicoes) {
             List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByCodEdicao(edicao.getCodEdicao());
             for (PropostaRestDTO proposta : listPropostas) {
-                Projeto projeto = projetoRepository.findByCodProposta(proposta.getCodProposta());
+                Projeto projeto = projetoRepository.findProjetoByCodProposta(proposta.getCodProposta());
                 ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
                 listProjeto.add(projetoDTO);
             }
@@ -136,8 +138,6 @@ public class ProjetoService {
         return listProjeto;
 
     }
-
-
 
     public List<ProjetoDTO> findProjetosConcluidos() throws SQLException {
         List<Projeto> listProjetos = projetoRepository.findProjetosConcluidos();
@@ -150,6 +150,28 @@ public class ProjetoService {
         return listProjetoDTO;
     }
 
+    public List<ProjetoDTO> findProjetosByCodDocente(int codDocente) throws SQLException {
+        List<Projeto> listProjetos = projetoRepository.findProjetosByCodDocente(codDocente);
+
+        List<ProjetoDTO> listProjetoDTO = new ArrayList<>();
+        for (Projeto projeto : listProjetos) {
+            ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+            listProjetoDTO.add(projetoDTO);
+        }
+        return listProjetoDTO;
+    }
+
+    public List<ProjetoDTO> findProjetosComDeterminadoMACompleto(int codMA) throws SQLException {
+        List<Projeto> listProjetos = projetoRepository.findProjetosComDeterminadoMACompleto(codMA);
+
+        List<ProjetoDTO> listProjetoDTO = new ArrayList<>();
+        for (Projeto projeto : listProjetos) {
+            ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+            listProjetoDTO.add(projetoDTO);
+        }
+        return listProjetoDTO;
+    }
+    
     public List<ProjetoDTO> findProjetosDatasAvaliacao(Date fromDate, Date toDate) throws SQLException {
 
 
@@ -163,4 +185,18 @@ public class ProjetoService {
         return listProjetoDTO;
     }
 
+
+    public List<ProjetoDTO> findProjetosByNifOrganizacao(long nifOrganizacao) throws Exception {
+
+        List<ProjetoDTO> listFiltradaProjetos = new ArrayList<>();
+
+        List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByNif (nifOrganizacao);
+        for (PropostaRestDTO proposta : listPropostas) {
+            Projeto projeto = projetoRepository.findByCodProposta(proposta.getCodProposta());
+            ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+            listFiltradaProjetos.add(projetoDTO);
+
+        }return listFiltradaProjetos;
+
+    }
 }

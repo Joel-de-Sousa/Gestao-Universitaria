@@ -82,4 +82,27 @@ public class PropostaRestRepository {
             return Optional.empty();
         }
     }
+
+    public Optional<List<PropostaRestDTO>> findAllPropostasAceitesByNif (long nifOrganizacao) {
+
+        try {
+            Mono<List<PropostaRestDTO>> response = webClient.get()
+                    .uri("/propostas/nif/" + nifOrganizacao)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, error -> {
+                        return Mono.empty();
+                    })
+                    .bodyToMono(new ParameterizedTypeReference<List<PropostaRestDTO>>() {
+                    })
+                    .onErrorReturn(null)
+                    .doOnError(throwable -> {
+                        System.out.println(throwable.getMessage());
+                    });
+
+            List<PropostaRestDTO> lista = response.block();
+            return Optional.of(lista);
+        }catch( Exception e) {
+            return Optional.empty();
+        }
+    }
 }
