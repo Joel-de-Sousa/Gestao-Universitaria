@@ -54,7 +54,7 @@ public class ProjetoController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/filtroCodRUC/{codRUC}")
+    @GetMapping("/filtro/ProjetosByCodRUC/{codRUC}")
     @ResponseBody
     public ResponseEntity<Object> findProjetosByCodRUC (@PathVariable int codRUC){
         try {
@@ -67,18 +67,30 @@ public class ProjetoController {
         }
     }
 
-    @GetMapping("/filtroCodDocente/{codDocente}")
+    @GetMapping("/filtro/ProjetosByCodDocente/{codDocente}")
     @ResponseBody
     public ResponseEntity<Object> findProjetosByCodDocente (@PathVariable int codDocente){
         try {
-            List<ProjetoDTO> lProjeto = projetoService.findProjetosPorCodigoRUC(codDocente);
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosByCodDocente(codDocente);
 
             return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
 
         catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
+    }
 
+    @GetMapping("/filtro/ProjetosComMACompleto/{codDocente}")
+    @ResponseBody
+    public ResponseEntity<Object> findProjetosComDeterminadoMACompleto (@PathVariable int codMA){
+        try {
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosComDeterminadoMACompleto(codMA);
+
+            return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
+
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
 
@@ -107,7 +119,6 @@ public class ProjetoController {
     @GetMapping("/filtro/projetosDatas/fetch/{one_date}/{two_date}")
     @ResponseBody
     public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable(value = "one_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date fromDate, @PathVariable(value = "two_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date toDate) throws SQLException {
-
 
         List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(fromDate, toDate);
 

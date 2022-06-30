@@ -83,4 +83,33 @@ public class ProjetoRepository implements IProjetoRepository {
         }
         return listProjetos;
     }
+
+    public List<Projeto> findProjetosByCodDocente(int codDocente) throws SQLException {
+        List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosByCodDocente(codDocente);
+        List<Projeto> listProjetos =new ArrayList<>();
+        for (ProjetoJDBC p:listProjetosJDBC) {
+            listProjetos.add(projetoJDBCDataAssembler.toDomain(p));
+        }
+        return listProjetos;
+    }
+
+    public Projeto findProjetoByCodProposta(int codProposta) throws SQLException {
+        Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.findProjetoByCodProposta(codProposta);
+
+        if ( opProjeto.isPresent() ) {
+            Projeto projeto = projetoJDBCDataAssembler.toDomain(opProjeto.get());
+            return  projeto ;
+        }
+        else
+            return null;
+    }
+
+    public List<Projeto> findProjetosComDeterminadoMACompleto(int codMA) throws SQLException {
+        List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosComDeterminadoMACompleto(codMA);
+        List<Projeto> listProjetos =new ArrayList<>();
+        for (ProjetoJDBC p:listProjetosJDBC) {
+            listProjetos.add(projetoJDBCDataAssembler.toDomain(p));
+        }
+        return listProjetos;
+    }
 }

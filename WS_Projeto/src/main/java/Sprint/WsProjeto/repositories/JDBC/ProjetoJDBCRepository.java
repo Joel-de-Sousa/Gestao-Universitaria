@@ -156,6 +156,65 @@ public class ProjetoJDBCRepository {
         return projetoDomainDataAssembler.toJDBC(cachedRowSet);
     }
 
+    public List<ProjetoJDBC> findProjetosByCodDocente(int codDocente) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{call prccobterprojetosporiddocente(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setInt(2, codDocente);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet);
+    }
+
+    public Optional<ProjetoJDBC> findProjetoByCodProposta(int codProposta) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{call prccobterprojetoporcodproposta(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setInt(2, codProposta);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        List<ProjetoJDBC> lProjetoJDBCs=projetoDomainDataAssembler.toJDBC(cachedRowSet);
+        if(lProjetoJDBCs.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(lProjetoJDBCs.get(0));
+
+    }
+
+    public List<ProjetoJDBC> findProjetosComDeterminadoMACompleto(int codMA) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{call prccobterprojetosporcodMA(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setInt(2, codMA);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet);
+    }
+
     private Connection abrirLigacao() throws SQLException {
         if (connection == null || connection.isClosed()) {
             OracleDataSource ds = new OracleDataSource();
