@@ -7,6 +7,7 @@ import Sprint.WsProjeto.repositories.REST.PropostaRestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,5 +28,15 @@ public class EdicaoWebRepository {
         }
         else
             return Optional.empty();
+    }
+
+    public List<EdicaoRestDTO> getListaEdicoesByCodRUC(int codRuc) throws Exception {
+
+        Optional<List<EdicaoRestDTO>> lista =edicaoRestRepository.getAllEdicoesByCodRUC(codRuc);
+        if (lista.isPresent()){
+            List<EdicaoRestDTO> listaDTO=lista.get();
+            return listaDTO;
+        }else
+            throw new Exception("Não foram encontradas Edições");
     }
 }

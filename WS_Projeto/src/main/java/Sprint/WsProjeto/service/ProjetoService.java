@@ -124,5 +124,19 @@ public class ProjetoService {
         return oPropostaCode;
     }
 
+    public List<ProjetoDTO> findProjetosPorCodigoRUC(int codRUC) throws Exception {
 
+            List<ProjetoDTO> listProjeto = new ArrayList<>();
+            List<EdicaoRestDTO> listEdicoes = edicaoWebRepository.getListaEdicoesByCodRUC(codRUC);
+            for (EdicaoRestDTO edicao : listEdicoes) {
+                List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByCodEdicao(edicao.getCodEdicao());
+                for (PropostaRestDTO proposta : listPropostas) {
+                    Projeto projeto = projetoRepository.findByCodProposta(proposta.getCodProposta());
+                    ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+                    listProjeto.add(projetoDTO);
+                }
+            }
+            return listProjeto;
+
+    }
 }

@@ -181,6 +181,7 @@ public class EdicaoService {
         }
         return listaDto;
     }
+
     public EdicaoAllArgsDTO getEdicaoByCodEstudante(int codEstudante) throws Exception {
         Optional<EstudanteJpa> estudanteJpa= estudanteJpaRepository.findByCodEstudante(codEstudante);
 
@@ -193,6 +194,7 @@ public class EdicaoService {
             throw new Exception("Estudante não tem Edição");
         }
     }
+
     public EdicaoAllArgsDTO getEdicaoByCodRUC (int codRUC) throws Exception {
 
         Optional<Edicao> edicao=edicaoRepository.getEdicaoByCodRUC(codRUC);

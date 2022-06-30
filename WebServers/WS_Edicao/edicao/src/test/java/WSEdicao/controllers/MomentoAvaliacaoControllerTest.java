@@ -103,7 +103,7 @@ class MomentoAvaliacaoControllerTest {
         assertEquals(res, momentoAvaliacaoDouble);
     }
 
-    @Test
+    /*@Test
     void shouldFindEveryMomentoAvaliacaoByCodEdicao() {
         //Arrange
         MomentoAvaliacaoDTO momentoAvaliacaoDouble = mock(MomentoAvaliacaoDTO.class);
@@ -126,5 +126,5 @@ class MomentoAvaliacaoControllerTest {
 
         Object res = responseEntity.getBody();
         assertEquals(res, listaMomentoAvaliacao);
-    }
+    }*/
 }

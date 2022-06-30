@@ -212,6 +212,20 @@ public class PropostaService {
         return listFiltradaPropostaDTO;
     }
 
+    //MÉTODO GET PROPOSTAS BY VARIOS CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
+
+    public List<PropostaDTO> findAllByVariosCodEdicao(int codEdicao) {
+
+        List<Proposta> listFiltradaPropostas = propostaRepository.findAllByCodEdicao2(codEdicao);
+
+        List<PropostaDTO> listFiltradaPropostaDTO = new ArrayList<>();
+        for (Proposta proposta : listFiltradaPropostas) {
+            PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta);
+            listFiltradaPropostaDTO.add(propostaDTO);
+        }
+        return listFiltradaPropostaDTO;
+    }
+
     //MÉTODO GET PROPOSTAS ACEITES BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS ACEITES DESTA EDICAO
 
     public List<PropostaDTO> findAllPropostasAceitesByCodEdicao(int codEdicao) {
