@@ -133,7 +133,7 @@ public class ProjetoService {
         for (EdicaoRestDTO edicao : listEdicoes) {
             List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByCodEdicao(edicao.getCodEdicao());
             for (PropostaRestDTO proposta : listPropostas) {
-                Projeto projeto = projetoRepository.findByCodProposta(proposta.getCodProposta());
+                Projeto projeto = projetoRepository.findProjetoByCodProposta(proposta.getCodProposta());
                 ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
                 listProjeto.add(projetoDTO);
             }
@@ -141,8 +141,6 @@ public class ProjetoService {
         return listProjeto;
 
     }
-
-
 
     public List<ProjetoDTO> findProjetosConcluidos() throws SQLException {
         List<Projeto> listProjetos = projetoRepository.findProjetosConcluidos();
@@ -155,6 +153,28 @@ public class ProjetoService {
         return listProjetoDTO;
     }
 
+    public List<ProjetoDTO> findProjetosByCodDocente(int codDocente) throws SQLException {
+        List<Projeto> listProjetos = projetoRepository.findProjetosByCodDocente(codDocente);
+
+        List<ProjetoDTO> listProjetoDTO = new ArrayList<>();
+        for (Projeto projeto : listProjetos) {
+            ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+            listProjetoDTO.add(projetoDTO);
+        }
+        return listProjetoDTO;
+    }
+
+    public List<ProjetoDTO> findProjetosComDeterminadoMACompleto(int codMA) throws SQLException {
+        List<Projeto> listProjetos = projetoRepository.findProjetosComDeterminadoMACompleto(codMA);
+
+        List<ProjetoDTO> listProjetoDTO = new ArrayList<>();
+        for (Projeto projeto : listProjetos) {
+            ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+            listProjetoDTO.add(projetoDTO);
+        }
+        return listProjetoDTO;
+    }
+    
     public List<ProjetoDTO> findProjetosDatasAvaliacao(Date fromDate, Date toDate) throws SQLException {
 
 
