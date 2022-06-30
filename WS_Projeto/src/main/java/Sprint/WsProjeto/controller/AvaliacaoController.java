@@ -1,9 +1,6 @@
 package Sprint.WsProjeto.controller;
 
-import Sprint.WsProjeto.DTO.AvaliacaoDTO;
-import Sprint.WsProjeto.DTO.JuriDTO;
-import Sprint.WsProjeto.DTO.NewAvaliacaoInfoDTO;
-import Sprint.WsProjeto.DTO.NewJuriInfoDTO;
+import Sprint.WsProjeto.DTO.*;
 import Sprint.WsProjeto.domain.entities.Avaliacao;
 import Sprint.WsProjeto.service.AvaliacaoService;
 import Sprint.WsProjeto.service.JuriService;
@@ -53,6 +50,30 @@ public class AvaliacaoController {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         }*/
+
+
+    @PatchMapping("/update/{codAvaliacao}")
+    public ResponseEntity<Object> updateAvaliacao (@RequestBody AvaliacaoPartialDTO avaliacaoUpdate, @PathVariable int codAvaliacao) throws Exception {
+        try {
+            AvaliacaoDTO updatedAvaliacao = avaliacaoService.updateAvaliacao (avaliacaoUpdate);
+            return new ResponseEntity<>(updatedAvaliacao, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @PatchMapping("/updateRUC/{codAvaliacao}")
+    public ResponseEntity<Object> updateEstadoAvaliacao (@RequestBody AvaliacaoPartialDTO avaliacaoUpdate, @PathVariable int codAvaliacao) throws Exception {
+        try {
+            AvaliacaoDTO updatedAvaliacao = avaliacaoService.updateEstadoAvaliacao (avaliacaoUpdate);
+            return new ResponseEntity<>(updatedAvaliacao, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
     }
 
 

@@ -118,6 +118,23 @@ public class ProjetoJDBCRepository {
         return optional;
     }
 
+    public List<ProjetoJDBC> findProjetosConcluidos() throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{call prccobterprojetosconcluidos(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet);
+    }
+
     private Connection abrirLigacao() throws SQLException {
         if (connection == null || connection.isClosed()) {
             OracleDataSource ds = new OracleDataSource();

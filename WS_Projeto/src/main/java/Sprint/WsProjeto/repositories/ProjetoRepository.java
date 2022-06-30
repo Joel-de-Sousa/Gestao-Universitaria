@@ -1,15 +1,21 @@
 package Sprint.WsProjeto.repositories;
 
 
+import Sprint.WsProjeto.datamodel.JDBC.ProjetoJDBC;
+import Sprint.WsProjeto.datamodel.JDBC.assembler.ProjetoJDBCDomainDataAssembler;
 import Sprint.WsProjeto.datamodel.JPA.ProjetoJPA;
 import Sprint.WsProjeto.datamodel.JPA.assembler.ProjetoDomainDataAssembler;
 import Sprint.WsProjeto.domain.entities.Projeto;
 import Sprint.WsProjeto.repositories.IRepository.IProjetoRepository;
+import Sprint.WsProjeto.repositories.JDBC.ProjetoJDBCRepository;
 import Sprint.WsProjeto.repositories.JPA.ProjetoJPARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,7 +25,12 @@ public class ProjetoRepository implements IProjetoRepository {
     ProjetoJPARepository projetoJPARepository;
 
     @Autowired
+    ProjetoJDBCRepository projetoJDBCRepository;
+
+    @Autowired
     ProjetoDomainDataAssembler projetoDomainDataAssembler;
+    @Autowired
+    ProjetoJDBCDomainDataAssembler projetoJDBCDataAssembler;
 
 
 
@@ -51,5 +62,14 @@ public class ProjetoRepository implements IProjetoRepository {
         }
         else
             return Optional.empty();
+    }
+
+    public List<Projeto> findProjetosConcluidos() throws SQLException {
+        List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosConcluidos();
+        List<Projeto> listProjetos =new ArrayList<>();
+        for (ProjetoJDBC p:listProjetosJDBC) {
+            listProjetos.add(projetoJDBCDataAssembler.toDomain(p));
+        }
+        return listProjetos;
     }
 }

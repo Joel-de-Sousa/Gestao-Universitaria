@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+import java.util.List;
+
 @Controller
 @RestController
 @RequestMapping(path = "/projetos")
@@ -22,21 +25,21 @@ public class ProjetoController {
         this.projetoService = projetoService;
     }
 
-   @GetMapping("/{codProjeto}")
+    @GetMapping("/{codProjeto}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetoByCode(@PathVariable int codProjeto){
+    public ResponseEntity<Object> findProjetoByCode(@PathVariable int codProjeto) {
 
-       ProjetoDTO oProjeto = projetoService.findProjetoByCode(codProjeto);
+        ProjetoDTO oProjeto = projetoService.findProjetoByCode(codProjeto);
 
-       if (oProjeto != null) {
-           return new ResponseEntity<>(oProjeto, HttpStatus.OK);
-       } else
-           return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        if (oProjeto != null) {
+            return new ResponseEntity<>(oProjeto, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/estudante/{codEstudante}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetoByCodeEstudante (@PathVariable int codEstudante){
+    public ResponseEntity<Object> findProjetoByCodeEstudante(@PathVariable int codEstudante) {
 
         ProjetoDTO oProjeto = projetoService.findProjetoByCodeEstudante(codEstudante);
 
@@ -57,5 +60,15 @@ public class ProjetoController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/filtro/projetosConcluidos")
+    @ResponseBody
+    public ResponseEntity<Object> findProjetosConcluidos() throws SQLException {
+
+        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosConcluidos();
+
+        return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+
     }
 }

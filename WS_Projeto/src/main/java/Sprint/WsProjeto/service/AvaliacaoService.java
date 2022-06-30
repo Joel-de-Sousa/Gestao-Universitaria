@@ -4,10 +4,9 @@ import Sprint.WsProjeto.DTO.*;
 import Sprint.WsProjeto.DTO.assembler.AvaliacaoDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.JuriDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.SubmissaoDomainDTOAssembler;
+import Sprint.WsProjeto.Exceptions.ProjetoNotExists;
 import Sprint.WsProjeto.datamodel.JPA.assembler.JuriDomainDataAssembler;
-import Sprint.WsProjeto.domain.entities.Avaliacao;
-import Sprint.WsProjeto.domain.entities.Juri;
-import Sprint.WsProjeto.domain.entities.Submissao;
+import Sprint.WsProjeto.domain.entities.*;
 import Sprint.WsProjeto.domain.factories.IAvaliacaoFactory;
 import Sprint.WsProjeto.domain.factories.IJuriFactory;
 import Sprint.WsProjeto.repositories.AvaliacaoRepository;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Optional;
 
 @Service
@@ -45,13 +45,13 @@ public class AvaliacaoService {
     public AvaliacaoService() {
     }
 
-    public Avaliacao createAndSaveAvaliacao(int codMA)  {
+    public Avaliacao createAndSaveAvaliacao(int codMA) {
 
         Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA);
 
         Avaliacao oAvaliacaoSaved = avaliacaoRepository.save(avaliacao);
 
-       // AvaliacaoDTO oAvaliacaoDTO = avaliacaoDomainDTOAssembler.toDto(oAvaliacaoSaved);
+        // AvaliacaoDTO oAvaliacaoDTO = avaliacaoDomainDTOAssembler.toDto(oAvaliacaoSaved);
 
         return oAvaliacaoSaved;
 
@@ -64,9 +64,55 @@ public class AvaliacaoService {
 
         if (opAvaliacao.isPresent()) {
             Avaliacao oAvaliacao = opAvaliacao.get();
-           AvaliacaoDTO oAvaliacaoDTO = avaliacaoDomainDTOAssembler.toDto(oAvaliacao);
+            AvaliacaoDTO oAvaliacaoDTO = avaliacaoDomainDTOAssembler.toDto(oAvaliacao);
 
             return oAvaliacaoDTO;
         } else return null;
+    }
+
+    public AvaliacaoDTO updateAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
+
+        Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
+
+        if (opAvaliacao.isPresent()) {
+            if (avaliacaoUpdate.getEstado().equals("PENDENTE") || avaliacaoUpdate.getEstado().equals("REVISAO")) {
+
+                opAvaliacao.get().setCodAvaliacao(avaliacaoUpdate.getCodAvaliacao());
+                opAvaliacao.get().setNota(avaliacaoUpdate.getNota());
+                opAvaliacao.get().setJustificacao(avaliacaoUpdate.getJustificacao());
+                opAvaliacao.get().setDate(Date.valueOf(avaliacaoUpdate.getDate()));
+
+                Avaliacao avaliacaoSaved = avaliacaoRepository.save(opAvaliacao.get());
+                AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
+
+
+                return avaliacaoSavedDTO;
+
+            }
+            throw new Exception("A avaliação está concluída");
+        }
+        throw new Exception("A avaliação não consta na base de dados");
+    }
+
+
+    public AvaliacaoDTO updateEstadoAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
+
+        Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
+
+        if (opAvaliacao.isPresent()) {
+            //if (avaliacaoUpdate.getEstado().equals("PENDENTE") || avaliacaoUpdate.getEstado().equals("REVISAO")) {
+
+                opAvaliacao.get().setCodAvaliacao(avaliacaoUpdate.getCodAvaliacao());
+                opAvaliacao.get().setEstado(Avaliacao.Estado.valueOf(avaliacaoUpdate.getEstado()));
+
+                Avaliacao avaliacaoSaved = avaliacaoRepository.save(opAvaliacao.get());
+                AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
+
+                return avaliacaoSavedDTO;
+
+           /* }
+            throw new Exception("A avaliação está concluída");*/
+        }
+        throw new Exception("A avaliação não consta na base de dados");
     }
 }
