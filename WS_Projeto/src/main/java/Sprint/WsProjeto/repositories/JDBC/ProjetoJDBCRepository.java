@@ -123,6 +123,27 @@ public class ProjetoJDBCRepository {
         return projetoDomainDataAssembler.toJDBC(cachedRowSet).get(0);
     }
 
+    public ProjetoJDBC update(ProjetoJDBC projeto) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncupdateestadoprojetoconcluido(?,?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+
+        callableStatement.setInt(2, projeto.getCodProjeto());
+        callableStatement.setInt(3, projeto.getEstado());
+
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet).get(0);
+    }
+
     public Optional<ProjetoJDBC> remove(ProjetoJDBC projetoJDBC) throws SQLException {
         Optional<ProjetoJDBC> optional=getById(projetoJDBC.getCodProjeto());
 

@@ -42,6 +42,14 @@ public class ProjetoRepository implements IProjetoRepository {
         return projetoJDBCDomainDataAssembler.toDomain(savedProjetoJDBC);
     }
 
+    public Projeto update(Projeto projeto) throws SQLException {
+        ProjetoJDBC projetoJDBC = projetoJDBCDomainDataAssembler.toJDBC(projeto);
+
+        ProjetoJDBC updatedProjetoJDBC = projetoJDBCRepository.update(projetoJDBC);
+
+        return projetoJDBCDomainDataAssembler.toDomain(updatedProjetoJDBC);
+    }
+
     public Optional<Projeto> findById(int codProjeto) throws SQLException {
         Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.getById(codProjeto);
 

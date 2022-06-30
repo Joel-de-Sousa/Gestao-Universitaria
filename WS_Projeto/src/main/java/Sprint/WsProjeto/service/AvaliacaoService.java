@@ -99,7 +99,7 @@ public class AvaliacaoService {
                 opAvaliacao.get().setJustificacao(avaliacaoUpdate.getJustificacao());
                 opAvaliacao.get().setDate(Date.valueOf(avaliacaoUpdate.getDate()));
 
-                Avaliacao avaliacaoSaved = avaliacaoRepository.save(opAvaliacao.get());
+                Avaliacao avaliacaoSaved = avaliacaoRepository.update(opAvaliacao.get());
                 AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
 
 
@@ -140,7 +140,7 @@ public class AvaliacaoService {
                     }
 
                     if(conclusao){
-
+                        projetoService.updateEstado(Projeto.Estado.CONCLUIDO, opAvaliacao.get().getCodProjeto());
                     }
 
                 return avaliacaoSavedDTO;

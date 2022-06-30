@@ -1,6 +1,7 @@
 package Sprint.WsProjeto.repositories.JDBC;
 
 import Sprint.WsProjeto.datamodel.JDBC.AvaliacaoJDBC;
+import Sprint.WsProjeto.datamodel.JDBC.ProjetoJDBC;
 import Sprint.WsProjeto.datamodel.JDBC.assembler.AvaliacaoJDBCDomainDataAssembler;
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,27 @@ public class AvaliacaoJDBCRepository {
         callableStatement.setString(8,avaliacao.getJustificacao());
         callableStatement.setDate(9,avaliacao.getDate());
         callableStatement.setInt(10,avaliacao.getEstado());
+
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return avaliacaoJDBCDomainDataAssembler.toJDBC(cachedRowSet).get(0);
+    }
+
+    public AvaliacaoJDBC update(AvaliacaoJDBC avaliacao) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncupdateavaliacao (?,?,?,?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+
+        callableStatement.setInt(2, avaliacao.getCodAvaliacao());
+        callableStatement.setInt(3, avaliacao.getEstado());
 
 
         callableStatement.execute();

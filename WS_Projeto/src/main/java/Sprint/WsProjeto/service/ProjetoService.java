@@ -1,9 +1,6 @@
 package Sprint.WsProjeto.service;
 
-import Sprint.WsProjeto.DTO.AvaliacaoDTO;
-import Sprint.WsProjeto.DTO.MomentoAvaliacaoDTO;
-import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
-import Sprint.WsProjeto.DTO.ProjetoDTO;
+import Sprint.WsProjeto.DTO.*;
 import Sprint.WsProjeto.DTO.assembler.AvaliacaoDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.ProjetoDomainDTOAssembler;
 import Sprint.WsProjeto.datamodel.REST.EdicaoRestDTO;
@@ -199,4 +196,25 @@ public class ProjetoService {
         }return listFiltradaProjetos;
 
     }
+
+    public void updateEstado(Projeto.Estado estado, int codProjeto) throws Exception {
+
+        Optional<Projeto> opProjeto = projetoRepository.findById(codProjeto);
+
+        if (opProjeto.isPresent()) {
+            if (!opProjeto.get().getEstado().equals(Projeto.Estado.CONCLUIDO)) {
+
+                opProjeto.get().setCodProjeto(codProjeto);
+                opProjeto.get().setEstado(estado);
+
+                Projeto projetoUpdated = projetoRepository.update(opProjeto.get());
+                ProjetoDTO projetoUpdatedDTO = projetoDomainDTOAssembler.toDto(projetoUpdated);
+
+
+            }
+            throw new Exception("O projeto já está com estado concluído");
+        }
+        throw new Exception("O projeto não consta na base de dados");
+    }
+
 }

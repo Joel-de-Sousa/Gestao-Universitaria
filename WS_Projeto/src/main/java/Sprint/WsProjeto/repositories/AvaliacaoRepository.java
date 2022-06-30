@@ -52,6 +52,14 @@ public class AvaliacaoRepository {
         return avaliacaoJDBCDomainDataAssembler.toDomain(savedAvaliacaoJDBC);
     }
 
+    public Avaliacao update(Avaliacao avaliacao) throws Exception {
+        AvaliacaoJDBC avaliacaoJDBC = avaliacaoJDBCDomainDataAssembler.toJDBC(avaliacao);
+
+        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.update(avaliacaoJDBC);
+
+        return avaliacaoJDBCDomainDataAssembler.toDomain(savedAvaliacaoJDBC);
+    }
+
 /*    public Optional<Avaliacao> findById(int codAvaliacao) {
         Optional<AvaliacaoJPA> opAvaliacao = avaliacaoJPARepository.findById(codAvaliacao);
 
