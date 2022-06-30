@@ -67,11 +67,11 @@ public class ProjetoController {
         }
     }
 
-    @GetMapping("/filtro/ProjetosByCodDocente/{codDocente}")
+    @GetMapping("/{codRUC}/filtro/ProjetosByCodDocente/{codDocente}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosByCodDocente (@PathVariable int codDocente){
+    public ResponseEntity<Object> findProjetosByCodDocente (@PathVariable int codRUC ,@PathVariable int codDocente){
         try {
-            List<ProjetoDTO> lProjeto = projetoService.findProjetosByCodDocente(codDocente);
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosByCodDocente(codRUC,codDocente);
 
             return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
 
@@ -80,11 +80,11 @@ public class ProjetoController {
         }
     }
 
-    @GetMapping("/filtro/ProjetosComMACompleto/{codDocente}")
+    @GetMapping("/{codRUC}/filtro/ProjetosComMACompleto/{codDocente}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosComDeterminadoMACompleto (@PathVariable int codMA){
+    public ResponseEntity<Object> findProjetosComDeterminadoMACompleto (@PathVariable int codRUC ,@PathVariable int codMA){
         try {
-            List<ProjetoDTO> lProjeto = projetoService.findProjetosComDeterminadoMACompleto(codMA);
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosComDeterminadoMACompleto(codRUC,codMA);
 
             return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
 
@@ -106,21 +106,21 @@ public class ProjetoController {
         }
     }
 
-    @GetMapping("/filtro/projetosConcluidos")
+    @GetMapping("/{codRUC}/filtro/projetosConcluidos")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosConcluidos() throws SQLException {
+    public ResponseEntity<Object> findProjetosConcluidos(@PathVariable int codRUC ) throws Exception {
 
-        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosConcluidos();
+        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosConcluidos(codRUC);
 
         return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
 
     }
 
-    @GetMapping("/filtro/projetosDatas/fetch/{one_date}/{two_date}")
+    @GetMapping("/{codRUC}/filtro/projetosDatas/fetch/{one_date}/{two_date}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable(value = "one_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date fromDate, @PathVariable(value = "two_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date toDate) throws SQLException {
+    public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable int codRUC ,@PathVariable(value = "one_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date fromDate, @PathVariable(value = "two_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date toDate) throws Exception {
 
-        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(fromDate, toDate);
+        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(codRUC,fromDate, toDate);
 
         return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
 
