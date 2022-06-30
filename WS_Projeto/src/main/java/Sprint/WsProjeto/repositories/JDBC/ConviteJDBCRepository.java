@@ -98,8 +98,8 @@ public class ConviteJDBCRepository {
         return conviteJDBCDomainDataAssembler.toJDBC(cachedRowSet).get(0);
     }
 
-    public Optional<ConviteJDBC> remove(ConviteJDBC conviteJDBC) throws SQLException {
-        Optional<ConviteJDBC> optional=getById(conviteJDBC.getCodConvite());
+    public Optional<ConviteJDBC> remove(int codConvite) throws SQLException {
+        Optional<ConviteJDBC> optional=getById(codConvite);
 
         if(!optional.isPresent()) {
             return Optional.empty();
@@ -109,7 +109,7 @@ public class ConviteJDBCRepository {
 
         CallableStatement callableStatement=connection.prepareCall("{call prceliminarconvite(?)}");
 
-        callableStatement.setInt(1, conviteJDBC.getCodConvite());
+        callableStatement.setInt(1, codConvite);
 
         callableStatement.execute();
         fecharLigacao();

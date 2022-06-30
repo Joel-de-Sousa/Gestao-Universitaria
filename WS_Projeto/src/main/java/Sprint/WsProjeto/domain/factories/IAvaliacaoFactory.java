@@ -5,5 +5,5 @@ import Sprint.WsProjeto.domain.entities.Juri;
 import Sprint.WsProjeto.domain.entities.Submissao;
 
 public interface IAvaliacaoFactory {
-    Avaliacao createAvaliacao(int nCodMA);
+    Avaliacao createAvaliacao(int nCodMA, int nCodProjeto);
 }

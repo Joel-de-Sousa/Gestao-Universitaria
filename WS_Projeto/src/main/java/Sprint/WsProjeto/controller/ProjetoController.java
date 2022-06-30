@@ -44,7 +44,7 @@ public class ProjetoController {
 
     @GetMapping("/estudante/{codEstudante}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetoByCodeEstudante(@PathVariable int codEstudante) {
+    public ResponseEntity<Object> findProjetoByCodeEstudante(@PathVariable int codEstudante) throws SQLException {
 
         ProjetoDTO oProjeto = projetoService.findProjetoByCodeEstudante(codEstudante);
 

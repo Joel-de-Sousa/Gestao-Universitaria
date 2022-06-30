@@ -71,15 +71,10 @@ public class ProjetoService {
 
             Optional<EdicaoRestDTO> edicaoRestDTO = edicaoWebRepository.findEdicaoByCode(propostaRestDTO.get().getCodEdicao());
             List<MomentoAvaliacaoDTO> momentoAvaliacaoList = edicaoRestDTO.get().getMomentoAvaliacaoList();
-            List<Avaliacao> list = new ArrayList<>();
             for (MomentoAvaliacaoDTO momentoAvaliacaoDTO : momentoAvaliacaoList) {
-                Avaliacao avaliacao = avaliacaoService.createAndSaveAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao());
-                list = oProjetoSaved.getListaAvaliacoes();
-                    list.add(avaliacao);
+                Avaliacao avaliacao = avaliacaoService.createAndSaveAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao(),oProjetoSaved.getCodProjeto());
             }
-            oProjetoSaved.setListaAvaliacoes(list);
-            Projeto projetoSave = projetoRepository.save(oProjetoSaved);
-            ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(projetoSave);
+            ProjetoDTO oProjetoDTO = projetoDomainDTOAssembler.toDto(oProjetoSaved);
 
             return oProjetoDTO;
         } else
@@ -88,7 +83,7 @@ public class ProjetoService {
 
     }
 
-    public ProjetoDTO findProjetoByCode(int codProjeto) {
+    public ProjetoDTO findProjetoByCode(int codProjeto) throws SQLException {
 
         Optional<Projeto> opProjeto = projetoRepository.findById(codProjeto);
 
@@ -100,7 +95,7 @@ public class ProjetoService {
         } else return null;
     }
 
-    public ProjetoDTO findProjetoByCodeEstudante(int codEstudante) {
+    public ProjetoDTO findProjetoByCodeEstudante(int codEstudante) throws SQLException {
 
         Optional<Projeto> opProjeto = projetoRepository.findByCodEstudante(codEstudante);
 

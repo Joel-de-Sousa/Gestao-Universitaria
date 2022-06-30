@@ -45,9 +45,9 @@ public class AvaliacaoService {
     public AvaliacaoService() {
     }
 
-    public Avaliacao createAndSaveAvaliacao(int codMA) {
+    public Avaliacao createAndSaveAvaliacao(int codMA , int codProjeto) {
 
-        Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA);
+        Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA,codProjeto);
 
         Avaliacao oAvaliacaoSaved = avaliacaoRepository.save(avaliacao);
 

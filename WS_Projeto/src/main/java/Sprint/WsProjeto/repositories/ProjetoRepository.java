@@ -23,43 +23,41 @@ import java.util.Optional;
 @Repository
 public class ProjetoRepository implements IProjetoRepository {
 
-    @Autowired
-    ProjetoJPARepository projetoJPARepository;
+
 
     @Autowired
     ProjetoJDBCRepository projetoJDBCRepository;
 
+
     @Autowired
-    ProjetoDomainDataAssembler projetoDomainDataAssembler;
-    @Autowired
-    ProjetoJDBCDomainDataAssembler projetoJDBCDataAssembler;
+    ProjetoJDBCDomainDataAssembler projetoJDBCDomainDataAssembler;
 
 
 
-    public Projeto save(Projeto projeto) {
-        ProjetoJPA projetoJPA = projetoDomainDataAssembler.toData(projeto);
+    public Projeto save(Projeto projeto) throws SQLException {
+        ProjetoJDBC projetoJDBC = projetoJDBCDomainDataAssembler.toJDBC(projeto);
 
-        ProjetoJPA savedProjetoJPA = projetoJPARepository.save(projetoJPA);
+        ProjetoJDBC savedProjetoJDBC = projetoJDBCRepository.save(projetoJDBC);
 
-        return projetoDomainDataAssembler.toDomain(savedProjetoJPA);
+        return projetoJDBCDomainDataAssembler.toDomain(savedProjetoJDBC);
     }
 
-    public Optional<Projeto> findById(int codProjeto) {
-        Optional<ProjetoJPA> opProjeto = projetoJPARepository.findById(codProjeto);
+    public Optional<Projeto> findById(int codProjeto) throws SQLException {
+        Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.getById(codProjeto);
 
         if ( opProjeto.isPresent() ) {
-            Projeto projeto = projetoDomainDataAssembler.toDomain(opProjeto.get());
+            Projeto projeto = projetoJDBCDomainDataAssembler.toDomain(opProjeto.get());
             return Optional.of( projeto );
         }
         else
             return Optional.empty();
     }
 
-    public Optional<Projeto> findByCodEstudante(int codEstudante) {
-        Optional<ProjetoJPA> opProjeto = projetoJPARepository.findByCodEstudante (codEstudante);
+    public Optional<Projeto> findByCodEstudante(int codEstudante) throws SQLException {
+        Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.findProjetoByCodeEstudante(codEstudante);
 
         if ( opProjeto.isPresent() ) {
-            Projeto projeto = projetoDomainDataAssembler.toDomain(opProjeto.get());
+            Projeto projeto = projetoJDBCDomainDataAssembler.toDomain(opProjeto.get());
             return Optional.of( projeto );
         }
         else
@@ -70,7 +68,7 @@ public class ProjetoRepository implements IProjetoRepository {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosConcluidos();
         List<Projeto> listProjetos =new ArrayList<>();
         for (ProjetoJDBC p:listProjetosJDBC) {
-            listProjetos.add(projetoJDBCDataAssembler.toDomain(p));
+            listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
         }
         return listProjetos;
     }
@@ -79,7 +77,7 @@ public class ProjetoRepository implements IProjetoRepository {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosDatasAvaliacao(fromDate, toDate);
         List<Projeto> listProjetos =new ArrayList<>();
         for (ProjetoJDBC p:listProjetosJDBC) {
-            listProjetos.add(projetoJDBCDataAssembler.toDomain(p));
+            listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
         }
         return listProjetos;
     }
