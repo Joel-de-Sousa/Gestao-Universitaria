@@ -5,38 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b096c69-9f93-41f5-add4-dd696e96e151" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Edicao/edicao/demo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaTurma1_JoanaVilasBoas_JoelBrandao_JoelSousa_TiagoBastos/WebServers/WS_Proposta/proposta/proposta.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../WS_Proposta/.idea/WS_Proposta.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WS_Edicao/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/data/demo.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/data/demo.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/services/EdicaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/main/java/WSEdicao/services/EdicaoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/IT/EdicaoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/IT/EdicaoIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/controllers/EdicaoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/EdicaoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/MomentoAvaliacaoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/repositories/MomentoAvaliacaoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/EdicaoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/EdicaoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/MomentoAvaliacaoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/services/MomentoAvaliacaoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/controllers/MomentoAvaliacaoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Edicao/edicao/src/test/java/WSEdicao/controllers/MomentoAvaliacaoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/controllers/PropostaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/controllers/PropostaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/repositories/PropostaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/repositories/PropostaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/services/PropostaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/services/PropostaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WS_Utilizador/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../WS_Utilizador/data/demo.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
@@ -50,13 +64,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Joel Sousa/Desktop/Alojamento"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="PropostaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="wsproposta.proposta.PropostaApplication" />
+      <module name="proposta" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="wsproposta.proposta.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.PropostaApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -67,5 +97,27 @@
       <updated>1655772915440</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/proposta/src/main/java/wsproposta/proposta/repositories/PropostaRepository.java</url>
+          <line>148</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

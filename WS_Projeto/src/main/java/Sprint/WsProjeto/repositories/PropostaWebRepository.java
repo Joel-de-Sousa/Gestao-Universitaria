@@ -7,6 +7,7 @@ import Sprint.WsProjeto.repositories.REST.UtilizadorRestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -24,4 +25,15 @@ public class PropostaWebRepository {
 
         return opCode;
     }
+
+    public List<PropostaRestDTO> findAllPropostasAceitesByCodEdicao(int codEdicao) throws Exception {
+
+        Optional<List<PropostaRestDTO>> lista = propostaRestRepository.findAllPropostasAceitesByCodEdicao(codEdicao);
+
+        if(lista.isPresent()){
+            return lista.get();
+        } else
+        throw new Exception("Não foram encontradas Propostas");
+    }
+
 }

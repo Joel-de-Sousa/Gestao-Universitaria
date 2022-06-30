@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.sql.SQLException;
+
 import java.util.List;
 
 @Controller
@@ -47,6 +49,33 @@ public class ProjetoController {
             return new ResponseEntity<>(oProjeto, HttpStatus.OK);
         } else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/filtroCodRUC/{codRUC}")
+    @ResponseBody
+    public ResponseEntity<Object> findProjetosByCodRUC (@PathVariable int codRUC){
+        try {
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosPorCodigoRUC(codRUC);
+
+            return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
+
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/filtroCodDocente/{codDocente}")
+    @ResponseBody
+    public ResponseEntity<Object> findProjetosByCodDocente (@PathVariable int codDocente){
+        try {
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosPorCodigoRUC(codDocente);
+
+            return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
+
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
     }
 
 

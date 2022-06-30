@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import wsproposta.proposta.datamodel.JPA.PropostaJPA;
 import wsproposta.proposta.datamodel.JPA.assembler.PropostaDomainDataAssembler;
+import wsproposta.proposta.datamodel.REST.EdicaoAllArgsDTO;
 import wsproposta.proposta.domain.entities.Proposta;
 import wsproposta.proposta.repositories.JPA.IPropostaJPARepository;
+import wsproposta.proposta.repositories.REST.EdicaoRestRepository;
 import wsproposta.proposta.repositories.iRepositories.IPropostaRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +21,8 @@ public class PropostaRepository implements IPropostaRepository {
     IPropostaJPARepository propostaJPARepository;
     @Autowired
     PropostaDomainDataAssembler propostaAssembler;
+    @Autowired
+    EdicaoRestRepository edicaoRestRepository;
 
 
     /**
@@ -130,6 +135,20 @@ public class PropostaRepository implements IPropostaRepository {
     //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
     public List<Proposta> findAllByCodEdicao (int codEdicao){
         List<PropostaJPA> listFiltradaPropostasJPA = propostaJPARepository.findAllByCodEdicao(codEdicao);
+        List<Proposta> listFiltradaPropostas =new ArrayList<>();
+        for (PropostaJPA p:listFiltradaPropostasJPA) {
+            listFiltradaPropostas.add(propostaAssembler.toDomain(p));
+        }
+        return listFiltradaPropostas;
+    }
+
+    //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
+    public List<Proposta> findAllByCodEdicao2 (int codRUC){
+
+
+        List<Optional<List<EdicaoAllArgsDTO>>> listEdicao = Collections.singletonList(edicaoRestRepository.findAllEdicaoByCodRUC(codRUC));
+
+        List<PropostaJPA> listFiltradaPropostasJPA = propostaJPARepository.findAllByCodEdicao(codRUC);
         List<Proposta> listFiltradaPropostas =new ArrayList<>();
         for (PropostaJPA p:listFiltradaPropostasJPA) {
             listFiltradaPropostas.add(propostaAssembler.toDomain(p));
