@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,7 @@ public class SubmissaoService {
     @Autowired
     SubmissaoRepository submissaoRepository;
 
-    public SubmissaoDTO findSubmissaoBycode(int codSubmissao) throws IOException {
+    public SubmissaoDTO findSubmissaoBycode(int codSubmissao) throws IOException, SQLException {
 
         Optional<Submissao> opSubmissao = submissaoRepository.findById(codSubmissao);
 

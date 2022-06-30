@@ -13,6 +13,7 @@ import Sprint.WsProjeto.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Service
@@ -35,7 +36,7 @@ public class JuriService {
     public JuriService() {
     }
 
-    public JuriDTO createAndSaveJuri(NewJuriInfoDTO juriInfoDto) throws JuriIDException {
+    public JuriDTO createAndSaveJuri(NewJuriInfoDTO juriInfoDto) throws Exception {
 
         if(juriInfoDto.getCodArguente()!=juriInfoDto.getCodOrientador()&&juriInfoDto.getCodArguente()!=juriInfoDto.getCodPresidente()&& juriInfoDto.getCodPresidente()!=juriInfoDto.getCodOrientador()) {
             Juri juri = juriFactory.createJuri(juriInfoDto.getCodPresidente(), juriInfoDto.getCodOrientador(), juriInfoDto.getCodArguente());
@@ -54,7 +55,7 @@ public class JuriService {
             throw new JuriIDException("O Docente não pode desempenhar 2 papeis no Juri");
     }
 
-    public JuriDTO findJuriByCode(int codJuri) {
+    public JuriDTO findJuriByCode(int codJuri) throws SQLException {
 
         Optional<Juri> opJuri = juriRepository.findById(codJuri);
 

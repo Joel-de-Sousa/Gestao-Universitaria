@@ -29,5 +29,5 @@ public class ProjetoDTO {
     private int codOrientador;
 
     @Getter
-    private ArrayList<AvaliacaoDTO> avaliacaoList;
+    private String estado;
 }

@@ -1,10 +1,10 @@
 package Sprint.WsProjeto.repositories;
 
 
+import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.datamodel.JDBC.ProjetoJDBC;
 import Sprint.WsProjeto.datamodel.JDBC.assembler.ProjetoJDBCDomainDataAssembler;
-import Sprint.WsProjeto.datamodel.JPA.ProjetoJPA;
-import Sprint.WsProjeto.datamodel.JPA.assembler.ProjetoDomainDataAssembler;
+
 import Sprint.WsProjeto.domain.entities.Projeto;
 import Sprint.WsProjeto.repositories.IRepository.IProjetoRepository;
 import Sprint.WsProjeto.repositories.JDBC.ProjetoJDBCRepository;
@@ -24,14 +24,12 @@ import java.util.Optional;
 public class ProjetoRepository implements IProjetoRepository {
 
 
-
     @Autowired
     ProjetoJDBCRepository projetoJDBCRepository;
 
 
     @Autowired
     ProjetoJDBCDomainDataAssembler projetoJDBCDomainDataAssembler;
-
 
 
     public Projeto save(Projeto projeto) throws SQLException {
@@ -42,49 +40,68 @@ public class ProjetoRepository implements IProjetoRepository {
         return projetoJDBCDomainDataAssembler.toDomain(savedProjetoJDBC);
     }
 
-    public Projeto update(Projeto projeto) throws SQLException {
+    /*public Projeto update(Projeto projeto) throws SQLException {
         ProjetoJDBC projetoJDBC = projetoJDBCDomainDataAssembler.toJDBC(projeto);
 
         ProjetoJDBC updatedProjetoJDBC = projetoJDBCRepository.update(projetoJDBC);
 
         return projetoJDBCDomainDataAssembler.toDomain(updatedProjetoJDBC);
+    }*/
+
+
+    public void update(Projeto.Estado estado, int codProjeto) throws SQLException {
+
+        Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.getById(codProjeto);
+
+        if (opProjeto.isPresent()) {
+            if (opProjeto.get().getEstado() != 1) {
+
+                opProjeto.get().setCodProjeto(codProjeto);
+                opProjeto.get().setEstado(estado.ordinal());
+
+                //ProjetoJDBC projetoJDBC = projetoJDBCDomainDataAssembler.toJDBC(opProjeto.get());
+
+                ProjetoJDBC updatedProjetoJDBC = projetoJDBCRepository.update(opProjeto.get());
+
+                //return projetoJDBCDomainDataAssembler.toDomain(updatedProjetoJDBC);
+            }
+        }
     }
+
 
     public Optional<Projeto> findById(int codProjeto) throws SQLException {
         Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.getById(codProjeto);
 
-        if ( opProjeto.isPresent() ) {
+        if (opProjeto.isPresent()) {
             Projeto projeto = projetoJDBCDomainDataAssembler.toDomain(opProjeto.get());
-            return Optional.of( projeto );
-        }
-        else
+            return Optional.of(projeto);
+        } else
             return Optional.empty();
     }
 
     public Optional<Projeto> findByCodEstudante(int codEstudante) throws SQLException {
         Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.findProjetoByCodeEstudante(codEstudante);
 
-        if ( opProjeto.isPresent() ) {
+        if (opProjeto.isPresent()) {
             Projeto projeto = projetoJDBCDomainDataAssembler.toDomain(opProjeto.get());
-            return Optional.of( projeto );
-        }
-        else
+            return Optional.of(projeto);
+        } else
             return Optional.empty();
     }
 
     public List<Projeto> findProjetosConcluidos() throws SQLException {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosConcluidos();
-        List<Projeto> listProjetos =new ArrayList<>();
-        for (ProjetoJDBC p:listProjetosJDBC) {
+        List<Projeto> listProjetos = new ArrayList<>();
+        for (ProjetoJDBC p : listProjetosJDBC) {
             listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
         }
         return listProjetos;
     }
 
-    public List<Projeto> findProjetosDatasAvaliacao (Date fromDate, Date toDate) throws SQLException {
+    public List<Projeto> findProjetosDatasAvaliacao(Date fromDate, Date toDate) throws SQLException {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosDatasAvaliacao(fromDate, toDate);
-        List<Projeto> listProjetos =new ArrayList<>();
-        for (ProjetoJDBC p:listProjetosJDBC) {
+        List<Projeto> listProjetos = new ArrayList<>();
+        for (ProjetoJDBC p : listProjetosJDBC) {
             listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
         }
         return listProjetos;
@@ -92,8 +109,8 @@ public class ProjetoRepository implements IProjetoRepository {
 
     public List<Projeto> findProjetosByCodDocente(int codDocente) throws SQLException {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosByCodDocente(codDocente);
-        List<Projeto> listProjetos =new ArrayList<>();
-        for (ProjetoJDBC p:listProjetosJDBC) {
+        List<Projeto> listProjetos = new ArrayList<>();
+        for (ProjetoJDBC p : listProjetosJDBC) {
             listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
         }
         return listProjetos;
@@ -102,18 +119,17 @@ public class ProjetoRepository implements IProjetoRepository {
     public Projeto findProjetoByCodProposta(int codProposta) throws SQLException {
         Optional<ProjetoJDBC> opProjeto = projetoJDBCRepository.findProjetoByCodProposta(codProposta);
 
-        if ( opProjeto.isPresent() ) {
+        if (opProjeto.isPresent()) {
             Projeto projeto = projetoJDBCDomainDataAssembler.toDomain(opProjeto.get());
-            return  projeto ;
-        }
-        else
+            return projeto;
+        } else
             return null;
     }
 
     public List<Projeto> findProjetosComDeterminadoMACompleto(int codMA) throws SQLException {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosComDeterminadoMACompleto(codMA);
-        List<Projeto> listProjetos =new ArrayList<>();
-        for (ProjetoJDBC p:listProjetosJDBC) {
+        List<Projeto> listProjetos = new ArrayList<>();
+        for (ProjetoJDBC p : listProjetosJDBC) {
             listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
         }
         return listProjetos;

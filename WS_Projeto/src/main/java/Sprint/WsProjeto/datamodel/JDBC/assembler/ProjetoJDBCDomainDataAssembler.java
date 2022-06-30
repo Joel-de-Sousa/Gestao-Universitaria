@@ -23,7 +23,7 @@ public class ProjetoJDBCDomainDataAssembler {
 
     public ProjetoJDBC toJDBC (Projeto projeto){
 
-        return new ProjetoJDBC (projeto.getCodProjeto(), projeto.getCodProposta(), projeto.getCodEstudante(), projeto.getCodOrientador(),projeto.getEstado().ordinal());
+        return new ProjetoJDBC ( projeto.getCodProposta(), projeto.getCodEstudante(), projeto.getCodOrientador());
     }
 
     public Projeto toDomain (ProjetoJDBC projetoJDBC){

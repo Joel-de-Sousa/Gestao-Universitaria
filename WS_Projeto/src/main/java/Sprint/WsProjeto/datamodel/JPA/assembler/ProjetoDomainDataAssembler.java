@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+/*@Service
 public class ProjetoDomainDataAssembler {
     @Autowired
     AvaliacaoRepository avaliacaoRepository;
@@ -49,4 +49,4 @@ public class ProjetoDomainDataAssembler {
 
         return new Projeto(projetoJPA.getCodProjeto(),projetoJPA.getCodProposta(),  projetoJPA.getCodEstudante(), projetoJPA.getCodOrientador(),listAvaliacao);
     }
-}
+}*/

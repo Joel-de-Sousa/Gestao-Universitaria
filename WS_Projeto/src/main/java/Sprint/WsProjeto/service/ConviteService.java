@@ -17,6 +17,7 @@ import Sprint.WsProjeto.repositories.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Service
@@ -43,7 +44,7 @@ public class ConviteService {
     public ConviteService() {
     }
 
-    public ConviteDTO createAndSaveConvite(NewConviteInfoDTO conviteInfoDto) throws ProjetoNotExists {
+    public ConviteDTO createAndSaveConvite(NewConviteInfoDTO conviteInfoDto) throws ProjetoNotExists, SQLException {
 
         if(projetoJPARepository.existsById(conviteInfoDto.getCodProjeto())) {
 

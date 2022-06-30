@@ -197,7 +197,7 @@ public class ProjetoService {
 
     }
 
-    public void updateEstado(Projeto.Estado estado, int codProjeto) throws Exception {
+    /*public void updateEstado(Projeto.Estado estado, int codProjeto) throws Exception {
 
         Optional<Projeto> opProjeto = projetoRepository.findById(codProjeto);
 
@@ -215,6 +215,6 @@ public class ProjetoService {
             throw new Exception("O projeto já está com estado concluído");
         }
         throw new Exception("O projeto não consta na base de dados");
-    }
+    }*/
 
 }

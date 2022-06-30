@@ -3,8 +3,7 @@ package Sprint.WsProjeto.repositories.JDBC;
 import Sprint.WsProjeto.datamodel.JDBC.JuriJDBC;
 import Sprint.WsProjeto.datamodel.JDBC.ProjetoJDBC;
 import Sprint.WsProjeto.datamodel.JDBC.assembler.ProjetoJDBCDomainDataAssembler;
-import Sprint.WsProjeto.datamodel.JPA.assembler.JuriDomainDataAssembler;
-import Sprint.WsProjeto.datamodel.JPA.assembler.ProjetoDomainDataAssembler;
+
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
