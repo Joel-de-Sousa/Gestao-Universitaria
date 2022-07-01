@@ -122,18 +122,8 @@ public class ProjetoService {
     }
 
     public List<ProjetoDTO> findProjetosPorCodigoRUC(int codRUC) throws Exception {
-        List<ProjetoDTO> listProjeto = new ArrayList<>();
-        List<EdicaoRestDTO> listEdicoes = edicaoWebRepository.getListaEdicoesByCodRUC(codRUC);
-        for (EdicaoRestDTO edicao : listEdicoes) {
-            List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByCodEdicao(edicao.getCodEdicao());
-            for (PropostaRestDTO proposta : listPropostas) {
-                Projeto projeto = projetoRepository.findProjetoByCodProposta(proposta.getCodProposta());
-                ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
-                listProjeto.add(projetoDTO);
-            }
-        }
+        List<ProjetoDTO> listProjeto=projetoRepository.findProjetosPorCodigoRUC(codRUC);
         return listProjeto;
-
     }
 
     public List<ProjetoDTO> findProjetosConcluidos(int codRuc) throws Exception {
@@ -186,11 +176,11 @@ public class ProjetoService {
             throw new Exception("O Codigo introduzido não pertence a um RUC");
     }
     
-    public List<ProjetoDTO> findProjetosDatasAvaliacao(int codRuc,Date fromDate, Date toDate) throws Exception {
+    public List<ProjetoDTO> findProjetosDatasAvaliacao(int codRuc,int codMA, Date fromDate, Date toDate) throws Exception {
         List<EdicaoRestDTO> edicaoRestDTO=edicaoWebRepository.getListaEdicoesByCodRUC(codRuc);
         if(!edicaoRestDTO.isEmpty()) {
 
-        List<Projeto> listProjetos = projetoRepository.findProjetosDatasAvaliacao(fromDate, toDate);
+        List<Projeto> listProjetos = projetoRepository.findProjetosDatasAvaliacao(codMA, fromDate, toDate);
 
         List<ProjetoDTO> listProjetoDTO = new ArrayList<>();
         for (Projeto projeto : listProjetos) {

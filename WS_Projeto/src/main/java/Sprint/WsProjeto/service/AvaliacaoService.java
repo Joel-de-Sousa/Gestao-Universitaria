@@ -115,13 +115,13 @@ public class AvaliacaoService {
     }
 
 
-    /*public AvaliacaoDTO updateEstadoAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
+    public AvaliacaoDTO updateEstadoAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
 
 
         Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
 
         if (opAvaliacao.isPresent()) {
-            List<ProjetoDTO> listProjetosRUC = projetoService.findProjetosPorCodigoRUC(avaliacaoUpdate.getCodRUC());
+            List<ProjetoDTO> listProjetosRUC = projetoRepository.findProjetosPorCodigoRUC(avaliacaoUpdate.getCodRUC());
 
             for(ProjetoDTO projeto : listProjetosRUC){
 
@@ -133,7 +133,7 @@ public class AvaliacaoService {
                 Avaliacao avaliacaoSaved = avaliacaoRepository.save(opAvaliacao.get());
                 AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
 
-                *//*boolean conclusao = true;
+                boolean conclusao = true;
                 List<Avaliacao> lisAvaliacao = avaliacaoRepository.findAvaliacoesByCodProjeto(opAvaliacao.get().getCodProjeto());
                     for(Avaliacao avaliacao : lisAvaliacao){
                         if(!avaliacao.getEstado().equals(Avaliacao.Estado.CONCLUIDA)){
@@ -144,12 +144,12 @@ public class AvaliacaoService {
 
                     if(conclusao){
                         projetoRepository.update(Projeto.Estado.CONCLUIDO, opAvaliacao.get().getCodProjeto());
-                    }*//*
+                    }
 
                 return avaliacaoSavedDTO;
                 }
         }
 
     }throw new Exception("A avaliação não consta na base de dados");
-}*/
+}
 }

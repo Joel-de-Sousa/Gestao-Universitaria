@@ -2,9 +2,12 @@ package Sprint.WsProjeto.repositories;
 
 
 import Sprint.WsProjeto.DTO.ProjetoDTO;
+import Sprint.WsProjeto.DTO.assembler.ProjetoDomainDTOAssembler;
 import Sprint.WsProjeto.datamodel.JDBC.ProjetoJDBC;
 import Sprint.WsProjeto.datamodel.JDBC.assembler.ProjetoJDBCDomainDataAssembler;
 
+import Sprint.WsProjeto.datamodel.REST.EdicaoRestDTO;
+import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
 import Sprint.WsProjeto.domain.entities.Projeto;
 import Sprint.WsProjeto.repositories.IRepository.IProjetoRepository;
 import Sprint.WsProjeto.repositories.JDBC.ProjetoJDBCRepository;
@@ -26,10 +29,16 @@ public class ProjetoRepository implements IProjetoRepository {
 
     @Autowired
     ProjetoJDBCRepository projetoJDBCRepository;
-
-
     @Autowired
     ProjetoJDBCDomainDataAssembler projetoJDBCDomainDataAssembler;
+
+    @Autowired
+    EdicaoWebRepository edicaoWebRepository;
+    @Autowired
+    PropostaWebRepository propostaWebRepository;
+
+    @Autowired
+    ProjetoDomainDTOAssembler projetoDomainDTOAssembler;
 
 
     public Projeto save(Projeto projeto) throws SQLException {
@@ -98,8 +107,8 @@ public class ProjetoRepository implements IProjetoRepository {
         return listProjetos;
     }
 
-    public List<Projeto> findProjetosDatasAvaliacao(Date fromDate, Date toDate) throws SQLException {
-        List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosDatasAvaliacao(fromDate, toDate);
+    public List<Projeto> findProjetosDatasAvaliacao(int codMA, Date fromDate, Date toDate) throws SQLException {
+        List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosDatasAvaliacao(codMA, fromDate, toDate);
         List<Projeto> listProjetos = new ArrayList<>();
         for (ProjetoJDBC p : listProjetosJDBC) {
             listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
@@ -133,5 +142,22 @@ public class ProjetoRepository implements IProjetoRepository {
             listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
         }
         return listProjetos;
+    }
+
+    public List<ProjetoDTO> findProjetosPorCodigoRUC(int codRUC) throws Exception {
+        List<ProjetoDTO> listProjeto = new ArrayList<>();
+        List<EdicaoRestDTO> listEdicoes = edicaoWebRepository.getListaEdicoesByCodRUC(codRUC);
+
+        for (EdicaoRestDTO edicao : listEdicoes) {
+            List<PropostaRestDTO> listPropostas = propostaWebRepository.findAllPropostasAceitesByCodEdicao(edicao.getCodEdicao());
+
+            for (PropostaRestDTO proposta : listPropostas) {
+                Projeto projeto =findProjetoByCodProposta(proposta.getCodProposta());
+                ProjetoDTO projetoDTO = projetoDomainDTOAssembler.toDto(projeto);
+                listProjeto.add(projetoDTO);
+            }
+        }
+        return listProjeto;
+
     }
 }

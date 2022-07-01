@@ -27,7 +27,7 @@ public class AvaliacaoController {
         @GetMapping("/{codAvaliacao}")
         @ResponseBody
         //public ResponseEntity<Object> findAvalicaoByCode(@PathVariable int codAvaliacao) {
-            public ResponseEntity<Object> findAvalicaoByCode(@RequestParam int codAvaliacao) throws Exception {
+            public ResponseEntity<Object> findAvalicaoByCode(@PathVariable int codAvaliacao) throws Exception {
 
           AvaliacaoDTO oAvaliacao = avaliacaoService.findAvaliacaoByCode(codAvaliacao);
 
@@ -78,7 +78,7 @@ public class AvaliacaoController {
     }
 
 
-    /*@PatchMapping("/updateRUC/{codAvaliacao}")
+    @PatchMapping("/updateRUC/{codAvaliacao}")
     public ResponseEntity<Object> updateEstadoAvaliacao (@RequestBody AvaliacaoPartialDTO avaliacaoUpdate, @PathVariable int codAvaliacao) throws Exception {
         try {
             AvaliacaoDTO updatedAvaliacao = avaliacaoService.updateEstadoAvaliacao (avaliacaoUpdate);
@@ -87,7 +87,7 @@ public class AvaliacaoController {
         catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-    }*/
+    }
     }
 
 

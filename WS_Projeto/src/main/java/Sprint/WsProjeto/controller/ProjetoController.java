@@ -80,7 +80,7 @@ public class ProjetoController {
         }
     }
 
-    @GetMapping("/{codRUC}/filtro/ProjetosComMACompleto/{codDocente}")
+    @GetMapping("/{codRUC}/filtro/ProjetosComMACompleto/{codMA}")
     @ResponseBody
     public ResponseEntity<Object> findProjetosComDeterminadoMACompleto (@PathVariable int codRUC ,@PathVariable int codMA){
         try {
@@ -116,17 +116,17 @@ public class ProjetoController {
 
     }
 
-    @GetMapping("/{codRUC}/filtro/projetosDatas/fetch/{one_date}/{two_date}")
+    @GetMapping("/{codRUC}/filtro/projetosDatas/fetch/{codMA}/{fromDate}/{toDate}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable int codRUC ,@PathVariable(value = "one_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date fromDate, @PathVariable(value = "two_date") @DateTimeFormat(pattern = "yyyy-mm-dd") Date toDate) throws Exception {
+    public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable int codRUC ,@PathVariable int codMA, @PathVariable Date fromDate, @PathVariable Date toDate) throws Exception {
 
-        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(codRUC,fromDate, toDate);
+        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(codRUC, codMA,fromDate, toDate);
 
         return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
 
     }
 
-    @GetMapping("/filtro/projetosNif/{nifOrganizacao}")
+    @GetMapping("/{codRUC}/filtro/projetosNif/{nifOrganizacao}")
     @ResponseBody
     public ResponseEntity<Object> findProjetosByNifOrganizacao (@PathVariable long nifOrganizacao) throws Exception {
 
