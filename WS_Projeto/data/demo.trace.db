@@ -2710,3 +2710,6 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 2022-06-27 00:11:07 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]LISTA_AVALIACOES"; SQL statement:
 LISTA_AVALIACOES [42000-212]
+2022-07-01 10:23:16 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AVALIACOES" not found; SQL statement:
+SELECT * FROM AVALIACoes [42102-212]
