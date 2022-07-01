@@ -109,10 +109,10 @@ public class AvaliacaoJDBCRepository {
         return avaliacaoJDBCDomainDataAssembler.toJDBC(cachedRowSet).get(0);
     }
 
-    public AvaliacaoJDBC update(AvaliacaoJDBC avaliacao) throws SQLException {
+    public AvaliacaoJDBC updateRUC(AvaliacaoJDBC avaliacao) throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{? = call fncupdateavaliacao (?,?,?,?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncupdateestadoavaliacaoruc (?,?)}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
 
@@ -130,6 +130,27 @@ public class AvaliacaoJDBCRepository {
         return avaliacaoJDBCDomainDataAssembler.toJDBC(cachedRowSet).get(0);
     }
 
+    public AvaliacaoJDBC updatePresidente(AvaliacaoJDBC avaliacao) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncupdateavaliacao (?,?,?,?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+
+        callableStatement.setInt(2, avaliacao.getCodAvaliacao());
+        callableStatement.setDouble(3, avaliacao.getNota());
+        callableStatement.setString(4, avaliacao.getJustificacao());
+        callableStatement.setDate(5, avaliacao.getDate());
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return avaliacaoJDBCDomainDataAssembler.toJDBC(cachedRowSet).get(0);
+    }
     public Optional<AvaliacaoJDBC> remove(AvaliacaoJDBC avaliacaoJDBC) throws SQLException {
         Optional<AvaliacaoJDBC> optional=getById(avaliacaoJDBC.getCodAvaliacao());
 

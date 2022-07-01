@@ -55,7 +55,15 @@ public class AvaliacaoRepository {
     public Avaliacao update(Avaliacao avaliacao) throws Exception {
         AvaliacaoJDBC avaliacaoJDBC = avaliacaoJDBCDomainDataAssembler.toJDBC(avaliacao);
 
-        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.update(avaliacaoJDBC);
+        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.updatePresidente(avaliacaoJDBC);
+
+        return avaliacaoJDBCDomainDataAssembler.toDomain(savedAvaliacaoJDBC);
+    }
+
+    public Avaliacao updateRuc(Avaliacao avaliacao) throws Exception {
+        AvaliacaoJDBC avaliacaoJDBC = avaliacaoJDBCDomainDataAssembler.toJDBC(avaliacao);
+
+        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.updateRUC(avaliacaoJDBC);
 
         return avaliacaoJDBCDomainDataAssembler.toDomain(savedAvaliacaoJDBC);
     }

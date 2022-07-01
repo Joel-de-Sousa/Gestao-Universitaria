@@ -36,4 +36,11 @@ public class AvaliacaoPartialDTO {
         this.date = date;
         this.codRUC = codRUC;
     }
+
+    public AvaliacaoPartialDTO(int codAvaliacao, double nota, String justificacao) {
+        this.codAvaliacao = codAvaliacao;
+        this.nota = nota;
+        this.justificacao = justificacao;
+
+    }
 }

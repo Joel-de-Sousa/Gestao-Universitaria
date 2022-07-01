@@ -95,12 +95,13 @@ public class AvaliacaoService {
         Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
 
         if (opAvaliacao.isPresent()) {
-            if (avaliacaoUpdate.getEstado().equals("PENDENTE") || avaliacaoUpdate.getEstado().equals("REVISAO")) {
+            if (opAvaliacao.get().getEstado().equals(Avaliacao.Estado.PENDENTE) || opAvaliacao.get().getEstado().equals(Avaliacao.Estado.REVISAO)) {
 
+                Date data = new Date(System.currentTimeMillis());
                 opAvaliacao.get().setCodAvaliacao(avaliacaoUpdate.getCodAvaliacao());
                 opAvaliacao.get().setNota(avaliacaoUpdate.getNota());
                 opAvaliacao.get().setJustificacao(avaliacaoUpdate.getJustificacao());
-                opAvaliacao.get().setDate(Date.valueOf(avaliacaoUpdate.getDate()));
+                opAvaliacao.get().setDate(data);
 
                 Avaliacao avaliacaoSaved = avaliacaoRepository.update(opAvaliacao.get());
                 AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
