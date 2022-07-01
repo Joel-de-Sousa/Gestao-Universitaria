@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,7 +61,7 @@ class ProjetoServiceTest {
     }
 
     @Test
-    void shouldFindProjetoSearchingByCode() {
+    void shouldFindProjetoSearchingByCode() throws SQLException {
         //ARRANGE
 
         Optional<Projeto> opProjecto = Optional.of(projeto);

@@ -13,6 +13,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -33,7 +35,7 @@ class ProjetoControllerTest {
     }
 
     @Test
-    void shouldGetProjetoByCodeWithCorrectAttributes() {
+    void shouldGetProjetoByCodeWithCorrectAttributes() throws SQLException {
 
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -65,7 +67,7 @@ class ProjetoControllerTest {
     }
 
     @Test
-    void shouldGiveNotFounCodeIfCodeNotFound (){
+    void shouldGiveNotFounCodeIfCodeNotFound () throws SQLException {
 
         // Arrange
         MockHttpServletRequest request = new MockHttpServletRequest();
