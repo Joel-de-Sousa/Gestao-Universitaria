@@ -145,7 +145,7 @@ public class PropostaService {
 
         List<PropostaDTO> listFiltradaPropostaDTO = new ArrayList<>();
         for (Proposta proposta : listFiltradaPropostas) {
-            if (proposta.getEstado() == Proposta.Estado.ACEITE) {
+            if (proposta.getEstado().equals(Proposta.Estado.ACEITE)) {
             PropostaDTO propostaDTO = propostaAssembler.toDTO(proposta);
             listFiltradaPropostaDTO.add(propostaDTO);
         }}

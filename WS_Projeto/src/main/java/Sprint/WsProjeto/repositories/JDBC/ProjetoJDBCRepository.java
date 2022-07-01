@@ -165,7 +165,7 @@ public class ProjetoJDBCRepository {
     public List<ProjetoJDBC> findProjetosConcluidos() throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{?=call prccobterprojetosconcluidos(?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobterprojetosconcluidos}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
 
