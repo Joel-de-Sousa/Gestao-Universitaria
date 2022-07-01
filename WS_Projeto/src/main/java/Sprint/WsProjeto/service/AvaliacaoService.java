@@ -122,16 +122,16 @@ public class AvaliacaoService {
         Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
 
         if (opAvaliacao.isPresent()) {
-            List<ProjetoDTO> listProjetosRUC = projetoRepository.findProjetosPorCodigoRUC(avaliacaoUpdate.getCodRUC());
+            /*List<ProjetoDTO> listProjetosRUC = projetoRepository.findProjetosPorCodigoRUC(avaliacaoUpdate.getCodRUC());
 
             for(ProjetoDTO projeto : listProjetosRUC){
 
                 if(projeto.getCodProjeto()== opAvaliacao.get().getCodProjeto()){
-
+*/
                 opAvaliacao.get().setCodAvaliacao(avaliacaoUpdate.getCodAvaliacao());
                 opAvaliacao.get().setEstado(Avaliacao.Estado.valueOf(avaliacaoUpdate.getEstado()));
 
-                Avaliacao avaliacaoSaved = avaliacaoRepository.save(opAvaliacao.get());
+                Avaliacao avaliacaoSaved = avaliacaoRepository.updateRuc(opAvaliacao.get());
                 AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
 
                 boolean conclusao = true;
@@ -148,8 +148,8 @@ public class AvaliacaoService {
                     }
 
                 return avaliacaoSavedDTO;
-                }
-        }
+              /*  }
+        }*/
 
     }throw new Exception("A avaliação não consta na base de dados");
 }
