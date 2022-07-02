@@ -5,15 +5,14 @@ import Sprint.WsProjeto.DTO.assembler.AvaliacaoDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.JuriDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.SubmissaoDomainDTOAssembler;
 import Sprint.WsProjeto.Exceptions.ProjetoNotExists;
+import Sprint.WsProjeto.datamodel.JDBC.ProjetoJDBC;
 import Sprint.WsProjeto.datamodel.JPA.assembler.JuriDomainDataAssembler;
 import Sprint.WsProjeto.datamodel.REST.EdicaoRestDTO;
 import Sprint.WsProjeto.domain.entities.*;
 import Sprint.WsProjeto.domain.factories.IAvaliacaoFactory;
 import Sprint.WsProjeto.domain.factories.IJuriFactory;
-import Sprint.WsProjeto.repositories.AvaliacaoRepository;
-import Sprint.WsProjeto.repositories.JuriRepository;
-import Sprint.WsProjeto.repositories.ProjetoRepository;
-import Sprint.WsProjeto.repositories.SubmissaoRepository;
+import Sprint.WsProjeto.repositories.*;
+import Sprint.WsProjeto.repositories.JDBC.ProjetoJDBCRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,17 +45,18 @@ public class AvaliacaoService {
 
     @Autowired
     SubmissaoRepository submissaoRepository;
-  /*  @Autowired
-    ProjetoService projetoService;*/
     @Autowired
     ProjetoRepository projetoRepository;
+    @Autowired
+    EdicaoWebRepository edicaoWebRepository;
+
 
     public AvaliacaoService() {
     }
 
-    public Avaliacao createAndSaveAvaliacao(int codMA , int codProjeto) throws Exception {
+    public Avaliacao createAndSaveAvaliacao(int codMA, int codProjeto) throws Exception {
 
-        Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA,codProjeto);
+        Avaliacao avaliacao = avaliacaoFactory.createAvaliacao(codMA, codProjeto);
 
         Avaliacao oAvaliacaoSaved = avaliacaoRepository.save(avaliacao);
 
@@ -90,38 +90,51 @@ public class AvaliacaoService {
         return listAvaliacaoDTO;
     }
 
+    //PRESIDENTE Preenche a nota e justificação de avaliação
     public AvaliacaoDTO updateAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
 
-        Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
+        if (avaliacaoUpdate.getNota() >= 0 && avaliacaoUpdate.getNota() <= 20) {
 
-        if (opAvaliacao.isPresent()) {
-            if (opAvaliacao.get().getEstado().equals(Avaliacao.Estado.PENDENTE) || opAvaliacao.get().getEstado().equals(Avaliacao.Estado.REVISAO)) {
+            List<Projeto> listProjetos = projetoRepository.findProjetosByCodPresidente(avaliacaoUpdate.getCodPresidente());
 
-                Date data = new Date(System.currentTimeMillis());
-                opAvaliacao.get().setCodAvaliacao(avaliacaoUpdate.getCodAvaliacao());
-                opAvaliacao.get().setNota(avaliacaoUpdate.getNota());
-                opAvaliacao.get().setJustificacao(avaliacaoUpdate.getJustificacao());
-                opAvaliacao.get().setDate(data);
+            if (!listProjetos.isEmpty()) {
 
-                Avaliacao avaliacaoSaved = avaliacaoRepository.update(opAvaliacao.get());
-                AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
+                Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
+
+                if (opAvaliacao.isPresent()) {
+                    if (opAvaliacao.get().getEstado().equals(Avaliacao.Estado.PENDENTE) || opAvaliacao.get().getEstado().equals(Avaliacao.Estado.REVISAO)) {
+
+                        Date data = new Date(System.currentTimeMillis());
+                        opAvaliacao.get().setCodAvaliacao(avaliacaoUpdate.getCodAvaliacao());
+                        opAvaliacao.get().setNota(avaliacaoUpdate.getNota());
+                        opAvaliacao.get().setJustificacao(avaliacaoUpdate.getJustificacao());
+                        opAvaliacao.get().setDate(data);
+
+                        Avaliacao avaliacaoSaved = avaliacaoRepository.update(opAvaliacao.get());
+                        AvaliacaoDTO avaliacaoSavedDTO = avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved);
 
 
-                return avaliacaoSavedDTO;
+                        return avaliacaoSavedDTO;
 
-            }
-            throw new Exception("A avaliação está concluída");
-        }
-        throw new Exception("A avaliação não consta na base de dados");
+                    }
+                    throw new Exception("A avaliação está concluída");
+                }
+                throw new Exception("A avaliação não consta na base de dados");
+            } else
+                throw new Exception("O Codigo introduzido não pertence a um Presidente de Júri");
+        } else
+            throw new Exception("O valor da nota introduzido não é válido");
     }
 
 
     public AvaliacaoDTO updateEstadoAvaliacao(AvaliacaoPartialDTO avaliacaoUpdate) throws Exception {
 
+        List<EdicaoRestDTO> edicaoRestDTO = edicaoWebRepository.getListaEdicoesByCodRUC(avaliacaoUpdate.getCodRUC());
 
-        Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
+        if (!edicaoRestDTO.isEmpty()) {
+            Optional<Avaliacao> opAvaliacao = avaliacaoRepository.findById(avaliacaoUpdate.getCodAvaliacao());
 
-        if (opAvaliacao.isPresent()) {
+            if (opAvaliacao.isPresent()) {
             /*List<ProjetoDTO> listProjetosRUC = projetoRepository.findProjetosPorCodigoRUC(avaliacaoUpdate.getCodRUC());
 
             for(ProjetoDTO projeto : listProjetosRUC){
@@ -136,21 +149,21 @@ public class AvaliacaoService {
 
                 boolean conclusao = true;
                 List<Avaliacao> lisAvaliacao = avaliacaoRepository.findAvaliacoesByCodProjeto(opAvaliacao.get().getCodProjeto());
-                    for(Avaliacao avaliacao : lisAvaliacao){
-                        if(!avaliacao.getEstado().equals(Avaliacao.Estado.CONCLUIDA)){
-                            conclusao=false;
-                            break;
-                        };
+                for (Avaliacao avaliacao : lisAvaliacao) {
+                    if (!avaliacao.getEstado().equals(Avaliacao.Estado.CONCLUIDA)) {
+                        conclusao = false;
+                        break;
                     }
+                }
 
-                    if(conclusao){
-                        projetoRepository.update(Projeto.Estado.CONCLUIDO, opAvaliacao.get().getCodProjeto());
-                    }
+                if (conclusao) {
+                    projetoRepository.update(Projeto.Estado.CONCLUIDO, opAvaliacao.get().getCodProjeto());
+                }
 
                 return avaliacaoSavedDTO;
-              /*  }
-        }*/
-
-    }throw new Exception("A avaliação não consta na base de dados");
-}
+            }
+            throw new Exception("A avaliação não consta na base de dados");
+        } else
+            throw new Exception("O Codigo introduzido não pertence a um RUC");
+    }
 }

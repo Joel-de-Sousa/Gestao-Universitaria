@@ -66,7 +66,7 @@ public class AvaliacaoController {
         }*/
 
 
-    @PatchMapping("/update/{codAvaliacao}")
+    @PatchMapping("/updatePresidente/{codAvaliacao}") //PRESIDENTE Preenche a nota e justificação de avaliação
     public ResponseEntity<Object> updateAvaliacao (@RequestBody AvaliacaoPartialDTO avaliacaoUpdate, @PathVariable int codAvaliacao) throws Exception {
         try {
             AvaliacaoDTO updatedAvaliacao = avaliacaoService.updateAvaliacao (avaliacaoUpdate);
@@ -77,8 +77,19 @@ public class AvaliacaoController {
         }
     }
 
+    @PatchMapping("/updatePresidenteRevisao/{codAvaliacao}") //PRESIDENTE Editar a nota e justificação de avaliação solicitada pelo RUC
+    public ResponseEntity<Object> updateAvaliacaoRevisao (@RequestBody AvaliacaoPartialDTO avaliacaoUpdate, @PathVariable int codAvaliacao) throws Exception {
+        try {
+            AvaliacaoDTO updatedAvaliacao = avaliacaoService.updateAvaliacao (avaliacaoUpdate);
+            return new ResponseEntity<>(updatedAvaliacao, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
-    @PatchMapping("/updateRUC/{codAvaliacao}")
+
+    @PatchMapping("/updateRUC/{codAvaliacao}") //RUC Reve a avaliação, dando-a como concluída ou solicitando revisão
     public ResponseEntity<Object> updateEstadoAvaliacao (@RequestBody AvaliacaoPartialDTO avaliacaoUpdate, @PathVariable int codAvaliacao) throws Exception {
         try {
             AvaliacaoDTO updatedAvaliacao = avaliacaoService.updateEstadoAvaliacao (avaliacaoUpdate);

@@ -56,39 +56,36 @@ public class ProjetoController {
 
     @GetMapping("/filtro/ProjetosByCodRUC/{codRUC}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosByCodRUC (@PathVariable int codRUC){
+    public ResponseEntity<Object> findProjetosByCodRUC(@PathVariable int codRUC) {
         try {
             List<ProjetoDTO> lProjeto = projetoService.findProjetosPorCodigoRUC(codRUC);
 
-            return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
-
-        catch (Exception e){
+            return new ResponseEntity<>(lProjeto, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{codRUC}/filtro/ProjetosByCodDocente/{codDocente}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosByCodDocente (@PathVariable int codRUC ,@PathVariable int codDocente){
+    public ResponseEntity<Object> findProjetosByCodDocente(@PathVariable int codRUC, @PathVariable int codDocente) {
         try {
-            List<ProjetoDTO> lProjeto = projetoService.findProjetosByCodDocente(codRUC,codDocente);
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosByCodDocente(codRUC, codDocente);
 
-            return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
-
-        catch (Exception e){
+            return new ResponseEntity<>(lProjeto, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{codRUC}/filtro/ProjetosComMACompleto/{codMA}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosComDeterminadoMACompleto (@PathVariable int codRUC ,@PathVariable int codMA){
+    public ResponseEntity<Object> findProjetosComDeterminadoMACompleto(@PathVariable int codRUC, @PathVariable int codMA) {
         try {
-            List<ProjetoDTO> lProjeto = projetoService.findProjetosComDeterminadoMACompleto(codRUC,codMA);
+            List<ProjetoDTO> lProjeto = projetoService.findProjetosComDeterminadoMACompleto(codRUC, codMA);
 
-            return new ResponseEntity<>(lProjeto, HttpStatus.OK);}
-
-        catch (Exception e){
+            return new ResponseEntity<>(lProjeto, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
@@ -108,33 +105,40 @@ public class ProjetoController {
 
     @GetMapping("/{codRUC}/filtro/projetosConcluidos")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosConcluidos(@PathVariable int codRUC ) throws Exception {
+    public ResponseEntity<Object> findProjetosConcluidos(@PathVariable int codRUC) throws Exception {
+        try {
+            List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosConcluidos(codRUC);
 
-        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosConcluidos(codRUC);
-
-        return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+            return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
 
     }
 
     @GetMapping("/{codRUC}/filtro/projetosDatas/fetch/{codMA}/{fromDate}/{toDate}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable int codRUC ,@PathVariable int codMA, @PathVariable Date fromDate, @PathVariable Date toDate) throws Exception {
+    public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable int codRUC, @PathVariable int codMA, @PathVariable Date fromDate, @PathVariable Date toDate) throws Exception {
+        try {
+            List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(codRUC, codMA, fromDate, toDate);
 
-        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(codRUC, codMA,fromDate, toDate);
-
-        return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
-
+            return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/{codRUC}/filtro/projetosNif/{nifOrganizacao}")
     @ResponseBody
-    public ResponseEntity<Object> findProjetosByNifOrganizacao (@PathVariable int codRUC, @PathVariable long nifOrganizacao) throws Exception {
+    public ResponseEntity<Object> findProjetosByNifOrganizacao(@PathVariable int codRUC, @PathVariable long nifOrganizacao) throws Exception {
 
+        try {
+            List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosByNifOrganizacao(codRUC, nifOrganizacao);
 
-        List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosByNifOrganizacao(codRUC, nifOrganizacao);
-
-        return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
-
+            return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
 }

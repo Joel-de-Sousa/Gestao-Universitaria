@@ -218,6 +218,24 @@ public class ProjetoJDBCRepository {
         return projetoDomainDataAssembler.toJDBC(cachedRowSet);
     }
 
+    public List<ProjetoJDBC> findProjetosByCodPresidente(int codPresidente) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobterprojetosporidpresidente(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setInt(2, codPresidente);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet);
+    }
+
     public Optional<ProjetoJDBC> findProjetoByCodProposta(int codProposta) throws SQLException {
         abrirLigacao();
 
