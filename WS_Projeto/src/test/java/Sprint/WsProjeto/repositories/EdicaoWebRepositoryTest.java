@@ -45,4 +45,19 @@ class EdicaoWebRepositoryTest {
 
     }
 
+    @Test
+    void shouldGetListaEdicoesByRuc() throws Exception {
+        //arrange
+
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>() ;
+        Optional<List<EdicaoRestDTO>> listOptional = Optional.of(edicaoRestDTOList);
+        when(edicaoRestRepository.getAllEdicoesByCodRUC(1)).thenReturn(listOptional);
+        edicaoRestDTOList = listOptional.get();
+
+       //act
+       List<EdicaoRestDTO>  act = edicaoWebRepository.getListaEdicoesByCodRUC(1);
+
+       assertEquals(act,edicaoRestDTOList);
+    }
+
 }

@@ -228,33 +228,42 @@ class ProjetoRepositoryTest {
 
 
     }
-/*
+
 
     @Test
     void shouldFindProjetosPorCodigoRuc() throws Exception {
         //arrange
-        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
-        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+        List<ProjetoDTO> listProjeto = new ArrayList<>();
         EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
-        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
-        edicaoRestDTOList.add(edicaoRestDTO);
-        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(edicaoRestDTOList);
+        List<EdicaoRestDTO> listEdicoes = new ArrayList<>();
+        listEdicoes.add(edicaoRestDTO);
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(listEdicoes);
+
         PropostaRestDTO propostaRestDTO = mock(PropostaRestDTO.class);
-        List<PropostaRestDTO> propostaRestDTOList = new ArrayList<>();
-        propostaRestDTOList.add(propostaRestDTO);
-        when(propostaWebRepository.findAllPropostasAceitesByCodEdicao(edicaoRestDTO.getCodEdicao())).thenReturn(propostaRestDTOList);
-        Projeto projeto = mock(Projeto.class);
-        when(projetoRepository.findProjetoByCodProposta(propostaRestDTO.getCodProposta())).thenReturn(projeto);
-        when(projetoDomainDTOAssembler.toDto(projeto)).thenReturn(projetoDTO);
-        projetoDTOList.add(projetoDTO);
+        List<PropostaRestDTO> listPropostas = new ArrayList<>();
+        listPropostas.add(propostaRestDTO);
+        when(propostaWebRepository.findAllPropostasAceitesByCodEdicao(edicaoRestDTO.getCodEdicao())).thenReturn(listPropostas);
+
+        Projeto projeto1 = mock(Projeto.class);
+        ProjetoJDBC projetoJDBC = mock(ProjetoJDBC.class);
+        Optional<ProjetoJDBC> optional = Optional.of(projetoJDBC);
+
+        when( projetoJDBCRepository.findProjetoByCodProposta(propostaRestDTO.getCodProposta())).thenReturn(optional);
+        when(projetoJDBCDomainDataAssembler.toDomain(optional.get())).thenReturn(projeto1);
+
+
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        when(projetoDomainDTOAssembler.toDto(projeto1)).thenReturn(projetoDTO);
+        listProjeto.add(projetoDTO);
+
 
         //act
         List<ProjetoDTO> act = projetoRepository.findProjetosPorCodigoRUC(1);
 
         //assert
-        assertEquals(act,projetoDTOList);
+        assertEquals(act,listProjeto);
     }
-*/
+
 
 
 

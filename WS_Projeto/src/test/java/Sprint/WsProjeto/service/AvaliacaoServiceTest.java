@@ -1,6 +1,7 @@
 package Sprint.WsProjeto.service;
 
 import Sprint.WsProjeto.DTO.AvaliacaoDTO;
+import Sprint.WsProjeto.DTO.AvaliacaoPartialDTO;
 import Sprint.WsProjeto.DTO.assembler.AvaliacaoDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.JuriDomainDTOAssembler;
 import Sprint.WsProjeto.domain.entities.Avaliacao;
@@ -14,6 +15,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,6 +71,77 @@ class AvaliacaoServiceTest {
         //assert
         assertEquals(avaliacaoDTO,avaliacaoDTO1);
     }
+    @Test
+    void test() throws Exception {
+        //arrange
+        Avaliacao avaliacao = mock(Avaliacao.class);
+        when(avaliacaoFactory.createAvaliacao(1,2)).thenReturn(avaliacao);
+        Avaliacao savedOne = mock(Avaliacao.class);
+        when(avaliacaoRepository.save(avaliacao)).thenReturn(savedOne);
+       //act
+       Avaliacao act = avaliacaoService.createAndSaveAvaliacao(1,2);
+       //arrange
+        assertEquals(act,savedOne);
+    }
+    @Test
+    void shouldFindAvaliacoesByCodProjeto() throws Exception {
+        //arrange
+        Avaliacao avaliacao = mock(Avaliacao.class);
+        List<Avaliacao> avaliacaoList = new ArrayList<>();
+        avaliacaoList.add(avaliacao);
+        when(avaliacaoRepository.findAvaliacoesByCodProjeto(1)).thenReturn(avaliacaoList);
+        List<AvaliacaoDTO> avaliacaoDTOList = new ArrayList<>();
+
+        AvaliacaoDTO avaliacaoDTO = mock(AvaliacaoDTO.class);
+        when(avaliacaoDomainDTOAssembler.toDto(avaliacao)).thenReturn(avaliacaoDTO);
+        avaliacaoDTOList.add(avaliacaoDTO);
+
+        //act
+        List<AvaliacaoDTO> act = avaliacaoService.findAvaliacoesByCodProjeto(1);
+
+        //assert
+        assertEquals(act,avaliacaoDTOList);
+    }
+
+  /*  @Test
+    void shouldUpdateAvaliacao() throws Exception {
+
+        AvaliacaoPartialDTO info = mock(AvaliacaoPartialDTO.class);
+
+        Avaliacao avaliacao = mock(Avaliacao.class);
+
+        Optional<Avaliacao> optional = Optional.of(avaliacao);
+
+        when(avaliacaoRepository.findById(info.getCodAvaliacao())).thenReturn(optional);
+
+        when(info.getEstado()).thenReturn("PENDENTE");
+
+        Date data = mock(Date.class);
+
+        when(new Date(System.currentTimeMillis())).thenReturn(data);
+
+
+
+        optional.get().setCodAvaliacao(info.getCodAvaliacao());
+        optional.get().setNota(info.getNota());
+        optional.get().setJustificacao(info.getJustificacao());
+        optional.get().setDate(data);
+
+        Avaliacao savedOne = mock(Avaliacao.class);
+
+        when(avaliacaoRepository.update(optional.get())).thenReturn(savedOne);
+
+        AvaliacaoDTO avaliacaoDTOSavedOne = mock(AvaliacaoDTO.class);
+
+        when(avaliacaoDomainDTOAssembler.toDto(savedOne)).thenReturn(avaliacaoDTOSavedOne);
+
+        //act
+        AvaliacaoDTO act = avaliacaoService.updateAvaliacao(info);
+
+        //assert
+        assertEquals(act,avaliacaoDTOSavedOne);
+    }
+*/
 
 /*
 

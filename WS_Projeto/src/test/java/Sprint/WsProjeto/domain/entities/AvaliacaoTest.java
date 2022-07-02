@@ -3,6 +3,7 @@ package Sprint.WsProjeto.domain.entities;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -66,6 +67,26 @@ class AvaliacaoTest {
 
         assertNotEquals(avaliacao,avaliacao1);
 
+    }
+    @Test
+    void shouldCreateAvaliacaoAllArgs(){
+
+        Avaliacao avaliacao = new Avaliacao(1,1,3,juri,submissao,20,"testes", new Date(-2022), Avaliacao.Estado.REVISAO);
+        assertEquals(avaliacao.getCodAvaliacao(),1);
+        assertEquals(avaliacao.getCodProjeto(),1);
+        assertEquals(avaliacao.getCodMA(),3);
+        assertEquals(avaliacao.getJuri(),juri);
+        assertEquals(avaliacao.getSubmissao(),submissao);
+        assertEquals(avaliacao.getNota(),20);
+        assertEquals(avaliacao.getJustificacao(),"testes");
+        assertEquals(avaliacao.getDate(),new Date(-2022));
+        assertEquals(avaliacao.getEstado(), Avaliacao.Estado.REVISAO);
+    }
+
+    @Test
+
+    void noArgsContructor(){
+        new Avaliacao();
     }
 
 }

@@ -68,5 +68,10 @@ class ConviteRepositoryTest {
         assertEquals(act,Optional.of(convite));
     }
 
+    @Test
+    void shouldDeleteByCodeConvite() throws SQLException {
+
+    }
+
 
 }

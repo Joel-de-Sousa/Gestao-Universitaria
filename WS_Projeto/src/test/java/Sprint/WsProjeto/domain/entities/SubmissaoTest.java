@@ -30,6 +30,19 @@ class SubmissaoTest {
 
     }
 
+    @Test
+    void shouldCreateNewSubmissaoWithCorrectAttributesAllArgs(){
+
+        Submissao submissao =  new Submissao(1,"teste1",file,"ESPANHOL", Submissao.Estado.PENDENTE);
+
+
+        assertEquals(submissao.getCodSubmissao(),1);
+        assertEquals(submissao.getTitulo(),"teste1");
+        assertEquals(submissao.getFile(),file);
+        assertEquals(submissao.getLinguagemFile(),"ESPANHOL");
+        assertEquals(submissao.getEstado(), Submissao.Estado.PENDENTE);
+    }
+
 
     @Test
 
