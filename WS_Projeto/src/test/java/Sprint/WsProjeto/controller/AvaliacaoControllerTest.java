@@ -2,6 +2,7 @@ package Sprint.WsProjeto.controller;
 
 import Sprint.WsProjeto.DTO.AvaliacaoDTO;
 import Sprint.WsProjeto.DTO.AvaliacaoPartialDTO;
+import Sprint.WsProjeto.DTO.NewAvaliacaoInfoDTO;
 import Sprint.WsProjeto.domain.entities.Avaliacao;
 import Sprint.WsProjeto.service.AvaliacaoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +49,19 @@ class AvaliacaoControllerTest {
         assertEquals(result,avaliacaoDTO);
     }
 
+/*    @Test
+    void shouldCreateAndSaveAvaliacao() throws Exception {
+        //arrande
+        NewAvaliacaoInfoDTO info = mock(NewAvaliacaoInfoDTO.class);
+        Avaliacao avaliacao = mock(Avaliacao.class);
+        when(avaliacaoService.createAndSaveAvaliacao(info.getCodprojeto(),info.getCodMA())).thenReturn(avaliacao);
+        //act
+        ResponseEntity<Object> act = avaliacaoController.createAndSaveAvaliacao(info);
+        assertEquals(act.getStatusCodeValue(),HttpStatus.CREATED.value());
+        AvaliacaoDTO result = (AvaliacaoDTO) act.getBody();
+        assertEquals(result,avaliacao);
+    }*/
+
     @Test
     void shouldFindAvaliacaoesByCodProjeto() throws Exception {
         //arrange
@@ -92,6 +106,23 @@ class AvaliacaoControllerTest {
         assertEquals(act.getStatusCodeValue(), HttpStatus.OK.value());
         AvaliacaoDTO result = (AvaliacaoDTO) act.getBody();
         assertEquals(result,avaliacaoDTO);
+    }
+
+    @Test
+    void shouldUpdateAvaliacaoRevisao() throws Exception {
+        //arrange
+        AvaliacaoPartialDTO update = mock(AvaliacaoPartialDTO.class);
+
+        AvaliacaoDTO avaliacaoDTO = mock(AvaliacaoDTO.class);
+        when(avaliacaoService.updateAvaliacao(update)).thenReturn(avaliacaoDTO);
+
+        //act
+        ResponseEntity<Object> act = avaliacaoController.updateAvaliacaoRevisao(update,1);
+
+        //assert
+        assertEquals(act.getStatusCodeValue(),HttpStatus.OK.value());
+        AvaliacaoDTO avaliacaoDTO1 = (AvaliacaoDTO) act.getBody();
+        assertEquals(avaliacaoDTO1,avaliacaoDTO);
     }
 
 }

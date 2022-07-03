@@ -21,6 +21,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,6 @@ class ProjetoServiceTest {
     @MockBean
     UtilizadorWebRepository utilizadorWebRepository;
 
-    @MockBean
-    ProjetoDTO projetoDTO;
 
     @MockBean
     ProjetoRepository projetoRepository;
@@ -55,8 +54,7 @@ class ProjetoServiceTest {
     @MockBean
     ProjetoFactory projetoFactory;
 
-    @MockBean
-    Projeto projeto;
+
 
     @MockBean
     EdicaoWebRepository edicaoWebRepository;
@@ -75,7 +73,7 @@ class ProjetoServiceTest {
     @Test
     void shouldFindProjetoSearchingByCode() throws SQLException {
         //ARRANGE
-
+        Projeto projeto = mock(Projeto.class);
         Optional<Projeto> opProjecto = Optional.of(projeto);
 
         when(projetoRepository.findById(1)).thenReturn(opProjecto);
@@ -155,7 +153,7 @@ class ProjetoServiceTest {
         Optional<PropostaRestDTO> optional = Optional.of(propostaRestDTO);
         when(propostaWebRepository.findPropostaByCode(info.getCodProposta())).thenReturn(optional);
         Projeto projeto = mock(Projeto.class);
-        when(projetoFactory.createProjeto(info.getCodProposta(),info.getCodEstudante())).thenReturn(projeto);
+        when(projetoFactory.createProjeto(info.getCodProposta(), info.getCodEstudante())).thenReturn(projeto);
         Projeto savedOne = mock(Projeto.class);
         when(projetoRepository.save(projeto)).thenReturn(savedOne);
         EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
@@ -167,7 +165,7 @@ class ProjetoServiceTest {
         momentoAvaliacaoDTOList.add(momentoAvaliacaoDTO);
         momentoAvaliacaoDTOList = optionalEdicaoRestDTO.get().getMomentoAvaliacaoList();
         Avaliacao avaliacao = mock(Avaliacao.class);
-        when(avaliacaoService.createAndSaveAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao(),savedOne.getCodProjeto())).thenReturn(avaliacao);
+        when(avaliacaoService.createAndSaveAvaliacao(momentoAvaliacaoDTO.getCodMomentoAvaliacao(), savedOne.getCodProjeto())).thenReturn(avaliacao);
         ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
         when(projetoDomainDTOAssembler.toDto(savedOne)).thenReturn(projetoDTO);
 
@@ -176,7 +174,152 @@ class ProjetoServiceTest {
         ProjetoDTO act = projetoService.createAndSaveProjeto(info);
 
         //assert
-        assertEquals(act,projetoDTO);
+        assertEquals(act, projetoDTO);
+
+    }
+
+    @Test
+    void shouldFindProjetoByRucCode() throws Exception {
+        //arrange
+        EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
+        edicaoRestDTOList.add(edicaoRestDTO);
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(edicaoRestDTOList);
+        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+        when(projetoRepository.findProjetosPorCodigoRUC(1)).thenReturn(projetoDTOList);
+        //act
+        List<ProjetoDTO> act = projetoService.findProjetosPorCodigoRUC(1);
+        //arrange
+        assertEquals(act, projetoDTOList);
+
+    }
+
+    @Test
+    void shouldFindProjetosConcluidos() throws Exception {
+        //arrange
+        EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
+
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(edicaoRestDTOList);
+        edicaoRestDTOList.add(edicaoRestDTO);
+        Projeto projeto = mock(Projeto.class);
+        List<Projeto> projetoList = new ArrayList<>();
+
+        when(projetoRepository.findProjetosConcluidos()).thenReturn(projetoList);
+        projetoList.add(projeto);
+        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        when(projetoDomainDTOAssembler.toDto(projeto)).thenReturn(projetoDTO);
+        projetoDTOList.add(projetoDTO);
+
+        //act
+        List<ProjetoDTO> act = projetoService.findProjetosConcluidos(1);
+
+        //assert
+        assertEquals(act, projetoDTOList);
+
+
+    }
+
+    @Test
+    void shouldFindProjetosByCodeDocente() throws Exception {
+        //arrange
+        EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(edicaoRestDTOList);
+        edicaoRestDTOList.add(edicaoRestDTO);
+        Projeto projeto = mock(Projeto.class);
+        List<Projeto> projetoList = new ArrayList<>();
+        when(projetoRepository.findProjetosByCodDocente(1)).thenReturn(projetoList);
+        projetoList.add(projeto);
+        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        when(projetoDomainDTOAssembler.toDto(projeto)).thenReturn(projetoDTO);
+        projetoDTOList.add(projetoDTO);
+
+
+        //act
+        List<ProjetoDTO> act = projetoService.findProjetosByCodDocente(1, 1);
+
+        assertEquals(act, projetoDTOList);
+    }
+
+    @Test
+    void shouldFindProjetosComDeterminadoMACompleto() throws Exception {
+        //arrange
+        EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(edicaoRestDTOList);
+        edicaoRestDTOList.add(edicaoRestDTO);
+        Projeto projeto = mock(Projeto.class);
+        List<Projeto> projetoList = new ArrayList<>();
+        when(projetoRepository.findProjetosComDeterminadoMACompleto(1)).thenReturn(projetoList);
+        projetoList.add(projeto);
+        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        when(projetoDomainDTOAssembler.toDto(projeto)).thenReturn(projetoDTO);
+        projetoDTOList.add(projetoDTO);
+
+
+        //act
+        List<ProjetoDTO> act = projetoService.findProjetosComDeterminadoMACompleto(1, 1);
+
+        assertEquals(act, projetoDTOList);
+
+    }
+
+    @Test
+    void shouldFindProjetosByDataAvaliacao() throws Exception {
+        //arrange
+        EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(edicaoRestDTOList);
+        edicaoRestDTOList.add(edicaoRestDTO);
+        Projeto projeto = mock(Projeto.class);
+        List<Projeto> projetoList = new ArrayList<>();
+        when(projetoRepository.findProjetosDatasAvaliacao(1, new Date(-2022), new Date(12 - 11 - 2022))).thenReturn(projetoList);
+        projetoList.add(projeto);
+        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        when(projetoDomainDTOAssembler.toDto(projeto)).thenReturn(projetoDTO);
+        projetoDTOList.add(projetoDTO);
+
+
+        //act
+        List<ProjetoDTO> act = projetoService.findProjetosDatasAvaliacao(1, 1, new Date(-2022), new Date(12 - 11 - 2022));
+
+        assertEquals(act, projetoDTOList);
+    }
+
+    @Test
+    void shouldFindProjetosByNifOrganizacao() throws Exception {
+
+
+        //arrange
+        EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(1)).thenReturn(edicaoRestDTOList);
+        edicaoRestDTOList.add(edicaoRestDTO);
+        PropostaRestDTO propostaRestDTO = mock(PropostaRestDTO.class);
+        List<PropostaRestDTO> propostaRestDTOList = new ArrayList<>();
+        when(propostaWebRepository.findAllPropostasAceitesByNif(245490493
+        )).thenReturn(propostaRestDTOList);
+        propostaRestDTOList.add(propostaRestDTO);
+        Projeto projeto = mock(Projeto.class);
+
+        when(projetoRepository.findProjetoByCodProposta(propostaRestDTO.getCodProposta())).thenReturn(projeto);
+
+        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        when(projetoDomainDTOAssembler.toDto(projeto)).thenReturn(projetoDTO);
+        projetoDTOList.add(projetoDTO);
+
+
+        //act
+        List<ProjetoDTO> act = projetoService.findProjetosByNifOrganizacao(1, 245490493);
+
+        assertEquals(act, projetoDTOList);
 
     }
 

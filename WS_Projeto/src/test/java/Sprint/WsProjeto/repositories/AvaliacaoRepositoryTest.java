@@ -45,17 +45,53 @@ class AvaliacaoRepositoryTest {
         AvaliacaoJDBC avaliacaoJDBC = mock(AvaliacaoJDBC.class);
         when(avaliacaoJDBCDomainDataAssembler.toJDBC(avaliacao)).thenReturn(avaliacaoJDBC);
         AvaliacaoJDBC savedOne = mock(AvaliacaoJDBC.class);
-        when(avaliacaoJDBCRepository.save(avaliacaoJDBC)).thenReturn(savedOne);
-        Avaliacao avaliacao1 = mock(Avaliacao.class);
-        when(avaliacaoJDBCDomainDataAssembler.toDomain(savedOne)).thenReturn(avaliacao1);
+        when(avaliacaoJDBCRepository.updateAvaliacaoJuri(avaliacaoJDBC)).thenReturn(savedOne);
+
+        when(avaliacaoJDBCDomainDataAssembler.toDomain(savedOne)).thenReturn(avaliacao);
 
         //act
         Avaliacao act = avaliacaoRepository.save(avaliacao);
 
         //assert
-        assertEquals(act,avaliacao1);
+        assertEquals(act,avaliacao);
 
 
+    }
+
+    @Test
+    void shouldSaveAvaliacao2() throws Exception {
+        //arrange
+        Avaliacao avaliacao = mock(Avaliacao.class);
+        AvaliacaoJDBC avaliacaoJDBC = mock(AvaliacaoJDBC.class);
+        when(avaliacaoJDBCDomainDataAssembler.toJDBCsAVE(avaliacao)).thenReturn(avaliacaoJDBC);
+        AvaliacaoJDBC savedOne = mock(AvaliacaoJDBC.class);
+        when(avaliacaoJDBCRepository.save(avaliacaoJDBC)).thenReturn(savedOne);
+
+        when(avaliacaoJDBCDomainDataAssembler.toDomain(savedOne)).thenReturn(avaliacao);
+
+        //act
+        Avaliacao act = avaliacaoRepository.save2(avaliacao);
+
+        //assert
+        assertEquals(act,avaliacao);
+
+
+    }
+
+    @Test
+    void shouldUpdateAvaliacaoJuri() throws Exception {
+        //arrange
+        Avaliacao avaliacao = mock(Avaliacao.class);
+        AvaliacaoJDBC avaliacaoJDBC = mock(AvaliacaoJDBC.class);
+        when(avaliacaoJDBCDomainDataAssembler.toJDBC(avaliacao)).thenReturn(avaliacaoJDBC);
+        AvaliacaoJDBC savedOne = mock(AvaliacaoJDBC.class);
+        when(avaliacaoJDBCRepository.updateAvaliacaoJuri(avaliacaoJDBC)).thenReturn(savedOne);
+        when(avaliacaoJDBCDomainDataAssembler.toDomain(savedOne)).thenReturn(avaliacao);
+
+        //act
+        Avaliacao act = avaliacaoRepository.updateAvaliacaoJuri(avaliacao);
+        //assert
+        assertEquals(act,avaliacao);
     }
 
     @Test

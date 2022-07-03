@@ -4,9 +4,13 @@ import Sprint.WsProjeto.DTO.AvaliacaoDTO;
 import Sprint.WsProjeto.DTO.AvaliacaoPartialDTO;
 import Sprint.WsProjeto.DTO.assembler.AvaliacaoDomainDTOAssembler;
 import Sprint.WsProjeto.DTO.assembler.JuriDomainDTOAssembler;
+import Sprint.WsProjeto.datamodel.REST.EdicaoRestDTO;
 import Sprint.WsProjeto.domain.entities.Avaliacao;
+import Sprint.WsProjeto.domain.entities.Projeto;
 import Sprint.WsProjeto.domain.factories.AvaliacaoFactory;
 import Sprint.WsProjeto.repositories.AvaliacaoRepository;
+import Sprint.WsProjeto.repositories.EdicaoWebRepository;
+import Sprint.WsProjeto.repositories.ProjetoRepository;
 import Sprint.WsProjeto.repositories.SubmissaoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,6 +51,12 @@ class AvaliacaoServiceTest {
     SubmissaoRepository submissaoRepository;
 
     @MockBean
+    ProjetoRepository projetoRepository;
+
+    @MockBean
+    EdicaoWebRepository edicaoWebRepository;
+
+    @MockBean
     AvaliacaoDomainDTOAssembler avaliacaoDomainDTOAssembler;
 
     @BeforeEach
@@ -72,7 +82,7 @@ class AvaliacaoServiceTest {
         assertEquals(avaliacaoDTO,avaliacaoDTO1);
     }
     @Test
-    void test() throws Exception {
+    void shouldCreateAndSaveAvaliacao() throws Exception {
         //arrange
         Avaliacao avaliacao = mock(Avaliacao.class);
         when(avaliacaoFactory.createAvaliacao(1,2)).thenReturn(avaliacao);
@@ -103,77 +113,51 @@ class AvaliacaoServiceTest {
         assertEquals(act,avaliacaoDTOList);
     }
 
-  /*  @Test
-    void shouldUpdateAvaliacao() throws Exception {
-
-        AvaliacaoPartialDTO info = mock(AvaliacaoPartialDTO.class);
-
-        Avaliacao avaliacao = mock(Avaliacao.class);
-
-        Optional<Avaliacao> optional = Optional.of(avaliacao);
-
-        when(avaliacaoRepository.findById(info.getCodAvaliacao())).thenReturn(optional);
-
-        when(info.getEstado()).thenReturn("PENDENTE");
-
-        Date data = mock(Date.class);
-
-        when(new Date(System.currentTimeMillis())).thenReturn(data);
-
-
-
-        optional.get().setCodAvaliacao(info.getCodAvaliacao());
-        optional.get().setNota(info.getNota());
-        optional.get().setJustificacao(info.getJustificacao());
-        optional.get().setDate(data);
-
-        Avaliacao savedOne = mock(Avaliacao.class);
-
-        when(avaliacaoRepository.update(optional.get())).thenReturn(savedOne);
-
-        AvaliacaoDTO avaliacaoDTOSavedOne = mock(AvaliacaoDTO.class);
-
-        when(avaliacaoDomainDTOAssembler.toDto(savedOne)).thenReturn(avaliacaoDTOSavedOne);
-
-        //act
-        AvaliacaoDTO act = avaliacaoService.updateAvaliacao(info);
-
-        //assert
-        assertEquals(act,avaliacaoDTOSavedOne);
-    }
-*/
-
-/*
-
     @Test
-    void test() throws IOException {
+    void shouldUpdateAvaliacao() throws Exception {
         //arrange
-        NewAvaliacaoInfoDTO newAvaliacaoInfoDTO = mock(NewAvaliacaoInfoDTO.class);
-
-        JuriDTO juriDTO = mock(JuriDTO.class);
-        when(juriService.findJuriByCode(1)).thenReturn(juriDTO);
-        Juri juri = mock(Juri.class);
-        when(juriDomainDTOAssembler.toDomain(juriDTO)).thenReturn(juri);
-
-        Submissao submissao = mock(Submissao.class);
-        Optional<Submissao> optionalSubmissao = Optional.of(submissao);
-        when(submissaoRepository.findById(1)).thenReturn(optionalSubmissao);
+        AvaliacaoPartialDTO update = mock(AvaliacaoPartialDTO.class);
+        Projeto projeto = mock(Projeto.class);
+        List<Projeto> projetoList = new ArrayList<>();
+        when(projetoRepository.findProjetosByCodPresidente(update.getCodPresidente())).thenReturn(projetoList);
+        projetoList.add(projeto);
         Avaliacao avaliacao = mock(Avaliacao.class);
+        when(avaliacao.getEstado()).thenReturn(Avaliacao.Estado.PENDENTE);
 
-        when(avaliacaoFactory.createAvaliacao(1,juri,submissao)).thenReturn(avaliacao);
-        Avaliacao avaliacaoSaved = mock(Avaliacao.class);
-        when(avaliacaoRepository.save(avaliacao)).thenReturn(avaliacaoSaved);
+        Optional<Avaliacao> avaliacaoOptional = Optional.of(avaliacao);
+        when(avaliacaoRepository.findById(update.getCodAvaliacao())).thenReturn(avaliacaoOptional);
+        Avaliacao savedOne = mock(Avaliacao.class);
+        when(avaliacaoRepository.update(avaliacaoOptional.get())).thenReturn(savedOne);
         AvaliacaoDTO avaliacaoDTO = mock(AvaliacaoDTO.class);
-        when(avaliacaoDomainDTOAssembler.toDto(avaliacaoSaved)).thenReturn(avaliacaoDTO);
+        when(avaliacaoDomainDTOAssembler.toDto(savedOne)).thenReturn(avaliacaoDTO);
 
 
         //act
-        AvaliacaoDTO avaliacaoTest = avaliacaoService.createAndSaveAvaliacao(newAvaliacaoInfoDTO);
+        AvaliacaoDTO act = avaliacaoService.updateAvaliacao(update);
+
 
         //assert
-        assertEquals(avaliacaoTest ,avaliacaoDTO);
+
+        assertEquals(act ,avaliacaoDTO);
+
+
     }
-*/
+
+/*    @Test
+    void shouldUpdateEstadoAvaliacao() throws Exception {
+
+        AvaliacaoPartialDTO update = mock(AvaliacaoPartialDTO.class);
+        List<EdicaoRestDTO> edicaoRestDTOList = new ArrayList<>();
+        EdicaoRestDTO edicaoRestDTO = mock(EdicaoRestDTO.class);
+        when(edicaoWebRepository.getListaEdicoesByCodRUC(update.getCodRUC())).thenReturn(edicaoRestDTOList);
+        edicaoRestDTOList.add(edicaoRestDTO);
+
+
+        //act
+        AvaliacaoDTO act = avaliacaoService.updateEstadoAvaliacao(update);
+
+
+    }*/
 
 
 }

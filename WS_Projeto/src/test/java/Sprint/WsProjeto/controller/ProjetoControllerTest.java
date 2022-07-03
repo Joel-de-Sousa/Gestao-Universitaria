@@ -16,6 +16,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -220,6 +221,25 @@ class ProjetoControllerTest {
         List<ProjetoDTO> result = (List<ProjetoDTO>) act.getBody();
         assertEquals(result,projetoDTOList);
 
+    }
+
+    @Test
+    void sampleService() throws Exception {
+        //arrange
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        String query = "";
+        when(request.getQueryString()).thenReturn(query);
+        ProjetoDTO projetoDTO = mock(ProjetoDTO.class);
+        List<ProjetoDTO> projetoDTOList = new ArrayList<>();
+        when(projetoService.filtroOperadoresLogicos(1,query)).thenReturn(projetoDTOList);
+        projetoDTOList.add(projetoDTO);
+
+        //act
+        ResponseEntity<Object> act = projetoController.sampleServce(1,request);
+        //assert
+        assertEquals(act.getStatusCodeValue(),HttpStatus.OK.value());
+        List<ProjetoDTO> result = (List<ProjetoDTO>) act.getBody();
+        assertEquals(result,projetoDTOList);
     }
 
 

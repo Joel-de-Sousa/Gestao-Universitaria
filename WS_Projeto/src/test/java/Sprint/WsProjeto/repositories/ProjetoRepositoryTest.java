@@ -263,6 +263,42 @@ class ProjetoRepositoryTest {
         //assert
         assertEquals(act,listProjeto);
     }
+    @Test
+    void listaFiltrada() throws SQLException {
+        //arrange
+        String query = "";
+        List<ProjetoJDBC> projetoJDBCList = new ArrayList<>();
+        ProjetoJDBC projetoJDBC = mock(ProjetoJDBC.class);
+        projetoJDBCList.add(projetoJDBC);
+        when(projetoJDBCRepository.listaQuery(query)).thenReturn(projetoJDBCList);
+        List<Projeto> projetoList = new ArrayList<>();
+
+        when(projetoJDBCDomainDataAssembler.toDomain(projetoJDBC)).thenReturn(projeto);
+        projetoList.add(projeto);
+
+        //act
+        List<Projeto> act = projetoRepository.listaFiltrada(query);
+
+        assertEquals(act,projetoList);
+    }
+
+    @Test
+    void shouldFindProjetosByCodPresidente() throws SQLException {
+        ProjetoJDBC projetoJDBC = mock(ProjetoJDBC.class);
+        List<ProjetoJDBC> projetoJDBCList = new ArrayList<>();
+        when(projetoJDBCRepository.findProjetosByCodPresidente(1)).thenReturn(projetoJDBCList);
+        projetoJDBCList.add(projetoJDBC);
+        List<Projeto> projetoList = new ArrayList<>();
+        Projeto projeto = mock(Projeto.class);
+        when(projetoJDBCDomainDataAssembler.toDomain(projetoJDBC)).thenReturn(projeto);
+        projetoList.add(projeto);
+
+        //act
+        List<Projeto> act = projetoRepository.findProjetosByCodPresidente(1);
+
+        //assert
+        assertEquals(act,projetoList);
+    }
 
 
 
