@@ -256,8 +256,8 @@ public class ProjetoService {
             for (String str : list) {
                 String[] param = str.split("=");
 
-                switch (param[0]) {
-                    case "filtroRUC":
+                switch (param[0].toUpperCase()) {
+                    case "FILTRORUC":
                         String formatF1 = String.format("cod_projeto in (select   avaliacoes.cod_projeto\n" +
                                 "                        from ((avaliacoes\n" +
                                 "                        inner join Projetos on avaliacoes.cod_projeto = projetos.cod_projeto)\n" +
@@ -268,21 +268,23 @@ public class ProjetoService {
                         nova = nova.replaceAll(str, formatF1);
                         System.out.println(param[1]);
                         break;
-                    case "filtroDocente":
+                    case "FILTRODOCENTE":
                         String formatF2 = String.format("cod_projeto in\n" +
                                 "\t                    ( select avaliacoes.cod_projeto\n" +
                                 "                        from (avaliacoes\n" +
                                 "                        inner join Projetos on avaliacoes.cod_projeto = projetos.cod_projeto)\n" +
-                                "                        where " + Integer.parseInt(param[1]) + " = AVALIACOES.cod_MA and AVALIACOES.estado = 1");
+                                "                        where " + Integer.parseInt(param[1]) + " = AVALIACOES.cod_MA and AVALIACOES.estado = 1)");
                         nova = nova.replaceAll(str, formatF2);
                         System.out.println(param[1]);
                         break;
-                    case "filtroDatas":
-                        String[] datas= param[1].split("to");
+                    case "FILTRODATASMA":
+                        String [] codMaData=param[1].split("in");
+                        String[] datas= codMaData[1].split("to");
+
                         String formatF3 = String.format("cod_projeto in (select avaliacoes.cod_projeto\n" +
                                 "                        from (avaliacoes\n" +
                                 "                        inner join Projetos on avaliacoes.cod_projeto = projetos.cod_projeto)\n" +
-                                "                        where p_cod_ma = AVALIACOES.cod_MA AND avaliacoes.data_avaliacao BETWEEN "+datas[0]+" and "+datas[1]+")");
+                                "                        where "+codMaData[0]+" = AVALIACOES.cod_MA AND avaliacoes.data_avaliacao BETWEEN '"+datas[0]+"' and '"+datas[1]+"')");
                         nova = nova.replaceAll(str, formatF3);
                         System.out.println(param[1]);
                         System.out.println(datas[0]);
@@ -295,7 +297,7 @@ public class ProjetoService {
 
             }
             System.out.println(list[0]);
-            String SQL = String.format(jdbc + nova + ")");
+            String SQL = String.format(jdbc + nova );
             System.out.println(SQL);
 
 

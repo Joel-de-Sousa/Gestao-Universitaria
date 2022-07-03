@@ -148,7 +148,7 @@ public class ProjetoController {
     }
 
     @RequestMapping("/ruc/{codRuc}/filtro")
-    public Object sampleServce(@PathVariable int codRuc, HttpServletRequest request) throws Exception {
+    public ResponseEntity<Object>  sampleServce(@PathVariable int codRuc, HttpServletRequest request) throws Exception {
         String query = request.getQueryString();
         List<ProjetoDTO> listProjetoDTO = projetoService.filtroOperadoresLogicos(codRuc,query);
         return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
