@@ -14,7 +14,7 @@ import java.util.List;
 public class JuriJDBCDomainDataAssembler {
     public JuriJDBC toJDBC (Juri juri){
 
-        return new JuriJDBC (juri.getCodJuri(), juri.getCodPresidente(), juri.getCodOrientador(), juri.getCodArguente());
+        return new JuriJDBC (juri.getCodPresidente(), juri.getCodOrientador(), juri.getCodArguente());
     }
 
     public Juri toDomain (JuriJDBC juriJDBC){
