@@ -36,6 +36,27 @@ public class ProjetoJDBCRepository {
         connection = null;
     }
 
+
+
+
+    public List<ProjetoJDBC> listaQuery(String query) throws SQLException {
+        abrirLigacao();
+
+        Statement stmt = connection.createStatement();
+        System.out.println("=======================================================================");
+        System.out.println(query);
+        ResultSet rs = stmt.executeQuery(query);
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate(stmt.getResultSet());
+
+        fecharLigacao();
+
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet);
+
+    }
+
     public Optional<ProjetoJDBC> getById(int codProjeto) throws SQLException {
         abrirLigacao();
 

@@ -162,7 +162,7 @@ public class PropostaController {
 
     }
 
-    //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
+  /*  //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
     @GetMapping("/edicao/{codRUC}")
     @ResponseBody
     public ResponseEntity<Object> getAllPropostasByCodRUC(@PathVariable int codRUC) {
@@ -170,7 +170,7 @@ public class PropostaController {
         List<PropostaDTO> listFiltradaPropostasDTO = service.findAllByVariosCodEdicao(codRUC);
         return new ResponseEntity<>(listFiltradaPropostasDTO, HttpStatus.OK);
 
-    }
+    }*/
 
     //MÉTODO GET PROPOSTAS ACEITES BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS ACEITES DESTA EDICAO
     @GetMapping("/edicao/aceite/{codEdicao}")

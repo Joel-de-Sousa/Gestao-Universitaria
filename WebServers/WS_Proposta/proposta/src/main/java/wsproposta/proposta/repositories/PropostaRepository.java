@@ -142,7 +142,7 @@ public class PropostaRepository implements IPropostaRepository {
         return listFiltradaPropostas;
     }
 
-    //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
+  /*  //MÉTODO GET PROPOSTAS BY CODE EDICAO - RECEBE LISTA DE TODAS AS PROPOSTAS DESTA EDICAO
     public List<Proposta> findAllByCodEdicao2 (int codRUC){
 
 
@@ -154,5 +154,5 @@ public class PropostaRepository implements IPropostaRepository {
             listFiltradaPropostas.add(propostaAssembler.toDomain(p));
         }
         return listFiltradaPropostas;
-    }
+    }*/
 }

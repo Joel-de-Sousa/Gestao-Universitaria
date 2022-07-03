@@ -5,6 +5,7 @@ import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.service.ProjetoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.sql.SQLException;
 
 import java.time.LocalDate;
+import java.util.Enumeration;
 import java.util.List;
 
 @Controller
@@ -106,8 +109,10 @@ public class ProjetoController {
     @GetMapping("/{codRUC}/filtro/projetosConcluidos")
     @ResponseBody
     public ResponseEntity<Object> findProjetosConcluidos(@PathVariable int codRUC) throws Exception {
+
         try {
             List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosConcluidos(codRUC);
+
 
             return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
         } catch (Exception e) {
@@ -118,10 +123,10 @@ public class ProjetoController {
 
     @GetMapping("/{codRUC}/filtro/projetosDatas/fetch/{codMA}/{fromDate}/{toDate}")
     @ResponseBody
+
     public ResponseEntity<Object> findProjetosBetweenDatasAvaliacao(@PathVariable int codRUC, @PathVariable int codMA, @PathVariable Date fromDate, @PathVariable Date toDate) throws Exception {
         try {
             List<ProjetoDTO> listProjetoDTO = projetoService.findProjetosDatasAvaliacao(codRUC, codMA, fromDate, toDate);
-
             return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -130,6 +135,7 @@ public class ProjetoController {
 
     @GetMapping("/{codRUC}/filtro/projetosNif/{nifOrganizacao}")
     @ResponseBody
+
     public ResponseEntity<Object> findProjetosByNifOrganizacao(@PathVariable int codRUC, @PathVariable long nifOrganizacao) throws Exception {
 
         try {
@@ -139,6 +145,14 @@ public class ProjetoController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
+    }
+
+    @RequestMapping("/ruc/{codRuc}/filtro")
+    public Object sampleServce(@PathVariable int codRuc, HttpServletRequest request) throws Exception {
+        String query = request.getQueryString();
+        List<ProjetoDTO> listProjetoDTO = projetoService.filtroOperadoresLogicos(codRuc,query);
+        return new ResponseEntity<>(listProjetoDTO, HttpStatus.OK);
+
     }
 
 }
