@@ -1,7 +1,9 @@
 package Sprint.WsProjeto.IT;
 import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
 import Sprint.WsProjeto.DTO.ProjetoDTO;
+import Sprint.WsProjeto.datamodel.REST.EdicaoRestDTO;
 import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
+import Sprint.WsProjeto.repositories.REST.EdicaoRestRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONObject;
 
@@ -50,6 +52,9 @@ public class ITTest {
     @MockBean
     PropostaRestRepository propostaRestRepository;
 
+    @MockBean
+     EdicaoRestRepository edicaoRestRepository;
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -64,39 +69,48 @@ public class ITTest {
 
     @Test
     void shouldPostNewProjetoIT() throws Exception {
-/*
+        int generatedCodProjeto = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+
         int generatedCodEstudadnte = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
-        int generatedCodOrientador = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+       // int generatedCodOrientador = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
         int generatedCodProposta = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        int generatedCodEdicao = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
-        UtilizadorRestDTO estudanteDouble = mock(UtilizadorRestDTO.class);
+       /* UtilizadorRestDTO estudanteDouble = mock(UtilizadorRestDTO.class);
         when(estudanteDouble.getCodUtilizador()).thenReturn(generatedCodEstudadnte);
-
-        UtilizadorRestDTO orientadorDouble = mock(UtilizadorRestDTO.class);
-        when(orientadorDouble.getCodUtilizador()).thenReturn(generatedCodOrientador);
+*/
+       /* UtilizadorRestDTO orientadorDouble = mock(UtilizadorRestDTO.class);
+        when(orientadorDouble.getCodUtilizador()).thenReturn(generatedCodOrientador);*/
 
         PropostaRestDTO propostaDouble = mock(PropostaRestDTO.class);
         when(propostaDouble.getCodProposta()).thenReturn(generatedCodProposta);
+        when(propostaDouble.getCodEdicao()).thenReturn(generatedCodEdicao);
 
+        EdicaoRestDTO edicaoDouble = mock(EdicaoRestDTO.class);
+       // when(edicaoDouble.getCodEdicao()).thenReturn(generatedCodProposta);
 
-        NewProjetoInfoDto newProjetoInfoDto = new NewProjetoInfoDto(propostaDouble.getCodProposta(),estudanteDouble.getCodUtilizador());
+        NewProjetoInfoDto newProjetoInfoDto = new NewProjetoInfoDto(propostaDouble.getCodProposta(),generatedCodEstudadnte);
 
-        Optional<UtilizadorRestDTO> optionalEstudante = Optional.of(estudanteDouble);
+       // NewProjetoInfoDto newProjetoInfoDto = new NewProjetoInfoDto(propostaDouble.getCodProposta(),estudanteDouble.getCodUtilizador());
+
+        /*Optional<UtilizadorRestDTO> optionalEstudante = Optional.of(estudanteDouble);
         when(utilizadorRestRepository.findUtilizadorByCode(1)).thenReturn(optionalEstudante);
 
         Optional<UtilizadorRestDTO> optionalOrientador = Optional.of(orientadorDouble);
-        when(utilizadorRestRepository.findUtilizadorByCode(1)).thenReturn(optionalOrientador);
+        when(utilizadorRestRepository.findUtilizadorByCode(1)).thenReturn(optionalOrientador);*/
 
         Optional<PropostaRestDTO> optionalProposta = Optional.of(propostaDouble);
         when(propostaRestRepository.findPropostaByCode(1)).thenReturn(optionalProposta);
+        Optional<EdicaoRestDTO> optionalEdicao = Optional.of(edicaoDouble);
+        when(edicaoRestRepository.findEdicaoByCode(1)).thenReturn(optionalEdicao);
 
         // GET Projeto/{codProjeto = 1}
 
         MvcResult resultGet11 = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/projetos/" + 1)
+                        .get("/projetos/" + generatedCodProjeto)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andReturn();
@@ -135,7 +149,7 @@ public class ITTest {
         // GET Projeto/{codProjeto = 1}
         MvcResult resultGet = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/projetos/" + 1)
+                        .get("/projetos/" + resultJsonObject.getInt("codProjeto"))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -154,7 +168,6 @@ public class ITTest {
         assertEquals(codProposta3, resultJsonObject3.getInt("codProposta"));
 
         assertNotNull(resultContentStr3);
-*/
 
     }
 
