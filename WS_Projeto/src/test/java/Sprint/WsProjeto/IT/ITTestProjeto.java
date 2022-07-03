@@ -96,7 +96,7 @@ public class ITTestProjeto {
 
         Optional<PropostaRestDTO> optionalProposta = Optional.of(propostaDouble);
         when(propostaWebRepository.findPropostaByCode(generatedCodProposta)).thenReturn(optionalProposta);
-        when(optionalProposta.isPresent()).thenReturn(true);
+        //when(optionalProposta.isPresent()).thenReturn(true);
         when(optionalProposta.get().getCodEdicao()).thenReturn(generatedCodEdicao);
 
         Optional<EdicaoRestDTO> optionalEdicao = Optional.of(edicaoDouble);
@@ -126,7 +126,7 @@ public class ITTestProjeto {
         //assertNotNull(resultContent1);
         assertEquals( msgErro ,resultContentStr11);
 
-       /* // POST
+       // POST
 
         MvcResult resultPost = mockMvc
                 .perform(MockMvcRequestBuilders
@@ -142,16 +142,16 @@ public class ITTestProjeto {
         JSONObject resultJsonObject = new JSONObject( resultContentStr );
 
 
-        *//*int codEstudante = newProjetoInfoDto.getCodEstudante();
+        int codEstudante = newProjetoInfoDto.getCodEstudante();
 
         int codProposta = newProjetoInfoDto.getCodProposta();
 
         assertEquals(codEstudante, resultJsonObject.getInt("codEstudante"));
 
-        assertEquals(codProposta, resultJsonObject.getInt("codProposta"));*//*
+        assertEquals(codProposta, resultJsonObject.getInt("codProposta"));
 
 
-        // GET Projeto/{codProjeto = 1}
+       // GET Projeto/{codProjeto = 1}
         MvcResult resultGet = mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/projetos/" + resultJsonObject.getInt("codProjeto"))
@@ -173,7 +173,7 @@ public class ITTestProjeto {
         assertEquals(codProposta3, resultJsonObject3.getInt("codProposta"));
 
         assertNotNull(resultContentStr3);
-*/
+
     }
 
 

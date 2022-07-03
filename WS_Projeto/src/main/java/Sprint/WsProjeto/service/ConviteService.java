@@ -110,6 +110,6 @@ public class ConviteService {
             ConviteDTO oConviteDTO = conviteDomainDTOAssembler.toDto(oConvite);
 
             return oConviteDTO;
-        } else throw new Exception("Convite não encontrado");
+        } else throw new Exception("Convite nao encontrado");
     }
 }

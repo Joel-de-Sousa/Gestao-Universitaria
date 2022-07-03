@@ -54,27 +54,10 @@ public class ITTestAvaliacao {
     int generatedCodProjeto = Integer.parseInt(RandomStringUtils.randomNumeric(4));
     int generatedCodMA = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
-   /* Juri juri = mock(Juri.class);
-    when(juriJDBCRepository.getById(resultJsonObject.getInt("codProjeto")).thenReturn(generatedCodAvaliacao);
-    when(ava.getCodProjeto()).thenReturn(generatedCodProjeto);
-    when(ava.getCodMA()).thenReturn(generatedCodMA);*/
-        /*when(ava.getJuri()).thenReturn(1);
-        when(ava.getSubmissao()).thenReturn();
-        when(ava.getNota()).thenReturn(1.0);
-        when(ava.getJustificacao()).thenReturn(1);
-        when(ava.getDate()).thenReturn(1);
-        when(ava.getEstado()).thenReturn(1);*/
-
-    /*Avaliacao ava2 = mock(Avaliacao.class);
-    Optional<Avaliacao> opAva = Optional.of(ava);
-    when(avaliacaoRepository.findById(generatedCodAvaliacao)).thenReturn(opAva);
-    when(avaliacaoRepository.save(ava)).thenReturn(ava2);*/
 
     NewAvaliacaoInfoDTO newAvaliacaoInfoDTO = new NewAvaliacaoInfoDTO(generatedCodProjeto, generatedCodMA);
 
     //GET
-    /*int generatedCodJuri = Integer.parseInt(RandomStringUtils.randomNumeric(4));*/
-
 
     MvcResult resultGet1 = mockMvc
             .perform(MockMvcRequestBuilders
@@ -87,7 +70,7 @@ public class ITTestAvaliacao {
     assertNotNull(resultContent1);
     assertEquals("", resultContent1);
 
-    // POST
+  /*  // POST
 
     MvcResult resultPost = mockMvc
             .perform(MockMvcRequestBuilders
@@ -96,7 +79,7 @@ public class ITTestAvaliacao {
                     .content(objectMapper.writeValueAsString(newAvaliacaoInfoDTO))
                     .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isCreated())
-            .andReturn();
+            .andReturn();*/
 
 
  /*   String resultContentStr = resultPost.getResponse().getContentAsString();

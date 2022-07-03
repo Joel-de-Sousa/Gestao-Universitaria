@@ -61,12 +61,7 @@ public class ITTestJuri {
         when(ava.getCodAvaliacao()).thenReturn(generatedCodAvaliacao);
         when(ava.getCodProjeto()).thenReturn(generatedCodProjeto);
         when(ava.getCodMA()).thenReturn(generatedCodMA);
-        /*when(ava.getJuri()).thenReturn(1);
-        when(ava.getSubmissao()).thenReturn();
-        when(ava.getNota()).thenReturn(1.0);
-        when(ava.getJustificacao()).thenReturn(1);
-        when(ava.getDate()).thenReturn(1);
-        when(ava.getEstado()).thenReturn(1);*/
+
 
         Avaliacao ava2 = mock(Avaliacao.class);
         Optional<Avaliacao> opAva = Optional.of(ava);
