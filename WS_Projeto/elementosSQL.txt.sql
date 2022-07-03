@@ -23,22 +23,35 @@ BEGIN
 END;
 /
 
-CREATE OR REPLACE FUNCTION fncadicionarjuri (
-	p_cod_juri juris.cod_juri%TYPE, p_cod_presidente juris.cod_presidente%TYPE, p_cod_orientador juris.cod_orientador%TYPE,
-	p_cod_arguente juris.cod_arguente%TYPE
+create or replace  FUNCTION fncadicionarjuri (
+     p_cod_presidente juris.cod_presidente%TYPE, p_cod_orientador juris.cod_orientador%TYPE,
+    p_cod_arguente juris.cod_arguente%TYPE
 
 ) RETURN SYS_REFCURSOR IS
-	cur_juri SYS_REFCURSOR;
+    cur_juri SYS_REFCURSOR;
 BEGIN
-	INSERT INTO juris (
-		cod_juri, cod_presidente, cod_orientador, cod_arguente
-	) VALUES (
-		p_cod_juri, p_cod_presidente, p_cod_orientador, p_cod_arguente
-	);
+    INSERT INTO juris (
+        cod_presidente, cod_orientador, cod_arguente
+    ) VALUES (
+         p_cod_presidente, p_cod_orientador, p_cod_arguente
+    );
 
-	RETURN fncobterjuriporid(p_cod_juri);
+    RETURN FNCOBTERJURIPORCODPRESIDENTE(p_cod_presidente);
 END;
 /
+
+
+create or replace  FUNCTION fncobterjuriporCodPresidente (
+    p_cod_Presidente juris.cod_Presidente%TYPE
+) RETURN SYS_REFCURSOR IS
+    src_juris SYS_REFCURSOR;
+BEGIN
+    OPEN src_juris FOR SELECT *
+                           FROM juris
+                          WHERE cod_Presidente = p_cod_Presidente;
+
+    RETURN src_juris;
+END;
 
 CREATE OR REPLACE PROCEDURE prceliminarjuri (
 	p_cod_juri juris.cod_juri%TYPE
@@ -266,6 +279,24 @@ begin
 	);
 
 	return FNCOBTERAVALIACAOPORID(p_cod_Avaliacao);
+end;
+/
+
+
+--Save Avaliacao Criar avaliacao
+create or replace function fncsaveavaliacao (
+	p_cod_projeto AVALIACOES.COD_PROJETO%type,
+	p_cod_MA AVALIACOES.COD_MA%type
+) return SYS_REFCURSOR is
+	cur_avaliacoes SYS_REFCURSOR;
+begin
+	insert into AVALIACOES (
+		COD_PROJETO, COD_MA
+	) values (
+		p_cod_projeto, p_cod_MA
+	);
+
+	return prcobtertodasavaliacoescodprojeto(p_cod_projeto);
 end;
 /
 

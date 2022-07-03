@@ -67,6 +67,7 @@ public class ProjetoService {
 
 
             Optional<EdicaoRestDTO> edicaoRestDTO = edicaoWebRepository.findEdicaoByCode(propostaRestDTO.get().getCodEdicao());
+
             List<MomentoAvaliacaoDTO> momentoAvaliacaoList = edicaoRestDTO.get().getMomentoAvaliacaoList();
             for (MomentoAvaliacaoDTO momentoAvaliacaoDTO : momentoAvaliacaoList) {
 

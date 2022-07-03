@@ -46,7 +46,7 @@ public class JuriService {
             Optional<Avaliacao> opAvaliacao=avaliacaoRepository.findById(juriInfoDto.getCodAvaliacao());
             Avaliacao avaliacao=opAvaliacao.get();
             opAvaliacao.get().setJuri(oJuriSaved);
-            Avaliacao avaliacaoSave=avaliacaoRepository.save(avaliacao);
+            Avaliacao avaliacaoSave=avaliacaoRepository.updateAvaliacaoJuri(avaliacao);
 
             JuriDTO oJuriDTO = juriDomainDTOAssembler.toDto(oJuriSaved);
 

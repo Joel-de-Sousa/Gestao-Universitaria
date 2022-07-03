@@ -78,15 +78,15 @@ public class JuriJDBCRepository {
     public JuriJDBC save(JuriJDBC juri) throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{? = call fncadicionarjuri(?,?,?,?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncadicionarjuri(?,?,?)}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
 
-        callableStatement.setInt(2, juri.getCodJuri());
-        callableStatement.setInt(3, juri.getCodPresidente());
-        callableStatement.setInt(4, juri.getCodOrientador());
+        //callableStatement.setInt(2, juri.getCodJuri());
+        callableStatement.setInt(2, juri.getCodPresidente());
+        callableStatement.setInt(3, juri.getCodOrientador());
 
-        callableStatement.setInt(5, juri.getCodArguente());
+        callableStatement.setInt(4, juri.getCodArguente());
         callableStatement.execute();
 
         RowSetFactory factory = RowSetProvider.newFactory();

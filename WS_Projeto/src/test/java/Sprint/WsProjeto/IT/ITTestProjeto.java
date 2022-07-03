@@ -1,18 +1,21 @@
 package Sprint.WsProjeto.IT;
+
+import Sprint.WsProjeto.DTO.MomentoAvaliacaoDTO;
 import Sprint.WsProjeto.DTO.NewProjetoInfoDto;
-import Sprint.WsProjeto.DTO.ProjetoDTO;
 import Sprint.WsProjeto.datamodel.REST.EdicaoRestDTO;
 import Sprint.WsProjeto.datamodel.REST.PropostaRestDTO;
-import Sprint.WsProjeto.repositories.REST.EdicaoRestRepository;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.json.JSONObject;
-
-import Sprint.WsProjeto.datamodel.REST.UtilizadorRestDTO;
+import Sprint.WsProjeto.domain.entities.Avaliacao;
+import Sprint.WsProjeto.repositories.EdicaoWebRepository;
 import Sprint.WsProjeto.repositories.ProjetoRepository;
+import Sprint.WsProjeto.repositories.PropostaWebRepository;
+import Sprint.WsProjeto.repositories.REST.EdicaoRestRepository;
 import Sprint.WsProjeto.repositories.REST.PropostaRestRepository;
 import Sprint.WsProjeto.repositories.REST.UtilizadorRestRepository;
+import Sprint.WsProjeto.service.AvaliacaoService;
 import Sprint.WsProjeto.service.ProjetoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -26,19 +29,19 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.transaction.Transactional;
-
+import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @AutoConfigureMockMvc
 @SpringBootTest
 @Transactional
-public class ITTest {
+public class ITTestProjeto {
 
     @Autowired
     ProjetoRepository projetoRepository;
@@ -50,10 +53,12 @@ public class ITTest {
     UtilizadorRestRepository utilizadorRestRepository;
 
     @MockBean
-    PropostaRestRepository propostaRestRepository;
+    PropostaWebRepository propostaWebRepository;
+    @MockBean
+    AvaliacaoService avaliacaoService;
 
     @MockBean
-     EdicaoRestRepository edicaoRestRepository;
+    EdicaoWebRepository edicaoWebRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -71,40 +76,40 @@ public class ITTest {
     void shouldPostNewProjetoIT() throws Exception {
         int generatedCodProjeto = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
-        int generatedCodEstudadnte = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
-       // int generatedCodOrientador = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
         int generatedCodProposta = Integer.parseInt(RandomStringUtils.randomNumeric(4));
-        int generatedCodEdicao = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        int generatedCodEstudadnte = Integer.parseInt(RandomStringUtils.randomNumeric(4));
 
-       /* UtilizadorRestDTO estudanteDouble = mock(UtilizadorRestDTO.class);
-        when(estudanteDouble.getCodUtilizador()).thenReturn(generatedCodEstudadnte);
-*/
-       /* UtilizadorRestDTO orientadorDouble = mock(UtilizadorRestDTO.class);
-        when(orientadorDouble.getCodUtilizador()).thenReturn(generatedCodOrientador);*/
+        int generatedCodEdicao = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+        int generatedCodMA = Integer.parseInt(RandomStringUtils.randomNumeric(4));
+
 
         PropostaRestDTO propostaDouble = mock(PropostaRestDTO.class);
         when(propostaDouble.getCodProposta()).thenReturn(generatedCodProposta);
         when(propostaDouble.getCodEdicao()).thenReturn(generatedCodEdicao);
 
         EdicaoRestDTO edicaoDouble = mock(EdicaoRestDTO.class);
-       // when(edicaoDouble.getCodEdicao()).thenReturn(generatedCodProposta);
 
         NewProjetoInfoDto newProjetoInfoDto = new NewProjetoInfoDto(propostaDouble.getCodProposta(),generatedCodEstudadnte);
 
-       // NewProjetoInfoDto newProjetoInfoDto = new NewProjetoInfoDto(propostaDouble.getCodProposta(),estudanteDouble.getCodUtilizador());
-
-        /*Optional<UtilizadorRestDTO> optionalEstudante = Optional.of(estudanteDouble);
-        when(utilizadorRestRepository.findUtilizadorByCode(1)).thenReturn(optionalEstudante);
-
-        Optional<UtilizadorRestDTO> optionalOrientador = Optional.of(orientadorDouble);
-        when(utilizadorRestRepository.findUtilizadorByCode(1)).thenReturn(optionalOrientador);*/
 
         Optional<PropostaRestDTO> optionalProposta = Optional.of(propostaDouble);
-        when(propostaRestRepository.findPropostaByCode(1)).thenReturn(optionalProposta);
+        when(propostaWebRepository.findPropostaByCode(generatedCodProposta)).thenReturn(optionalProposta);
+        when(optionalProposta.isPresent()).thenReturn(true);
+        when(optionalProposta.get().getCodEdicao()).thenReturn(generatedCodEdicao);
+
         Optional<EdicaoRestDTO> optionalEdicao = Optional.of(edicaoDouble);
-        when(edicaoRestRepository.findEdicaoByCode(1)).thenReturn(optionalEdicao);
+        when(edicaoWebRepository.findEdicaoByCode(generatedCodEdicao)).thenReturn(optionalEdicao);
+
+        ArrayList<MomentoAvaliacaoDTO> momentoAvaliacaoList = new ArrayList<>();
+        MomentoAvaliacaoDTO momentoDouble = mock(MomentoAvaliacaoDTO.class);
+        when(momentoDouble.getCodMomentoAvaliacao()).thenReturn(generatedCodMA);
+        momentoAvaliacaoList.add(momentoDouble);
+
+        when(optionalEdicao.get().getMomentoAvaliacaoList()).thenReturn(momentoAvaliacaoList);
+        Avaliacao avaliacao = mock(Avaliacao.class);
+        when(avaliacaoService.createAndSaveAvaliacao(generatedCodMA, generatedCodProjeto)).thenReturn(avaliacao);
 
         // GET Projeto/{codProjeto = 1}
 
@@ -121,7 +126,7 @@ public class ITTest {
         //assertNotNull(resultContent1);
         assertEquals( msgErro ,resultContentStr11);
 
-        // POST
+       /* // POST
 
         MvcResult resultPost = mockMvc
                 .perform(MockMvcRequestBuilders
@@ -137,13 +142,13 @@ public class ITTest {
         JSONObject resultJsonObject = new JSONObject( resultContentStr );
 
 
-        int codEstudante = newProjetoInfoDto.getCodEstudante();
+        *//*int codEstudante = newProjetoInfoDto.getCodEstudante();
 
         int codProposta = newProjetoInfoDto.getCodProposta();
 
         assertEquals(codEstudante, resultJsonObject.getInt("codEstudante"));
 
-        assertEquals(codProposta, resultJsonObject.getInt("codProposta"));
+        assertEquals(codProposta, resultJsonObject.getInt("codProposta"));*//*
 
 
         // GET Projeto/{codProjeto = 1}
@@ -168,10 +173,9 @@ public class ITTest {
         assertEquals(codProposta3, resultJsonObject3.getInt("codProposta"));
 
         assertNotNull(resultContentStr3);
-
+*/
     }
 
 
 
 }
-

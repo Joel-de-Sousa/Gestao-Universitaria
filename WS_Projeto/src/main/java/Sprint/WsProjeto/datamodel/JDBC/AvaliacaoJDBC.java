@@ -53,4 +53,8 @@ public class AvaliacaoJDBC {
         this.codAvaliacao = codAvaliacao;
         this.estado = estado;
     }
+
+    public AvaliacaoJDBC(int codMA) {
+        this.codMA = codMA;
+    }
 }

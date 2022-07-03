@@ -44,10 +44,26 @@ public class AvaliacaoRepository {
 
         return avaliacaoDomainDataAssembler.toDomain(savedAvaliacaoJPA);
     }*/
+    public Avaliacao save2(Avaliacao avaliacao) throws Exception {
+        AvaliacaoJDBC avaliacaoJDBC = avaliacaoJDBCDomainDataAssembler.toJDBCsAVE(avaliacao);
+
+        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.save(avaliacaoJDBC);
+
+        return avaliacaoJDBCDomainDataAssembler.toDomain(savedAvaliacaoJDBC);
+    }
+
     public Avaliacao save(Avaliacao avaliacao) throws Exception {
         AvaliacaoJDBC avaliacaoJDBC = avaliacaoJDBCDomainDataAssembler.toJDBC(avaliacao);
 
-        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.save(avaliacaoJDBC);
+        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.updateAvaliacaoJuri(avaliacaoJDBC);
+
+        return avaliacaoJDBCDomainDataAssembler.toDomain(savedAvaliacaoJDBC);
+    }
+
+    public Avaliacao updateAvaliacaoJuri(Avaliacao avaliacao) throws Exception {
+        AvaliacaoJDBC avaliacaoJDBC = avaliacaoJDBCDomainDataAssembler.toJDBC(avaliacao);
+
+        AvaliacaoJDBC savedAvaliacaoJDBC = avaliacaoJDBCRepository.updateAvaliacaoJuri(avaliacaoJDBC);
 
         return avaliacaoJDBCDomainDataAssembler.toDomain(savedAvaliacaoJDBC);
     }

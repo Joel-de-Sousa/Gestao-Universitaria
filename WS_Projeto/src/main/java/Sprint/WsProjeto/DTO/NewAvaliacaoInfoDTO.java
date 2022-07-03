@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class NewAvaliacaoInfoDTO {
 
 
+    int codprojeto;
     int codMA;
 
 

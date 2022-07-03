@@ -78,6 +78,40 @@ public class AvaliacaoJDBCRepository {
 
     public AvaliacaoJDBC save(AvaliacaoJDBC avaliacao) throws SQLException {
         abrirLigacao();
+        //ESTA FUNCAO NAO ESTA FEITA
+
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncsaveavaliacao(?,?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+
+       /* callableStatement.setInt(2, avaliacao.getCodAvaliacao());*/
+        callableStatement.setInt(2, avaliacao.getCodProjeto());
+        callableStatement.setInt(3, avaliacao.getCodMA());
+
+       /* callableStatement.setInt(5, avaliacao.getCodJuri());
+        callableStatement.setInt(6, avaliacao.getCodSubmissao());
+
+        callableStatement.setDouble(7, avaliacao.getNota());
+        if (avaliacao.getNota() == AvaliacaoJDBC.NOTA_INDEFINIDA) {
+            callableStatement.setNull(7, Types.DOUBLE);
+        }
+        callableStatement.setString(8,avaliacao.getJustificacao());
+        callableStatement.setDate(9,avaliacao.getDate());
+        callableStatement.setInt(10,avaliacao.getEstado());*/
+
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return avaliacaoJDBCDomainDataAssembler.toJDBC(cachedRowSet).get(0);
+    }
+
+    public AvaliacaoJDBC updateAvaliacaoJuri(AvaliacaoJDBC avaliacao) throws SQLException {
+        abrirLigacao();
 
         CallableStatement callableStatement = connection.prepareCall("{? = call fncadicionaravaliacao(?,?,?,?,?,?,?,?,?)}");
 
@@ -173,7 +207,7 @@ public class AvaliacaoJDBCRepository {
     public List<AvaliacaoJDBC> findAvaliacoesByCodProjeto(int codProjeto) throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{call prcobtertodasavaliacoescodprojeto(?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobteravaliacaoporcodigoprojeto(?)}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
         callableStatement.setInt(2, codProjeto);
