@@ -8,12 +8,9 @@ public class NewProjetoInfoDto {
 
 
     @Getter
-
-
     private int codProposta;
 
     @Getter
-
     private int codEstudante;
 
     /*@Getter

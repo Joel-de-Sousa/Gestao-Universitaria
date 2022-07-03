@@ -107,7 +107,7 @@ public class ProjetoJDBCRepository {
     public List<ProjetoJDBC> findAll() throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{call prcobtertodosprojetos(?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call prcobtertodosprojetos(?)}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
 
@@ -173,7 +173,7 @@ public class ProjetoJDBCRepository {
 
         abrirLigacao();
 
-        CallableStatement callableStatement=connection.prepareCall("{call prceliminarprojeto(?)}");
+        CallableStatement callableStatement=connection.prepareCall("{?=call prceliminarprojeto(?)}");
 
         callableStatement.setInt(1, projetoJDBC.getCodProjeto());
 
@@ -186,7 +186,7 @@ public class ProjetoJDBCRepository {
     public List<ProjetoJDBC> findProjetosConcluidos() throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{call prccobterprojetosconcluidos(?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobterprojetosconcluidos}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
 
@@ -200,14 +200,15 @@ public class ProjetoJDBCRepository {
         return projetoDomainDataAssembler.toJDBC(cachedRowSet);
     }
 
-    public List<ProjetoJDBC> findProjetosDatasAvaliacao(Date fromDate, Date toDate) throws SQLException {
+    public List<ProjetoJDBC> findProjetosDatasAvaliacao(int codMA, Date fromDate, Date toDate) throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{call fncobtermaentredatas(?,?,?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobtermaentredatas(?,?,?)}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
-        callableStatement.setDate(2, fromDate);
-        callableStatement.setDate(2, toDate);
+        callableStatement.setInt(2, codMA);
+        callableStatement.setDate(3, fromDate);
+        callableStatement.setDate(4, toDate);
 
 
         callableStatement.execute();
@@ -238,10 +239,28 @@ public class ProjetoJDBCRepository {
         return projetoDomainDataAssembler.toJDBC(cachedRowSet);
     }
 
+    public List<ProjetoJDBC> findProjetosByCodPresidente(int codPresidente) throws SQLException {
+        abrirLigacao();
+
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobterprojetosporidpresidente(?)}");
+
+        callableStatement.registerOutParameter(1, Types.REF_CURSOR);
+        callableStatement.setInt(2, codPresidente);
+
+        callableStatement.execute();
+
+        RowSetFactory factory = RowSetProvider.newFactory();
+        CachedRowSet cachedRowSet = factory.createCachedRowSet();
+        cachedRowSet.populate((ResultSet) callableStatement.getObject(1));
+
+        fecharLigacao();
+        return projetoDomainDataAssembler.toJDBC(cachedRowSet);
+    }
+
     public Optional<ProjetoJDBC> findProjetoByCodProposta(int codProposta) throws SQLException {
         abrirLigacao();
 
-        CallableStatement callableStatement = connection.prepareCall("{call prccobterprojetoporcodproposta(?)}");
+        CallableStatement callableStatement = connection.prepareCall("{? = call fncobterprojetoporcodproposta(?)}");
 
         callableStatement.registerOutParameter(1, Types.REF_CURSOR);
         callableStatement.setInt(2, codProposta);

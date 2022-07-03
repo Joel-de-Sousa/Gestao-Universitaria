@@ -20,6 +20,6 @@ public class ConviteDomainDTOAssembler {
 
     public Convite toDomain(ConviteDTO convite){
 
-        return new Convite(convite.getCodConvite(),convite.getCodProjeto(),convite.getCodDocente(),convite.getCodEstudante(), Convite.Estado.valueOf(convite.getEstado()));
+        return new Convite(convite.getCodConvite(),convite.getCodProjeto(),convite.getCodEstudante(),convite.getCodDocente(), Convite.Estado.valueOf(convite.getEstado()));
     }
 }

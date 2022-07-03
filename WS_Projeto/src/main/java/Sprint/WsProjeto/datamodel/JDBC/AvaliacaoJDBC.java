@@ -49,5 +49,8 @@ public class AvaliacaoJDBC {
     private int estado;
 
 
-
+    public AvaliacaoJDBC(int codAvaliacao, int estado) {
+        this.codAvaliacao = codAvaliacao;
+        this.estado = estado;
+    }
 }

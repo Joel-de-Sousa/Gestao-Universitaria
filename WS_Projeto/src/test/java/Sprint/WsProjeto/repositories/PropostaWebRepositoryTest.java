@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,5 +38,35 @@ class PropostaWebRepositoryTest {
         assertEquals(propostaRest,propostaRestDTO1);
 
     }
+    @Test
+    void shouldFindAllPropostasAceitesByCodEdicao() throws Exception {
+        //arrange
+
+        List<PropostaRestDTO> list1 = new ArrayList<>();
+        Optional<List<PropostaRestDTO>> optionalList = Optional.of(list1);
+        when(propostaRestRepository.findAllPropostasAceitesByCodEdicao(1)).thenReturn(optionalList);
+
+        //act
+        List<PropostaRestDTO> act = propostaWebRepository.findAllPropostasAceitesByCodEdicao(1);
+        //assert
+        assertEquals(act,optionalList.get());
+    }
+
+    @Test
+    void shouldFindAllPropostasAceitesByNIF() throws Exception {
+        //arrange
+
+        List<PropostaRestDTO> list1 = new ArrayList<>();
+        Optional<List<PropostaRestDTO>> optionalList = Optional.of(list1);
+        when(propostaRestRepository.findAllPropostasAceitesByNif(123456)).thenReturn(optionalList);
+
+        //act
+        List<PropostaRestDTO> act = propostaWebRepository.findAllPropostasAceitesByNif(123456);
+        //assert
+        assertEquals(act,optionalList.get());
+    }
+
+
+
 
 }
