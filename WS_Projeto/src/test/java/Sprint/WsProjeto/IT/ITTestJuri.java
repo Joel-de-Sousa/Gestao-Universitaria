@@ -114,7 +114,7 @@ public class ITTestJuri {
 
 
         // GET Juri/{codJuri}
-        
+
         int codJuri = resultJsonObject.getInt("codJuri");
 
         MvcResult resultGet = mockMvc

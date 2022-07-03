@@ -282,6 +282,24 @@ begin
 end;
 /
 
+
+--Save Avaliacao Criar avaliacao
+create or replace function fncsaveavaliacao (
+	p_cod_projeto AVALIACOES.COD_PROJETO%type,
+	p_cod_MA AVALIACOES.COD_MA%type
+) return SYS_REFCURSOR is
+	cur_avaliacoes SYS_REFCURSOR;
+begin
+	insert into AVALIACOES (
+		COD_PROJETO, COD_MA
+	) values (
+		p_cod_projeto, p_cod_MA
+	);
+
+	return prcobtertodasavaliacoescodprojeto(p_cod_projeto);
+end;
+/
+
 --Elimina uma avaliacao
 create or replace procedure prceliminaravaliacao (
 	p_cod_Avaliacao AVALIACOES.cod_Avaliacao%type

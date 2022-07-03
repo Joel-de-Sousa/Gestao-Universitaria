@@ -50,6 +50,11 @@ public class AvaliacaoJDBCDomainDataAssembler {
         return new AvaliacaoJDBC(avaliacao.getCodAvaliacao(),avaliacao.getCodProjeto(),avaliacao.getCodMA(),juri,submissao, avaliacao.getNota(), avaliacao.getJustificacao(), avaliacao.getDate(),avaliacao.getEstado().ordinal());
     }
 
+    public AvaliacaoJDBC toJDBCsAVE(Avaliacao avaliacao) {
+
+        return new AvaliacaoJDBC(avaliacao.getCodProjeto(), avaliacao.getCodMA());
+    }
+
     public Avaliacao toDomain(AvaliacaoJDBC avaliacaoJDBC) throws Exception {
         Juri juri=null;
         Submissao submissao=null;

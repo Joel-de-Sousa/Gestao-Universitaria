@@ -53,17 +53,17 @@ public class AvaliacaoController {
     }
 
 
-      /*  @PostMapping("")
+        @PostMapping("")
         @ResponseBody
         public ResponseEntity<Object> createAndSaveAvaliacao(@RequestBody NewAvaliacaoInfoDTO avaliacaoInfoDto) {
 
             try {
-                AvaliacaoDTO avaliacaoDTO = avaliacaoService.createAndSaveAvaliacao(avaliacaoInfoDto.getCodMA());
+                Avaliacao avaliacaoDTO = avaliacaoService.createAndSaveAvaliacao(avaliacaoInfoDto.getCodprojeto(), avaliacaoInfoDto.getCodMA());
                 return new ResponseEntity<>(avaliacaoDTO, HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
-        }*/
+        }
 
 
     @PatchMapping("/updatePresidente/{codAvaliacao}") //PRESIDENTE Preenche a nota e justificação de avaliação
