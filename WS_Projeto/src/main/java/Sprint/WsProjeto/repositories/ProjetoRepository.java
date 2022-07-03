@@ -107,6 +107,16 @@ public class ProjetoRepository implements IProjetoRepository {
         return listProjetos;
     }
 
+
+    public List<Projeto> listaFiltrada(String queryFinal) throws SQLException {
+        List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.listaQuery(queryFinal);
+        List<Projeto> listProjetos = new ArrayList<>();
+        for (ProjetoJDBC p : listProjetosJDBC) {
+            listProjetos.add(projetoJDBCDomainDataAssembler.toDomain(p));
+        }
+        return listProjetos;
+    }
+
     public List<Projeto> findProjetosByCodDocente(int codDocente) throws SQLException {
         List<ProjetoJDBC> listProjetosJDBC = projetoJDBCRepository.findProjetosByCodDocente(codDocente);
         List<Projeto> listProjetos = new ArrayList<>();
